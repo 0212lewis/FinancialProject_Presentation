@@ -4,7 +4,7 @@
 var vm = new Vue({
    el:'#container' ,
     data:{
-       item:[
+       items:[
 
        ]
     },
@@ -12,6 +12,13 @@ var vm = new Vue({
 
     },
     beforeCreate(){
-
+       this.$http.get("http://localhost:8080/client/allClient").then(function (response) {
+           this.items = response.data.data;
+           setTimeout(function () {
+               $('#example1').DataTable();
+           },0);
+       }).catch(function (error) {
+           alert("出现了未知的错误！");
+       })
     }
 });

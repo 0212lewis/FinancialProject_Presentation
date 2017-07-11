@@ -4,7 +4,7 @@
 var vm = new Vue({
     el:'#container' ,
     data:{
-        item:[
+        items:[
 
         ]
 
@@ -12,7 +12,14 @@ var vm = new Vue({
     methods:{
 
     },
-    mounted(){
-
+    beforeCreate(){
+        this.$http.get("http://localhost:8080/provider/allProvider").then(function (response) {
+            this.items = response.data.data;
+            setTimeout(function () {
+                $('#example1').DataTable();
+            },0);
+        }).catch(function (error) {
+            alert("出现了未知的错误！");
+        })
     }
 });

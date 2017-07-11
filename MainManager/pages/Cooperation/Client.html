@@ -174,6 +174,8 @@ desired effect
                     <ul class="treeview-menu">
                         <li class="active"><a href="#"><i class="fa fa-circle-o"> 客户</i></a></li>
                         <li><a href="Provider.html"><i class="fa fa-circle-o"> 供应商</i></a></li>
+                        <li><a href="Businessman.html"><i class="fa fa-circle-o"> 业务员</i></a></li>
+
                     </ul>
                 </li>
             </ul>
@@ -188,8 +190,8 @@ desired effect
         <section class="content-header">
 
             <ol class="breadcrumb">
-                <li><a href="../MainUi.html" style="color: #FFFFFF"><i class="fa fa-dashboard" style="color: #FFFFFF"></i>Home</a></li>
-                <li class="active" style="color:#FFFFFF">客户</li>
+                <li><a href="../MainUi.html" style="color: #000000"><i class="fa fa-dashboard" style="color: #000000"></i>Home</a></li>
+                <li class="active" style="color:#000000">客户</li>
             </ol>
         </section>
 
@@ -219,30 +221,17 @@ desired effect
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <tr>
-                                    <td>{{ item.id }}</td>
-                                    <td>{{ item.name }}</td>
-                                    <td>{{ item.taxId }}</td>
-                                    <td>{{ item.address }}</td>
-                                    <td>{{ item.phoneNumber }}</td>
-                                    <td>{{ item.bank}} {{item.account }}</td>
-                                    <td>{{ item.mailAddress }}</td>
-                                    <td>{{ item.linkman}}</td>
+                                <tr v-for="item in items">
+                                    <td v-text="item.id"></td>
+                                    <td v-text="item.name"></td>
+                                    <td v-text="item.taxId"></td>
+                                    <td v-text="item.address"></td>
+                                    <td v-text="item.phoneNumber"></td>
+                                    <td>{{ item.bank}} {{item.account}}</td>
+                                    <td v-text="item.mailAddress"></td>
+                                    <td v-text="item.linkman"></td>
                                     <td>
-                                        <a :href="'SingleStock.html?code='+item.code">修改</a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>{{ item.id }}</td>
-                                    <td>{{ item.name }}</td>
-                                    <td>{{ item.taxId }}</td>
-                                    <td>{{ item.address }}</td>
-                                    <td>{{ item.phoneNumber }}</td>
-                                    <td>{{ item.bank}} {{item.account }}</td>
-                                    <td>{{ item.mailAddress }}</td>
-                                    <td>{{ item.linkman}}</td>
-                                    <td>
-                                        <a :href="'SingleStock.html?code='+item.code">修改</a>
+                                        <a :href="'ClientDetail.html?id='+item.id">修改</a>
                                     </td>
                                 </tr>
                                 </tbody>
@@ -505,12 +494,10 @@ desired effect
 <!-- AdminLTE for demo purposes -->
 <script src="../../dist/js/demo.js"></script>
 <!-- Page script -->
-<script>
-    $(function () {
-        setTimeout(function () {
-            $('#example1').DataTable();
-        },0);
-    });
-</script>
+<!--<script>-->
+    <!--$(function () {-->
+       <!---->
+    <!--});-->
+<!--</script>-->
 </body>
 </html>

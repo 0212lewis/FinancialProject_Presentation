@@ -4,21 +4,31 @@
 var vm  = new Vue({
     el:'#container',
     data:{
-        item:{
-            id:'',
-            name:'',
-            taxId:'',
-            address:'',
-            bank:'',
-            account:'',
-            mailAddress:'',
-            linkman:''
-        }
+        items:[
+
+        ]
     },
     methods:{
 
     },
     mounted(){
+        var thisUrl = document.URL;
+        var getVal = thisUrl.split('?')[1];
+        var id = getVal.split('=')[1];
+        this.id = id;
 
+        this.$http.get("http://localhost:8080/client/singleClient",{
+            params:{
+                clientId:this.id
+            }
+        }).then(function (response) {
+            if(response.body.errorCode == 0){
+                console.log(this.items)
+                console.log(response.data.data);
+                this.items = response.data.data[0];
+            }
+        }).catch(function (error) {
+            alert("出现了未知的错误!");
+        })
     }
 });

@@ -185,12 +185,13 @@ var vm = new Vue({
         },
 
         addIncomeOrder:function () {
-            hide5()
+                hide5()
                 var list = document.getElementById("datepicker").value.split("/");
                 var month = list[0];
                 var day = list[1];
                 var year = list[2]
                 var newDate = year+'-'+month+'-'+day+" "+this.IncomeOrder.hour+":"+this.IncomeOrder.minute+":"+this.IncomeOrder.second;
+
 
                 if(this.IncomeOrder.payer==null || this.IncomeOrder.payer.length==0){
                     alert("请输入收货单位！");
@@ -199,26 +200,30 @@ var vm = new Vue({
                 if(this.IncomeOrder.money== null|| this.IncomeOrder.money.length==0){
                     alert("请输入运费！");
                     return;
-                }
-                this.$http.post("http://localhost:8080/order/sales_income",{
-                    clientId:'',
-                    clientName:this.IncomeOrder.payer.trim(),
-                    money:this.IncomeOrder.money.trim(),
-                    pay_method:this.IncomeOrder.payMethod.trim(),
-                    comment:this.IncomeOrder.comment.trim(),
-                    date:newDate
-                }).then(function (response) {
-                    if(response.body.errorCode ==0){
-                        alert("添加成功！");
-                        document.getElementById("save").disabled=true;
-                    }else{
-                        alert("成功但是responsedata错误！");
+                }else if((this.IncomeOrder.hour.toString().length==2)&&(this.IncomeOrder.minute.toString().length==2)&&(this.IncomeOrder.second.toString().length==2)){
+                    this.$http.post("http://localhost:8080/order/sales_income",{
+                        clientId:'',
+                        clientName:this.IncomeOrder.payer.trim(),
+                        money:this.IncomeOrder.money.trim(),
+                        pay_method:this.IncomeOrder.payMethod.trim(),
+                        comment:this.IncomeOrder.comment.trim(),
+                        date:newDate
+                    }).then(function (response) {
+                        if(response.body.errorCode ==0){
+                            alert("添加成功！");
+                            document.getElementById("save").disabled=true;
+                        }else{
+                            alert("成功但是responsedata错误！");
 
-                    }
-                }).catch(function (error) {
-                    console.log(error.data);
-                    alert("添加失败！");
-                })
+                        }
+                    }).catch(function (error) {
+                        console.log(error.data);
+                        alert("添加失败！");
+                    })
+                }else{
+                    alert("请规范输入时间格式！");
+                }
+
 
 
             }

@@ -132,31 +132,32 @@ var vm = new Vue({
 
             }else if(this.invoiceOrder.money==null){
                 alert("请输入开票金额！");
-            }else{
-                const self=this;
-                this.$http.post("http://localhost:8080/order/open_ticket",{
-                        clientID:'',
-                        clientName:self.invoiceOrder.unit.trim(),
-                        orderID:self.invoiceOrder.orderId.trim(),
-                        money:self.invoiceOrder.money,
-                        comment:self.invoiceOrder.comment.trim(),
-                        date:newDate
-                }).then(function (response) {
-                    if(response.body.errorCode == 0){
-                        document.getElementById("save").disabled=true;
-                        // console.log(response.data);
-                        // console.log(response.body);
-                        alert("添加成功！");
+            }else if((this.invoiceOrder.hour.toString().length==2)&&(this.invoiceOrder.minute.toString().length==2)&&(this.invoiceOrder.second.toString().length==2)) {
+                    const self = this;
+                    this.$http.post("http://localhost:8080/order/open_ticket", {
+                        clientID: '',
+                        clientName: self.invoiceOrder.unit.trim(),
+                        orderID: self.invoiceOrder.orderId.trim(),
+                        money: self.invoiceOrder.money,
+                        comment: self.invoiceOrder.comment.trim(),
+                        date: newDate
+                    }).then(function (response) {
+                        if (response.body.errorCode == 0) {
+                            document.getElementById("save").disabled = true;
+                            // console.log(response.data);
+                            // console.log(response.body);
+                            alert("添加成功！");
 
-                    }else{
-                        // console.log(response.data);
-                        // console.log(response.body);
-                        alert("成功但是responsedata错误！");
-                    }
-                }).catch(function (error) {
-                    alert("添加失败！");
-                })
-
+                        } else {
+                            // console.log(response.data);
+                            // console.log(response.body);
+                            alert("成功但是responsedata错误！");
+                        }
+                    }).catch(function (error) {
+                        alert("添加失败！");
+                    })
+                }else{
+                alert("请规范输入时间格式！");
             }
 
         }

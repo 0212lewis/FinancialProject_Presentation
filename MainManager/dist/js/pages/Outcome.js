@@ -199,7 +199,7 @@ var vm = new Vue({
             }else if(this.payMoneyOrder.money==null||this.payMoneyOrder.money.length==0){
                 alert("请输入运费！");
                 return;
-            }else{
+            }else if((this.payMoneyOrder.hour.toString().length==2)&&(this.payMoneyOrder.minute.toString().length==2)&&(this.payMoneyOrder.second.toString().length==2)){
                 const self=this;
                 var list = document.getElementById("datepicker").value.split("/");
                 var month = list[0];
@@ -230,6 +230,8 @@ var vm = new Vue({
 
                 })
 
+            }else{
+                alert("请规范输入时间格式！");
             }
         }
     },

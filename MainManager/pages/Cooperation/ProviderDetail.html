@@ -206,14 +206,14 @@ desired effect
                                 <label for="id"  class="col-sm-2 control-label">供应商简码</label>
 
                                 <div class="col-sm-8">
-                                    <input type="text" class="form-control " id="id" value="" v-model="item.id">
+                                    <input type="text" class="form-control " id="id" value="" v-model="items.id">
                                 </div>
                             </div>
                             <hr>
                             <div class="form-group">
                                 <label class="col-sm-2 control-label">供应商名称</label>
                                 <div class="col-sm-8">
-                                    <input type="text" class="form-control " id="name" value="" v-model="item.name">
+                                    <input type="text" class="form-control " id="name" value="" v-model="items.name">
                                 </div>
 
                             </div>
@@ -221,16 +221,16 @@ desired effect
                             <div class="form-group">
                                 <label for="tax" class="col-sm-2 control-label">税号</label>
                                 <div class="col-sm-8">
-                                    <input type="text" class="form-control " id="tax" value="" v-model="item.taxId">
+                                    <input type="text" class="form-control " id="tax" value="" v-model="items.tax_id">
                                 </div>
 
                             </div>
                             <hr>
 
                             <div class="form-group">
-                                <label for="unit" class="col-sm-2 control-label">地址</label>
+                                <label for="address" class="col-sm-2 control-label">地址</label>
                                 <div class="col-sm-8">
-                                    <input type="text" class="form-control " id="unit" value="" v-model="item.unit">
+                                    <input type="text" class="form-control " id="address" value="" v-model="items.address">
                                 </div>
 
                             </div>
@@ -238,31 +238,39 @@ desired effect
                             <div class="form-group">
                                 <label for="phone" class="col-sm-2 control-label">联系电话</label>
                                 <div class="col-sm-8">
-                                    <input type="text" class="form-control " id="phone" value="" v-model="item.phoneNumber">
+                                    <input type="text" class="form-control " id="phone" value="" v-model="items.phone_number">
                                 </div>
 
                             </div>
                             <hr>
                             <div class="form-group">
-                                <label for="place" class="col-sm-2 control-label">开户行</label>
+                                <label for="bank" class="col-sm-2 control-label">开户行</label>
                                 <div class="col-sm-8">
-                                    <input type="text" class="form-control " id="place" v-model="item.place">
+                                    <input type="text" class="form-control " id="bank" v-model="items.bank">
                                 </div>
 
                             </div>
                             <hr>
                             <div class="form-group">
-                                <label for="place" class="col-sm-2 control-label">邮寄地址</label>
+                                <label for="account" class="col-sm-2 control-label">开户行账号</label>
                                 <div class="col-sm-8">
-                                    <input type="text" class="form-control " id="mailAddress" v-model="item.mailAddress">
+                                    <input type="text" class="form-control " id="account" v-model="items.account">
                                 </div>
 
                             </div>
                             <hr>
                             <div class="form-group">
-                                <label for="place" class="col-sm-2 control-label">联系人</label>
+                                <label for="mailAddress" class="col-sm-2 control-label">邮寄地址</label>
                                 <div class="col-sm-8">
-                                    <input type="text" class="form-control " id="linkman" v-model="item.linkman">
+                                    <input type="text" class="form-control " id="mailAddress" v-model="items.mail_address">
+                                </div>
+
+                            </div>
+                            <hr>
+                            <div class="form-group">
+                                <label for="linkman" class="col-sm-2 control-label">联系人</label>
+                                <div class="col-sm-8">
+                                    <input type="text" class="form-control " id="linkman" v-model="items.linkman">
                                 </div>
 
                             </div>
