@@ -1,0 +1,241 @@
+/**
+ * Created by pc on 2017/4/25.
+ */
+function show1()  //显示隐藏层和弹出层
+{
+    var hideobj=document.getElementById("hidebg1");
+    hidebg1.style.display="block";  //显示隐藏层
+    hidebg1.style.height=document.body.clientHeight+"px";  //设置隐藏层的高度为当前页面高度
+    document.getElementById("login1").style.display="block";  //显示弹出层
+}
+function hide1()  //去除隐藏层和弹出层
+{
+    document.getElementById("hidebg1").style.display="none";
+    document.getElementById("login1").style.display="none";
+}
+
+function show2()  //显示隐藏层和弹出层
+{
+    var hideobj=document.getElementById("hidebg2");
+    hidebg2.style.display="block";  //显示隐藏层
+    hidebg2.style.height=document.body.clientHeight+"px";  //设置隐藏层的高度为当前页面高度
+    document.getElementById("login2").style.display="block";  //显示弹出层
+}
+function hide2()  //去除隐藏层和弹出层
+{
+    document.getElementById("hidebg2").style.display="none";
+    document.getElementById("login2").style.display="none";
+}
+
+function show3()  //显示隐藏层和弹出层
+{
+    var hideobj=document.getElementById("hidebg3");
+    hidebg3.style.display="block";  //显示隐藏层
+    hidebg3.style.height=document.body.clientHeight+"px";  //设置隐藏层的高度为当前页面高度
+    document.getElementById("login3").style.display="block";  //显示弹出层
+}
+function hide3()  //去除隐藏层和弹出层
+{
+    document.getElementById("hidebg3").style.display="none";
+    document.getElementById("login3").style.display="none";
+}
+
+function show4()  //显示隐藏层和弹出层
+{
+    var hideobj=document.getElementById("hidebg4");
+    hidebg4.style.display="block";  //显示隐藏层
+    hidebg4.style.height=document.body.clientHeight+"px";  //设置隐藏层的高度为当前页面高度
+    document.getElementById("login4").style.display="block";  //显示弹出层
+}
+function hide4()  //去除隐藏层和弹出层
+{
+    document.getElementById("hidebg4").style.display="none";
+    document.getElementById("login4").style.display="none";
+}
+var vm = new Vue({
+    el:'#container',
+    data:{
+        receives:[
+
+        ],
+
+       methods:[
+
+       ],
+        payMoneyOrder:{
+            receive:"",
+            method:"",
+            payMoneyDate:"",
+            comment:"",
+            money:"",
+            date:''
+        },
+
+    },
+    methods:{
+        addName:function(){
+            var name=document.getElementById("newinput1").value;
+            for(var i=0;i<this.receives.length;i++){
+                if(this.receives[i].name==name){
+                    alert('该名称已经存在');
+                    document.getElementById("newinput1").value="";
+                    hide1();
+                    return;
+                }
+            }
+            this.receives.push({name});
+            this.$http.get("http://106.14.224.189/server/contents/AddContent.php",{
+                params:{
+                    contentName:"paymoney_order_otherName",
+                    value:name
+                }
+            })
+                .then(function(response){
+                    document.getElementById("newinput1").value="";
+                    hide1();
+                    alert("添加名称成功!")
+                }).catch(function(error){
+                alert("出现了未知的错误！请重新进行输入")
+            })
+        },
+        deleteName:function(){
+            var mySelect=document.getElementById("othername");
+            var index=mySelect.selectedIndex;
+            var name=mySelect.options[index].value;
+            if(name==""){
+                alert('请选择要删除的内容');
+                hide2();
+                return;
+            }
+            this.$http.get("http://106.14.224.189/server/contents/deleteContent.php",{
+                params:{
+                    contentName:"paymoney_order_otherName",
+                    value:name
+                }
+            })
+                .then(function(response){
+                    mySelect.options.remove(index);//下拉框中删除该元素
+                    hide2();
+                    alert("删除名称成功!")
+                }).catch(function(error){
+                    // console.log(error.data);
+                alert("出现了未知的错误！请重新进行输入")
+                hide2();
+            })
+        },
+
+        addPayMethod:function(){
+            var name=document.getElementById("newinput3").value;
+            for(var i=0;i<this.methods.length;i++){
+                if(this.methods[i].name==name){
+                    alert('该付款方式已经存在');
+                    document.getElementById("newinput3").value="";
+                    hide3();
+                    return;
+                }
+            }
+            this.methods.push({name});
+            this.$http.get("http://106.14.224.189/server/contents/AddContent.php",{
+                params:{
+                    contentName:"payment_method",
+                    value:name
+                }
+            })
+                .then(function(response){
+                    document.getElementById("newinput3").value="";
+                    hide3();
+                    alert("添加付款方式成功!")
+                }).catch(function(error){
+                alert("出现了未知的错误！请重新进行输入")
+            })
+        },
+
+        deletePayMethod:function(){
+            var mySelect=document.getElementById("paymentmethod");
+            var index=mySelect.selectedIndex;
+            var name=mySelect.options[index].value;
+            if(name==""){
+                alert('请选择要删除的内容');
+                hide4();
+                return;
+            }
+            this.$http.get("http://106.14.224.189/server/contents/deleteContent.php",{
+                params:{
+                    contentName:"payment_method",
+                    value:name
+                }
+            })
+                .then(function(response){
+                    mySelect.options.remove(index);//下拉框中删除该元素
+                    hide4();
+                    alert("删除付款方式成功!")
+                }).catch(function(error){
+                    // console.log(error.data);
+                alert("出现了未知的错误！请重新进行输入")
+                hide4();
+            })
+        },
+
+        addOutcomeOrder:function () {
+            if(this.payMoneyOrder.receive==null||this.payMoneyOrder.receive.length==0){
+                alert("请选择对方名称！");
+                return;
+            }else if(this.payMoneyOrder.money==null||this.payMoneyOrder.money.length==0){
+                alert("请输入运费！");
+                return;
+            }else{
+                const self=this;
+                this.$http.get("http://106.14.224.189/server/addOrder/AddPayMoneyOrder.php",{
+                    params:{
+                        payto:self.payMoneyOrder.receive.trim(),
+                        method:self.payMoneyOrder.method.trim(),
+                        title:self.payMoneyOrder.comment.trim(),
+                        money:self.payMoneyOrder.money.trim(),
+                        comment:''
+                    }
+                }).then(function (response) {
+                    if(response.body.error ==0){
+                        console.log(response.data);
+                        console.log(response.body);
+                        alert("添加成功！");
+                    }else{
+                        console.log(response.data);
+                        console.log(response.body);
+                        alert("成功但是responsedata错误！");
+                    }
+                }).catch(function (error) {
+                    alert("添加失败！");
+                })
+            }
+        }
+    },
+    mounted(){
+        const self = this;
+        this.$http.get('http://106.14.224.189/server/contents/GetContent.php',{
+            params:{
+                contentName:"paymoney_order_otherName"
+            }
+        })
+            .then(function(response){
+                self.receives=response.data;
+            }).catch(function(error){
+            alert("出现了未知的错误！请重新进行输入");
+        });
+
+        this.$http.get('http://106.14.224.189/server/contents/GetContent.php',{
+            params:{
+                contentName:"payment_method"
+            }
+        })
+            .then(function(response){
+                self.methods=response.data;
+            }).catch(function(error){
+            alert("出现了未知的错误！请重新进行输入");
+        })
+    }
+
+
+
+
+
+});
