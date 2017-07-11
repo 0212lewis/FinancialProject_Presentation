@@ -52,6 +52,18 @@ function hide4()  //去除隐藏层和弹出层
     document.getElementById("hidebg4").style.display="none";
     document.getElementById("login4").style.display="none";
 }
+function show5()  //显示隐藏层和弹出层
+{
+    var hideobj=document.getElementById("hidebg5");
+    hidebg5.style.display="block";  //显示隐藏层
+    hidebg5.style.height=document.body.clientHeight+"px";  //设置隐藏层的高度为当前页面高度
+    document.getElementById("login5").style.display="block";  //显示弹出层
+}
+function hide5()  //去除隐藏层和弹出层
+{
+    document.getElementById("hidebg5").style.display="none";
+    document.getElementById("login5").style.display="none";
+}
 var vm = new Vue({
     el:'#container',
     data:{
@@ -68,7 +80,10 @@ var vm = new Vue({
             payMoneyDate:"",
             comment:"",
             money:"",
-            date:''
+            date:'',
+            hour:'',
+            minute:'',
+            second:''
         },
 
     },
@@ -177,6 +192,7 @@ var vm = new Vue({
         },
 
         addOutcomeOrder:function () {
+            hide5();
             if(this.payMoneyOrder.receive==null||this.payMoneyOrder.receive.length==0){
                 alert("请选择对方名称！");
                 return;
@@ -185,19 +201,25 @@ var vm = new Vue({
                 return;
             }else{
                 const self=this;
-                this.$http.get("http://106.14.224.189/server/addOrder/AddPayMoneyOrder.php",{
-                    params:{
-                        payto:self.payMoneyOrder.receive.trim(),
-                        method:self.payMoneyOrder.method.trim(),
-                        title:self.payMoneyOrder.comment.trim(),
-                        money:self.payMoneyOrder.money.trim(),
-                        comment:''
-                    }
+                var list = document.getElementById("datepicker").value.split("/");
+                var month = list[0];
+                var day = list[1];
+                var year = list[2]
+                var newDate = year+'-'+month+'-'+day+" "+this.payMoneyOrder.hour+":"+this.payMoneyOrder.minute+":"+this.payMoneyOrder.second;
+                this.$http.post("http://localhost:8080/order/pay_money",{
+                        providerID:'',
+                        providerName:this.payMoneyOrder.receive.trim(),
+                        pay_method:this.payMoneyOrder.method.trim(),
+                        money:this.payMoneyOrder.money,
+                        comment:this.payMoneyOrder.comment.trim(),
+                        date:newDate
+
                 }).then(function (response) {
-                    if(response.body.error ==0){
+                    if(response.body.errorCode ==0){
                         console.log(response.data);
                         console.log(response.body);
                         alert("添加成功！");
+                        document.getElementById("save").disabled=true;
                     }else{
                         console.log(response.data);
                         console.log(response.body);
@@ -205,37 +227,28 @@ var vm = new Vue({
                     }
                 }).catch(function (error) {
                     alert("添加失败！");
+
                 })
+
             }
         }
     },
     mounted(){
         const self = this;
-        this.$http.get('http://106.14.224.189/server/contents/GetContent.php',{
-            params:{
-                contentName:"paymoney_order_otherName"
-            }
-        })
+        this.$http.get('http://localhost:8080/provider/allName')
             .then(function(response){
-                self.receives=response.data;
+                self.receives=response.data.data;
             }).catch(function(error){
             alert("出现了未知的错误！请重新进行输入");
         });
 
-        this.$http.get('http://106.14.224.189/server/contents/GetContent.php',{
-            params:{
-                contentName:"payment_method"
-            }
-        })
+        this.$http.get('http://localhost:8080/paymentMethod/allName')
             .then(function(response){
-                self.methods=response.data;
+                self.methods=response.data.data;
             }).catch(function(error){
             alert("出现了未知的错误！请重新进行输入");
         })
     }
-
-
-
 
 
 });

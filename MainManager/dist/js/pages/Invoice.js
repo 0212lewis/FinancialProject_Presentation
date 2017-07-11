@@ -33,7 +33,18 @@ function hide2()  //去除隐藏层和弹出层
     document.getElementById("hidebg2").style.display="none";
     document.getElementById("login2").style.display="none";
 }
-
+function show5()  //显示隐藏层和弹出层
+{
+    var hideobj=document.getElementById("hidebg5");
+    hidebg5.style.display="block";  //显示隐藏层
+    hidebg5.style.height=document.body.clientHeight+"px";  //设置隐藏层的高度为当前页面高度
+    document.getElementById("login5").style.display="block";  //显示弹出层
+}
+function hide5()  //去除隐藏层和弹出层
+{
+    document.getElementById("hidebg5").style.display="none";
+    document.getElementById("login5").style.display="none";
+}
 var vm = new Vue({
     el:'#container',
     data:{
@@ -46,7 +57,10 @@ var vm = new Vue({
             orderId:'',
             money:'',
             comment:'',
-            date:''
+            date:'',
+            hour:'',
+            minute:'',
+            second:''
         }
 
     },
@@ -103,7 +117,13 @@ var vm = new Vue({
         },
 
         addTicketOrder:function () {
-
+            hide5();
+            var list = document.getElementById("datepicker").value.split("/");
+            var month = list[0];
+            var day = list[1];
+            var year = list[2]
+            var newDate = year+'-'+month+'-'+day+" "+this.invoiceOrder.hour+":"+this.invoiceOrder.minute+":"+this.invoiceOrder.second;
+            // alert(newDate);
             if(this.invoiceOrder.unit==null||this.invoiceOrder.unit.length==0){
                 alert("请选择开票单位！");
 
@@ -120,20 +140,23 @@ var vm = new Vue({
                         orderID:self.invoiceOrder.orderId.trim(),
                         money:self.invoiceOrder.money,
                         comment:self.invoiceOrder.comment.trim(),
-                        date:'2017-01-22 00:00:00'
+                        date:newDate
                 }).then(function (response) {
                     if(response.body.errorCode == 0){
-                        console.log(response.data);
-                        console.log(response.body);
+                        document.getElementById("save").disabled=true;
+                        // console.log(response.data);
+                        // console.log(response.body);
                         alert("添加成功！");
+
                     }else{
-                        console.log(response.data);
-                        console.log(response.body);
+                        // console.log(response.data);
+                        // console.log(response.body);
                         alert("成功但是responsedata错误！");
                     }
                 }).catch(function (error) {
                     alert("添加失败！");
                 })
+
             }
 
         }

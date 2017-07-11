@@ -129,7 +129,7 @@ var vm = new Vue({
                 hide2();
                 return;
             }
-            this.$http.delete("http://localhost")
+            this.$http.delete("http://localhost:8080")
                 .then(function(response){
                     mySelect.options.remove(index);//下拉框中删除该元素
                     hide2();
@@ -174,7 +174,8 @@ var vm = new Vue({
             this.$http.deletePaymentMethod("http://localhost:8080/paymentMethod").then(function(response){
                     mySelect.options.remove(index);//下拉框中删除该元素
                     hide4();
-                    alert("删除进款方式成功!")
+
+                    alert("删除进款方式成功!!")
                 }).catch(function(error){
                     // console.log(error.data);
                 alert("出现了未知的错误！请重新进行输入")
@@ -184,45 +185,44 @@ var vm = new Vue({
         },
 
         addIncomeOrder:function () {
+            hide5()
+                var list = document.getElementById("datepicker").value.split("/");
+                var month = list[0];
+                var day = list[1];
+                var year = list[2]
+                var newDate = year+'-'+month+'-'+day+" "+this.IncomeOrder.hour+":"+this.IncomeOrder.minute+":"+this.IncomeOrder.second;
 
-            var list = document.getElementById("datepicker").value.split("/");
-            var month = list[0];
-            var day = list[1];
-            var year = list[2]
-            var newDate = year+'-'+month+'-'+day+" "+this.IncomeOrder.hour+":"+this.IncomeOrder.minute+":"+this.IncomeOrder.second;
-            alert(newDate);
-
-            if(this.IncomeOrder.payer==null || this.IncomeOrder.payer.length==0){
-                alert("请输入收货单位！");
-                return;
-            }
-            if(this.IncomeOrder.money== null|| this.IncomeOrder.money.length==0){
-                alert("请输入运费！");
-                return;
-            }
-            this.$http.post("http://localhost:8080/order/sales_income",{
+                if(this.IncomeOrder.payer==null || this.IncomeOrder.payer.length==0){
+                    alert("请输入收货单位！");
+                    return;
+                }
+                if(this.IncomeOrder.money== null|| this.IncomeOrder.money.length==0){
+                    alert("请输入运费！");
+                    return;
+                }
+                this.$http.post("http://localhost:8080/order/sales_income",{
                     clientId:'',
                     clientName:this.IncomeOrder.payer.trim(),
                     money:this.IncomeOrder.money.trim(),
                     pay_method:this.IncomeOrder.payMethod.trim(),
                     comment:this.IncomeOrder.comment.trim(),
                     date:newDate
-            }).then(function (response) {
-                alert(response.body.errorCode);
-                if(response.body.errorCode ==0){
-                    alert("添加成功！");
-                    document.getElementById("save").disabled=true;
-                }else{
-                    alert("成功但是responsedata错误！");
+                }).then(function (response) {
+                    if(response.body.errorCode ==0){
+                        alert("添加成功！");
+                        document.getElementById("save").disabled=true;
+                    }else{
+                        alert("成功但是responsedata错误！");
 
-                }
-            }).catch(function (error) {
-                console.log(error.data);
-                alert("添加失败！");
-            })
+                    }
+                }).catch(function (error) {
+                    console.log(error.data);
+                    alert("添加失败！");
+                })
 
-            hide5()
-        }
+
+            }
+
     },
 
     mounted(){

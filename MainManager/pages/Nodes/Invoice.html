@@ -52,6 +52,16 @@ scratch. This page gets rid of all links and provides the needed markup only.
             display:none; /* http://www.jb51.net */
             z-Index:2;}
         #login2 { position:absolute;width:400px;height:180px;top:200px;left:35%;background-color:#fff;display:none;cursor:pointer;z-Index:3;}
+        saveRemind { margin:0px;padding:0px;text-align: center;}
+        #hidebg5 { position:absolute;left:0px;top:0px;
+            background-color:#000;
+            width:100%;  /*宽度设置为100%，这样才能使隐藏背景层覆盖原页面*/
+            filter:alpha(opacity=60);  /*设置透明度为60%*/
+            opacity:0.6;  /*非IE浏览器下设置透明度为60%*/
+            display:none; /* http://www.jb51.net */
+            z-Index:2;}
+        #login5 { position:absolute;width:400px;height:180px;top:200px;left:35%;background-color:#fff;display:none;cursor:pointer;z-Index:3;}
+
     </style>
 
 </head>
@@ -118,7 +128,23 @@ desired effect
             </div>
         </form>
     </div>
+    <div id="saveRemind">
+        <div id="hidebg5"></div>
+        <form class="form-horizontal">
+            <div id="login5" class="box-body">
+                <hr>
+                <div class="form-group">
+                    <label class="col-md-8 control-label">确定要录入数据吗？</label>
+                </div>
+                <div class="btn-group">
 
+                    <button type="button" class="btn btn btn-primary" style="left: 80px;" @click.prevent="addTicketOrder()">确定</button>
+                    <button type="button" class="btn btn btn-danger" style="left: 230px;" onclick="hide5()">取消</button>
+                </div>
+                <hr>
+            </div>
+        </form>
+    </div>
     <!-- Main Header -->
     <header class="main-header">
 
@@ -314,16 +340,36 @@ desired effect
                                 <div class="input-group-addon">
                                     <i class="fa fa-calendar"></i>
                                 </div>
-                                <input class="form-control pull-right " id="datepicker" type="text" v-model="invoiceOrder.date">
+                                <input class="form-control pull-right " id="datepicker" type="text">
                             </div>
                             <!-- /.input group -->
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-3 control-label">开票时间</label>
+                            <div class="col-md-6">
+                                <div class="col-md-3">
+                                    <input type="text" class="form-control" id="hour" placeholder="时" v-model="invoiceOrder.hour">
+                                </div>
+
+                                <label class="col-md-1 control-label"> : </label>
+
+                                <div class="col-md-3">
+                                    <input type="text" class="form-control col-md-1" id="minute" placeholder="分" v-model="invoiceOrder.minute">
+
+                                </div>
+                                <label class="col-md-1 control-label"> : </label>
+                                <div class="col-md-3">
+                                    <input type="text" class="form-control col-md-1" id="second" placeholder="秒" v-model="invoiceOrder.second">
+
+                                </div>
+                            </div>
                         </div>
                     </div>
                     <!-- /.box-body -->
 
                     <div class="box-footer">
                         <button type="submit" class="btn btn-default">重置</button>
-                        <button type="submit" class="btn btn-info pull-right" @click.prevent="addTicketOrder">录入数据</button>
+                        <button type="button" class="btn btn-info pull-right" onclick="show5()" id="save">录入数据</button>
                     </div>
                     <!-- /.box-footer -->
                 </form>
