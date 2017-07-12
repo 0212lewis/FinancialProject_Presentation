@@ -65,6 +65,8 @@ function hide5()  //去除隐藏层和弹出层
     document.getElementById("login5").style.display = "none";
 }
 
+
+
 var vm = new Vue({
     el:'#container',
     data:{
@@ -74,8 +76,11 @@ var vm = new Vue({
             
         ],
         deliveryMen:[
-            
-            ],
+        ],
+
+        goodTypes:[
+
+        ],
 
 
         InGoodsOrder:{
@@ -96,28 +101,40 @@ var vm = new Vue({
         addProviders:function () {
             var name=document.getElementById("newinput1").value;
             for(var i=0;i<this.providers.length;i++){
-                if(this.providers[i].name==name){
+                if(this.providers[i]==name){
                     alert('该供货方已经存在');
                     document.getElementById("newinput1").value="";
                     hide1();
                     return;
                 }
             }
-            this.providers.push({name});
-            this.$http.get("http://106.14.224.189/server/contents/AddContent.php",{
-                params:{
-                    contentName:"purchase_order_goodProvider",
-                    value:name
-                }
-            }).then(function(response){
-                    document.getElementById("newinput1").value="";
-                    hide1();
-                    alert("添加供货方成功!")
-                }).catch(function(error){
+            this.providers.push(name);
+            this.$http.post("http://localhost:8080/provider", {
+                account: document.getElementById("newProviderAccount").value,
+                address: document.getElementById("newProviderAddress").value,
+                bank: document.getElementById("newProviderBank").value,
+                id: document.getElementById("newProviderID").value,
+                linkman: document.getElementById("newProviderLinkMan").value,
+                mail_address: document.getElementById("newProviderMailAddress").value,
+                name: document.getElementById("newinput1").value,
+                phone_number: document.getElementById("newProviderPhone").value,
+                tax_id: document.getElementById("newProviderTaxID").value
+            }).then(function (response) {
+                document.getElementById("newinput1").value = "";
+                document.getElementById("newProviderAccount").value = "";
+                document.getElementById("newProviderAddress").value = "";
+                document.getElementById("newProviderBank").value = "";
+                document.getElementById("newProviderID").value = "";
+                document.getElementById("newProviderLinkMan").value = "";
+                document.getElementById("newProviderMailAddress").value = "";
+                document.getElementById("newProviderPhone").value = "";
+                document.getElementById("newProviderTaxID").value = "";
+                hide1();
+                alert("添加供货方成功!")
+            }).catch(function (error) {
                 alert("出现了未知的错误！请重新进行输入")
-            })
+            });
         },
-
 
         deleteProviders:function(){
             var mySelect=document.getElementById("goodsprovider");
@@ -128,21 +145,35 @@ var vm = new Vue({
                 hide2();
                 return;
             }
-            this.$http.get("http://106.14.224.189/server/contents/deleteContent.php",{
-                params:{
-                    contentName:"purchase_order_goodProvider",
-                    value:name
-                }
+            this.$http.delete("http://localhost:8080/provider",{
+                body:name
             })
                 .then(function(response){
                     mySelect.options.remove(index);//下拉框中删除该元素
                     hide2();
                     alert("删除供货方成功!")
                 }).catch(function(error){
-                    // console.log(error.data);
-                alert("出现了未知的错误！请重新进行输入")
-                hide2();
+                    console.log(error.data);
+                    alert("出现了未知的错误！请重新进行输入")
+                    hide2();
             })
+        },
+
+        getType:function () {
+            this.goodTypes=[];
+            var mySelect=document.getElementById("goodName");
+            var index=mySelect.selectedIndex;
+            var name=mySelect.options[index].value;
+            this.$http.get("http://localhost:8080/product/type",{
+                params:{name:name}
+            })
+                .then(function(response){
+                    this.goodTypes=response.data.data;
+                }).catch(function(error){
+                console.log(error.data);
+                alert("出现了未知的错误！请重新进行输入")
+            })
+
         },
 
         addDeliveryMan:function () {
@@ -156,11 +187,8 @@ var vm = new Vue({
                 }
             }
             this.deliveryMen.push({name});
-            this.$http.get("http://106.14.224.189/server/contents/AddContent.php",{
-                params:{
-                    contentName:"deliveryMan",
-                    value:name
-                }
+            this.$http.post("http://localhost:8080/deliveryman",{
+               name:name
             }).then(function(response){
                     document.getElementById("newinput3").value="";
                     hide3();
@@ -179,10 +207,9 @@ var vm = new Vue({
                 hide4();
                 return;
             }
-            this.$http.get("http://106.14.224.189/server/contents/deleteContent.php",{
-                params:{
-                    contentName:"deliveryMan",
-                    value:name
+            this.$http.delete("http://localhost:8080/deliveryman",{
+                body:{
+                    name:name
                 }
             })
                 .then(function(response){
@@ -190,7 +217,7 @@ var vm = new Vue({
                     hide4();
                     alert("删除运货人成功!")
                 }).catch(function(error){
-                    // console.log(error.data);
+                    console.log(error.data);
                 alert("出现了未知的错误！请重新进行输入")
                 hide4();
             })
@@ -198,23 +225,33 @@ var vm = new Vue({
 
         addGood:function () {
             var name=document.getElementById("newinput5").value;
+            var type=document.getElementById("newProductType").value;
+            var nameExist=0; //0表示未出现在下拉框中，1表示出现
             for(var i=0;i<this.goodNames.length;i++){
-                if(this.goodNames[i].name==name){
-                    alert('该货品已经存在');
-                    document.getElementById("newinput5").value="";
-                    hide5();
-                    return;
+                if(this.goodNames[i]==name){
+                    nameExist=1;
+                    for(var j=0;j<this.goodTypes.length;j++) {
+                        if(this.goodTypes[j]==type) {
+                            alert('该货品已经存在');
+                            document.getElementById("newinput5").value="";
+                            document.getElementById("newProductType").value="";
+                            hide5();
+                            return;
+                        }
+                    }
                 }
             }
-            this.goodNames.push({name});
-            this.$http.get("http://106.14.224.189/server/contents/AddContent.php",{
-                params:{
-                    contentName:"purchase_order_goodName",
-                    value:name
-                }
+            this.$http.post("http://localhost:8080/product/material",{
+                name:name,
+                type:type
             }).then(function(response){
                 document.getElementById("newinput5").value="";
+                document.getElementById("newProductType").value="";
                 hide5();
+                if(nameExist==0) {
+                    this.goodNames.push(name);
+                }
+                this.goodTypes.push(type);
                 alert("添加货品成功!")
             }).catch(function(error){
                 alert("出现了未知的错误！请重新进行输入")
@@ -224,77 +261,88 @@ var vm = new Vue({
         
 
         addInGoodsOrder:function () {
+            selectedDate=document.getElementById("datepicker").value;
             if(this.InGoodsOrder.provider==null||this.InGoodsOrder.provider.length==0){
                 alert("请选择供货方！");
-
-            }else if(this.InGoodsOrder.deliveryMan==null||this.InGoodsOrder.deliveryMan.length==0){
-                alert("请选择运货人！");
-                // return;
-            }else if(this.InGoodsOrder.deliveryMoney==null||this.InGoodsOrder.deliveryMoney.length==0){
-                alert("请输入运费！");
-                // return;
-            }else{
-                const self=this;
-                this.$http.get("http://106.14.224.189/server/addOrder/AddPurchaseOrder.php",{
-                    params:{
-                        providedUnit:self.InGoodsOrder.provider.trim(),
-                        goodName:self.InGoodsOrder.goodName,
-                        model:self.InGoodsOrder.type,
-                        num:self.InGoodsOrder.amount,
-                        unitPrice:self.InGoodsOrder.singlePrice,
-                        total:self.InGoodsOrder.total,
-                        deliveryMan:self.InGoodsOrder.deliveryMan.trim(),
-                        deliveryMoney:self.InGoodsOrder.deliveryMoney.trim(),
-                        comment:self.InGoodsOrder.comment.trim()
-                    }
-                }).then(function (response) {
-                    if(response.body.error ==0){
-                        console.log(response.data);
-                        console.log(response.body);
-                        alert("添加成功！");
-                    }else{
-                        console.log(response.data);
-                        console.log(response.body);
-                        alert("成功但是responsedata错误！");
-                    }
-                }).catch(function (error) {
-                    alert("添加失败！");
-                })
-
+                return;
             }
+            if(this.InGoodsOrder.goodName==""||this.InGoodsOrder.goodName==null) {
+                alert("请选择进货商品名称及型号，并输入购买数量和单价");
+                return;
+            }
+            if(this.InGoodsOrder.deliveryMan==null||this.InGoodsOrder.deliveryMan.length==0){
+                alert("请选择运货人！");
+                return;
+            }
+            if(this.InGoodsOrder.deliveryMoney==null||this.InGoodsOrder.deliveryMoney.length==0){
+                alert("请输入运费！");
+                return;
+            }
+            if(selectedDate==null||selectedDate=="") {
+                alert("请选择进货日期！");
+                return;
+            }
+
+            const self=this;
+            this.$http.post("http://localhost:8080/order/income_product",{
+                comment: self.InGoodsOrder.comment.trim(),
+                date: self.InGoodsOrder.deliveryMan.trim(),
+                deliveryMan: self.InGoodsOrder.deliveryMan.trim(),
+                deliveryMoney: self.InGoodsOrder.deliveryMoney.trim(),
+                orderID: '',
+                product: {
+                    orderId: '',
+                    pid: '',
+                    quantity: self.InGoodsOrder.amount,
+                    totalMoney: 0,
+                    unitPrice: self.InGoodsOrder.singlePrice
+            },
+                providerID: '',
+                providerName: self.InGoodsOrder.provider
+                // params:{
+                //     providedUnit:self.InGoodsOrder.provider.trim(),
+                //     goodName:self.InGoodsOrder.goodName,
+                //     model:self.InGoodsOrder.type,
+                //     num:self.InGoodsOrder.amount,
+                //     unitPrice:self.InGoodsOrder.singlePrice,
+                //     total:self.InGoodsOrder.total,
+                //     deliveryMan:self.InGoodsOrder.deliveryMan.trim(),
+                //     deliveryMoney:self.InGoodsOrder.deliveryMoney.trim(),
+                //     comment:self.InGoodsOrder.comment.trim()
+                // }
+            }).then(function (response) {
+                if(response.body.errorCode ==0){
+                    console.log(response.data);
+                    console.log(response.body);
+                    alert("添加成功！");
+                }else{
+                    console.log(response.data);
+                    console.log(response.body);
+                    alert("成功但是responsedata错误！");
+                }
+            }).catch(function (error) {
+                alert("添加失败！");
+            })
         }
     },
     mounted(){
-        this.$http.get('http://106.14.224.189/server/contents/GetContent.php',{
-            params:{
-                contentName:"purchase_order_goodProvider"
-            }
-        })
-            .then(function(response){
-                this.providers=response.data;
-            }).catch(function(error){
+        const self = this;
+
+        this.$http.get("http://localhost:8080/provider/allName").then(function(response){
+            self.providers=response.data.data;
+        }).catch(function(error){
             alert("出现了未知的错误！请重新进行输入")
         });
 
-        this.$http.get('http://106.14.224.189/server/contents/GetContent.php',{
-            params:{
-                contentName:"purchase_order_goodName"
-            }
-        })
-            .then(function(response){
-                this.goodNames=response.data;
-            }).catch(function(error){
+        this.$http.get("http://localhost:8080/product/material/name").then(function(response){
+            self.goodNames=response.data.data;
+        }).catch(function(error){
             alert("出现了未知的错误！请重新进行输入")
         });
 
-        this.$http.get('http://106.14.224.189/server/contents/GetContent.php',{
-            params:{
-                contentName:"deliveryMan"
-            }
-        })
-            .then(function(response){
-                this.deliveryMen=response.data;
-            }).catch(function(error){
+        this.$http.get("http://localhost:8080/deliveryman/allName").then(function(response){
+            self.deliveryMen=response.data.data;
+        }).catch(function(error){
             alert("出现了未知的错误！请重新进行输入")
         });
     }

@@ -42,7 +42,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
             opacity:0.6;  /*非IE浏览器下设置透明度为60%*/
             display:none; /* http://www.jb51.net */
             z-Index:2;}
-        #login1 { position:absolute;width:400px;height:180px;top:200px;left:35%;background-color:#fff;display:none;cursor:pointer;z-Index:3;}
+        #login1 { position:absolute;width:450px;height:420px;top:200px;left:35%;background-color:#fff;display:none;cursor:pointer;z-Index:3;}
 
         deleteblock1 { margin:0px;padding:0px;text-align: center;}
         #hidebg2 { position:absolute;left:0px;top:0px;
@@ -82,7 +82,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
             opacity:0.6;  /*非IE浏览器下设置透明度为60%*/
             display:none; /* http://www.jb51.net */
             z-Index:2;}
-        #login5 { position:absolute;width:400px;height:180px;top:200px;left:35%;background-color:#fff;display:none;cursor:pointer;z-Index:3;}
+        #login5 { position:absolute;width:410px;height:210px;top:200px;left:35%;background-color:#fff;display:none;cursor:pointer;z-Index:3;}
     </style>
 </head>
 <!--
@@ -114,10 +114,51 @@ desired effect
             <div id="login1" class="box-body">
                 <hr>
                 <div class="form-group">
-                    <label class="col-md-4 control-label">添加供货方</label>
+                    <label class="col-md-4 control-label">供货方名称</label>
                     <div class="col-md-8">
-                        <input type="text" class="form-control" id="newinput1" placeholder="新建供货方名称：">
+                        <input type="text" class="form-control" id="newinput1" placeholder="供货方名称：">
                     </div>
+
+                    <label class="col-md-4 control-label">供货方简码</label>
+                    <div class="col-md-8">
+                        <input type="text" class="form-control" id="newProviderID" placeholder="供货方简码：">
+                    </div>
+
+                    <label class="col-md-4 control-label">供货方税号</label>
+                    <div class="col-md-8">
+                        <input type="text" class="form-control" id="newProviderTaxID" placeholder="供货方税号：">
+                    </div>
+
+                    <label class="col-md-4 control-label">供货方地址</label>
+                    <div class="col-md-8">
+                        <input type="text" class="form-control" id="newProviderAddress" placeholder="供货方地址：">
+                    </div>
+
+                    <label class="col-md-4 control-label">供货方联系方式</label>
+                    <div class="col-md-8">
+                        <input type="text" class="form-control" id="newProviderPhone" placeholder="供货方联系方式：">
+                    </div>
+
+                    <label class="col-md-4 control-label">供货方开户行</label>
+                    <div class="col-md-8">
+                        <input type="text" class="form-control" id="newProviderBank" placeholder="供货方开户行：">
+                    </div>
+
+                    <label class="col-md-4 control-label">供货方账号</label>
+                    <div class="col-md-8">
+                        <input type="text" class="form-control" id="newProviderAccount" placeholder="供货方账号：">
+                    </div>
+
+                    <label class="col-md-4 control-label">供货方邮寄地址</label>
+                    <div class="col-md-8">
+                        <input type="text" class="form-control" id="newProviderMailAddress" placeholder="供货方邮寄地址：">
+                    </div>
+
+                    <label class="col-md-4 control-label">供货方联系人</label>
+                    <div class="col-md-8">
+                        <input type="text" class="form-control" id="newProviderLinkMan" placeholder="供货方联系人：">
+                    </div>
+
                 </div>
                 <div class="btn-group">
                     <button type="button" class="btn btn btn-primary" style="left: 80px;" @click.prevent="addProviders()">保存</button>
@@ -194,10 +235,16 @@ desired effect
             <div id="login5" class="box-body">
                 <hr>
                 <div class="form-group">
-                    <label class="col-md-4 control-label">添加货品</label>
-                    <div class="col-md-8">
-                        <input type="text" class="form-control" id="newinput5" placeholder="新建货品名称：">
+                    <label class="col-md-3 control-label">货品名称</label>
+                    <div class="col-md-9">
+                        <input type="text" class="form-control" id="newinput5" placeholder="请输入货品名称：">
                     </div>
+
+                    <label class="col-md-3 control-label">货品类型</label>
+                    <div class="col-md-9">
+                        <input type="text" class="form-control" id="newProductType" placeholder="请输入货品类型：">
+                    </div>
+
                 </div>
                 <div class="btn-group">
                     <button type="button" class="btn btn btn-primary" style="left: 80px;" @click.prevent="addGood()">保存</button>
@@ -359,7 +406,7 @@ desired effect
 
                             <div class="col-md-6">
                                 <select class="form-control" v-model="InGoodsOrder.provider" id="goodsprovider">
-                                    <option v-for="provider in providers">{{provider.name}}</option>
+                                    <option v-for="provider in providers" v-text="provider"></option>
                                 </select>
                             </div>
                         </div>
@@ -374,7 +421,7 @@ desired effect
                                 <thead>
                                 <tr>
                                     <th style="text-align: center" class="col-md-4">货名<button class="btn-xs btn-primary pull-right" type="button" onclick="show5()">添加货品</button></th>
-                                    <th style="text-align: center">型号</th>
+                                    <th style="text-align: center" class="col-md-2">型号</th>
                                     <th style="text-align: center">数量</th>
                                     <th style="text-align: center">单价</th>
                                     <th style="text-align: center">总价</th>
@@ -382,13 +429,17 @@ desired effect
                                 </thead>
                                 <tbody>
                                 <tr>
-                                    <td><select class="form-control col-md-3" v-model="InGoodsOrder.goodName">
-                                        <option v-for="goodname in goodNames">
-                                            {{goodname.name}}
+                                    <td>
+                                        <select class="form-control col-md-3" v-model="InGoodsOrder.goodName" id="goodName" @change="getType">
+                                        <option v-for="goodname in goodNames" v-text="goodname">
                                         </option>
-
                                     </select></td>
-                                    <td>  <input type="text" class="form-control col-md-2" id="input101" placeholder="" v-model="InGoodsOrder.type">
+                                    <td>
+                                        <select class="form-control col-md-2" v-model="InGoodsOrder.type">
+                                            <option v-for="goodtype in goodTypes" v-text="goodtype">
+                                            </option>
+                                        </select>
+                                        <!--<input type="text" class="form-control col-md-2" id="input101" placeholder="" v-model="InGoodsOrder.type">-->
                                     </td>
                                     <td>  <input type="text" class="form-control col-md-2" id="input111" placeholder="" v-model="InGoodsOrder.amount"></td>
                                     <td>   <input type="text" class="form-control col-md-2" id="input102" placeholder="" v-model="InGoodsOrder.singlePrice"></td>
@@ -404,8 +455,7 @@ desired effect
 
                             <div class="col-md-6">
                                 <select id="DeliveryMan" class="form-control" v-model="InGoodsOrder.deliveryMan">
-                                    <option v-for="deliveryman in deliveryMen">
-                                        {{deliveryman.name}}
+                                    <option v-for="deliveryman in deliveryMen" v-text="deliveryman.name">
                                     </option>
                                 </select>
                             </div>
@@ -429,13 +479,14 @@ desired effect
                             </div>
                         </div>
                         <hr>
+
                         <div class="form-group">
                             <label for="datepicker" class="col-md-3 control-label">进货日期</label>
                             <div class="input-group date col-md-6">
                                 <div class="input-group-addon">
                                     <i class="fa fa-calendar"></i>
                                 </div>
-                                <input class="form-control pull-right " id="datepicker" type="text" v-model="InGoodsOrder.date">
+                                <input class="form-control pull-right " id="datepicker" type="text">
                             </div>
                             <!-- /.input group -->
                         </div>
