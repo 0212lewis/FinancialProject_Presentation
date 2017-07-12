@@ -33,6 +33,18 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
 
+    <style>
+        delete { margin:0px;padding:0px;text-align: center;}
+        #hidebg1 { position:absolute;left:0px;top:0px;
+            background-color:#000;
+            width:100%;  /*宽度设置为100%，这样才能使隐藏背景层覆盖原页面*/
+            filter:alpha(opacity=60);  /*设置透明度为60%*/
+            opacity:0.6;  /*非IE浏览器下设置透明度为60%*/
+            display:none; /* http://www.jb51.net */
+            z-Index:2;}
+        #login1 { position:absolute;width:400px;height:180px;top:200px;left:35%;background-color:#fff;display:none;cursor:pointer;z-Index:3;}
+
+    </style>
 
 </head>
 <!--
@@ -58,6 +70,24 @@ desired effect
 
 <body class="hold-transition skin-blue sidebar-mini">
 <div class="wrapper" id="container">
+
+    <div id="delete">
+        <div id="hidebg1"></div>
+        <form class="form-horizontal">
+            <div id="login1" class="box-body">
+                <hr>
+                    <div class="form-group">
+                        <label class="col-md-8 control-label">是否确定删除该客户？</label>
+                    </div>
+                    <div class="btn-group">
+
+                        <button type="button" class="btn btn btn-primary" style="left: 80px;" @click.prevent="deleteConfirm()">确定</button>
+                        <button type="button" class="btn btn btn-danger" style="left: 230px;" onclick="hide1()">取消</button>
+                    </div>
+                <hr>
+            </div>
+        </form>
+    </div>
     <!-- Main Header -->
     <header class="main-header">
 
@@ -188,13 +218,13 @@ desired effect
     <div class="content-wrapper">
         <!-- Content Header (Page header) -->
         <section class="content-header">
-
             <ol class="breadcrumb">
                 <li><a href="../MainUi.html" style="color: #000000"><i class="fa fa-dashboard" style="color: #000000"></i>Home</a></li>
                 <li class="active" style="color:#000000">客户</li>
             </ol>
         </section>
 
+        <br>
         <!-- Main content -->
         <section class="content">
             <div class="row">
@@ -203,6 +233,7 @@ desired effect
                     <div class="box">
                         <div class="box-header">
                             <h3 class="box-title">客户信息</h3>
+                            <button type="button" class="pull-right btn btn-primary" onclick="javascript:window.location.href='NewClient.html'">添加新的客户</button>
                         </div>
                         <!-- /.box-header -->
                         <div id="app" class="box-body">
@@ -218,6 +249,7 @@ desired effect
                                     <th>邮寄地址</th>
                                     <th>联系人</th>
                                     <th>修改</th>
+                                    <th>删除</th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -233,6 +265,9 @@ desired effect
                                     <td>
                                         <a :href="'ClientDetail.html?id='+item.id">修改</a>
                                     </td>
+                                    <td>
+                                        <a @click="deleteSingleClient(item.name)">删除</a>
+                                    </td>
                                 </tr>
                                 </tbody>
                                 <tfoot>
@@ -246,6 +281,7 @@ desired effect
                                     <th>邮寄地址</th>
                                     <th>联系人</th>
                                     <th>修改</th>
+                                    <th>删除</th>
                                 </tr>
                                 </tfoot>
                             </table>
