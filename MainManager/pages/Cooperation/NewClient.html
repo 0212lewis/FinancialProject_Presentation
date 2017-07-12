@@ -7,7 +7,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>财管|供应商</title>
+    <title>财管|新的客户</title>
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <!-- Bootstrap 3.3.6 -->
@@ -34,7 +34,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <![endif]-->
 
     <style>
-        delete { margin:0px;padding:0px;text-align: center;}
+        saveRemind { margin:0px;padding:0px;text-align: center;}
         #hidebg1 { position:absolute;left:0px;top:0px;
             background-color:#000;
             width:100%;  /*宽度设置为100%，这样才能使隐藏背景层覆盖原页面*/
@@ -45,6 +45,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
         #login1 { position:absolute;width:400px;height:180px;top:200px;left:35%;background-color:#fff;display:none;cursor:pointer;z-Index:3;}
 
     </style>
+
 </head>
 <!--
 BODY TAG OPTIONS:
@@ -69,18 +70,17 @@ desired effect
 
 <body class="hold-transition skin-blue sidebar-mini">
 <div class="wrapper" id="container">
-
-    <div id="delete">
+    <div id="saveRemind">
         <div id="hidebg1"></div>
         <form class="form-horizontal">
             <div id="login1" class="box-body">
                 <hr>
                 <div class="form-group">
-                    <label class="col-md-8 control-label">是否确定删除该供应商？</label>
+                    <label class="col-md-8 control-label">是否确定保存所添加的信息？</label>
                 </div>
                 <div class="btn-group">
 
-                    <button type="button" class="btn btn btn-primary" style="left: 80px;" @click.prevent="deleteConfirm()">确定</button>
+                    <button type="button" class="btn btn btn-primary" style="left: 80px;" @click.prevent="saveAdd()">确定</button>
                     <button type="button" class="btn btn btn-danger" style="left: 230px;" onclick="hide1()">取消</button>
                 </div>
                 <hr>
@@ -201,9 +201,9 @@ desired effect
             </span>
                     </a>
                     <ul class="treeview-menu">
-                        <li><a href="Client.html"><i class="fa fa-circle-o"> 客户</i></a></li>
-                        <li class="active"><a href="#"><i class="fa fa-circle-o"> 供应商</i></a></li>
-                        <li><a href="Businessman.html"><i class="fa fa-circle-o"> 业务员</i></a></li>
+                        <li class="active"><a href="Client.html"><i class="fa fa-circle-o"> 客户</i></a></li>
+                        <li><a href="Provider.html"><i class="fa fa-circle-o"> 供应商</i></a></li>
+
                     </ul>
                 </li>
             </ul>
@@ -218,82 +218,105 @@ desired effect
         <section class="content-header">
 
             <ol class="breadcrumb">
-                <li><a href="../MainUi.html" style="color: #000000"><i class="fa fa-dashboard" style="color: #000000"></i>Home</a></li>
-                <li class="active" style="color:#000000">供应商</li>
+                <li><a href="../MainUi.html" style="color:#000000"><i class="fa fa-dashboard" style="color: #000000"></i>Home</a></li>
+                <li class="active" style="color:#000000">新的客户</li>
             </ol>
         </section>
 
-        <br>
         <!-- Main content -->
-        <section class="content">
-            <div class="row">
-                <div class="col-xs-12">
-                    <!-- /.box -->
-                    <div class="box">
-                        <div class="box-header">
-                            <h3 class="box-title">供应商信息</h3>
-                            <button type="button" class="pull-right btn btn-primary" onclick="javascript:window.location.href='NewProvider.html'">添加新的供应商</button>
-                        </div>
-                        <!-- /.box-header -->
-                        <div id="app" class="box-body">
-                            <table id="example1" class="table table-bordered table-striped">
-                                <thead>
-                                <tr>
-                                    <th>供应商简码</th>
-                                    <th>供应商名称</th>
-                                    <th>税号</th>
-                                    <th>地址</th>
-                                    <th>电话</th>
-                                    <th>开户行账号</th>
-                                    <th>邮寄地址</th>
-                                    <th>联系人</th>
-                                    <th>修改</th>
-                                    <th>删除</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                <tr v-for="item in items">
-                                    <td v-text="item.id"></td>
-                                    <td v-text="item.name"></td>
-                                    <td v-text="item.tax_id"></td>
-                                    <td v-text="item.address"></td>
-                                    <td v-text="item.phone_number"></td>
-                                    <td> {{item.bank}}{{item.account}}</td>
-                                    <td v-text="item.mail_address"></td>
-                                    <td v-text="item.linkman"></td>
-                                    <td>
-                                        <a :href="'ProviderDetail.html?id='+item.id">修改</a>
-                                    </td>
-                                    <td>
-                                        <a @click="deleteSingleProvider(item.name)">删除</a>
-                                    </td>
-                                </tr>
-                                </tbody>
-                                <tfoot>
-                                <tr>
-                                    <th>客户简码</th>
-                                    <th>客户名称</th>
-                                    <th>税号</th>
-                                    <th>地址</th>
-                                    <th>电话</th>
-                                    <th>开户行账号</th>
-                                    <th>邮寄地址</th>
-                                    <th>联系人</th>
-                                    <th>修改</th>
-                                    <th>删除</th>
-
-                                </tr>
-                                </tfoot>
-                            </table>
-                        </div>
-                        <!-- /.box-body -->
-                    </div>
-                    <!-- /.box -->
+        <div class="col-md-8 col-sm-offset-2 ">
+            <div class="box box-info" >
+                <div class="box-header with-border" style="text-align: left">
+                    <h3 class="box-title">新的客户</h3>
                 </div>
-                <!-- /.col -->
+                <div class="box-body">
+                    <form class="form-horizontal">
+                        <div class="box-body">
+                            <div class="form-group">
+                                <label  class="col-sm-2 control-label">客户简码</label>
+
+                                <div class="col-sm-8">
+                                    <input type="text" class="form-control " id="id" value="" v-model="items.clientId">
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">客户名称</label>
+                                <div class="col-sm-8">
+                                    <input type="text" class="form-control " id="name" value="" v-model="items.clientName">
+                                </div>
+
+                            </div>
+                            <hr>
+                            <div class="form-group">
+                                <label for="tax" class="col-sm-2 control-label">税号</label>
+                                <div class="col-sm-8">
+                                    <input type="text" class="form-control " id="tax" value="" v-model="items.taxId">
+                                </div>
+
+                            </div>
+                            <hr>
+
+                            <div class="form-group">
+                                <label for="unit" class="col-sm-2 control-label">地址</label>
+                                <div class="col-sm-8">
+                                    <input type="text" class="form-control " id="unit" value="" v-model="items.address">
+                                </div>
+
+                            </div>
+                            <hr>
+                            <div class="form-group">
+                                <label for="phone" class="col-sm-2 control-label">联系电话</label>
+                                <div class="col-sm-8">
+                                    <input type="text" class="form-control " id="phone" value="" v-model="items.phoneNumber">
+                                </div>
+
+                            </div>
+                            <hr>
+                            <div class="form-group">
+                                <label for="bank" class="col-sm-2 control-label">开户行</label>
+                                <div class="col-sm-8">
+                                    <input type="text" class="form-control " id="bank" v-model="items.bank">
+                                </div>
+
+                            </div>
+                            <br>
+                            <div class="form-group">
+                                <label for="account" class="col-sm-2 control-label">开户行账号</label>
+                                <div class="col-sm-8">
+                                    <input type="text" class="form-control " id="account" v-model="items.account">
+                                </div>
+
+                            </div>
+                            <br>
+                            <div class="form-group">
+                                <label for="mailAddress" class="col-sm-2 control-label">邮寄地址</label>
+                                <div class="col-sm-8">
+                                    <input type="text" class="form-control " id="mailAddress" v-model="items.mailAddress">
+                                </div>
+
+                            </div>
+                            <br>
+                            <div class="form-group">
+                                <label for="linkman" class="col-sm-2 control-label">联系人</label>
+                                <div class="col-sm-8">
+                                    <input type="text" class="form-control " id="linkman" v-model="items.linkman">
+                                </div>
+
+                            </div>
+                            <br>
+                            <div class="box-footer">
+                                <button type="button" class="btn btn-info pull-right" onclick="show1()">保存</button>
+                                <button type="button" class="btn btn-default pull-left" onclick="javascript:window.location.href='Client.html'">返回</button>
+
+                            </div>
+                        </div>
+                        <!-- /.box-footer -->
+                    </form>
+                </div>
+                <!-- /.box-body -->
             </div>
-            <!-- /.row -->
-        </section>
+        </div>
         <!-- /.content -->
     </div>
     <!-- /.content-wrapper -->
@@ -502,7 +525,7 @@ desired effect
 <!-- ./wrapper -->
 <script src="../../vue/vue.js"></script>
 <script src="../../vue-resource/vue-resource.js"></script>
-<script src="../../dist/js/pages/Provider.js"></script>
+<script src="../../dist/js/pages/NewClient.js"></script>
 <!-- jQuery 2.2.3 -->
 <script src="../../plugins/jQuery/jquery-2.2.3.min.js"></script>
 <!-- Bootstrap 3.3.6 -->
@@ -513,9 +536,7 @@ desired effect
 <script src="../../plugins/input-mask/jquery.inputmask.js"></script>
 <script src="../../plugins/input-mask/jquery.inputmask.date.extensions.js"></script>
 <script src="../../plugins/input-mask/jquery.inputmask.extensions.js"></script>
-<!-- DataTables -->
-<script src="../../plugins/datatables/jquery.dataTables.min.js"></script>
-<script src="../../plugins/datatables/dataTables.bootstrap.min.js"></script>
+
 <!-- bootstrap color picker -->
 <script src="../../plugins/colorpicker/bootstrap-colorpicker.min.js"></script>
 
@@ -529,13 +550,5 @@ desired effect
 <script src="../../dist/js/app.min.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="../../dist/js/demo.js"></script>
-<!-- Page script -->
-<!--<script>-->
-    <!--$(function () {-->
-        <!--setTimeout(function () {-->
-            <!--$('#example1').DataTable();-->
-        <!--},0);-->
-    <!--});-->
-<!--</script>-->
 </body>
 </html>
