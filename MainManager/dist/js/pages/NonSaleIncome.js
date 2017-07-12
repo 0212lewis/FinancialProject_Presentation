@@ -1,4 +1,7 @@
 /**
+ * Created by pc on 2017/7/12.
+ */
+/**
  * Created by cyz on 2017/4/25.
  */
 /**
@@ -73,7 +76,6 @@ function hide5()  //去除隐藏层和弹出层
 var vm = new Vue({
     el:'#container',
     data:{
-        newpayer:'',
         payers:[
 
         ],
@@ -95,51 +97,6 @@ var vm = new Vue({
 
     },
     methods:{
-        addUnit:function(){
-            var name=document.getElementById("newinput1").value;
-            for(var i=0;i<this.payers.length;i++){
-                if(this.payers[i]==name){
-                    alert('该付款单位已经存在');
-                    document.getElementById("newinput1").value="";
-                    hide1();
-                    return;
-                }
-            }
-
-            this.payers.push(name);
-
-            this.$http.post("http://localhost:8080/client",{
-
-            }).then(function(response){
-                    document.getElementById("newinput1").value="";
-                    hide1();
-                    alert("添加付款单位成功!")
-                }).catch(function(error){
-                    // console.log(error.data);
-                alert("出现了未知的错误！请重新进行输入")
-            })
-        },
-
-        deleteUnit:function(){
-            var mySelect=document.getElementById("payunit");
-            var index=mySelect.selectedIndex;
-            var name=mySelect.options[index].value;
-            if(name==""){
-                alert('请选择要删除的内容');
-                hide2();
-                return;
-            }
-            this.$http.delete("http://localhost:8080")
-                .then(function(response){
-                    mySelect.options.remove(index);//下拉框中删除该元素
-                    hide2();
-                    alert("删除付款单位成功!")
-                }).catch(function(error){
-                    // console.log(error.data);
-                alert("出现了未知的错误！请重新进行输入")
-                hide2();
-            })
-        },
 
         addPayMethod:function(){
             var name=document.getElementById("newinput3").value;
@@ -172,12 +129,12 @@ var vm = new Vue({
                 return;
             }
             this.$http.deletePaymentMethod("http://localhost:8080/paymentMethod").then(function(response){
-                    mySelect.options.remove(index);//下拉框中删除该元素
-                    hide4();
+                mySelect.options.remove(index);//下拉框中删除该元素
+                hide4();
 
-                    alert("删除进款方式成功!!")
-                }).catch(function(error){
-                    // console.log(error.data);
+                alert("删除进款方式成功!!")
+            }).catch(function(error){
+                // console.log(error.data);
                 alert("出现了未知的错误！请重新进行输入")
                 hide4();
             })
@@ -185,69 +142,58 @@ var vm = new Vue({
         },
 
         addIncomeOrder:function () {
-                hide5()
-                var list = document.getElementById("datepicker").value.split("/");
-                var month = list[0];
-                var day = list[1];
-                var year = list[2]
-                var newDate = year+'-'+month+'-'+day+" "+this.IncomeOrder.hour+":"+this.IncomeOrder.minute+":"+this.IncomeOrder.second;
+            hide5()
+            var list = document.getElementById("datepicker").value.split("/");
+            var month = list[0];
+            var day = list[1];
+            var year = list[2]
+            var newDate = year+'-'+month+'-'+day+" "+this.IncomeOrder.hour+":"+this.IncomeOrder.minute+":"+this.IncomeOrder.second;
 
 
-                if(this.IncomeOrder.payer==null || this.IncomeOrder.payer.length==0){
-                    alert("请输入收货单位！");
-                    return;
-                }
-                if(this.IncomeOrder.money== null|| this.IncomeOrder.money.length==0){
-                    alert("请输入运费！");
-                    return;
-                }else if((this.IncomeOrder.hour.toString().length==2)&&(this.IncomeOrder.minute.toString().length==2)&&(this.IncomeOrder.second.toString().length==2)){
-                    this.$http.post("http://localhost:8080/order/sales_income",{
-                        clientId:'',
-                        clientName:this.IncomeOrder.payer.trim(),
-                        money:this.IncomeOrder.money.trim(),
-                        pay_method:this.IncomeOrder.payMethod.trim(),
-                        comment:this.IncomeOrder.comment.trim(),
-                        date:newDate
-                    }).then(function (response) {
-                        if(response.body.errorCode ==0){
-                            alert("添加成功！");
-                            document.getElementById("save").disabled=true;
-                        }else{
-                            alert("成功但是responsedata错误！");
-
-                        }
-                    }).catch(function (error) {
-                        console.log(error.data);
-                        alert("添加失败！");
-                    })
-                }else{
-                    alert("请规范输入时间格式！");
-                }
-
-
-
+            if(this.IncomeOrder.payer==null || this.IncomeOrder.payer.length==0){
+                alert("请输入对方单位！");
+                return;
             }
+            if(this.IncomeOrder.money== null|| this.IncomeOrder.money.length==0){
+                alert("请输入金额！");
+                return;
+            }else if((this.IncomeOrder.hour.toString().length==2)&&(this.IncomeOrder.minute.toString().length==2)&&(this.IncomeOrder.second.toString().length==2)){
+                this.$http.post("http://localhost:8080/order/no_sales_income",{
+                    otherName:this.IncomeOrder.payer.trim(),
+                    money:this.IncomeOrder.money.trim(),
+                    pay_method:this.IncomeOrder.payMethod.trim(),
+                    comment:this.IncomeOrder.comment.trim(),
+                    date:newDate
+                }).then(function (response) {
+                    if(response.body.errorCode ==0){
+                        alert("添加成功！");
+                        document.getElementById("save").disabled=true;
+                    }else{
+                        alert("成功但是responsedata错误！");
+
+                    }
+                }).catch(function (error) {
+                    console.log(error.data);
+                    alert("添加失败！");
+                })
+            }else{
+                alert("请规范输入时间格式！");
+            }
+
+
+
+        }
 
     },
 
     mounted(){
-        const self = this;
-        this.$http.get("http://localhost:8080/client/allName").then(function(response){
-                self.payers=response.data.data;
-            }).catch(function(error){
-
-            alert("出现了未知的错误！请重新进行输入")
-        });
-
         this.$http.get('http://localhost:8080/paymentMethod/allName').then(function(response){
-                self.payMethods=response.data.data;
-                console.log(response.data.data);
-                console.log(self.payMethods);
-            }).catch(function(error){
+            this.payMethods=response.data.data;
+            console.log(response.data.data);
+            console.log(this.payMethods);
+        }).catch(function(error){
             alert("出现了未知的错误！请重新进行输入")
         })
-
-
     }
 });
 
