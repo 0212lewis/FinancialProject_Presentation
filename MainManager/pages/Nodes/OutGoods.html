@@ -1,7 +1,3 @@
-
-
-
-
 <!DOCTYPE html>
 <!--
 This is a starter template page. Use this page to start your new project from
@@ -149,7 +145,11 @@ desired effect
             <div class="form-group">
                 <label class="col-md-4 control-label">货品名称</label>
                 <div class="col-md-8">
-                    <input type="text" class="form-control" id="newinput3" placeholder="新建货品：">
+                    <input type="text" class="form-control" id="newinput3" placeholder="请输入货品名称">
+                </div>
+                <label class="col-md-4 control-label">货品型号</label>
+                <div class="col-md-8">
+                    <input type="text" class="form-control" id="productType" placeholder="请输入货品型号">
                 </div>
             </div>
             <div class="btn-group">
@@ -394,8 +394,7 @@ desired effect
 
                             <div class="col-md-6">
                                 <select id="receiver" class="form-control" v-model="deliveryOrder.receive" >
-                                    <option v-for="receive in receives">
-                                        {{ receive.name }}
+                                    <option v-for="receive in receives" v-text="receive">}
                                     </option>
                                 </select>
                             </div>
@@ -419,90 +418,72 @@ desired effect
                                 </thead>
                                 <tbody>
                                 <tr>
-                                    <td><select class="form-control col-md-3"  v-model="deliveryOrder.good1.goodName">
-                                        <option v-for="goodName in goodNames">
-                                            {{goodName.name}}
-                                        </option>
-
-                                    </select></td>
-                                    <td>  <select class="form-control col-md-3" v-model="deliveryOrder.good1.model">
-                                        <option v-for="goodModel in goodModels">
-                                            {{goodModel.name}}
-                                        </option>
-
-                                    </select></td>
+                                    <td>
+                                        <select class="form-control col-md-3"  v-model="deliveryOrder.good1.goodName" id="goodName1" @change="getType('goodName1')">
+                                        <option v-for="goodName in goodNames" v-text="goodName"></option>
+                                        </select>
+                                    </td>
+                                    <td>
+                                        <select class="form-control col-md-3" v-model="deliveryOrder.good1.model">
+                                        <option v-for="goodModel in goodModels1" v-text="goodModel"></option>
+                                        </select>
                                     </td>
                                     <td>  <input type="text" class="form-control col-md-2" id="numInput1" placeholder="" v-model="deliveryOrder.good1.num"></td>
                                     <td>   <input type="text" class="form-control col-md-2" id="unitPriceInput1" placeholder="" v-model="deliveryOrder.good1.money"></td>
                                     <td  v-text="getTotal1" style="text-align: center;vertical-align: middle"></td>
                                 </tr>
                                 <tr>
-                                    <td><select class="form-control col-md-3" v-model="deliveryOrder.good2.goodName">
-                                        <option v-for="goodName in goodNames" >
-                                            {{goodName.name}}
-                                        </option>
-
-                                    </select></td>
-                                    <td>  <select class="form-control col-md-3" v-model="deliveryOrder.good2.model">
-                                        <option v-for="goodModel in goodModels">
-                                            {{goodModel.name}}
-                                        </option>
-
-                                    </select></td>
+                                    <td>
+                                        <select class="form-control col-md-3" v-model="deliveryOrder.good2.goodName" id="goodName2" @change="getType('goodName2')">
+                                        <option v-for="goodName in goodNames" v-text="goodName"></option>
+                                        </select>
+                                    </td>
+                                    <td>
+                                        <select class="form-control col-md-3" v-model="deliveryOrder.good2.model">
+                                        <option v-for="goodModel in goodModels2" v-text="goodModel"></option>
+                                        </select>
                                     </td>
                                     <td>  <input type="text" class="form-control col-md-2" id="numInput2" placeholder="" v-model="deliveryOrder.good2.num"></td>
                                     <td>   <input type="text" class="form-control col-md-2" id="moneyInput2" placeholder="" v-model="deliveryOrder.good2.money"></td>
                                     <td  v-text="getTotal2" style="text-align: center;vertical-align: middle"></td>
                                 </tr>
                                 <tr>
-                                    <td><select class="form-control col-md-3" v-model="deliveryOrder.good3.goodName">
-                                        <option v-for="goodName in goodNames">
-                                            {{goodName.name}}
-                                        </option>
-
-                                    </select></td>
-                                    <td>  <select class="form-control col-md-3" v-model="deliveryOrder.good3.model">
-                                        <option v-for="goodModel in goodModels" >
-                                            {{goodModel.name}}
-                                        </option>
-
-                                    </select></td>
+                                    <td>
+                                        <select class="form-control col-md-3" v-model="deliveryOrder.good3.goodName" id="goodName3" @change="getType('goodName3')">
+                                        <option v-for="goodName in goodNames" v-text="goodName"></option>
+                                        </select>
+                                    <td>
+                                        <select class="form-control col-md-3" v-model="deliveryOrder.good3.model">
+                                        <option v-for="goodModel in goodModels3" v-text="goodModel"></option>
+                                        </select>
                                     </td>
                                     <td>  <input type="text" class="form-control col-md-2" id="numInput3" placeholder="" v-model="deliveryOrder.good3.num"></td>
                                     <td>   <input type="text" class="form-control col-md-2" id="moneyInput3" placeholder="" v-model="deliveryOrder.good3.money"></td>
                                     <td  v-text="getTotal3" style="text-align: center;vertical-align: middle"></td>
                                 </tr>
                                 <tr>
-                                    <td><select class="form-control col-md-3" v-model="deliveryOrder.good4.goodName">
-                                        <option v-for="goodName in goodNames">
-                                            {{goodName.name}}
-                                        </option>
-
-                                    </select></td>
-                                    <td>  <select class="form-control col-md-3"  v-model="deliveryOrder.good4.model">
-                                        <option v-for="goodModel in goodModels">
-                                            {{goodModel.name}}
-                                        </option>
-
-                                    </select></td>
+                                    <td>
+                                        <select class="form-control col-md-3" v-model="deliveryOrder.good4.goodName" id="goodName4" @change="getType('goodName4')">
+                                            <option v-for="goodName in goodNames" v-text="goodName"></option>
+                                        </select>
+                                    <td>
+                                        <select class="form-control col-md-3" v-model="deliveryOrder.good4.model">
+                                            <option v-for="goodModel in goodModels4" v-text="goodModel"></option>
+                                        </select>
                                     </td>
                                     <td>  <input type="text" class="form-control col-md-2" id="numInput4" placeholder="" v-model="deliveryOrder.good4.num"></td>
                                     <td>   <input type="text" class="form-control col-md-2" id="moneyInput4" placeholder="" v-model="deliveryOrder.good4.money"></td>
                                     <td  v-text="getTotal4" style="text-align: center;vertical-align: middle"></td>
                                 </tr>
                                 <tr>
-                                    <td><select class="form-control col-md-3" v-model="deliveryOrder.good5.goodName">
-                                        <option v-for="goodName in goodNames" >
-                                            {{goodName.name}}
-                                        </option>
-
-                                    </select></td>
-                                    <td>  <select class="form-control col-md-3" v-model="deliveryOrder.good5.model">
-                                        <option v-for="goodModel in goodModels" >
-                                            {{goodModel.name}}
-                                        </option>
-
-                                    </select></td>
+                                    <td>
+                                        <select class="form-control col-md-3" v-model="deliveryOrder.good5.goodName" id="goodName5" @change="getType('goodName5')">
+                                            <option v-for="goodName in goodNames" v-text="goodName"></option>
+                                        </select>
+                                    <td>
+                                        <select class="form-control col-md-3" v-model="deliveryOrder.good5.model">
+                                            <option v-for="goodModel in goodModels5" v-text="goodModel"></option>
+                                        </select>
                                     </td>
                                     <td>  <input type="text" class="form-control col-md-2" id="numInput5" placeholder="" v-model="deliveryOrder.good5.num"></td>
                                     <td>   <input type="text" class="form-control col-md-2" id="moneyInput5" placeholder="" v-model="deliveryOrder.good5.money"></td>
@@ -525,8 +506,7 @@ desired effect
 
                             <div class="col-md-6">
                                 <select id="DeliveryMan" class="form-control" v-model="deliveryOrder.deliveryMan">
-                                   <option v-for="deliveryMan in deliveryMen">
-                                       {{deliveryMan.name}}
+                                   <option v-for="deliveryMan in deliveryMen" v-text="deliveryMan.name">
                                    </option>
                                 </select>
                             </div>
@@ -570,7 +550,7 @@ desired effect
                                 <div class="input-group-addon">
                                     <i class="fa fa-calendar"></i>
                                 </div>
-                                <input class="form-control" id="datepicker" type="text" v-model="deliveryOrder.date">
+                                <input class="form-control" id="datepicker" type="text" >
                             </div>
                             <!-- /.input group -->
                         </div>
@@ -579,9 +559,8 @@ desired effect
                             <label  class="col-md-3 control-label">是否含税
                             </label>
                             <div class="col-md-3">
-                                <select  class="form-control" v-model="deliveryOrder.tax" >
-                                    <option v-for="tax in taxes">
-                                        {{tax.text}}
+                                <select  class="form-control" v-model="deliveryOrder.tax" id="taxSelect"  @change="setCommentByTax()" >
+                                    <option v-for="tax in taxes" v-text="tax.text">
                                     </option>
                                 </select>
                             </div>

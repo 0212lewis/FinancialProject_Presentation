@@ -176,6 +176,14 @@ var vm = new Vue({
 
         },
 
+        convertDate:function (content) {
+            data = content.split("/");
+            year = data[2];
+            month = data[0];
+            day = data[1];
+            return year + "-" + month + "-" + day;
+        },
+
         addDeliveryMan:function () {
             var name=document.getElementById("newinput3").value;
             for(var i=0;i<this.deliveryMen.length;i++){
@@ -258,6 +266,12 @@ var vm = new Vue({
             })
         },
 
+        calTotalMoney:function () {
+            const self = this;
+            unitPrice = self.InGoodsOrder.singlePrice;
+            ammount = self.InGoodsOrder.amount;
+            self.InGoodsOrder.total = unitPrice * ammount;
+        },
         
 
         addInGoodsOrder:function () {
