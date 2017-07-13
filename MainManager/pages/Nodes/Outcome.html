@@ -1,8 +1,4 @@
 <!DOCTYPE html>
-<!--
-This is a starter template page. Use this page to start your new project from
-scratch. This page gets rid of all links and provides the needed markup only.
--->
 <html>
 <head>
     <meta charset="utf-8">
@@ -41,7 +37,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
             opacity:0.6;  /*非IE浏览器下设置透明度为60%*/
             display:none; /* http://www.jb51.net */
             z-Index:2;}
-        #login1 { position:absolute;width:400px;height:180px;top:200px;left:35%;background-color:#fff;display:none;cursor:pointer;z-Index:3;}
+        #login1 { position:absolute;width:450px;height:420px;top:200px;left:35%;background-color:#fff;display:none;cursor:pointer;z-Index:3;}
 
         deleteblock1 { margin:0px;padding:0px;text-align: center;}
         #hidebg2 { position:absolute;left:0px;top:0px;
@@ -130,34 +126,55 @@ desired effect
             <div id="login1" class="box-body">
                 <hr>
                 <div class="form-group">
-                    <label class="col-md-4 control-label">对方名称</label>
+                    <label class="col-md-4 control-label">供货方名称</label>
                     <div class="col-md-8">
-                        <input type="text" class="form-control" id="newinput1" placeholder="新建对方名称：">
+                        <input type="text" class="form-control" id="newinput1" placeholder="供货方名称：">
                     </div>
-                </div>
-                <div class="btn-group">
-                    <button type="button" class="btn btn btn-primary" style="left: 80px;" @click.prevent="addName()">保存</button>
-                    <button type="button" class="btn btn btn-danger" style="left: 230px;" onclick="hide1()">取消</button>
-                </div>
-                <hr>
-            </div>
-        </form>
-    </div>
 
-    <div id="addblock2">
-        <div id="hidebg3"></div>
-        <form class="form-horizontal">
-            <div id="login3" class="box-body">
-                <hr>
-                <div class="form-group">
-                    <label class="col-md-4 control-label">新的付款方式</label>
+                    <label class="col-md-4 control-label">供货方简码</label>
                     <div class="col-md-8">
-                        <input type="text" class="form-control" id="newinput3" placeholder="新建付款方式：">
+                        <input type="text" class="form-control" id="newProviderID" placeholder="供货方简码：">
                     </div>
+
+                    <label class="col-md-4 control-label">供货方税号</label>
+                    <div class="col-md-8">
+                        <input type="text" class="form-control" id="newProviderTaxID" placeholder="供货方税号：">
+                    </div>
+
+                    <label class="col-md-4 control-label">供货方地址</label>
+                    <div class="col-md-8">
+                        <input type="text" class="form-control" id="newProviderAddress" placeholder="供货方地址：">
+                    </div>
+
+                    <label class="col-md-4 control-label">供货方联系方式</label>
+                    <div class="col-md-8">
+                        <input type="text" class="form-control" id="newProviderPhone" placeholder="供货方联系方式：">
+                    </div>
+
+                    <label class="col-md-4 control-label">供货方开户行</label>
+                    <div class="col-md-8">
+                        <input type="text" class="form-control" id="newProviderBank" placeholder="供货方开户行：">
+                    </div>
+
+                    <label class="col-md-4 control-label">供货方账号</label>
+                    <div class="col-md-8">
+                        <input type="text" class="form-control" id="newProviderAccount" placeholder="供货方账号：">
+                    </div>
+
+                    <label class="col-md-4 control-label">供货方邮寄地址</label>
+                    <div class="col-md-8">
+                        <input type="text" class="form-control" id="newProviderMailAddress" placeholder="供货方邮寄地址：">
+                    </div>
+
+                    <label class="col-md-4 control-label">供货方联系人</label>
+                    <div class="col-md-8">
+                        <input type="text" class="form-control" id="newProviderLinkMan" placeholder="供货方联系人：">
+                    </div>
+
                 </div>
                 <div class="btn-group">
-                    <button type="button" class="btn btn btn-primary" style="left: 80px;" @click.prevent="addPayMethod()">保存</button>
-                    <button type="button" class="btn btn btn-danger" style="left: 230px;" onclick="hide3()">取消</button>
+                    <button type="button" class="btn btn btn-primary" style="left: 80px;" @click.prevent="addProviders()">保存</button>
+                    <button type="button" class="btn btn btn-danger" style="left: 230px;" onclick="hide1()">取消</button>
                 </div>
                 <hr>
             </div>
@@ -175,8 +192,28 @@ desired effect
                     </div> -->
                 </div>
                 <div class="btn-group">
-                    <button type="button" class="btn btn btn-primary" style="left: 80px;" @click.prevent="deleteName()">确认</button>
+                    <button type="button" class="btn btn btn-primary" style="left: 80px;" @click.prevent="deleteProviders()">确认</button>
                     <button type="button" class="btn btn btn-danger" style="left: 230px;" onclick="hide2()">取消</button>
+                </div>
+                <hr>
+            </div>
+        </form>
+    </div>
+
+    <div id="addblock2">
+        <div id="hidebg3"></div>
+        <form class="form-horizontal">
+            <div id="login3" class="box-body">
+                <hr>
+                <div class="form-group">
+                    <label class="col-md-4 control-label">添加付款方式</label>
+                    <div class="col-md-8">
+                        <input type="text" class="form-control" id="newinput3" placeholder="新建付款方式名称：">
+                    </div>
+                </div>
+                <div class="btn-group">
+                    <button type="button" class="btn btn btn-primary" style="left: 80px;" @click.prevent="addPayMethod()">保存</button>
+                    <button type="button" class="btn btn btn-danger" style="left: 230px;" onclick="hide3()">取消</button>
                 </div>
                 <hr>
             </div>
@@ -190,18 +227,16 @@ desired effect
                 <hr>
                 <div class="form-group">
                     <label class="col-md-8 control-label">是否确认删除所选项？</label>
-                    <!-- <div class="col-md-8">
-                        <input type="text" class="form-control" id="newinput4" placeholder="方式名称：">
-                    </div> -->
                 </div>
                 <div class="btn-group">
-                    <button type="button" class="btn btn btn-primary" style="left: 80px;" @click.prevent="deletePayMethod()">确认</button>
+                    <button type="button" class="btn btn btn-primary" style="left: 80px;" @click.prevent="deletePayMethod()">保存</button>
                     <button type="button" class="btn btn btn-danger" style="left: 230px;" onclick="hide4()">取消</button>
                 </div>
                 <hr>
             </div>
         </form>
     </div>
+
     <!-- Main Header -->
     <header class="main-header">
 
@@ -354,7 +389,7 @@ desired effect
                             <label  class="col-md-3 control-label">供应商名称</label>
 
                             <div class="col-md-6">
-                                <select id="othername" class="form-control" v-model="payMoneyOrder.receive">
+                                <select id="goodsprovider" class="form-control" v-model="payMoneyOrder.receive">
                                     <option v-for="receive in receives" v-text="receive">
                                     </option>
                                 </select>
@@ -386,7 +421,7 @@ desired effect
                             <label  class="col-md-3 control-label">付款方式</label>
 
                             <div class="col-md-6">
-                                <select id="paymentmethod" class="form-control" v-model="payMoneyOrder.method">
+                                <select id="paymentMethod" class="form-control" v-model="payMoneyOrder.method">
                                     <option v-for="method in methods" v-text="method">
                                     </option>
                                 </select>

@@ -88,33 +88,47 @@ var vm = new Vue({
 
     },
     methods:{
-        addName:function(){
+        //添加新的供应商
+        addProviders:function () {
             var name=document.getElementById("newinput1").value;
             for(var i=0;i<this.receives.length;i++){
-                if(this.receives[i].name==name){
-                    alert('该名称已经存在');
+                if(this.receives[i]==name){
+                    alert('该供货方已经存在');
                     document.getElementById("newinput1").value="";
                     hide1();
                     return;
                 }
             }
-            this.receives.push({name});
-            this.$http.get("http://106.14.224.189/server/contents/AddContent.php",{
-                params:{
-                    contentName:"paymoney_order_otherName",
-                    value:name
-                }
-            })
-                .then(function(response){
-                    document.getElementById("newinput1").value="";
-                    hide1();
-                    alert("添加名称成功!")
-                }).catch(function(error){
+            this.receives.push(name);
+            this.$http.post("http://localhost:8080/provider", {
+                account: document.getElementById("newProviderAccount").value,
+                address: document.getElementById("newProviderAddress").value,
+                bank: document.getElementById("newProviderBank").value,
+                id: document.getElementById("newProviderID").value,
+                linkman: document.getElementById("newProviderLinkMan").value,
+                mail_address: document.getElementById("newProviderMailAddress").value,
+                name: document.getElementById("newinput1").value,
+                phone_number: document.getElementById("newProviderPhone").value,
+                tax_id: document.getElementById("newProviderTaxID").value
+            }).then(function (response) {
+                document.getElementById("newinput1").value = "";
+                document.getElementById("newProviderAccount").value = "";
+                document.getElementById("newProviderAddress").value = "";
+                document.getElementById("newProviderBank").value = "";
+                document.getElementById("newProviderID").value = "";
+                document.getElementById("newProviderLinkMan").value = "";
+                document.getElementById("newProviderMailAddress").value = "";
+                document.getElementById("newProviderPhone").value = "";
+                document.getElementById("newProviderTaxID").value = "";
+                hide1();
+                alert("添加供货方成功!")
+            }).catch(function (error) {
                 alert("出现了未知的错误！请重新进行输入")
-            })
+            });
         },
-        deleteName:function(){
-            var mySelect=document.getElementById("othername");
+        //删除供应商
+        deleteProviders:function(){
+            var mySelect=document.getElementById("goodsprovider");
             var index=mySelect.selectedIndex;
             var name=mySelect.options[index].value;
             if(name==""){
@@ -122,51 +136,44 @@ var vm = new Vue({
                 hide2();
                 return;
             }
-            this.$http.get("http://106.14.224.189/server/contents/deleteContent.php",{
-                params:{
-                    contentName:"paymoney_order_otherName",
-                    value:name
-                }
+            this.$http.delete("http://localhost:8080/provider",{
+                body:name
             })
                 .then(function(response){
                     mySelect.options.remove(index);//下拉框中删除该元素
                     hide2();
-                    alert("删除名称成功!")
+                    alert("删除供货方成功!")
                 }).catch(function(error){
-                    // console.log(error.data);
+                console.log(error.data);
                 alert("出现了未知的错误！请重新进行输入")
                 hide2();
             })
         },
-
+        //添加新的付款方式
         addPayMethod:function(){
             var name=document.getElementById("newinput3").value;
             for(var i=0;i<this.methods.length;i++){
-                if(this.methods[i].name==name){
-                    alert('该付款方式已经存在');
+                if(this.methods[i]==name){
+                    alert('该方式已经存在');
                     document.getElementById("newinput3").value="";
                     hide3();
                     return;
                 }
             }
-            this.methods.push({name});
-            this.$http.get("http://106.14.224.189/server/contents/AddContent.php",{
-                params:{
-                    contentName:"payment_method",
-                    value:name
-                }
-            })
-                .then(function(response){
-                    document.getElementById("newinput3").value="";
-                    hide3();
-                    alert("添加付款方式成功!")
-                }).catch(function(error){
+            this.methods.push(name);
+            this.$http.post("http://localhost:8080/paymentMethod",{
+                    name:name
+            }).then(function(response){
+                document.getElementById("newinput3").value="";
+                hide3();
+                alert("添加方式成功!")
+            }).catch(function(error){
                 alert("出现了未知的错误！请重新进行输入")
             })
         },
-
+        //删除付款方式
         deletePayMethod:function(){
-            var mySelect=document.getElementById("paymentmethod");
+            var mySelect=document.getElementById("paymentMethod");
             var index=mySelect.selectedIndex;
             var name=mySelect.options[index].value;
             if(name==""){
@@ -174,23 +181,22 @@ var vm = new Vue({
                 hide4();
                 return;
             }
-            this.$http.get("http://106.14.224.189/server/contents/deleteContent.php",{
-                params:{
-                    contentName:"payment_method",
-                    value:name
+            this.$http.delete("http://localhost:8080/paymentMethod",{
+                body:{
+                    name:name
                 }
             })
                 .then(function(response){
                     mySelect.options.remove(index);//下拉框中删除该元素
                     hide4();
-                    alert("删除付款方式成功!")
+                    alert("删除方式成功!")
                 }).catch(function(error){
-                    // console.log(error.data);
+                console.log(error.data);
                 alert("出现了未知的错误！请重新进行输入")
                 hide4();
             })
         },
-
+        //录入付款单
         addOutcomeOrder:function () {
             hide5();
             if(this.payMoneyOrder.receive==null||this.payMoneyOrder.receive.length==0){
