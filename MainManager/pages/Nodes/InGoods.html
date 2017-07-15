@@ -439,9 +439,9 @@ desired effect
                                         </select>
                                         <!--<input type="text" class="form-control col-md-2" id="input101" placeholder="" v-model="InGoodsOrder.type">-->
                                     </td>
-                                    <td>  <input type="text" class="form-control col-md-2" id="input111" placeholder="" v-model="InGoodsOrder.amount" @change="getTotal"></td>
-                                    <td>  <input type="text" class="form-control col-md-2" id="input102" placeholder="" v-model="InGoodsOrder.singlePrice" @change="getTotal"></td>
-                                    <td v-text="totalMoney" style="text-align: center;vertical-align: middle">{{totalMoney}}</td>
+                                    <td>  <input type="text" class="form-control col-md-2" id="input111" placeholder="" v-model="InGoodsOrder.amount"></td>
+                                    <td>  <input type="text" class="form-control col-md-2" id="input102" placeholder="" v-model="InGoodsOrder.singlePrice"></td>
+                                    <td v-text="getTotal" style="text-align: center;vertical-align: middle"></td>
                                 </tr>
                                 </tbody>
                             </table>

@@ -86,6 +86,7 @@ var vm = new Vue({
 
         InGoodsOrder:{
             provider:'',
+            pid:'',
             goodName:'',
             type:'',
             amount:'',
@@ -296,34 +297,35 @@ var vm = new Vue({
                 alert("请选择进货日期！");
                 return;
             }
-
+            this.$http.get("http://localhost:8080/product/id",{
+               params:{
+                   name:this.InGoodsOrder.goodName,
+                   type:this.InGoodsOrder.type
+               }
+            }).then(function (response) {
+                if(response.data.errorCode == 0){
+                    this.InGoodsOrder.pid = response.data.data[0];
+                    // console.log(response.data.data[0]);
+                    // console.log(this.InGoodsOrder.pid);
+                }
+            });
             const self=this;
             this.$http.post("http://localhost:8080/order/income_product",{
-                comment: self.InGoodsOrder.comment.trim(),
-                date: self.InGoodsOrder.deliveryMan.trim(),
-                deliveryMan: self.InGoodsOrder.deliveryMan.trim(),
-                deliveryMoney: self.InGoodsOrder.deliveryMoney.trim(),
+                comment: this.InGoodsOrder.comment.trim(),
+                date: this.InGoodsOrder.deliveryMan.trim(),
+                deliveryMan: this.InGoodsOrder.deliveryMan.trim(),
+                deliveryMoney: this.InGoodsOrder.deliveryMoney.trim(),
                 orderID: '',
                 product: {
                     orderId: '',
-                    pid: '',
-                    quantity: self.InGoodsOrder.amount,
-                    totalMoney:self.totalMoney,
-                    unitPrice: self.InGoodsOrder.singlePrice
+                    pid: this.InGoodsOrder.pid,
+                    quantity: this.InGoodsOrder.amount,
+                    totalMoney:this.totalMoney,
+                    unitPrice: this.InGoodsOrder.singlePrice
             },
                 providerID: '',
-                providerName: self.InGoodsOrder.provider
-                // params:{
-                //     providedUnit:self.InGoodsOrder.provider.trim(),
-                //     goodName:self.InGoodsOrder.goodName,
-                //     model:self.InGoodsOrder.type,
-                //     num:self.InGoodsOrder.amount,
-                //     unitPrice:self.InGoodsOrder.singlePrice,
-                //     total:self.InGoodsOrder.total,
-                //     deliveryMan:self.InGoodsOrder.deliveryMan.trim(),
-                //     deliveryMoney:self.InGoodsOrder.deliveryMoney.trim(),
-                //     comment:self.InGoodsOrder.comment.trim()
-                // }
+                providerName: this.InGoodsOrder.provider
+
             }).then(function (response) {
                 if(response.body.errorCode ==0){
                     console.log(response.data);
