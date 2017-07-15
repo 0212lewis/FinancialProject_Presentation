@@ -195,13 +195,13 @@ var vm = new Vue({
                     return;
                 }
             }
-            this.deliveryMen.push({name});
             this.$http.post("http://localhost:8080/deliveryman",{
                name:name
             }).then(function(response){
                     document.getElementById("newinput3").value="";
                     hide3();
-                    alert("添加运货人成功!")
+                    this.deliveryMen.push({name});
+                alert("添加运货人成功!")
                 }).catch(function(error){
                 alert("出现了未知的错误！请重新进行输入")
             })

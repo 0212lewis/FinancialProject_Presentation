@@ -195,13 +195,13 @@ desired effect
             <div id="login3" class="box-body">
                 <hr>
                 <div class="form-group">
-                    <label class="col-md-4 control-label">添加方式</label>
+                    <label class="col-md-4 control-label">添加运货人</label>
                     <div class="col-md-8">
-                        <input type="text" class="form-control" id="newinput3" placeholder="新建方式名称：">
+                        <input type="text" class="form-control" id="newinput3" placeholder="请输入运货人名称：">
                     </div>
                 </div>
                 <div class="btn-group">
-                    <button type="button" class="btn btn btn-primary" style="left: 80px;" @click.prevent="addPaymentMethod()">保存</button>
+                    <button type="button" class="btn btn btn-primary" style="left: 80px;" @click.prevent="addDeliveryMan()">保存</button>
                     <button type="button" class="btn btn btn-danger" style="left: 230px;" onclick="hide3()">取消</button>
                 </div>
                 <hr>
@@ -218,7 +218,7 @@ desired effect
                     <label class="col-md-8 control-label">是否确认删除所选项？</label>
                 </div>
                 <div class="btn-group">
-                    <button type="button" class="btn btn btn-primary" style="left: 80px;" @click.prevent="deletePaymentMethod()">保存</button>
+                    <button type="button" class="btn btn btn-primary" style="left: 80px;" @click.prevent="deleteDeliveryMan()">确认</button>
                     <button type="button" class="btn btn btn-danger" style="left: 230px;" onclick="hide4()">取消</button>
                 </div>
                 <hr>

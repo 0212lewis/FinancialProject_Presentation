@@ -2,8 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/FinancialProject.iml" filepath="$PROJECT_DIR$/.idea/FinancialProject.iml" />
-      <module fileurl="file://E:\webstorm\workspace\FinancialProject\.idea\ct.iml" filepath="E:\webstorm\workspace\FinancialProject\.idea\ct.iml" />
+      <module fileurl="file://$PROJECT_DIR$/FinancialProject_Presentation.iml" filepath="$PROJECT_DIR$/FinancialProject_Presentation.iml" />
     </modules>
   </component>
 </project>
