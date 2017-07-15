@@ -224,7 +224,7 @@ desired effect
                 <tr>
                   <th>订单号</th>
                   <th>日期</th>
-                  <th>购货方名称</th>
+                  <th>客户名称</th>
                   <th>货物</th>
                   <th>型号</th>
                   <th>数量（T）</th>
@@ -232,43 +232,63 @@ desired effect
                   <th>金额</th>
                   <th>送货人</th>
                   <th>运费</th>
+                    <th>业务员</th>
                   <th>备注</th>
                 </tr>
                 </thead>
                 <tbody>
                 <tr v-for="item in items">
-                  <td> {{item.orderId}} </td>
-                  <td>{{item.date }}</td>
-                  <td>{{item.receive }}</td>
-                  <td>{{item.goodName }}</td>
-                  <td>{{item.model }}</td>
-                  <td>{{item.num }}</td>
-                  <td>{{item.unitPrice }}</td>
-                  <td>{{item.total }}</td>
-                  <td>{{item.deliveryMan }}</td>
-                  <td>{{item.deliveryMoney }}</td>
-                  <td>{{item.comment }}</td>
+                    <td>{{item.orderId}}</td>
+                    <td>{{item.date}}</td>
+                    <td>{{item.clientName}}</td>
+                    <td>{{item.pname}}</td>
+                    <td>{{item.ptype}}</td>
+                    <td>{{item.num}}</td>
+                    <td>{{item.unitPrice}}</td>
+                    <td>{{item.total}}</td>
+                    <td>{{item.deliveryMan}}</td>
+                    <td>{{item.deliveryMoney}}</td>
+                    <td>{{item.businessman}}</td>
+                    <td>{{item.comment}}</td>
                 </tr>
-              
                 </tbody>
                 <tfoot>
+
                 <tr>
-                  <th>订单号</th>
-                  <th>日期</th>
-                  <th>购货方名称</th>
-                  <th>货物</th>>
-                  <th>型号</th>
-                  <th>数量(T)</th>
-                  <th>单价(元)</th>
-                  <th>金额(元)</th>
-                  <th>送货人</th>
-                  <th>运费(元)</th>
-                  <th>备注</th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th v-text="totalNum"></th>
+                    <th></th>
+                    <th v-text="totalMoney"></th>
+                    <th></th>
+                    <th v-text="totalDeliveryMoney"></th>
+                    <th v-text="average"></th>
+                    <th></th>
+                </tr>
+                <tr>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>>
+                    <th></th>
+                    <th>总数量(T)</th>
+                    <th></th>
+                    <th>总金额(元)</th>
+                    <th></th>
+                    <th>总运费(元)</th>
+                    <th>均出厂价</th>
+                    <th></th>
                 </tr>
                 </tfoot>
               </table>
             </div>
             <!-- /.box-body -->
+              <div class="box-footer">
+                  <button type="button" class="btn btn-info pull-right" onclick="method5('example1')">导出表格</button>
+              </div>
           </div>
           <!-- /.box -->
         </div>
