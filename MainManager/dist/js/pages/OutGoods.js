@@ -83,6 +83,33 @@ String.prototype.trim=function() {
  document.getElementById("login6").style.display = "none";
  }
 
+function show7()  //显示隐藏层和弹出层
+{
+    var hideobj=document.getElementById("hidebg7");
+    hidebg7.style.display="block";  //显示隐藏层
+    hidebg7.style.height=document.body.clientHeight+"px";  //设置隐藏层的高度为当前页面高度
+    document.getElementById("login7").style.display="block";  //显示弹出层
+}
+
+function show8()  //显示隐藏层和弹出层
+{
+    var hideobj=document.getElementById("hidebg8");
+    hidebg8.style.display="block";  //显示隐藏层
+    hidebg8.style.height=document.body.clientHeight+"px";  //设置隐藏层的高度为当前页面高度
+    document.getElementById("login8").style.display="block";  //显示弹出层
+}
+
+function hide7()  //去除隐藏层和弹出层
+{
+    document.getElementById("hidebg7").style.display = "none";
+    document.getElementById("login7").style.display = "none";
+}
+function hide8()  //去除隐藏层和弹出层
+{
+    document.getElementById("hidebg8").style.display = "none";
+    document.getElementById("login8").style.display = "none";
+}
+
 var vm = new Vue({
     el:'#container',
     data:{
@@ -113,6 +140,14 @@ var vm = new Vue({
 
         ],
 
+        myTypes:[
+
+        ],
+
+        allGoods:[
+
+        ],
+
         // goodModels:{
         //     models1:this.goodModels1,
         //     models2:this.goodModels2,
@@ -121,7 +156,11 @@ var vm = new Vue({
         //     models5:this.goodModels5,
         // },
 
-        goodModels:[this.goodModels1,this.goodModels2,this.goodModels3,this.goodModels4,this.goodModels5],
+        // goodModels:[this.goodModels1,this.goodModels2,this.goodModels3,this.goodModels4,this.goodModels5],
+
+        goodModels:[
+
+        ],
 
         deliveryMen:[
 
@@ -191,10 +230,17 @@ var vm = new Vue({
                 alert("请选择收货方");
                 return;
             }
-            if(this.deliveryOrder.good1.goodName==null||this.deliveryOrder.good1.goodName.length==0){
+            // if(this.deliveryOrder.good1.goodName==null||this.deliveryOrder.good1.goodName.length==0){
+            //     alert("请输入货品信息");
+            //     return;
+            // }
+            if(this.deliveryOrder.good1.goodName=="" && this.deliveryOrder.good2.goodName==""
+                && this.deliveryOrder.good3.goodName=="" && this.deliveryOrder.good4.goodName==""
+                && this.deliveryOrder.good5.goodName==""){
                 alert("请输入货品信息");
                 return;
             }
+
             if(this.deliveryOrder.deliveryMan==null||this.deliveryOrder.deliveryMan==""){
                 alert("请选择运货人");
                 return;
@@ -208,15 +254,19 @@ var vm = new Vue({
                 return;
             }
 
-            var newDate = this.convertDate(this.convertDate(document.getElementById("datepicker").value));
-            alert(newDate);
+            if(this.deliveryOrder.createOrderMan==""||this.deliveryOrder.createOrderMan.length==0){
+                alert("请输入制单人");
+                return;
+            }
+
+            var newDate = this.convertDate(document.getElementById("datepicker").value);
 
             var hasTax = false;
-            if(this.deliveryOrder.tax.equals('是')){
+            if(this.deliveryOrder.tax=="是"){
                 hasTax = true;
             }
+
             this.$http.post("http://localhost:8080/order/delivery_product",{
-                params:{
                     clientId:'',
                     clientName:this.deliveryOrder.receive.trim(),
                     deliveryMan:this.deliveryOrder.deliveryMan.trim(),
@@ -227,67 +277,66 @@ var vm = new Vue({
                     // totalMoney:parseFloat(this.deliveryOrder.totalMoney),
                     businessman:this.deliveryOrder.businessMan.trim(),
                     ticketMaker:this.deliveryOrder.createOrderMan.trim(),
-                        date:newDate,
-                        products:[
-                            {
-                                orderId:'',
-                                quantity:this.deliveryOrder.good1.num,
-                                totalMoney:this.deliveryOrder.good1.total,
-                                product:{
-                                    id:'',
-                                    name:this.deliveryOrder.good1.goodName.trim(),
-                                    type:this.deliveryOrder.good1.model.trim(),
-                                    unitPrice:this.deliveryOrder.good1.money.trim()
-                                }
-                            },
-                            {
-                                orderId:'',
-                                quantity:this.deliveryOrder.good2.num,
-                                totalMoney:this.deliveryOrder.good2.total,
-                                product:{
-                                    id:'',
-                                    name:this.deliveryOrder.good2.goodName.trim(),
-                                    type:this.deliveryOrder.good2.model.trim(),
-                                    unitPrice:this.deliveryOrder.good2.money.trim()
-                                }
-                            },
-                            {
-                                orderId:'',
-                                quantity:this.deliveryOrder.good3.num,
-                                totalMoney:this.deliveryOrder.good3.total,
-                                product:{
-                                    id:'',
-                                    name:this.deliveryOrder.good3.goodName.trim(),
-                                    type:this.deliveryOrder.good3.model.trim(),
-                                    unitPrice:this.deliveryOrder.good3.money.trim()
-                                }
-                            },
-                            {
-                                orderId:'',
-                                quantity:this.deliveryOrder.good4.num,
-                                totalMoney:this.deliveryOrder.good4.total,
-                                product:{
-                                    id:'',
-                                    name:this.deliveryOrder.good4.goodName.trim(),
-                                    type:this.deliveryOrder.good4.model.trim(),
-                                    unitPrice:this.deliveryOrder.good4.money.trim()
-                                }
-                            },
-                            {
-                                orderId:'',
-                                quantity:this.deliveryOrder.good5.num,
-                                totalMoney:this.deliveryOrder.good5.total,
-                                product:{
-                                    id:'',
-                                    name:this.deliveryOrder.good5.goodName.trim(),
-                                    type:this.deliveryOrder.good5.model.trim(),
-                                    unitPrice:this.deliveryOrder.good5.money.trim()
-                                }
-                            },
+                    date:newDate,
+                    products:[
+                        {
+                            orderId:'',
+                            quantity:this.deliveryOrder.good1.num,
+                            totalMoney:this.deliveryOrder.good1.total,
+                            product:{
+                                id:'',
+                                name:this.deliveryOrder.good1.goodName.trim(),
+                                type:this.deliveryOrder.good1.model.trim(),
+                                unitPrice:this.deliveryOrder.good1.money
+                            }
+                        },
+                        {
+                            orderId:'',
+                            quantity:this.deliveryOrder.good2.num,
+                            totalMoney:this.deliveryOrder.good2.total,
+                            product:{
+                                id:'',
+                                name:this.deliveryOrder.good2.goodName.trim(),
+                                type:this.deliveryOrder.good2.model.trim(),
+                                unitPrice:this.deliveryOrder.good2.money
+                            }
+                        },
+                        {
+                            orderId:'',
+                            quantity:this.deliveryOrder.good3.num,
+                            totalMoney:this.deliveryOrder.good3.total,
+                            product:{
+                                id:'',
+                                name:this.deliveryOrder.good3.goodName.trim(),
+                                type:this.deliveryOrder.good3.model.trim(),
+                                unitPrice:this.deliveryOrder.good3.money
+                            }
+                        },
+                        {
+                            orderId:'',
+                            quantity:this.deliveryOrder.good4.num,
+                            totalMoney:this.deliveryOrder.good4.total,
+                            product:{
+                                id:'',
+                                name:this.deliveryOrder.good4.goodName.trim(),
+                                type:this.deliveryOrder.good4.model.trim(),
+                                unitPrice:this.deliveryOrder.good4.money
+                            }
+                        },
+                        {
+                            orderId:'',
+                            quantity:this.deliveryOrder.good5.num,
+                            totalMoney:this.deliveryOrder.good5.total,
+                            product:{
+                                id:'',
+                                name:this.deliveryOrder.good5.goodName.trim(),
+                                type:this.deliveryOrder.good5.model.trim(),
+                                unitPrice:this.deliveryOrder.good5.money
+                            }
+                        },
 
-                        ],
+                    ],
 
-                }
             }).then(function (response) {
                 console.log(response.body);
                 if(response.body.error == 0){
@@ -331,17 +380,21 @@ var vm = new Vue({
                     return;
                 }
             }
-            this.receives.push({name});
             const self = this;
-            this.$http.get("http://localhost:8080/",{
-                params:{
-                    contentName:"delivery_order_receiver",
-                    value:name
-                }
-            })
-                .then(function(response){
+            this.$http.post("http://localhost:8080/client",{
+                account: document.getElementById("receiverAccount").value,
+                address: document.getElementById("receiverAddress").value,
+                bank: document.getElementById("receiverBank").value,
+                id: document.getElementById("receiverID").value,
+                linkman: document.getElementById("receiverLinkMan").value,
+                mailAddress: document.getElementById("receiverMail").value,
+                name: document.getElementById("newinput1").value,
+                phoneNumber: document.getElementById("receiverPhone").value,
+                taxId: document.getElementById("receiverTaxID").value
+            }).then(function(response){
                     document.getElementById("newinput1").value="";
                     hide1();
+                    this.receives.push(name);
                     alert("添加收货方成功!")
                 }).catch(function(error){
                 alert("出现了未知的错误！请重新进行输入");
@@ -358,11 +411,8 @@ var vm = new Vue({
                 hide2();
                 return;
             }
-            this.$http.get("http://106.14.224.189/server/contents/deleteContent.php",{
-                params:{
-                    contentName:"delivery_order_receiver",
-                    value:name
-                }
+            this.$http.delete("http://localhost:8080/client",{
+                body:name
             })
                 .then(function(response){
                     mySelect.options.remove(index);//下拉框中删除该元素
@@ -370,8 +420,61 @@ var vm = new Vue({
                     alert("删除收货方成功!");
                 }).catch(function(error){
                     // console.log(error.data);
-                alert("出现了未知的错误！请重新进行输入");
-                hide2();
+                    alert("出现了未知的错误！请重新进行输入");
+                    hide2();
+            })
+        },
+
+        addBusinessMan:function () {
+            var name=document.getElementById("newBusinessName").value;
+            var address=document.getElementById("newBusinessAddress").value;
+            var phoneNumber=document.getElementById("newBusinessPhone").value;
+            for(var i=0;i<this.businessMen.length;i++){
+                if(this.businessMen[i].name==name){
+                    alert('该业务员已经存在！');
+                    document.getElementById("newBusinessName").value="";
+                    hide7();
+                    return;
+                }
+            }
+            this.$http.post("http://localhost:8080/businessman",{
+                address:address,
+                name:name,
+                phone_number:phoneNumber
+            }).then(function(response){
+                document.getElementById("newBusinessName").value="";
+                document.getElementById("newBusinessAddress").value="";
+                document.getElementById("newBusinessPhone").value="";
+                hide7();
+                this.businessMen.push({name});
+                alert("添加业务员成功!")
+            }).catch(function(error){
+                alert("出现了未知的错误！请重新进行输入")
+            })
+        },
+
+        deleteBussiness:function () {
+            var mySelect=document.getElementById("businessMan");
+            var index=mySelect.selectedIndex;
+            var name=mySelect.options[index].value;
+            if(name==""){
+                alert('请选择要删除的内容');
+                hide8();
+                return;
+            }
+            this.$http.delete("http://localhost:8080/businessman",{
+                body:{
+                    name:name
+                }
+            })
+                .then(function(response){
+                    mySelect.options.remove(index);//下拉框中删除该元素
+                    hide8();
+                    alert("删除业务员成功!")
+                }).catch(function(error){
+                // console.log(error.data);
+                alert("出现了未知的错误！请重新进行输入")
+                hide8();
             })
         },
 
@@ -380,39 +483,32 @@ var vm = new Vue({
             var type=document.getElementById("productType").value;
             var nameExist = 0;  //0表示未出现在下拉框中，1表示出现
 
-            this.goodModels.forEach(function(item){
-                alert(item)
-            });
-
-            for(var i=0;i<this.goodNames.length;i++){
-                if(this.goodNames[i]==name){
+            for(var i=0;i<this.allGoods.length;i++){
+                if(this.allGoods[i].name==name) {
                     nameExist = 1;
-                    for(var j=0;j<this.goodModels.length;j++) {
-                        alert(this.goodModels.get(0));
-                        for(var k=0;k<this.goodModels[j].length;k++) {
-                            if(this.goodModels[j][k]==type) {
-                                alert('该货品已经存在');
-                                document.getElementById("newinput3").value="";
-                                document.getElementById("productType").value="";
-                                hide3();
-                                return;
-                            }
+                    for (var j = 0; j < this.myTypes.length; j++) {
+                        if (this.myTypes[j] == type) {
+                            alert('该货品已经存在');
+                            document.getElementById("newinput3").value = "";
+                            document.getElementById("productType").value = "";
+                            hide3();
+                            return;
                         }
                     }
                 }
             }
-            const self = this;
-            this.$http.get("http://localhost:8080/product/product",{
+            // const self = this;
+            this.$http.post("http://localhost:8080/product/product",{
                 name:name,
                 type:type
             }).then(function(response){
                 document.getElementById("newinput3").value="";
-                document.getElementById("newProductType").value="";
+                document.getElementById("productType").value="";
                 hide3();
                 if(nameExist==0) {
                     this.goodNames.push(name);
                 }
-                this.goodModels.push(type);
+                this.pushIntoSelect(name,type);
                 alert("添加货品成功!");
                 }).catch(function(error){
                 alert("出现了未知的错误！请重新进行输入");
@@ -420,25 +516,68 @@ var vm = new Vue({
             })
         },
 
+        pushIntoSelect:function (name,type) {
+            alert("push")
+            var index=1;
+            for(index=1;index<=5;index++) {
+                var selectName=document.getElementById("goodName"+index).value;
+                if(selectName==name){
+                    break;
+                }
+            }
+            if(index==1) {
+                this.goodModels1.push(type);
+            }else if(index==2) {
+                this.goodModels2.push(type);
+            }else if(index==3) {
+                this.goodModels3.push(type);
+            }else if(index==4) {
+                this.goodModels4.push(type);
+            }else if(index==5){
+                this.goodModels5.push(type)
+            }
+        },
+        
         getType:function (content) {
             // alert(content)
             // this.goodModels1=[];
             var mySelect=document.getElementById(content);
             var index=mySelect.selectedIndex;
             var name=mySelect.options[index].value;
-            var number=content.substring(8)
-            this.$http.get("http://localhost:8080/product/type",{
-                params:{name:name}
-            })
-                .then(function(response){
-                    alert(response.data.data)
-                    this.goodModels1=response.data.data;
-                    this.goodModels.push(this.goodModels1);
-                    alert(this.goodModels);
-                }).catch(function(error){
+            var number=content.substring(8);
+            this.$http.get("http://localhost:8080/product/type", {
+                params: {name: name}
+            }).then(function (response) {
+                if(number==1) {
+                    this.goodModels1=(response.data.data);
+                }else if(number==2) {
+                    this.goodModels2=(response.data.data);
+                }else if(number==3) {
+                    this.goodModels3=(response.data.data);
+                }else if(number==4) {
+                    this.goodModels4=(response.data.data);
+                }else if(number==5){
+                    this.goodModels5=(response.data.data)
+                }
+                }).catch(function (error) {
+                // console.log(error.data);
+                alert("出现了未知的错误！请重新进行输入")
+            });
+        },
+
+        getType2:function () {
+
+            var name=document.getElementById('newinput3').value;
+            this.$http.get("http://localhost:8080/product/type", {
+                params: {name: name}
+            }).then(function (response) {
+                this.myTypes=response.data.data;
+                this.addGoods();
+
+            }).catch(function (error) {
                 console.log(error.data);
                 alert("出现了未知的错误！请重新进行输入")
-            })
+            });
         },
 
         addType:function(){
@@ -482,12 +621,12 @@ var vm = new Vue({
                     return;
                 }
             }
-            this.deliveryMen.push({name});
             this.$http.post("http://localhost:8080/deliveryman",{
                 name:name
             }).then(function(response){
                 document.getElementById("newinput5").value="";
                 hide5();
+                this.deliveryMen.push({name});
                 alert("添加运货人成功!")
             }).catch(function(error){
                 alert("出现了未知的错误！请重新进行输入")
@@ -518,13 +657,12 @@ var vm = new Vue({
                 hide6();
             })
         }
-
     },
 
     mounted(){
         const self = this;
 
-    this.$http.get("http://localhost:8080/client/allName").then(function(response){
+        this.$http.get("http://localhost:8080/client/allName").then(function(response){
                 self.receives=response.data.data;
             }).catch(function(error){
             alert("出现了未知的错误！请重新进行输入")
@@ -536,6 +674,25 @@ var vm = new Vue({
             alert("出现了未知的错误！请重新进行输入")
         });
 
+        this.$http.get("http://localhost:8080/product/product").then(function(response){
+            self.allGoods=response.data.data;
+        }).catch(function(error){
+            alert("出现了未知的错误！请重新进行输入")
+        });
+
+        // this.$http.get("http://localhost:8080/product/type", {
+        //     params: {name: "香水"}
+        // }).then(function (response) {
+        //     this.myTypes=response.data.data;
+        //     // console.log(this.myTypes[0]);
+        //     // console.log(this.myTypes[1])
+        // }).catch(function (error) {
+        //     console.log(error.data);
+        //     alert("出现了未知的错误！请重新进行输入")
+        // });
+        //
+
+
         // this.$http.get("http://localhost:8080/product/").then(function(response){
         //         self.goodModels=response.data.data;
         //     }).catch(function(error){
@@ -544,6 +701,12 @@ var vm = new Vue({
 
         this.$http.get("http://localhost:8080/deliveryman/allName").then(function(response){
             self.deliveryMen=response.data.data;
+        }).catch(function(error){
+            alert("出现了未知的错误！请重新进行输入")
+        });
+
+        this.$http.get("http://localhost:8080/businessman").then(function(response){
+            self.businessMen=response.data.data;
         }).catch(function(error){
             alert("出现了未知的错误！请重新进行输入")
         });

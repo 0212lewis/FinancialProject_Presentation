@@ -422,9 +422,9 @@ desired effect
                                 <tr>
                                     <th style="text-align: center" class="col-md-4">货名<button class="btn-xs btn-primary pull-right" type="button" onclick="show5()">添加货品</button></th>
                                     <th style="text-align: center" class="col-md-2">型号</th>
-                                    <th style="text-align: center">数量</th>
-                                    <th style="text-align: center">单价</th>
-                                    <th style="text-align: center">总价</th>
+                                    <th style="text-align: center" class="col-md-2">数量</th>
+                                    <th style="text-align: center" class="col-md-2">单价</th>
+                                    <th style="text-align: center" class="col-md-1">总价</th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -433,7 +433,7 @@ desired effect
                                         <select class="form-control col-md-3" v-model="InGoodsOrder.goodName" id="goodName" @change="getType">
                                         <option v-for="goodname in goodNames" v-text="goodname">
                                         </option>
-                                    </select></td>
+                                        </select></td>
                                     <td>
                                         <select class="form-control col-md-2" v-model="InGoodsOrder.type">
                                             <option v-for="goodtype in goodTypes" v-text="goodtype">
@@ -441,9 +441,9 @@ desired effect
                                         </select>
                                         <!--<input type="text" class="form-control col-md-2" id="input101" placeholder="" v-model="InGoodsOrder.type">-->
                                     </td>
-                                    <td>  <input type="text" class="form-control col-md-2" id="input111" placeholder="" v-model="InGoodsOrder.amount"></td>
-                                    <td>   <input type="text" class="form-control col-md-2" id="input102" placeholder="" v-model="InGoodsOrder.singlePrice"></td>
-                                    <td>  <input type="text" class="form-control col-md-2" id="input120" placeholder="" v-model="InGoodsOrder.total"></td>
+                                    <td>  <input type="text" class="form-control col-md-2" id="input111" placeholder="" v-model="InGoodsOrder.amount" @change="getTotal"></td>
+                                    <td>  <input type="text" class="form-control col-md-2" id="input102" placeholder="" v-model="InGoodsOrder.singlePrice" @change="getTotal"></td>
+                                    <td v-text="totalMoney" style="text-align: center;vertical-align: middle">{{totalMoney}}</td>
                                 </tr>
                                 </tbody>
                             </table>

@@ -34,7 +34,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
             opacity:0.6;  /*非IE浏览器下设置透明度为60%*/
             display:none; /* http://www.jb51.net */
             z-Index:2;}
-        #login1 { position:absolute;width:400px;height:180px;top:200px;left:35%;background-color:#fff;display:none;cursor:pointer;z-Index:3;}
+        #login1 { position:absolute;width:450px;height:420px;top:200px;left:35%;background-color:#fff;display:none;cursor:pointer;z-Index:3;}
 
         deleteblock1 { margin:0px;padding:0px;text-align: center;}
         #hidebg2 { position:absolute;left:0px;top:0px;
@@ -85,6 +85,27 @@ scratch. This page gets rid of all links and provides the needed markup only.
             display:none; /* http://www.jb51.net */
             z-Index:2;}
         #login5 { position:absolute;width:400px;height:180px;top:200px;left:35%;background-color:#fff;display:none;cursor:pointer;z-Index:3;}
+
+        addBusiness { margin:0px;padding:0px;text-align: center;}
+        #hidebg7 { position:absolute;left:0px;top:0px;
+            background-color:#000;
+            width:100%;  /*宽度设置为100%，这样才能使隐藏背景层覆盖原页面*/
+            filter:alpha(opacity=60);  /*设置透明度为60%*/
+            opacity:0.6;  /*非IE浏览器下设置透明度为60%*/
+            display:none; /* http://www.jb51.net */
+            z-Index:2;}
+        #login7 { position:absolute;width:400px;height:230px;top:200px;left:35%;background-color:#fff;display:none;cursor:pointer;z-Index:3;}
+
+        deleteblock3 { margin:0px;padding:0px;text-align: center;}
+        #hidebg8 { position:absolute;left:0px;top:0px;
+            background-color:#000;
+            width:100%;  /*宽度设置为100%，这样才能使隐藏背景层覆盖原页面*/
+            filter:alpha(opacity=60);  /*设置透明度为60%*/
+            opacity:0.6;  /*非IE浏览器下设置透明度为60%*/
+            display:none; /* http://www.jb51.net */
+            z-Index:2;}
+        #login8 { position:absolute;width:400px;height:180px;top:200px;left:35%;background-color:#fff;display:none;cursor:pointer;z-Index:3;}
+
     </style>
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -125,7 +146,44 @@ desired effect
             <div class="form-group">
                 <label class="col-md-4 control-label">收货方名称</label>
                 <div class="col-md-8">
-                    <input type="text" class="form-control" id="newinput1" placeholder="新建收货方名称：">
+                    <input type="text" class="form-control" id="newinput1" placeholder="请输入收货方名称：">
+                </div>
+
+                <label class="col-md-4 control-label">收货方编号</label>
+                <div class="col-md-8">
+                    <input type="text" class="form-control" id="receiverID" placeholder="请输入收货方名称：">
+                </div>
+
+                <label class="col-md-4 control-label">收货方地址</label>
+                <div class="col-md-8">
+                    <input type="text" class="form-control" id="receiverAddress" placeholder="请输入收货方地址：">
+                </div>
+
+                <label class="col-md-4 control-label">收货方联系方式</label>
+                <div class="col-md-8">
+                    <input type="text" class="form-control" id="receiverPhone" placeholder="请输入收货方联系方式：">
+                </div>
+
+                <label class="col-md-4 control-label">收货方税号</label>
+                <div class="col-md-8">
+                    <input type="text" class="form-control" id="receiverTaxID" placeholder="请输入收货方税号：">
+                </div>
+
+                <label class="col-md-4 control-label">收货方开户行</label>
+                <div class="col-md-8">
+                    <input type="text" class="form-control" id="receiverBank" placeholder="请输入收货方开户银行：">
+                </div>
+                <label class="col-md-4 control-label">收货方账号</label>
+                <div class="col-md-8">
+                    <input type="text" class="form-control" id="receiverAccount" placeholder="请输入收货方账号：">
+                </div>
+                <label class="col-md-4 control-label">收货方邮寄地址</label>
+                <div class="col-md-8">
+                    <input type="text" class="form-control" id="receiverMail" placeholder="请输入收货方邮寄地址：">
+                </div>
+                <label class="col-md-4 control-label">收货方联系人</label>
+                <div class="col-md-8">
+                    <input type="text" class="form-control" id="receiverLinkMan" placeholder="请输入收货方联系人：">
                 </div>
             </div>
             <div class="btn-group">
@@ -153,7 +211,9 @@ desired effect
                 </div>
             </div>
             <div class="btn-group">
-                <button type="button" class="btn btn btn-primary" style="left: 80px;" @click.prevent="addGoods()">保存</button>
+                <button type="button" class="btn btn btn-primary" style="left: 80px;" @click.prevent="getType2();" >保存</button>
+
+
                 <button type="button" class="btn btn btn-danger" style="left: 230px;" onclick="hide3()">取消</button>
             </div>
             <hr>
@@ -161,25 +221,25 @@ desired effect
     </form>
 </div>
 
-<div id="addblock3">
-    <div id="hidebg4"></div>
-    <form class="form-horizontal">
-        <div id="login4" class="box-body">
-            <hr>
-            <div class="form-group">
-                <label class="col-md-4 control-label">型号名称</label>
-                <div class="col-md-8">
-                    <input type="text" class="form-control" id="newinput4" placeholder="新建型号：">
-                </div>
-            </div>
-            <div class="btn-group">
-                <button type="button" class="btn btn btn-primary" style="left: 80px;" @click.prevent="addType()">保存</button>
-                <button type="button" class="btn btn btn-danger" style="left: 230px;" onclick="hide4()">取消</button>
-            </div>
-            <hr>
-        </div>
-    </form>
-</div>
+<!--<div id="addblock3">-->
+    <!--<div id="hidebg4"></div>-->
+    <!--<form class="form-horizontal">-->
+        <!--<div id="login4" class="box-body">-->
+            <!--<hr>-->
+            <!--<div class="form-group">-->
+                <!--<label class="col-md-4 control-label">型号名称</label>-->
+                <!--<div class="col-md-8">-->
+                    <!--<input type="text" class="form-control" id="newinput4" placeholder="新建型号：">-->
+                <!--</div>-->
+            <!--</div>-->
+            <!--<div class="btn-group">-->
+                <!--<button type="button" class="btn btn btn-primary" style="left: 80px;" @click.prevent="addType()">保存</button>-->
+                <!--<button type="button" class="btn btn btn-danger" style="left: 230px;" onclick="hide4()">取消</button>-->
+            <!--</div>-->
+            <!--<hr>-->
+        <!--</div>-->
+    <!--</form>-->
+<!--</div>-->
 
 <div id="addblock4">
     <div id="hidebg5"></div>
@@ -200,6 +260,35 @@ desired effect
         </div>
     </form>
 </div>
+
+<div id="addBusiness">
+    <div id="hidebg7"></div>
+    <form class="form-horizontal">
+        <div id="login7" class="box-body">
+            <hr>
+            <div class="form-group">
+                <label class="col-md-4 control-label">业务员名称</label>
+                <div class="col-md-8">
+                    <input type="text" class="form-control" id="newBusinessName" placeholder="请输入业务员姓名：">
+                </div>
+                <label class="col-md-4 control-label">业务员住址</label>
+                <div class="col-md-8">
+                    <input type="text" class="form-control" id="newBusinessAddress" placeholder="请输入业务员住址：">
+                </div>
+                <label class="col-md-4 control-label">业务员联系方式</label>
+                <div class="col-md-8">
+                    <input type="text" class="form-control" id="newBusinessPhone" placeholder="请输入业务员联系方式：">
+                </div>
+            </div>
+            <div class="btn-group">
+                <button type="button" class="btn btn btn-primary" style="left: 80px;" @click.prevent="addBusinessMan()">保存</button>
+                <button type="button" class="btn btn btn-danger" style="left: 230px;" onclick="hide7()">取消</button>
+            </div>
+            <hr>
+        </div>
+    </form>
+</div>
+
 <div id="deleteblock1">
     <div id="hidebg2"></div>
     <form class="form-horizontal">
@@ -213,7 +302,7 @@ desired effect
             </div>
             <div class="btn-group">
                 <button type="button" class="btn btn btn-primary" style="left: 80px;" @click.prevent="deleteReceiver()">确认</button>
-                <button type="button" class="btn btn btn-danger" style="left: 230px;" onclick="hide2()">取消</button>
+                <button type="button" class="btn btn btn-danger" style="left: 230px;" onclick="hide8()">取消</button>
             </div>
             <hr>
         </div>
@@ -234,6 +323,26 @@ desired effect
             <div class="btn-group">
                 <button type="button" class="btn btn btn-primary" style="left: 80px;" @click="deleteDeliveryMan()">确认</button>
                 <button type="button" class="btn btn btn-danger" style="left: 230px;" onclick="hide6()">取消</button>
+            </div>
+            <hr>
+        </div>
+    </form>
+</div>
+
+<div id="deleteblock3">
+    <div id="hidebg8"></div>
+    <form class="form-horizontal">
+        <div id="login8" class="box-body">
+            <hr>
+            <div class="form-group">
+                <label class="col-md-8 control-label">是否确认删除所选项？</label>
+                <!-- <div class="col-md-8">
+                    <input type="text" class="form-control" id="newinput6" placeholder="运货人名称：">
+                </div> -->
+            </div>
+            <div class="btn-group">
+                <button type="button" class="btn btn btn-primary" style="left: 80px;" @click="deleteBussiness()">确认</button>
+                <button type="button" class="btn btn btn-danger" style="left: 230px;" onclick="hide8()">取消</button>
             </div>
             <hr>
         </div>
@@ -410,7 +519,9 @@ desired effect
                                 <thead>
                                 <tr>
                                     <th style="text-align: center" class="col-md-4">货名<button class="btn-xs btn-primary pull-right" type="button" onclick="show3()" >添加货品</button></th>
-                                    <th style="text-align: center" class="col-md-3">型号<button class="btn-xs btn-primary pull-right" type="button" onclick="show4()">添加型号</button> </th>
+                                    <th style="text-align: center" class="col-md-3">型号
+                                        <!--<button class="btn-xs btn-primary pull-right" type="button" onclick="show4()">添加型号</button> -->
+                                    </th>
                                     <th style="text-align: center">数量</th>
                                     <th style="text-align: center">单价</th>
                                     <th style="text-align: center" width="12%">总价</th>
@@ -521,15 +632,14 @@ desired effect
 
                             <div class="col-md-6">
                                 <select id="businessMan" class="form-control" v-model="deliveryOrder.businessMan">
-                                    <option v-for="businessMan in businessMen">
-                                        {{businessMan.name}}
+                                    <option v-for="businessMan in businessMen" v-text="businessMan.name">
                                     </option>
                                 </select>
                             </div>
                         </div>
                         <div class="btn-group">
-                            <button type="button" class="btn btn-sm btn-primary" style="left: 180px" onclick="show5()">添加运货人</button>
-                            <button type="button" class="btn btn-sm btn-danger" style="left: 300px" onclick="show6()">删除送货人</button>
+                            <button type="button" class="btn btn-sm btn-primary" style="left: 180px" onclick="show7()">添加业务员</button>
+                            <button type="button" class="btn btn-sm btn-danger" style="left: 300px" onclick="show8()">删除业务员</button>
                         </div>
                         <hr>
                         <div class="form-group">

@@ -82,6 +82,7 @@ var vm = new Vue({
 
         ],
 
+        totalMoney:"0",
 
         InGoodsOrder:{
             provider:'',
@@ -272,7 +273,6 @@ var vm = new Vue({
             ammount = self.InGoodsOrder.amount;
             self.InGoodsOrder.total = unitPrice * ammount;
         },
-        
 
         addInGoodsOrder:function () {
             selectedDate=document.getElementById("datepicker").value;
@@ -308,7 +308,7 @@ var vm = new Vue({
                     orderId: '',
                     pid: '',
                     quantity: self.InGoodsOrder.amount,
-                    totalMoney: 0,
+                    totalMoney:self.totalMoney,
                     unitPrice: self.InGoodsOrder.singlePrice
             },
                 providerID: '',
@@ -359,6 +359,16 @@ var vm = new Vue({
         }).catch(function(error){
             alert("出现了未知的错误！请重新进行输入")
         });
+    },
+    computed:{
+        getTotal:function() {
+            if(this.InGoodsOrder.amount==""||this.InGoodsOrder.singlePrice=="") {
+                this.totalMoney="0";
+                return 0;
+            }
+            this.totalMoney=parseFloat(this.InGoodsOrder.amount)*parseFloat(this.InGoodsOrder.singlePrice);
+            return parseFloat(this.InGoodsOrder.amount)*parseFloat(this.InGoodsOrder.singlePrice);
+        }
     }
 });
 
