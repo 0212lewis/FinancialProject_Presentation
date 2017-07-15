@@ -195,13 +195,13 @@ desired effect
             <div id="login3" class="box-body">
                 <hr>
                 <div class="form-group">
-                    <label class="col-md-4 control-label">添加运货人</label>
+                    <label class="col-md-4 control-label">添加方式</label>
                     <div class="col-md-8">
-                        <input type="text" class="form-control" id="newinput3" placeholder="新建运货人名称：">
+                        <input type="text" class="form-control" id="newinput3" placeholder="新建方式名称：">
                     </div>
                 </div>
                 <div class="btn-group">
-                    <button type="button" class="btn btn btn-primary" style="left: 80px;" @click.prevent="addDeliveryMan()">保存</button>
+                    <button type="button" class="btn btn btn-primary" style="left: 80px;" @click.prevent="addPaymentMethod()">保存</button>
                     <button type="button" class="btn btn btn-danger" style="left: 230px;" onclick="hide3()">取消</button>
                 </div>
                 <hr>
@@ -216,12 +216,9 @@ desired effect
                 <hr>
                 <div class="form-group">
                     <label class="col-md-8 control-label">是否确认删除所选项？</label>
-                   <!--  <div class="col-md-8">
-                        <input type="text" class="form-control" id="newinput4" placeholder="删除运货人名称：">
-                    </div> -->
                 </div>
                 <div class="btn-group">
-                    <button type="button" class="btn btn btn-primary" style="left: 80px;" @click.prevent="deleteDeliveryMan()">保存</button>
+                    <button type="button" class="btn btn btn-primary" style="left: 80px;" @click.prevent="deletePaymentMethod()">保存</button>
                     <button type="button" class="btn btn btn-danger" style="left: 230px;" onclick="hide4()">取消</button>
                 </div>
                 <hr>
@@ -341,6 +338,7 @@ desired effect
                     </a>
                     <ul class="treeview-menu">
                         <li><a href="../../pages/Nodes/Income.html"><i class="fa fa-circle-o"> 进款单</i></a> </li>
+                        <li><a href="../../pages/Nodes/NonSaleIncome.html"><i class="fa fa-circle-o"> 销售外进款单</i></a></li>
                         <li><a href="../../pages/Nodes/Outcome.html"><i class="fa fa-circle-o"> 付款单</i></a> </li>
                         <li><a href="../../pages/Nodes/Invoice.html"><i class="fa fa-circle-o"> 开票单</i></a> </li>
                         <li class="active"><a href="../../pages/Nodes/InGoods.html"><i class="fa fa-circle-o"> 进货单</i></a> </li>

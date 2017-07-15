@@ -42,7 +42,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
             opacity:0.6;  /*非IE浏览器下设置透明度为60%*/
             display:none; /* http://www.jb51.net */
             z-Index:2;}
-        #login1 { position:absolute;width:400px;height:180px;top:200px;left:35%;background-color:#fff;display:none;cursor:pointer;z-Index:3;}
+        #login1 { position:absolute;width:450px;height:420px;top:200px;left:35%;background-color:#fff;display:none;cursor:pointer;z-Index:3;}
 
         deleteblock1 { margin:0px;padding:0px;text-align: center;}
         #hidebg2 { position:absolute;left:0px;top:0px;
@@ -133,20 +133,60 @@ desired effect
                 <div id="login1" class="box-body">
                     <hr>
                     <div class="form-group">
-                        <label class="col-md-4 control-label">添加付款方</label>
+                        <label class="col-md-4 control-label">客户名称</label>
                         <div class="col-md-8">
-                            <input type="text" class="form-control" id="newinput1" placeholder="新建付款方名称：" v-model="newpayer">
+                            <input type="text" class="form-control" id="newinput1" placeholder="客户名称：">
                         </div>
+
+                        <label class="col-md-4 control-label">客户简码</label>
+                        <div class="col-md-8">
+                            <input type="text" class="form-control" id="newClientID" placeholder="客户简码：">
+                        </div>
+
+                        <label class="col-md-4 control-label">客户税号</label>
+                        <div class="col-md-8">
+                            <input type="text" class="form-control" id="newClientTaxID" placeholder="客户税号：">
+                        </div>
+
+                        <label class="col-md-4 control-label">客户地址</label>
+                        <div class="col-md-8">
+                            <input type="text" class="form-control" id="newClientAddress" placeholder="客户地址：">
+                        </div>
+
+                        <label class="col-md-4 control-label">客户联系方式</label>
+                        <div class="col-md-8">
+                            <input type="text" class="form-control" id="newClientPhone" placeholder="客户联系方式：">
+                        </div>
+
+                        <label class="col-md-4 control-label">客户开户行</label>
+                        <div class="col-md-8">
+                            <input type="text" class="form-control" id="newClientBank" placeholder="客户开户行：">
+                        </div>
+
+                        <label class="col-md-4 control-label">客户账号</label>
+                        <div class="col-md-8">
+                            <input type="text" class="form-control" id="newClientAccount" placeholder="客户账号：">
+                        </div>
+
+                        <label class="col-md-4 control-label">客户邮寄地址</label>
+                        <div class="col-md-8">
+                            <input type="text" class="form-control" id="newClientMailAddress" placeholder="客户邮寄地址：">
+                        </div>
+
+                        <label class="col-md-4 control-label">客户联系人</label>
+                        <div class="col-md-8">
+                            <input type="text" class="form-control" id="newClientLinkMan" placeholder="客户联系人：">
+                        </div>
+
                     </div>
                     <div class="btn-group">
-                        <button type="button" class="btn btn btn-primary" style="left: 80px;" @click.prevent="addUnit()">保存</button>
+                        <button type="button" class="btn btn btn-primary" style="left: 80px;" @click.prevent="addClient()">保存</button>
                         <button type="button" class="btn btn btn-danger" style="left: 230px;" onclick="hide1()">取消</button>
                     </div>
                     <hr>
                 </div>
             </form>
         </div>
-
         <div id="deleteblock1">
             <div id="hidebg2"></div>
             <form class="form-horizontal">
@@ -155,11 +195,11 @@ desired effect
                     <div class="form-group">
                         <label class="col-md-8 control-label">是否确认删除所选项？</label>
                         <!-- <div class="col-md-8">
-                            <input type="text" class="form-control" id="newinput2" placeholder="删除付款方名称：">
+                            <input type="text" class="form-control" id="newinput2" placeholder="对方名称：">
                         </div> -->
                     </div>
                     <div class="btn-group">
-                        <button type="button" class="btn btn btn-primary" style="left: 80px;" @click.prevent="deleteUnit()">确认</button>
+                        <button type="button" class="btn btn btn-primary" style="left: 80px;" @click.prevent="deleteClient()">确认</button>
                         <button type="button" class="btn btn btn-danger" style="left: 230px;" onclick="hide2()">取消</button>
                     </div>
                     <hr>
@@ -294,6 +334,7 @@ desired effect
                     </a>
                     <ul class="treeview-menu">
                         <li class="active"><a href="../../pages/Nodes/Income.html"><i class="fa fa-circle-o"> 进款单</i></a> </li>
+                        <li><a href="../../pages/Nodes/NonSaleIncome.html"><i class="fa fa-circle-o"> 销售外进款单</i></a></li>
                         <li><a href="../../pages/Nodes/Outcome.html"><i class="fa fa-circle-o"> 付款单</i></a> </li>
                         <li><a href="../../pages/Nodes/Invoice.html"><i class="fa fa-circle-o"> 开票单</i></a> </li>
                         <li><a href="../../pages/Nodes/InGoods.html"><i class="fa fa-circle-o"> 进货单</i></a> </li>
@@ -358,7 +399,7 @@ desired effect
                                 <label  class="col-md-3 control-label">客户名称</label>
 
                                 <div class="col-md-6">
-                                    <select id="payunit" class="form-control" v-model="IncomeOrder.payer">
+                                    <select id="Client" class="form-control" v-model="IncomeOrder.payer">
                                         <option v-for="payer in payers" v-text="payer"></option>
                                     </select>
                                 </div>
