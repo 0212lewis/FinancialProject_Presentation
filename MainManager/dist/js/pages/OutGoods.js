@@ -173,10 +173,17 @@ var vm = new Vue({
 
         ],
 
+        id1:"",
+        id2:"",
+        id3:"",
+        id4:"",
+        id5:"",
+
         deliveryOrder:{
             receive:"",
             good1:{
                 goodName:"",
+                id:"",
                 model:"",
                 num:0,
                 money:0,
@@ -184,6 +191,7 @@ var vm = new Vue({
             },
             good2:{
                 goodName:"",
+                id:"",
                 model:"",
                 num:0,
                 money:0,
@@ -191,6 +199,7 @@ var vm = new Vue({
             },
             good3:{
                 goodName:"",
+                id:"",
                 model:"",
                 num:0,
                 money:0,
@@ -198,6 +207,7 @@ var vm = new Vue({
             },
             good4:{
                 goodName:"",
+                id:"",
                 model:"",
                 num:0,
                 money:0,
@@ -205,6 +215,7 @@ var vm = new Vue({
             },
             good5:{
                 goodName:"",
+                id:"",
                 model:"",
                 num:0,
                 money:0,
@@ -230,6 +241,7 @@ var vm = new Vue({
                 alert("请选择收货方");
                 return;
             }
+
             // if(this.deliveryOrder.good1.goodName==null||this.deliveryOrder.good1.goodName.length==0){
             //     alert("请输入货品信息");
             //     return;
@@ -262,7 +274,7 @@ var vm = new Vue({
             var newDate = this.convertDate(document.getElementById("datepicker").value);
 
             var hasTax = false;
-            if(this.deliveryOrder.tax=="是"){
+            if(this.deliveryOrder.tax=="是") {
                 hasTax = true;
             }
 
@@ -284,7 +296,7 @@ var vm = new Vue({
                             quantity:this.deliveryOrder.good1.num,
                             totalMoney:this.deliveryOrder.good1.total,
                             product:{
-                                id:'',
+                                id:this.id1,
                                 name:this.deliveryOrder.good1.goodName.trim(),
                                 type:this.deliveryOrder.good1.model.trim(),
                                 unitPrice:this.deliveryOrder.good1.money
@@ -295,7 +307,7 @@ var vm = new Vue({
                             quantity:this.deliveryOrder.good2.num,
                             totalMoney:this.deliveryOrder.good2.total,
                             product:{
-                                id:'',
+                                id:this.id2,
                                 name:this.deliveryOrder.good2.goodName.trim(),
                                 type:this.deliveryOrder.good2.model.trim(),
                                 unitPrice:this.deliveryOrder.good2.money
@@ -306,7 +318,7 @@ var vm = new Vue({
                             quantity:this.deliveryOrder.good3.num,
                             totalMoney:this.deliveryOrder.good3.total,
                             product:{
-                                id:'',
+                                id:this.id3,
                                 name:this.deliveryOrder.good3.goodName.trim(),
                                 type:this.deliveryOrder.good3.model.trim(),
                                 unitPrice:this.deliveryOrder.good3.money
@@ -317,7 +329,7 @@ var vm = new Vue({
                             quantity:this.deliveryOrder.good4.num,
                             totalMoney:this.deliveryOrder.good4.total,
                             product:{
-                                id:'',
+                                id:this.id4,
                                 name:this.deliveryOrder.good4.goodName.trim(),
                                 type:this.deliveryOrder.good4.model.trim(),
                                 unitPrice:this.deliveryOrder.good4.money
@@ -328,7 +340,7 @@ var vm = new Vue({
                             quantity:this.deliveryOrder.good5.num,
                             totalMoney:this.deliveryOrder.good5.total,
                             product:{
-                                id:'',
+                                id:this.id5,
                                 name:this.deliveryOrder.good5.goodName.trim(),
                                 type:this.deliveryOrder.good5.model.trim(),
                                 unitPrice:this.deliveryOrder.good5.money
@@ -350,6 +362,47 @@ var vm = new Vue({
                 }
             }).catch(function (error) {
                 alert("添加失败!");
+            })
+        },
+
+        getProductID:function (number) {
+            var name="";
+            var type="";
+            if(number==1){
+                name=document.getElementById("goodName1").value;
+                type=document.getElementById("goodModel1").value;
+            }else if(number==2){
+                name=document.getElementById("goodName2").value;
+                type=document.getElementById("goodModel2").value;
+            }else if(number==3){
+                name=document.getElementById("goodName3").value;
+                type=document.getElementById("goodModel3").value;
+            }else if(number==4){
+                name=document.getElementById("goodName4").value;
+                type=document.getElementById("goodModel4").value;
+            }else if(number==5){
+                name=document.getElementById("goodName5").value;
+                type=document.getElementById("goodModel5").value;
+            }
+
+            this.$http.get("http://localhost:8080/product/id",{
+                params: {name: name,type:type}
+            }).then(function(response){
+                if(number==1){
+                    this.id1=response.data.data[0];
+                }else if(number==2){
+                    this.id2=response.data.data[0];
+                }else if(number==3){
+                    this.id3=response.data.data[0];
+                }else if(number==4){
+                    this.id4=response.data.data[0];
+                }else if(number==5){
+                    this.id5=response.data.data[0];
+                }
+
+            }).catch(function(error){
+                alert("未能获取货物ID，请刷新重试");
+                hide3();
             })
         },
 

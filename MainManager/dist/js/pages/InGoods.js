@@ -276,7 +276,9 @@ var vm = new Vue({
         },
 
         addInGoodsOrder:function () {
-            selectedDate=document.getElementById("datepicker").value;
+            var selectedDate=document.getElementById("datepicker").value;
+            var newDate = this.convertDate(selectedDate);
+
             if(this.InGoodsOrder.provider==null||this.InGoodsOrder.provider.length==0){
                 alert("请选择供货方！");
                 return;
@@ -297,22 +299,11 @@ var vm = new Vue({
                 alert("请选择进货日期！");
                 return;
             }
-            this.$http.get("http://localhost:8080/product/id",{
-               params:{
-                   name:this.InGoodsOrder.goodName,
-                   type:this.InGoodsOrder.type
-               }
-            }).then(function (response) {
-                if(response.data.errorCode == 0){
-                    this.InGoodsOrder.pid = response.data.data[0];
-                    // console.log(response.data.data[0]);
-                    // console.log(this.InGoodsOrder.pid);
-                }
-            });
+
             const self=this;
             this.$http.post("http://localhost:8080/order/income_product",{
                 comment: this.InGoodsOrder.comment.trim(),
-                date: this.InGoodsOrder.deliveryMan.trim(),
+                date: newDate,
                 deliveryMan: this.InGoodsOrder.deliveryMan.trim(),
                 deliveryMoney: this.InGoodsOrder.deliveryMoney.trim(),
                 orderID: '',
@@ -339,7 +330,29 @@ var vm = new Vue({
             }).catch(function (error) {
                 alert("添加失败！");
             })
+        },
+
+        getProductID:function () {
+            var name=document.getElementById("goodName").value;
+            var type=document.getElementById("goodType").value;
+
+            this.$http.get("http://localhost:8080/product/id",{
+                params:{
+                    name:this.InGoodsOrder.goodName,
+                    type:this.InGoodsOrder.type
+                }
+            }).then(function(response){
+                this.InGoodsOrder.pid = response.data.data[0];
+                if(this.InGoodsOrder.pid==""){
+                    alert("未能获取货物ID，请刷新重试");
+                    return;
+                }
+            }).catch(function(error){
+                alert("未能获取货物ID，请刷新重试");
+                hide3();
+            })
         }
+
     },
     mounted(){
         const self = this;

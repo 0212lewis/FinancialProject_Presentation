@@ -433,7 +433,7 @@ desired effect
                                         </option>
                                         </select></td>
                                     <td>
-                                        <select class="form-control col-md-2" v-model="InGoodsOrder.type">
+                                        <select class="form-control col-md-2" v-model="InGoodsOrder.type" id="goodType" @change="getProductID">
                                             <option v-for="goodtype in goodTypes" v-text="goodtype">
                                             </option>
                                         </select>

@@ -536,7 +536,7 @@ desired effect
                                         </select>
                                     </td>
                                     <td>
-                                        <select class="form-control col-md-3" v-model="deliveryOrder.good1.model">
+                                        <select class="form-control col-md-3" v-model="deliveryOrder.good1.model" id="goodModel1"  @change="getProductID('1')">
                                         <option v-for="goodModel in goodModels1" v-text="goodModel"></option>
                                         </select>
                                     </td>
@@ -551,7 +551,7 @@ desired effect
                                         </select>
                                     </td>
                                     <td>
-                                        <select class="form-control col-md-3" v-model="deliveryOrder.good2.model">
+                                        <select class="form-control col-md-3" v-model="deliveryOrder.good2.model" id="goodModel2"  @change="getProductID('2')">
                                         <option v-for="goodModel in goodModels2" v-text="goodModel"></option>
                                         </select>
                                     </td>
@@ -565,7 +565,7 @@ desired effect
                                         <option v-for="goodName in goodNames" v-text="goodName"></option>
                                         </select>
                                     <td>
-                                        <select class="form-control col-md-3" v-model="deliveryOrder.good3.model">
+                                        <select class="form-control col-md-3" v-model="deliveryOrder.good3.model" id="goodModel3"  @change="getProductID('3')">
                                         <option v-for="goodModel in goodModels3" v-text="goodModel"></option>
                                         </select>
                                     </td>
@@ -579,7 +579,7 @@ desired effect
                                             <option v-for="goodName in goodNames" v-text="goodName"></option>
                                         </select>
                                     <td>
-                                        <select class="form-control col-md-3" v-model="deliveryOrder.good4.model">
+                                        <select class="form-control col-md-3" v-model="deliveryOrder.good4.model" id="goodModel4"  @change="getProductID('4')">
                                             <option v-for="goodModel in goodModels4" v-text="goodModel"></option>
                                         </select>
                                     </td>
@@ -593,7 +593,7 @@ desired effect
                                             <option v-for="goodName in goodNames" v-text="goodName"></option>
                                         </select>
                                     <td>
-                                        <select class="form-control col-md-3" v-model="deliveryOrder.good5.model">
+                                        <select class="form-control col-md-3" v-model="deliveryOrder.good5.model" id="goodModel5"  @change="getProductID('5')">
                                             <option v-for="goodModel in goodModels5" v-text="goodModel"></option>
                                         </select>
                                     </td>
