@@ -229,8 +229,9 @@ desired effect
                   <th colspan="8">Q4</th>
                   <th rowspan="2" colspan="2">年度总计</th>
                   <th rowspan="3">贡献率（数量）</th>
-                  <th rowspan="2" colspan="3">应开发票</th>
-                  <th rowspan="2" colspan="4">应收账款</th>                  
+                    <th rowspan="3">发票和账款详情</th>
+                  <!--<th rowspan="2" colspan="3">应开发票</th>-->
+                  <!--<th rowspan="2" colspan="4">应收账款</th>                  -->
                 </tr>
 				<tr>
 				  <th colspan="2">1月</th>
@@ -285,155 +286,166 @@ desired effect
            		  <th>销售额</th>
            		  <th>数量</th>
            		  <th>销售额</th>
-           		  <th>期初余额</th>
-           		  <th>本期已开</th>
-           		  <th>目前应开</th>
-           		  <th>期初余额</th>
-           		  <th>本期发生</th>
-           		  <th>本期回笼</th>
-           		  <th>目前应收</th>
+           		  <!--<th>期初余额</th>-->
+           		  <!--<th>本期已开</th>-->
+           		  <!--<th>目前应开</th>-->
+           		  <!--<th>期初余额</th>-->
+           		  <!--<th>本期发生</th>-->
+           		  <!--<th>本期回笼</th>-->
+           		  <!--<th>目前应收</th>-->
            		</tr>
 
                 </thead>
                 <tbody>
                	  <tr v-for="item in items">
-               	  	<td>{{ item.receive }}</td>
-               	  	<td>{{ item.weightOfMonth1 }}</td>
-               	  	<td>{{ item.moneyOfMonth1 }}</td>
-               	  	<td>{{ item.weightOfMonth2 }}</td>
-               	  	<td>{{ item.moneyOfMonth2 }}</td>
-               	  	<td>{{ item.weightOfMonth3 }}</td>
-               	  	<td>{{ item.moneyOfMonth3 }}</td>
-               	  	<td>{{ item.weightOfFirstSeason }}</td>
-               	  	<td>{{ item.moneyOfFirstSeason }}</td>
-               	  	<td>{{ item.weightOfMonth4 }}</td>
-               	  	<td>{{ item.moneyOfMonth4 }}</td>
-               	  	<td>{{ item.weightOfMonth5 }}</td>
-               	  	<td>{{ item.moneyOfMonth5 }}</td>
-               	  	<td>{{ item.weightOfMonth6 }}</td>
-               	  	<td>{{ item.moneyOfMonth6 }}</td>
-               	  	<td>{{ item.weightOfSecondSeason }}</td>
-               	  	<td>{{ item.moneyOfSecondSeason }}</td>
-               	  	<td>{{ item.weightOfMonth7 }}</td>
-               	  	<td>{{ item.moneyOfMonth7 }}</td>
-               	  	<td>{{ item.weightOfMonth8 }}</td>
-               	  	<td>{{ item.moneyOfMonth8 }}</td>
-               	  	<td>{{ item.weightOfMonth9 }}</td>
-               	  	<td>{{ item.moneyOfMonth9 }}</td>
-               	  	<td>{{ item.weightOfThirdSeason }}</td>
-               	  	<td>{{ item.moneyOfThirdSeason }}</td>
-               	  	<td>{{ item.weightOfMonth10 }}</td>
-               	  	<td>{{ item.moneyOfMonth10 }}</td>
-               	  	<td>{{ item.weightOfMonth11 }}</td>
-               	  	<td>{{ item.moneyOfMonth11 }}</td>
-               	  	<td>{{ item.weightOfMonth12 }}</td>
-               	  	<td>{{ item.moneyOfMonth12 }}</td>
-               	  	<td>{{ item.weightOfForthSeason }}</td>
-               	  	<td>{{ item.moneyOfForthSeason }}</td>
-               	  	<td>{{ item.weightOfYear }}</td>
-                      <td>{{ item.moneyOfYear }}</td>
-                      <td>{{ item.contributionRate }}</td>
-               	  	<td></td>
-               	  	<td></td>
-               	  	<td></td>
-               	  	<td></td>
-               	  	<td></td>
-				          	<td></td>
-               	  	<td></td>
+               	  	<td v-text="item.clientName"></td>
+               	  	<td v-text="item.quantity_1"></td>
+               	  	<td v-text="item.money_1"></td>
+               	  	<td v-text="item.quantity_2"></td>
+               	  	<td v-text="item.money_2"></td>
+               	  	<td v-text="item.quantity_3"></td>
+               	  	<td v-text="item.money_3"></td>
+
+                      <td v-text="item.quantity_season_1"></td>
+                      <td v-text="item.money_season_1"></td>
+
+               	  	<td v-text="item.quantity_4"></td>
+               	  	<td v-text="item.money_4"></td>
+               	  	<td v-text="item.quantity_5"></td>
+               	  	<td v-text="item.money_5"></td>
+                      <td v-text="item.quantity_6"></td>
+                      <td v-text="item.money_6"></td>
+
+                      <td v-text="item.quantity_season_2"></td>
+                      <td v-text="item.money_season_2"></td>
+
+                      <td v-text="item.quantity_7"></td>
+                      <td v-text="item.money_7"></td>
+                      <td v-text="item.quantity_8"></td>
+                      <td v-text="item.money_8"></td>
+                      <td v-text="item.quantity_9"></td>
+                      <td v-text="item.money_9"></td>
+
+                      <td v-text="item.quantity_season_3"></td>
+                      <td v-text="item.money_season_3"></td>
+
+                      <td v-text="item.quantity_10"></td>
+                      <td v-text="item.money_10"></td>
+                      <td v-text="item.quantity_11"></td>
+                      <td v-text="item.money_11"></td>
+                      <td v-text="item.quantity_12"></td>
+                      <td v-text="item.money_12"></td>
+
+                      <td v-text="item.quantity_season_4"></td>
+                      <td v-text="item.money_season_4"></td>
+
+                      <td v-text="item.quantity_of_year"></td>
+                      <td v-text="item.money_of_year"></td>
+
+                      <td v-text="item.rate"></td>
+                      <td > <a onclick="">详情
+                      </a> </td>
+               	  	<!--<td></td>-->
+               	  	<!--<td></td>-->
+               	  	<!--<td></td>-->
+               	  	<!--<td></td>-->
+               	  	<!--<td></td>-->
+                      <!--<td></td>-->
+               	  	<!--<td></td>-->
                	  </tr>
                 </tbody>
                 <tfoot>
-                <tr>
-                  <th></th>
-                  <th></th>
-                  <th></th>
-                  <th></th>
-                  <th></th>
-                  <th></th>
-                  <th></th>
-                  <th></th>
-                  <th></th>
-                  <th></th>
-                  <th></th>
-                  <th></th>
-                  <th></th>
-                  <th></th>
-                  <th></th>
-                  <th></th>
-                  <th></th>
-                  <th></th>
-                  <th></th>
-                  <th></th>
-                  <th></th>
-                  <th></th>
-                  <th></th>
-                  <th></th>
-                  <th></th>
-                  <th></th>
-                  <th></th>
-                  <th></th>
-                  <th></th>
-                  <th></th>
-                  <th></th>
-                  <th></th>
-                  <th></th>
-                  <th></th>
-                  <th></th>
-                  <th></th>
-                  <th></th>
-                  <th></th>
-                  <th></th>
-                  <th></th>
-                  <th></th>
-                  <th></th>
-                  <th></th>
+                <!--<tr>-->
+                  <!--<th></th>-->
+                  <!--<th></th>-->
+                  <!--<th></th>-->
+                  <!--<th></th>-->
+                  <!--<th></th>-->
+                  <!--<th></th>-->
+                  <!--<th></th>-->
+                  <!--<th></th>-->
+                  <!--<th></th>-->
+                  <!--<th></th>-->
+                  <!--<th></th>-->
+                  <!--<th></th>-->
+                  <!--<th></th>-->
+                  <!--<th></th>-->
+                  <!--<th></th>-->
+                  <!--<th></th>-->
+                  <!--<th></th>-->
+                  <!--<th></th>-->
+                  <!--<th></th>-->
+                  <!--<th></th>-->
+                  <!--<th></th>-->
+                  <!--<th></th>-->
+                  <!--<th></th>-->
+                  <!--<th></th>-->
+                  <!--<th></th>-->
+                  <!--<th></th>-->
+                  <!--<th></th>-->
+                  <!--<th></th>-->
+                  <!--<th></th>-->
+                  <!--<th></th>-->
+                  <!--<th></th>-->
+                  <!--<th></th>-->
+                  <!--<th></th>-->
+                  <!--<th></th>-->
+                  <!--<th></th>-->
+                  <!--<th></th>-->
+                  <!--&lt;!&ndash;<th></th>&ndash;&gt;-->
+                  <!--&lt;!&ndash;<th></th>&ndash;&gt;-->
+                  <!--&lt;!&ndash;<th></th>&ndash;&gt;-->
+                  <!--&lt;!&ndash;<th></th>&ndash;&gt;-->
+                  <!--&lt;!&ndash;<th></th>&ndash;&gt;-->
+                  <!--&lt;!&ndash;<th></th>&ndash;&gt;-->
+                  <!--&lt;!&ndash;<th></th>&ndash;&gt;-->
 
-                </tr>
-                <tr>
-                  <th>总计</th>
-                  <th>0</th>
-                  <th>0</th>
-                  <th>0</th>
-                  <th>0</th>
-                  <th>0</th>
-                  <th>0</th>
-                  <th>0</th>
-                  <th>0</th>
-                  <th>0</th>
-                  <th>0</th>
-                  <th>0</th>
-                  <th>0</th>
-                  <th>0</th>
-                  <th>0</th>
-                  <th>0</th>
-                  <th>0</th>
-                  <th>0</th>
-                  <th>0</th>
-                  <th>0</th>
-                  <th>0</th>
-                  <th>0</th>
-                  <th>0</th>
-                  <th>0</th>
-                  <th>0</th>
-                  <th>0</th>
-                  <th>0</th>
-                  <th>0</th>
-                  <th>0</th>
-                  <th>0</th>
-                  <th>0</th>
-                  <th>0</th>
-                  <th>0</th>
-                  <th>0</th>
-                  <th>0</th>
-                  <th>0</th>
-                  <th>0</th>
-                  <th>0</th>
-                  <th>0</th>
-                  <th>0</th>
-                  <th>0</th>
-                  <th>0</th>
-                  <th>0</th>
-                </tr>
+                <!--</tr>-->
+                <!--<tr>-->
+                  <!--<th>总计</th>-->
+                  <!--<th>0</th>-->
+                  <!--<th>0</th>-->
+                  <!--<th>0</th>-->
+                  <!--<th>0</th>-->
+                  <!--<th>0</th>-->
+                  <!--<th>0</th>-->
+                  <!--<th>0</th>-->
+                  <!--<th>0</th>-->
+                  <!--<th>0</th>-->
+                  <!--<th>0</th>-->
+                  <!--<th>0</th>-->
+                  <!--<th>0</th>-->
+                  <!--<th>0</th>-->
+                  <!--<th>0</th>-->
+                  <!--<th>0</th>-->
+                  <!--<th>0</th>-->
+                  <!--<th>0</th>-->
+                  <!--<th>0</th>-->
+                  <!--<th>0</th>-->
+                  <!--<th>0</th>-->
+                  <!--<th>0</th>-->
+                  <!--<th>0</th>-->
+                  <!--<th>0</th>-->
+                  <!--<th>0</th>-->
+                  <!--<th>0</th>-->
+                  <!--<th>0</th>-->
+                  <!--<th>0</th>-->
+                  <!--<th>0</th>-->
+                  <!--<th>0</th>-->
+                  <!--<th>0</th>-->
+                  <!--<th>0</th>-->
+                  <!--<th>0</th>-->
+                  <!--<th>0</th>-->
+                  <!--<th>0</th>-->
+                  <!--<th>0</th>-->
+                  <!--<th>0</th>-->
+                  <!--<th>0</th>-->
+                  <!--<th>0</th>-->
+                  <!--<th>0</th>-->
+                  <!--<th>0</th>-->
+                  <!--<th>0</th>-->
+                  <!--<th>0</th>-->
+                <!--</tr>-->
                 </tfoot>
               </table>
             </div>

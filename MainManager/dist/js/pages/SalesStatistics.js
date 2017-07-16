@@ -86,14 +86,9 @@ var tool=new Vue(
 		]
 	},
 	beforeCreate(){
-		this.$http.get('http://106.14.224.189/server/statistics/GetSalesStatistics.php',{
-			params:{
-				time:"year",
-				year:2017
-			}
-		})
+		this.$http.get('http://localhost:8080/flow/sales_analysis/'+'2017')
 		.then(function(response){
-			this.items=response.data;
+			this.items=response.data.data;
             setTimeout(function () {
                 $('#example1').DataTable();
             },0);
