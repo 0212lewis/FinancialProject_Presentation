@@ -297,12 +297,6 @@ var vm = new Vue({
                             totalMoney:this.deliveryOrder.good1.total,
                             unitPrice:this.deliveryOrder.good1.money,
                             pid:this.id1,
-                            // product:{
-                            //     // pid:this.id1,
-                            //     name:this.deliveryOrder.good1.goodName.trim(),
-                            //     type:this.deliveryOrder.good1.model.trim(),
-                            //     // unitPrice:this.deliveryOrder.good1.money
-                            // }
                         },
                         {
                             orderId:'',
@@ -310,12 +304,6 @@ var vm = new Vue({
                             totalMoney:this.deliveryOrder.good2.total,
                             unitPrice:this.deliveryOrder.good2.money,
                             pid:this.id2,
-                            // product:{
-                            //     id:this.id2,
-                            //     name:this.deliveryOrder.good2.goodName.trim(),
-                            //     type:this.deliveryOrder.good2.model.trim(),
-                            //     unitPrice:this.deliveryOrder.good2.money
-                            // }
                         },
                         {
                             orderId:'',
@@ -323,12 +311,6 @@ var vm = new Vue({
                             totalMoney:this.deliveryOrder.good3.total,
                             unitPrice:this.deliveryOrder.good3.money,
                             pid:this.id3,
-                            // product:{
-                            //     id:this.id3,
-                            //     name:this.deliveryOrder.good3.goodName.trim(),
-                            //     type:this.deliveryOrder.good3.model.trim(),
-                            //     unitPrice:this.deliveryOrder.good3.money
-                            // }
                         },
                         {
                             orderId:'',
@@ -336,12 +318,6 @@ var vm = new Vue({
                             totalMoney:this.deliveryOrder.good4.total,
                             unitPrice:this.deliveryOrder.good4.money,
                             pid:this.id4,
-                            // product:{
-                            //     id:this.id4,
-                            //     name:this.deliveryOrder.good4.goodName.trim(),
-                            //     type:this.deliveryOrder.good4.model.trim(),
-                            //     unitPrice:this.deliveryOrder.good4.money
-                            // }
                         },
                         {
                             orderId:'',
@@ -349,12 +325,6 @@ var vm = new Vue({
                             totalMoney:this.deliveryOrder.good5.total,
                             unitPrice:this.deliveryOrder.good5.money,
                             pid:this.id5,
-                            // product:{
-                            //     id:this.id5,
-                            //     name:this.deliveryOrder.good5.goodName.trim(),
-                            //     type:this.deliveryOrder.good5.model.trim(),
-                            //     unitPrice:this.deliveryOrder.good5.money
-                            // }
                         },
 
                     ],
