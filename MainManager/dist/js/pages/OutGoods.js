@@ -295,73 +295,87 @@ var vm = new Vue({
                             orderId:'',
                             quantity:this.deliveryOrder.good1.num,
                             totalMoney:this.deliveryOrder.good1.total,
-                            product:{
-                                id:this.id1,
-                                name:this.deliveryOrder.good1.goodName.trim(),
-                                type:this.deliveryOrder.good1.model.trim(),
-                                unitPrice:this.deliveryOrder.good1.money
-                            }
+                            unitPrice:this.deliveryOrder.good1.money,
+                            pid:this.id1,
+                            // product:{
+                            //     // pid:this.id1,
+                            //     name:this.deliveryOrder.good1.goodName.trim(),
+                            //     type:this.deliveryOrder.good1.model.trim(),
+                            //     // unitPrice:this.deliveryOrder.good1.money
+                            // }
                         },
                         {
                             orderId:'',
                             quantity:this.deliveryOrder.good2.num,
                             totalMoney:this.deliveryOrder.good2.total,
-                            product:{
-                                id:this.id2,
-                                name:this.deliveryOrder.good2.goodName.trim(),
-                                type:this.deliveryOrder.good2.model.trim(),
-                                unitPrice:this.deliveryOrder.good2.money
-                            }
+                            unitPrice:this.deliveryOrder.good2.money,
+                            pid:this.id2,
+                            // product:{
+                            //     id:this.id2,
+                            //     name:this.deliveryOrder.good2.goodName.trim(),
+                            //     type:this.deliveryOrder.good2.model.trim(),
+                            //     unitPrice:this.deliveryOrder.good2.money
+                            // }
                         },
                         {
                             orderId:'',
                             quantity:this.deliveryOrder.good3.num,
                             totalMoney:this.deliveryOrder.good3.total,
-                            product:{
-                                id:this.id3,
-                                name:this.deliveryOrder.good3.goodName.trim(),
-                                type:this.deliveryOrder.good3.model.trim(),
-                                unitPrice:this.deliveryOrder.good3.money
-                            }
+                            unitPrice:this.deliveryOrder.good3.money,
+                            pid:this.id3,
+                            // product:{
+                            //     id:this.id3,
+                            //     name:this.deliveryOrder.good3.goodName.trim(),
+                            //     type:this.deliveryOrder.good3.model.trim(),
+                            //     unitPrice:this.deliveryOrder.good3.money
+                            // }
                         },
                         {
                             orderId:'',
                             quantity:this.deliveryOrder.good4.num,
                             totalMoney:this.deliveryOrder.good4.total,
-                            product:{
-                                id:this.id4,
-                                name:this.deliveryOrder.good4.goodName.trim(),
-                                type:this.deliveryOrder.good4.model.trim(),
-                                unitPrice:this.deliveryOrder.good4.money
-                            }
+                            unitPrice:this.deliveryOrder.good4.money,
+                            pid:this.id4,
+                            // product:{
+                            //     id:this.id4,
+                            //     name:this.deliveryOrder.good4.goodName.trim(),
+                            //     type:this.deliveryOrder.good4.model.trim(),
+                            //     unitPrice:this.deliveryOrder.good4.money
+                            // }
                         },
                         {
                             orderId:'',
                             quantity:this.deliveryOrder.good5.num,
                             totalMoney:this.deliveryOrder.good5.total,
-                            product:{
-                                id:this.id5,
-                                name:this.deliveryOrder.good5.goodName.trim(),
-                                type:this.deliveryOrder.good5.model.trim(),
-                                unitPrice:this.deliveryOrder.good5.money
-                            }
+                            unitPrice:this.deliveryOrder.good5.money,
+                            pid:this.id5,
+                            // product:{
+                            //     id:this.id5,
+                            //     name:this.deliveryOrder.good5.goodName.trim(),
+                            //     type:this.deliveryOrder.good5.model.trim(),
+                            //     unitPrice:this.deliveryOrder.good5.money
+                            // }
                         },
 
                     ],
 
             }).then(function (response) {
                 console.log(response.body);
-                if(response.body.error == 0){
-                    console.log(response.data);
-                    console.log(response.body);
-                    alert("添加成功！");
+                if(response.body.errorCode == 0){
+                    // console.log("=======");
+                    // console.log(response.data);
+                    // console.log(response.body);
+                    // console.log("=======");
+                    alert("送货单添加成功！");
                 }else{
-                    console.log(response.data);
-                    console.log(response.body);
-                    alert("成功但是responsedata错误！");
+                    // console.log("<<<<<<<<<<");
+                    // console.log(response.data);
+                    // console.log(response.body);
+                    // console.log(">>>>>>>>>>>");
+                    alert("服务器出现错误，送货单添加失败");
                 }
             }).catch(function (error) {
-                alert("添加失败!");
+                alert("送货单添加失败!");
             })
         },
 
@@ -412,6 +426,8 @@ var vm = new Vue({
             var content=mySelect.options[index].value;
             if(content=="否") {
                 this.deliveryOrder.comment="不含税";
+            }else if(content=="是"&&this.deliveryOrder.comment=="不含税") {
+                this.deliveryOrder.comment="";
             }
         },
 
@@ -767,19 +783,29 @@ var vm = new Vue({
     },
     computed:{
         getTotal1:function() {
-            return parseFloat(this.deliveryOrder.good1.num)*parseFloat(this.deliveryOrder.good1.money);
+            var result=parseFloat(this.deliveryOrder.good1.num)*parseFloat(this.deliveryOrder.good1.money);
+            this.deliveryOrder.good1.total =result;
+            return result;
         },
         getTotal2:function() {
-            return parseFloat(this.deliveryOrder.good2.num)*parseFloat(this.deliveryOrder.good2.money);
+            var result=parseFloat(this.deliveryOrder.good2.num)*parseFloat(this.deliveryOrder.good2.money);
+            this.deliveryOrder.good2.total =result;
+            return result;
         },
         getTotal3:function() {
-            return parseFloat(this.deliveryOrder.good3.num)*parseFloat(this.deliveryOrder.good3.money);
+            var result=parseFloat(this.deliveryOrder.good3.num)*parseFloat(this.deliveryOrder.good3.money);
+            this.deliveryOrder.good3.total =result;
+            return result;
         },
         getTotal4:function() {
-            return parseFloat(this.deliveryOrder.good4.num)*parseFloat(this.deliveryOrder.good4.money);
+            var result=parseFloat(this.deliveryOrder.good4.num)*parseFloat(this.deliveryOrder.good4.money);
+            this.deliveryOrder.good4.total =result;
+            return result;
         },
         getTotal5:function() {
-            return parseFloat(this.deliveryOrder.good5.num)*parseFloat(this.deliveryOrder.good5.money);
+            var result=parseFloat(this.deliveryOrder.good5.num)*parseFloat(this.deliveryOrder.good5.money);
+            this.deliveryOrder.good5.total =result;
+            return result;
         },
         getTotal:function () {
             return parseFloat(this.getTotal1+this.getTotal2+this.getTotal3+this.getTotal4+this.getTotal5)
