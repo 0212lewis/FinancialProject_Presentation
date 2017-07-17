@@ -11,18 +11,18 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <!-- Bootstrap 3.3.6 -->
-  <link rel="stylesheet" href="../bootstrap/css/bootstrap.min.css">
+  <link rel="stylesheet" href="../../bootstrap/css/bootstrap.min.css">
   <!-- Font Awesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
   <!-- Ionicons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
   <!-- Theme style -->
-  <link rel="stylesheet" href="../dist/css/AdminLTE.min.css">
+  <link rel="stylesheet" href="../../dist/css/AdminLTE.min.css">
   <!-- AdminLTE Skins. We have chosen the skin-blue for this starter
         page. However, you can choose any other skin. Make sure you
         apply the skin class to the body tag so the changes take effect.
   -->
-  <link rel="stylesheet" href="../dist/css/skins/skin-blue.min.css">
+  <link rel="stylesheet" href="../../dist/css/skins/skin-blue.min.css">
 
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -86,17 +86,17 @@ desired effect
             <!-- Menu Toggle Button -->
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
               <!-- The user image in the navbar-->
-              <img src="../dist/img/avatar5.png" class="user-image" alt="User Image">
+              <img src="../../dist/img/avatar5.png" class="user-image" alt="User Image">
               <!-- hidden-xs hides the username on small devices so only the image appears. -->
-              <span class="hidden-xs">吴德峰</span>
+              <span class="hidden-xs">{{items.username}}</span>
             </a>
             <ul class="dropdown-menu">
               <!-- The user image in the menu -->
               <li class="user-header">
-                <img src="../dist/img/avatar5.png" class="img-circle" alt="User Image">
+                <img src="../../dist/img/avatar5.png" class="img-circle" alt="User Image">
 
                 <p>
-                  华峰纸管胶厂--经理
+                  华峰纸管胶厂
                   <small>born in 1986,31 years old</small>
                 </p>
               </li>
@@ -143,10 +143,10 @@ desired effect
       <!-- Sidebar user panel (optional) -->
       <div class="user-panel">
         <div class="pull-left image">
-          <img src="../dist/img/avatar5.png" class="img-circle" alt="User Image">
+          <img src="../../dist/img/avatar5.png" class="img-circle" alt="User Image">
         </div>
         <div class="pull-left info">
-          <p>吴德峰</p>
+          <p>{{items.username}}</p>
           <!-- Status -->
           <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
         </div>
@@ -165,11 +165,11 @@ desired effect
           </span>
           </a>
           <ul class="treeview-menu">
-              <li><a href="Nodes/Income.html"><i class="fa fa-circle-o"> 进款单</i></a> </li>
-              <li><a href="Nodes/Outcome.html"><i class="fa fa-circle-o"> 付款单</i></a> </li>
-              <li><a href="Nodes/Invoice.html"><i class="fa fa-circle-o"> 开票单</i></a> </li>
-              <li><a href="Nodes/InGoods.html"><i class="fa fa-circle-o"> 进货单</i></a> </li>
-              <li><a href="Nodes/OutGoods.html"><i class="fa fa-circle-o"> 送货单</i></a> </li>
+              <li><a href="../Nodes/Income.html"><i class="fa fa-circle-o"> 进款单</i></a> </li>
+              <li><a href="../Nodes/Outcome.html"><i class="fa fa-circle-o"> 付款单</i></a> </li>
+              <li><a href="../Nodes/Invoice.html"><i class="fa fa-circle-o"> 开票单</i></a> </li>
+              <li><a href="../Nodes/InGoods.html"><i class="fa fa-circle-o"> 进货单</i></a> </li>
+              <li><a href="../Nodes/OutGoods.html"><i class="fa fa-circle-o"> 送货单</i></a> </li>
           </ul>
         </li>
         <li class="treeview">
@@ -179,25 +179,36 @@ desired effect
             </span>
           </a>
           <ul class="treeview-menu">
-              <li><a href="Flow/SalesFlow.html"><i class="fa fa-circle-o"> 销售流水</i></a></li>
-              <li><a href="Flow/InvoiceFlow.html"><i class="fa fa-circle-o"> 开票流水</i></a></li>
-              <li><a href="Flow/CapitalFlow.html"><i class="fa fa-circle-o"> 资金流水</i></a></li>
-              <li><a href="Flow/InGoodsFlow.html"><i class="fa fa-circle-o"> 进货流水</i></a></li>
-              <li><a href="Flow/SalesStatistics.html"><i class="fa fa-circle-o"> 销售统计表</i></a></li>
+              <li><a href="../Flow/SalesFlow.html"><i class="fa fa-circle-o"> 销售流水</i></a></li>
+              <li><a href="../Flow/InvoiceFlow.html"><i class="fa fa-circle-o"> 开票流水</i></a></li>
+              <li><a href="../Flow/CapitalFlow.html"><i class="fa fa-circle-o"> 资金流水</i></a></li>
+              <li><a href="../Flow/InGoodsFlow.html"><i class="fa fa-circle-o"> 进货流水</i></a></li>
+              <li><a href="../Flow/SalesStatistics.html"><i class="fa fa-circle-o"> 销售统计表</i></a></li>
           </ul>
         </li>
 
-        <li class="treeview" >
+        <li class="treeview">
           <a href="#"><i class="fa fa-user"></i> <span>合作伙伴</span>
             <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="../pages/Cooperation/Client.html"><i class="fa fa-circle-o"> 客户</i></a></li>
-            <li><a href="../pages/Cooperation/Provider.html"><i class="fa fa-circle-o"> 供应商</i></a></li>
-            <li><a href="Manage/Businessman.html"><i class="fa fa-circle-o"> 业务员</i></a></li>
+            <li><a href="#"><i class="fa fa-circle-o"> 客户</i></a></li>
+            <li><a href="#"><i class="fa fa-circle-o"> 供应商</i></a></li>
+          </ul>
+        </li>
 
+
+        <li class="treeview" >
+          <a href="#"><i class="fa fa-user"></i> <span>员工管理</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+          </a>
+          <ul class="treeview-menu">
+            <li><a href="../Manage/Businessman.html"><i class="fa fa-circle-o"> 业务员</i></a></li>
+            <li><a href="../Manage/Employee.html"><i class="fa fa-circle-o"> 权限管理</i></a></li>
           </ul>
         </li>
       </ul>
@@ -207,7 +218,7 @@ desired effect
   </aside>
 
   <!-- Content Wrapper. Contains page content -->
-  <div class="content-wrapper" style="background-image: url(../image/background.jpg);background-position: center;background-size: 100% 100%">
+  <div class="content-wrapper" style="background-image: url(../../image/background.jpg);background-position: center;background-size: 100% 100%">
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1 class="text-center">
@@ -322,11 +333,11 @@ desired effect
 <!-- REQUIRED JS SCRIPTS -->
 
 <!-- jQuery 2.2.3 -->
-<script src="../plugins/jQuery/jquery-2.2.3.min.js"></script>
+<script src="../../plugins/jQuery/jquery-2.2.3.min.js"></script>
 <!-- Bootstrap 3.3.6 -->
-<script src="../bootstrap/js/bootstrap.min.js"></script>
+<script src="../../bootstrap/js/bootstrap.min.js"></script>
 <!-- AdminLTE App -->
-<script src="../dist/js/app.min.js"></script>
+<script src="../../dist/js/app.min.js"></script>
 
 <!-- Optionally, you can add Slimscroll and FastClick plugins.
      Both of these plugins are recommended to enhance the
