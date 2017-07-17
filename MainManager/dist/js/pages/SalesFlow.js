@@ -102,10 +102,26 @@ var tool=new Vue(
 			alert("出现了未知的错误！请重新进行输入")
 		});
 		// this.totalMoney = this.getTotalMoney;
-		// this.totalNum = this.getTotalNum;
+		// this.totalNum = this.getTotalNum();
 		// this.totalDeliveryMoney = this.getTotalDeliveryMoney;
 		// this.average = this.getAverage;
 		// console.log(this.getTotalMoney);
+
+        // window.onload=function(){
+        //         window.setTimeout(function () {
+        //             var table = document.getElementById("example1");
+        //             alert(table.rows.length);
+        //             var sum = 0;
+        //             for(var i=1;i<table.rows.length-3;i++)
+        //             {
+        //                 sum = parseFloat(parseFloat(table.rows[i].cells[5].innerHTML)+parseFloat(sum));
+        //             }
+        //             this.totalNum=sum;
+        //             return sum;
+        //         },3000);
+        //     }
+
+
 	},
 	methods:{
 
@@ -117,6 +133,7 @@ var tool=new Vue(
 			return sum;
         },
 		getTotalNum:function () {
+            // window.setTimeout(this.getTotalNum,5000);
             var table = document.getElementById("example1");
             var sum = 0;
             for(var i=1;i<table.rows.length-2;i++)

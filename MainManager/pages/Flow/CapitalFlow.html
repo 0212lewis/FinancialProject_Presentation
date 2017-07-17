@@ -243,13 +243,22 @@ desired effect
                 </tbody>
                 <tfoot>
                 <tr>
-                  <th>日期</th>
-                  <th>对方名称</th>
-                  <th>摘要</th>
-                  <th>方式</th>
-                  <th>借方金额</th>
-                  <th>贷方金额</th>
-                  <th>结余金额</th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                  <th id="jiefangMoney">计算中</th>
+                  <th id="daifangMoney">计算中</th>
+                  <th></th>
+                </tr>
+                <tr>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th>总借方金额（元）</th>
+                    <th>总贷方金额（元）</th>
+                    <th></th>
                 </tr>
                 </tfoot>
               </table>
@@ -303,5 +312,55 @@ desired effect
 <!-- AdminLTE for demo purposes -->
 <script src="../../dist/js/demo.js"></script>
 <!-- page script -->
+
+<script type="text/javascript">
+    window.onload=function(){
+        window.setTimeout(function () {
+            var table = document.getElementById("example1");
+            var jiefangMoney = 0;
+            var daifangMoney = 0;
+
+            for(var i=1;i<table.rows.length-2;i++)
+            {
+                jiefangMoney = parseFloat(parseFloat(table.rows[i].cells[4].innerHTML)+parseFloat(jiefangMoney));
+                daifangMoney = parseFloat(parseFloat(table.rows[i].cells[5].innerHTML)+parseFloat(daifangMoney));
+            }
+
+            document.getElementById("jiefangMoney").innerText=jiefangMoney;
+            document.getElementById("daifangMoney").innerText=daifangMoney;
+        },1000);
+    }
+
+    //    $('example1').on('click','.test',function(){
+    //            alert("haahah")
+    //    });
+</script>
+<script>
+    $(document).ready(function(){
+        (function(){
+            var len = $("#example1").text.length;
+            setInterval(function(){
+                var length = $("#example1").text().length;
+                if(length != len){
+                    len = length;
+                    var table = document.getElementById("example1");
+                    var jiefangMoney = 0;
+                    var daifangMoney = 0;
+
+                    for(var i=1;i<table.rows.length-2;i++)
+                    {
+                        jiefangMoney = parseFloat(parseFloat(table.rows[i].cells[4].innerHTML)+parseFloat(jiefangMoney));
+                        daifangMoney = parseFloat(parseFloat(table.rows[i].cells[5].innerHTML)+parseFloat(daifangMoney));
+                    }
+                    document.getElementById("jiefangMoney").innerText=jiefangMoney;
+                    document.getElementById("daifangMoney").innerText=daifangMoney;
+                }
+            }, 800)
+        })();
+
+    });
+</script>
+
+
 </body>
 </html>

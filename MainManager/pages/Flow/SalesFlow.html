@@ -219,7 +219,7 @@ desired effect
             </div>
             <!-- /.box-header -->
             <div class="box-body">
-              <table id="example1" class="table table-bordered table-striped">
+              <table id="example1" class="table table-bordered table-striped" onchange="testChange()">
                 <thead>
                 <tr>
                   <th>订单号</th>
@@ -253,19 +253,19 @@ desired effect
                 </tr>
                 </tbody>
                 <tfoot>
-
                 <tr>
                     <th></th>
                     <th></th>
                     <th></th>
                     <th></th>
                     <th></th>
-                    <th v-text="totalNum"></th>
+                    <!--v-text="totalNum"-->
+                    <th id="totalNum">计算中</th>
                     <th></th>
-                    <th v-text="totalMoney"></th>
+                    <th id="totalMoney">计算中</th>
                     <th></th>
-                    <th v-text="totalDeliveryMoney"></th>
-                    <th v-text="average"></th>
+                    <th id="totalDeliveryMoney">计算中</th>
+                    <th id="average">计算中</th>
                     <th></th>
                 </tr>
                 <tr>
@@ -274,12 +274,12 @@ desired effect
                     <th></th>
                     <th></th>>
                     <th></th>
-                    <th>总数量(T)</th>
+                    <th>总数量(元)</th>
                     <th></th>
                     <th>总金额(元)</th>
                     <th></th>
                     <th>总运费(元)</th>
-                    <th>均出厂价</th>
+                    <th>均出厂价(元)</th>
                     <th></th>
                 </tr>
                 </tfoot>
@@ -335,5 +335,67 @@ desired effect
     $("#example1").DataTable();
   });*/
 </script>
+
+<script type="text/javascript">
+    window.onload=function(){
+        window.setTimeout(function () {
+            var table = document.getElementById("example1");
+            var sumNum = 0;
+            var sumMoney = 0;
+            var sumDeliveryMoney= 0;
+
+            for(var i=1;i<table.rows.length-2;i++)
+            {
+                sumNum = parseFloat(parseFloat(table.rows[i].cells[5].innerHTML)+parseFloat(sumNum));
+                sumDeliveryMoney = parseFloat(parseFloat(table.rows[i].cells[9].innerHTML)+parseFloat(sumDeliveryMoney));
+                sumMoney = parseFloat(parseFloat(table.rows[i].cells[7].innerHTML)+parseFloat(sumMoney));
+            }
+
+            var result = parseFloat((sumMoney-sumDeliveryMoney)/sumNum).toFixed(2);
+
+            document.getElementById("totalNum").innerText=sumNum;
+            document.getElementById("totalMoney").innerText=sumMoney;
+            document.getElementById("totalDeliveryMoney").innerText=sumDeliveryMoney;
+            document.getElementById("average").innerText=result;
+        },1000);
+    }
+
+//    $('example1').on('click','.test',function(){
+//            alert("haahah")
+//    });
+</script>
+<script>
+    $(document).ready(function(){
+        (function(){
+            var len = $("#example1").text.length;
+            setInterval(function(){
+                var length = $("#example1").text().length;
+                if(length != len){
+                    len = length;
+                    var table = document.getElementById("example1");
+                    var sumNum = 0;
+                    var sumMoney = 0;
+                    var sumDeliveryMoney= 0;
+
+                    for(var i=1;i<table.rows.length-2;i++)
+                    {
+                        sumNum = parseFloat(parseFloat(table.rows[i].cells[5].innerHTML)+parseFloat(sumNum));
+                        sumDeliveryMoney = parseFloat(parseFloat(table.rows[i].cells[9].innerHTML)+parseFloat(sumDeliveryMoney));
+                        sumMoney = parseFloat(parseFloat(table.rows[i].cells[7].innerHTML)+parseFloat(sumMoney));
+                    }
+
+                    var result = parseFloat((sumMoney-sumDeliveryMoney)/sumNum).toFixed(2);
+
+                    document.getElementById("totalNum").innerText=sumNum;
+                    document.getElementById("totalMoney").innerText=sumMoney;
+                    document.getElementById("totalDeliveryMoney").innerText=sumDeliveryMoney;
+                    document.getElementById("average").innerText=result;
+                }
+            }, 800)
+        })();
+
+    });
+</script>
+
 </body>
 </html>

@@ -240,12 +240,20 @@ desired effect
                 </tbody>
                 <tfoot>
                 <tr>
-                  <th>日期</th>
-                  <th>发票编号</th>
-                    <th>客户简码</th>
-                    <th>客户名称</th>
-                  <th>开票金额</th>
-                  <th>备注</th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th id="totalMoney">计算中</th>
+                    <th></th>
+                </tr>
+                <tr>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>>
+                    <th>总金额(元)</th>
+                    <th></th>
                 </tr>
                 </tfoot>
               </table>
@@ -295,8 +303,48 @@ desired effect
 <!-- AdminLTE for demo purposes -->
 <script src="../../dist/js/demo.js"></script>
 <!-- page script -->
-<script>
+
+
+<script type="text/javascript">
+    window.onload=function(){
+        window.setTimeout(function () {
+            var table = document.getElementById("example1");
+
+            var sumMoney = 0;
+
+            for(var i=1;i<table.rows.length-2;i++)
+            {
+                sumMoney = parseFloat(parseFloat(table.rows[4].cells[7].innerHTML)+parseFloat(sumMoney));
+            }
+            document.getElementById("totalMoney").innerText=sumMoney;
+        },1000);
+    }
 
 </script>
+
+<script>
+    $(document).ready(function(){
+        (function(){
+            var len = $("#example1").text.length;
+            setInterval(function(){
+                var length = $("#example1").text().length;
+                if(length != len){
+                    len = length;
+                    var table = document.getElementById("example1");
+                    var sumMoney = 0;
+
+                    for(var i=1;i<table.rows.length-2;i++)
+                    {
+                        sumMoney = parseFloat(parseFloat(table.rows[i].cells[4].innerHTML)+parseFloat(sumMoney));
+                    }
+
+                    document.getElementById("totalMoney").innerText=sumMoney;
+                }
+            }, 800)
+        })();
+
+    });
+</script>
+
 </body>
 </html>
