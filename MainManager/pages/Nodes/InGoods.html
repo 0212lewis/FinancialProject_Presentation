@@ -33,6 +33,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
 
+    <style media=print type="text/css">
+        .noprint{visibility:hidden}
+    </style>
+
     <style>
         addblock1 { margin:0px;padding:0px;text-align: center;}
         #hidebg1 { position:absolute;left:0px;top:0px;
@@ -404,7 +408,7 @@ desired effect
             <div class="box box-danger">
                 <div class="box-header with-border">
                     <h3 class="box-title">录入进货单</h3>
-                    <button type="submit" class="btn btn-warning pull-right">打印</button>
+                    <button type="submit" class="btn btn-warning pull-right noprint" class="noprint" rel="external nofollow" target="_self" onclick="window.print()">打印</button>
                 </div>
                 <!-- /.box-header -->
                 <!-- form start -->
@@ -420,8 +424,8 @@ desired effect
                             </div>
                         </div>
                         <div class="btn-group">
-                            <button type="button" class="btn btn-sm btn-primary" style="left: 180px" onclick="show1()">添加供应商</button>
-                            <button type="button" class="btn btn-sm btn-danger" style="left: 300px" onclick="show2()">删除供应商</button>
+                            <button type="button" class="btn btn-sm btn-primary noprint" style="left: 180px" onclick="show1()">添加供应商</button>
+                            <button type="button" class="btn btn-sm btn-danger noprint" style="left: 300px" onclick="show2()">删除供应商</button>
                         </div>
                         <hr>
                         <!-- /.box-header -->
@@ -429,7 +433,7 @@ desired effect
                             <table id="example2" class="table table-bordered table-hover">
                                 <thead>
                                 <tr>
-                                    <th style="text-align: center" class="col-md-4">货名<button class="btn-xs btn-primary pull-right" type="button" onclick="show5()">添加货品</button></th>
+                                    <th style="text-align: center" class="col-md-4">货名<button class="btn-xs btn-primary pull-right noprint" type="button" onclick="show5()">添加货品</button></th>
                                     <th style="text-align: center" class="col-md-2">型号</th>
                                     <th style="text-align: center" class="col-md-2">数量</th>
                                     <th style="text-align: center" class="col-md-2">单价</th>
@@ -470,8 +474,8 @@ desired effect
                             </div>
                         </div>
                         <div class="btn-group">
-                            <button type="button" class="btn btn-sm btn-primary" style="left: 180px" onclick="show3()">添加运货人</button>
-                            <button type="button" class="btn btn-sm btn-danger" style="left: 300px" onclick="show4()">删除运货人</button>
+                            <button type="button" class="btn btn-sm btn-primary noprint" style="left: 180px" onclick="show3()">添加运货人</button>
+                            <button type="button" class="btn btn-sm btn-danger noprint" style="left: 300px" onclick="show4()">删除运货人</button>
                         </div>
                         <hr>
                         <div class="form-group">
@@ -504,8 +508,8 @@ desired effect
                     <!-- /.box-body -->
 
                     <div class="box-footer">
-                        <button type="submit" class="btn btn-default">重置</button>
-                        <button type="submit" class="btn btn-info pull-right" @click.prevent="addInGoodsOrder">录入数据</button>
+                        <button type="submit" class="btn btn-default noprint">重置</button>
+                        <button type="submit" class="btn btn-info pull-right noprint" @click.prevent="addInGoodsOrder">录入数据</button>
                     </div>
                     <!-- /.box-footer -->
                 </form>
@@ -519,7 +523,7 @@ desired effect
     <!-- /.content-wrapper -->
 
     <!-- Main Footer -->
-    <footer class="main-footer">
+    <footer class="main-footer noprint">
         <!-- To the right -->
         <div class="pull-right hidden-xs">
             Anything you want

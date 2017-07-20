@@ -25,6 +25,11 @@ scratch. This page gets rid of all links and provides the needed markup only.
           apply the skin class to the body tag so the changes take effect.
     -->
     <link rel="stylesheet" href="../../dist/css/skins/skin-blue.min.css">
+
+    <style media=print type="text/css">
+        .noprint{visibility:hidden}
+    </style>
+
     <style>
         addblock1 { margin:0px;padding:0px;text-align: center;}
         #hidebg1 { position:absolute;left:0px;top:0px;
@@ -503,7 +508,7 @@ desired effect
             <div class="box box-warning" id="outgoods"  style="width: 70%;margin-left: 15%">
                 <div class="box-header with-border">
                     <h3 class="box-title">录入送货单</h3>
-                    <button type="submit" class="btn btn-warning pull-right">打印</button>
+                    <button type="submit" class="btn btn-warning pull-right noprint" class="noprint" rel="external nofollow" target="_self" onclick="window.print()">打印</button>
                 </div>
                 <!-- /.box-header -->
                 <!-- form start -->
@@ -523,8 +528,8 @@ desired effect
                             </div>
                         </div>
                         <div class="btn-group">
-                            <button type="button" class="btn btn-sm btn-primary" style="left: 180px" onclick="show1()">添加客户</button>
-                            <button type="button" class="btn btn-sm btn-danger" style="left: 300px" onclick="show2()">删除客户</button>
+                            <button type="button" class="btn btn-sm btn-primary noprint" style="left: 180px" onclick="show1()">添加客户</button>
+                            <button type="button" class="btn btn-sm btn-danger noprint" style="left: 300px" onclick="show2()">删除客户</button>
                         </div>
                         <hr>
                         <!-- /.box-header -->
@@ -532,7 +537,7 @@ desired effect
                             <table id="example2" class="table table-bordered table-hover">
                                 <thead>
                                 <tr>
-                                    <th style="text-align: center" class="col-md-4">货名<button class="btn-xs btn-primary pull-right" type="button" onclick="show3()" >添加货品</button></th>
+                                    <th style="text-align: center" class="col-md-4">货名<button class="btn-xs btn-primary pull-right noprint" type="button" onclick="show3()" >添加货品</button></th>
                                     <th style="text-align: center" class="col-md-3">型号
                                         <!--<button class="btn-xs btn-primary pull-right" type="button" onclick="show4()">添加型号</button> -->
                                     </th>
@@ -637,8 +642,8 @@ desired effect
                             </div>
                         </div>
                         <div class="btn-group">
-                            <button type="button" class="btn btn-sm btn-primary" style="left: 180px" onclick="show5()">添加运货人</button>
-                            <button type="button" class="btn btn-sm btn-danger" style="left: 300px" onclick="show6()">删除送货人</button>
+                            <button type="button" class="btn btn-sm btn-primary noprint" style="left: 180px" onclick="show5()">添加运货人</button>
+                            <button type="button" class="btn btn-sm btn-danger noprint" style="left: 300px" onclick="show6()">删除送货人</button>
                         </div>
                         <hr>
                         <div class="form-group">
@@ -652,8 +657,8 @@ desired effect
                             </div>
                         </div>
                         <div class="btn-group">
-                            <button type="button" class="btn btn-sm btn-primary" style="left: 180px" onclick="show7()">添加业务员</button>
-                            <button type="button" class="btn btn-sm btn-danger" style="left: 300px" onclick="show8()">删除业务员</button>
+                            <button type="button" class="btn btn-sm btn-primary noprint" style="left: 180px" onclick="show7()">添加业务员</button>
+                            <button type="button" class="btn btn-sm btn-danger noprint" style="left: 300px" onclick="show8()">删除业务员</button>
                         </div>
                         <hr>
                         <div class="form-group">
@@ -697,8 +702,8 @@ desired effect
                     </div>
 
                     <div class="box-footer">
-                        <button type="submit" class="btn btn-default">重置</button>
-                        <button type="submit" class="btn btn-info pull-right" @click.prevent="addDeliveryOrder">录入数据</button>
+                        <button type="submit" class="btn btn-default noprint">重置</button>
+                        <button type="submit" class="btn btn-info pull-right noprint" @click.prevent="addDeliveryOrder">录入数据</button>
                     </div>
                     <!-- /.box-footer -->
                 </form>
@@ -712,7 +717,7 @@ desired effect
     <!-- /.content-wrapper -->
 
     <!-- Main Footer -->
-    <footer class="main-footer">
+    <footer class="main-footer noprint">
         <!-- To the right -->
         <div class="pull-right hidden-xs">
             Anything you want

@@ -28,6 +28,11 @@
     <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
+
+    <style media=print type="text/css">
+        .noprint{visibility:hidden}
+    </style>
+
     <style>
         addblock1 { margin:0px;padding:0px;text-align: center;}
         #hidebg1 { position:absolute;left:0px;top:0px;
@@ -353,7 +358,7 @@ desired effect
             <div class="box box-danger">
                 <div class="box-header with-border">
                     <h3 class="box-title">录入付款单</h3>
-                    <button type="submit" class="btn btn-warning pull-right">打印</button>
+                    <button type="submit" class="btn btn-warning pull-right noprint" class="noprint" rel="external nofollow" target="_self" onclick="window.print()">打印</button>
                 </div>
                 <!-- /.box-header -->
                 <!-- form start -->
@@ -371,8 +376,8 @@ desired effect
 
                         </div>
                         <div class="btn-group">
-                            <button type="button" class="btn btn-sm btn-primary" style="left: 180px" onclick="show1()">添加供应商</button>
-                            <button type="button" class="btn btn-sm btn-danger" style="left: 310px" onclick="show2()">删除供应商</button>
+                            <button type="button" class="btn btn-sm btn-primary noprint" style="left: 180px" onclick="show1()">添加供应商</button>
+                            <button type="button" class="btn btn-sm btn-danger noprint" style="left: 310px" onclick="show2()">删除供应商</button>
                         </div>
                         <hr>
                         <div class="form-group">
@@ -403,8 +408,8 @@ desired effect
 
                         </div>
                         <div class="btn-group">
-                            <button type="button" class="btn btn-sm btn-primary" style="left: 180px" onclick="show3()">添加方式</button>
-                            <button type="button" class="btn btn-sm btn-danger" style="left: 310px" onclick="show4()">删除方式</button>
+                            <button type="button" class="btn btn-sm btn-primary noprint" style="left: 180px" onclick="show3()">添加方式</button>
+                            <button type="button" class="btn btn-sm btn-danger noprint" style="left: 310px" onclick="show4()">删除方式</button>
                         </div>
                         <hr>
                         <div class="form-group">
@@ -439,9 +444,9 @@ desired effect
                     </div>
                     <!-- /.box-body -->
 
-                    <div class="box-footer">
-                        <button type="submit" class="btn btn-default">重置</button>
-                        <button type="button" class="btn btn-info pull-right" onclick="show5()" id="save">录入数据</button>
+                    <div class="box-footer noprint">
+                        <button type="submit" class="btn btn-default noprint">重置</button>
+                        <button type="button" class="btn btn-info pull-right noprint" onclick="show5()" id="save">录入数据</button>
                     </div>
                     <!-- /.box-footer -->
                 </form>
@@ -454,7 +459,7 @@ desired effect
     <!-- /.content-wrapper -->
 
     <!-- Main Footer -->
-    <footer class="main-footer">
+    <footer class="main-footer noprint">
         <!-- To the right -->
         <div class="pull-right hidden-xs">
             Anything you want

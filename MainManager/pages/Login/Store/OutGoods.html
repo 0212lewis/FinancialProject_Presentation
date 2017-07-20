@@ -25,6 +25,11 @@ scratch. This page gets rid of all links and provides the needed markup only.
           apply the skin class to the body tag so the changes take effect.
     -->
     <link rel="stylesheet" href="../../../dist/css/skins/skin-blue.min.css">
+
+    <style media=print type="text/css">
+        .noprint{visibility:hidden}
+    </style>
+
     <style>
         addblock1 { margin:0px;padding:0px;text-align: center;}
         #hidebg1 { position:absolute;left:0px;top:0px;
@@ -462,7 +467,7 @@ desired effect
             <div class="box box-warning" id="outgoods"  style="width: 70%;margin-left: 15%">
                 <div class="box-header with-border">
                     <h3 class="box-title">录入送货单</h3>
-                    <button type="submit" class="btn btn-warning pull-right">打印</button>
+                    <button type="submit" class="btn btn-warning pull-right noprint" class="noprint" rel="external nofollow" target="_self" onclick="window.print()">打印</button>
                 </div>
                 <!-- /.box-header -->
                 <!-- form start -->
@@ -476,14 +481,14 @@ desired effect
 
                             <div class="col-md-6">
                                 <select id="receiver" class="form-control" v-model="deliveryOrder.receive" >
-                                    <option v-for="receive in receives" v-text="receive">}
+                                    <option v-for="receive in receives" v-text="receive">
                                     </option>
                                 </select>
                             </div>
                         </div>
                         <div class="btn-group">
-                            <button type="button" class="btn btn-sm btn-primary" style="left: 180px" onclick="show1()">添加客户</button>
-                            <button type="button" class="btn btn-sm btn-danger" style="left: 300px" onclick="show2()">删除客户</button>
+                            <button type="button" class="btn btn-sm btn-primary noprint" style="left: 180px" onclick="show1()">添加客户</button>
+                            <button type="button" class="btn btn-sm btn-danger noprint" style="left: 300px" onclick="show2()">删除客户</button>
                         </div>
                         <hr>
                         <!-- /.box-header -->
@@ -491,7 +496,7 @@ desired effect
                             <table id="example2" class="table table-bordered table-hover">
                                 <thead>
                                 <tr>
-                                    <th style="text-align: center" class="col-md-4">货名<button class="btn-xs btn-primary pull-right" type="button" onclick="show3()" >添加货品</button></th>
+                                    <th style="text-align: center" class="col-md-4">货名<button class="btn-xs btn-primary pull-right noprint" type="button" onclick="show3()" >添加货品</button></th>
                                     <th style="text-align: center" class="col-md-3">型号
                                         <!--<button class="btn-xs btn-primary pull-right" type="button" onclick="show4()">添加型号</button> -->
                                     </th>
@@ -596,8 +601,8 @@ desired effect
                             </div>
                         </div>
                         <div class="btn-group">
-                            <button type="button" class="btn btn-sm btn-primary" style="left: 180px" onclick="show5()">添加运货人</button>
-                            <button type="button" class="btn btn-sm btn-danger" style="left: 300px" onclick="show6()">删除送货人</button>
+                            <button type="button" class="btn btn-sm btn-primary noprint" style="left: 180px" onclick="show5()">添加运货人</button>
+                            <button type="button" class="btn btn-sm btn-danger noprint" style="left: 300px" onclick="show6()">删除送货人</button>
                         </div>
                         <hr>
                         <div class="form-group">
@@ -611,8 +616,8 @@ desired effect
                             </div>
                         </div>
                         <div class="btn-group">
-                            <button type="button" class="btn btn-sm btn-primary" style="left: 180px" onclick="show7()">添加业务员</button>
-                            <button type="button" class="btn btn-sm btn-danger" style="left: 300px" onclick="show8()">删除业务员</button>
+                            <button type="button" class="btn btn-sm btn-primary noprint" style="left: 180px" onclick="show7()">添加业务员</button>
+                            <button type="button" class="btn btn-sm btn-danger noprint" style="left: 300px" onclick="show8()">删除业务员</button>
                         </div>
                         <hr>
                         <div class="form-group">
@@ -655,9 +660,9 @@ desired effect
                         </div>
                     </div>
 
-                    <div class="box-footer">
-                        <button type="submit" class="btn btn-default">重置</button>
-                        <button type="submit" class="btn btn-info pull-right" @click.prevent="addDeliveryOrder">录入数据</button>
+                    <div class="box-footer noprint">
+                        <button type="submit" class="btn btn-default noprint">重置</button>
+                        <button type="submit" class="btn btn-info pull-right noprint" @click.prevent="addDeliveryOrder">录入数据</button>
                     </div>
                     <!-- /.box-footer -->
                 </form>
@@ -671,7 +676,7 @@ desired effect
     <!-- /.content-wrapper -->
 
     <!-- Main Footer -->
-    <footer class="main-footer">
+    <footer class="main-footer noprint">
         <!-- To the right -->
         <div class="pull-right hidden-xs">
             Anything you want
@@ -875,38 +880,38 @@ desired effect
     <div class="control-sidebar-bg"></div>
 </div>
 
-<script src="../../vue/vue.js"></script>
-<script src="../../vue-resource/vue-resource.js"></script>
-<script src="../../dist/js/pages/OutGoods.js"></script>
+<script src="../../../vue/vue.js"></script>
+<script src="../../../vue-resource/vue-resource.js"></script>
+<script src="../../../dist/js/pages/OutGoods.js"></script>
 <!-- jQuery 2.2.3 -->
-<script src="../../plugins/jQuery/jquery-2.2.3.min.js"></script>
+<script src="../../../plugins/jQuery/jquery-2.2.3.min.js"></script>
 <!-- Bootstrap 3.3.6 -->
-<script src="../../bootstrap/js/bootstrap.min.js"></script>
+<script src="../../../bootstrap/js/bootstrap.min.js"></script>
 <!-- Select2 -->
-<script src="../../plugins/select2/select2.full.min.js"></script>
+<script src="../../../plugins/select2/select2.full.min.js"></script>
 <!-- InputMask -->
-<script src="../../plugins/input-mask/jquery.inputmask.js"></script>
-<script src="../../plugins/input-mask/jquery.inputmask.date.extensions.js"></script>
-<script src="../../plugins/input-mask/jquery.inputmask.extensions.js"></script>
+<script src="../../../plugins/input-mask/jquery.inputmask.js"></script>
+<script src="../../../plugins/input-mask/jquery.inputmask.date.extensions.js"></script>
+<script src="../../../plugins/input-mask/jquery.inputmask.extensions.js"></script>
 <!-- date-range-picker -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.11.2/moment.min.js"></script>
-<script src="../../plugins/daterangepicker/daterangepicker.js"></script>
+<script src="../../../plugins/daterangepicker/daterangepicker.js"></script>
 <!-- bootstrap datepicker -->
-<script src="../../plugins/datepicker/bootstrap-datepicker.js"></script>
+<script src="../../../plugins/datepicker/bootstrap-datepicker.js"></script>
 <!-- bootstrap color picker -->
-<script src="../../plugins/colorpicker/bootstrap-colorpicker.min.js"></script>
+<script src="../../../plugins/colorpicker/bootstrap-colorpicker.min.js"></script>
 <!-- bootstrap time picker -->
-<script src="../../plugins/timepicker/bootstrap-timepicker.min.js"></script>
+<script src="../../../plugins/timepicker/bootstrap-timepicker.min.js"></script>
 <!-- SlimScroll 1.3.0 -->
-<script src="../../plugins/slimScroll/jquery.slimscroll.min.js"></script>
+<script src="../../../plugins/slimScroll/jquery.slimscroll.min.js"></script>
 <!-- iCheck 1.0.1 -->
-<script src="../../plugins/iCheck/icheck.min.js"></script>
+<script src="../../../plugins/iCheck/icheck.min.js"></script>
 <!-- FastClick -->
-<script src="../../plugins/fastclick/fastclick.js"></script>
+<script src="../../../plugins/fastclick/fastclick.js"></script>
 <!-- AdminLTE App -->
-<script src="../../dist/js/app.min.js"></script>
+<script src="../../../dist/js/app.min.js"></script>
 <!-- AdminLTE for demo purposes -->
-<script src="../../dist/js/demo.js"></script>
+<script src="../../../dist/js/demo.js"></script>
 <!-- Page script -->
 <script>
     //Date picker
