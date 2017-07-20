@@ -61,7 +61,7 @@ desired effect
     <header class="main-header">
 
         <!-- Logo -->
-        <a href="../MainUi.html" class="logo">
+        <a href="../Login/MainUi.html" class="logo">
             <!-- mini logo for sidebar mini 50x50 pixels -->
             <span class="logo-mini">office</span>
             <!-- logo for regular state and mobile devices -->
@@ -161,6 +161,8 @@ desired effect
                         <li><a href="../../pages/Flow/CapitalFlow.html"><i class="fa fa-circle-o"> 资金流水</i></a></li>
                         <li><a href="../../pages/Flow/InGoodsFlow.html"><i class="fa fa-circle-o"> 进货流水</i></a></li>
                         <li class="active"><a href="../../pages/Flow/SalesStatistics.html"><i class="fa fa-circle-o"> 销售统计表</i></a></li>
+                        <li><a href="../../pages/Flow/DetailStatistics.html"><i class="fa fa-circle-o"> 发票与应收账款</i></a></li>
+
                     </ul>
                 </li>
 
@@ -202,7 +204,7 @@ desired effect
         <small>销售统计表</small>
       </h1>
       <ol class="breadcrumb">
-        <li><a href="../MainUi.html"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li><a href="../Login/MainUi.html"><i class="fa fa-dashboard"></i> Home</a></li>
         <li><a href="#">流水账管理</a></li>
         <li class="active">销售统计表</li>
       </ol>
@@ -343,8 +345,9 @@ desired effect
                       <td v-text="item.money_of_year"></td>
 
                       <td v-text="item.rate"></td>
-                      <td > <a onclick="">详情
-                      </a> </td>
+                      <td> <a @click.prevent="viewDetail(item.clientName)">详情</a></td>
+                      <!--<td > <a :href="'DetailStatistics.html?id='+clientId">详情</a>-->
+                      <!--</td>-->
                	  	<!--<td></td>-->
                	  	<!--<td></td>-->
                	  	<!--<td></td>-->

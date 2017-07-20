@@ -1,4 +1,7 @@
 /**
+ * Created by pc on 2017/7/16.
+ */
+/**
  * Created by pc on 2017/4/25.
  */
 
@@ -78,39 +81,31 @@ var tableToExcel = (function() {
 
 
 var tool=new Vue(
-{
-	el:'#app',
-	data:{
-	    clientName:"",
-		clientId:'',
-		items:[
+    {
+        el:'#app',
+        data:{
+            clientId:'',
+            items:[
 
-		]
-	},
-	methods:{
-	  viewDetail:function (clientName) {
-          this.$http.get("http://localhost:8080/",{
+            ]
+        },
+        mounted(){
+            var thisUrl = document.URL;
+            var getVal = thisUrl.split('?')[1];
+            var id = getVal.split('=')[1];
+            this.clientId = id;
 
-          }).then(function (response) {
-              if(response.data.errorCode == 0){
-                  this.clientId = response.data.data;
-                  window.location.href='DetailStatistics.html?id = '+this.clientId;
-              }
-          }).catch(function (error) {
-              console.log("发生了未知的错误!")
-          })
-      }
-    },
-	beforeCreate(){
-		this.$http.get('http://localhost:8080/flow/sales_analysis/'+'2017')
-		.then(function(response){
-			this.items=response.data.data;
-
-            setTimeout(function () {
-                $('#example1').DataTable();
-            },0);
-		}).catch(function(error){
-			alert("出现了未知的错误！请重新进行输入")
-		})
-	}
-});
+            this.$http.get('http://localhost:8080/ticketAndFund',{
+                params:{
+                    clientID:this.clientId
+                }
+            }).then(function(response){
+                    this.items=response.data;
+                    setTimeout(function () {
+                        $('#example1').DataTable();
+                    },0);
+                }).catch(function(error){
+                alert("出现了未知的错误！请重新进行输入")
+            })
+        }
+    });

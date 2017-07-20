@@ -37,11 +37,11 @@
 
         <form action="" method="post">
             <div class="form-group has-feedback">
-                <input type="text" class="form-control" id="username" placeholder="用户名">
+                <input type="text" class="form-control" id="username" placeholder="用户名" v-model="items.username">
                 <span class="glyphicon glyphicon-user form-control-feedback"></span>
             </div>
             <div class="form-group has-feedback">
-                <input type="password" class="form-control" id="password" placeholder="Password">
+                <input type="password" class="form-control" id="password" placeholder="Password" v-model="items.password">
                 <span class="glyphicon glyphicon-lock form-control-feedback"></span>
             </div>
             <div class="row">
@@ -54,7 +54,7 @@
                 </div>
                 <!-- /.col -->
                 <div class="col-xs-4">
-                    <button type="button" class="btn btn-primary btn-block btn-flat" @click="checkLogin()">Sign In</button>
+                    <button type="button" class="btn btn-primary btn-block btn-flat" @click="login()">Sign In</button>
                 </div>
                 <!-- /.col -->
             </div>
