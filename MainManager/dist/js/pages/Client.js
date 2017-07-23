@@ -91,12 +91,41 @@ var tableToExcel = (function() {
 var vm = new Vue({
    el:'#container' ,
     data:{
+       username:'',
        items:[
 
        ],
         deleteName:''
     },
     methods:{
+        setCookie:function (cname,cvalue,exdays) {
+            var d = new Date();
+            d.setTime(d.getTime() + (exdays*20*60*60*1000));
+            var expires = "expires="+d.toUTCString();
+            document.cookie = cname + "=" + cvalue + "; " + expires;
+        },
+
+        getCookieValue:function (cname) {
+            var name = cname + "=";
+            var ca = document.cookie.split(';');
+            for(var i=0; i<ca.length; i++) {
+                var c = ca[i];
+                while (c.charAt(0)==' ') c = c.substring(1);
+                if (c.indexOf(name) != -1) return c.substring(name.length, c.length);
+            }
+            return "";
+        },
+
+        deleteCookie:function (cname) {
+            this.setCookie("username","",-1);
+            window.location.href="../index.html"
+        },
+
+        logout:function () {
+            this.deleteCookie("username");
+        },
+
+
        deleteConfirm:function () {
            hide1();
            this.$http.delete("http://localhost:8080/client",{
@@ -118,8 +147,10 @@ var vm = new Vue({
             this.deleteName = name
         }
     },
-    beforeCreate(){
-       this.$http.get("http://localhost:8080/client/allClient").then(function (response) {
+    mounted(){
+        this.username = this.getCookieValue("username");
+
+        this.$http.get("http://localhost:8080/client/allClient").then(function (response) {
            this.items = response.data.data;
            setTimeout(function () {
                $('#example1').DataTable();

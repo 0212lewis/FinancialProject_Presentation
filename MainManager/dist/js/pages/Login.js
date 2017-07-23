@@ -2,7 +2,7 @@ var vm=new Vue({
 	el:'#container',
 	data:{
 	    items:[{
-            userName:'',
+            username:'',
             password:'',
             authority:'',
             phoneNumber:''
@@ -12,6 +12,7 @@ var vm=new Vue({
 	},
 	methods:{
         login:function () {
+            const self = this;
             this.$http.post("http://localhost:8080/account/login",{
                 username:this.items.username,
                 password:this.items.password,
@@ -19,9 +20,12 @@ var vm=new Vue({
                 phoneNumber:'',
             }).then(function (response) {
                 if(response.data.errorCode === 0 ) {
-                this.items = response.data.data;
+                self.items = response.data.data;
+                    this.setCookie('username',self.items.username,1);
+
                     if(this.items.authority == 0){
                         window.location.href = "Login/MainUi.html";
+
                     }else if(this.items.authority == 1){
                         window.location.href = "Login/Finance/MainUi1.html";
                     }else if(this.items.authority == 2){
@@ -33,7 +37,14 @@ var vm=new Vue({
             }).catch(function (error) {
                 alert("发生了未知的错误");
             })
-		}
+		},
+
+        setCookie:function (cname,cvalue,exdays) {
+            var d = new Date();
+            d.setTime(d.getTime() + (exdays*20*60*60*1000));
+            var expires = "expires="+d.toUTCString();
+            document.cookie = cname + "=" + cvalue + "; " + expires;
+        }
 	}
 
 }) ;
