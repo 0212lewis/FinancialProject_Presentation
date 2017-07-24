@@ -81,7 +81,7 @@ var tool=new Vue(
 {
 	el:'#app',
 	data:{
-	    clientName:"",
+	    username:'',
 		clientId:'',
 		items:[
 
@@ -89,9 +89,15 @@ var tool=new Vue(
 	},
 	methods:{
 	  viewDetail:function (clientName) {
-          this.$http.get("http://localhost:8080/",{
+	      this.$http.get().then(function (response) {
+             if(response.data.errorCode == 0){
+                 this.clientId = response.data.data
+             }
+          }).catch(function (error) {
+              console.log("发生了未知的错误!");
+          });
 
-          }).then(function (response) {
+          this.$http.get("http://localhost:8080/ticketAndFund/"+clientId).then(function (response) {
               if(response.data.errorCode == 0){
                   this.clientId = response.data.data;
                   window.location.href='DetailStatistics.html?id = '+this.clientId;
@@ -99,9 +105,36 @@ var tool=new Vue(
           }).catch(function (error) {
               console.log("发生了未知的错误!")
           })
-      }
+      },
+
+        setCookie:function (cname,cvalue,exdays) {
+            var d = new Date();
+            d.setTime(d.getTime() + (exdays*20*60*60*1000));
+            var expires = "expires="+d.toUTCString();
+            document.cookie = cname + "=" + cvalue + "; " + expires;
+        },
+
+        getCookieValue:function (cname) {
+            var name = cname + "=";
+            var ca = document.cookie.split(';');
+            for(var i=0; i<ca.length; i++) {
+                var c = ca[i];
+                while (c.charAt(0)==' ') c = c.substring(1);
+                if (c.indexOf(name) != -1) return c.substring(name.length, c.length);
+            }
+            return "";
+        },
+
+        deleteCookie:function (cname) {
+            this.setCookie("username","",-1);
+            window.location.href="../index.html"
+        },
+        logout:function () {
+            this.deleteCookie("username");
+        }
     },
-	beforeCreate(){
+	mounted(){
+	    this.username = this.getCookieValue("username");
 		this.$http.get('http://localhost:8080/flow/sales_analysis/'+'2017')
 		.then(function(response){
 			this.items=response.data.data;
