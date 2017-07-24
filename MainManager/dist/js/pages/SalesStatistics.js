@@ -89,22 +89,18 @@ var tool=new Vue(
 	},
 	methods:{
 	  viewDetail:function (clientName) {
-	      this.$http.get().then(function (response) {
+	      this.$http.get("http://localhost:8080/client/clientID",{
+	          params:{
+	              name:clientName
+              }
+          }).then(function (response) {
              if(response.data.errorCode == 0){
-                 this.clientId = response.data.data
+                 this.clientId = response.data.data;
+                 window.location.href='DetailStatistics.html?id='+this.clientId;
              }
           }).catch(function (error) {
               console.log("发生了未知的错误!");
           });
-
-          this.$http.get("http://localhost:8080/ticketAndFund/"+clientId).then(function (response) {
-              if(response.data.errorCode == 0){
-                  this.clientId = response.data.data;
-                  window.location.href='DetailStatistics.html?id = '+this.clientId;
-              }
-          }).catch(function (error) {
-              console.log("发生了未知的错误!")
-          })
       },
 
         setCookie:function (cname,cvalue,exdays) {
