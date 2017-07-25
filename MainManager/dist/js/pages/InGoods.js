@@ -347,15 +347,15 @@ var vm = new Vue({
                 providerID: '',
                 providerName: this.InGoodsOrder.provider
 
-            }).then(function (response) {
+            },
+                {headers:{
+                    username:encodeURI(this.username)
+                }}).then(function (response) {
                 if(response.body.errorCode ==0){
-                    console.log(response.data);
-                    console.log(response.body);
                     alert("添加成功！");
-                }else{
-                    console.log(response.data);
-                    console.log(response.body);
-                    alert("成功但是responsedata错误！");
+                    document.getElementById("save").disabled=true;
+                }else if(response.data.errorCode == 80000001){
+                    alert("请先登录！");
                 }
             }).catch(function (error) {
                 alert("添加失败！");
@@ -387,24 +387,29 @@ var vm = new Vue({
     mounted(){
         const self = this;
         this.username = this.getCookieValue("username");
+        if(this.username == ''){
+            alert("请先登录！");
+            window.location.href = "../index.html"
+        }else{
+            this.$http.get("http://localhost:8080/provider/allName").then(function(response){
+                self.providers=response.data.data;
+            }).catch(function(error){
+                alert("出现了未知的错误！请重新进行输入")
+            });
 
-        this.$http.get("http://localhost:8080/provider/allName").then(function(response){
-            self.providers=response.data.data;
-        }).catch(function(error){
-            alert("出现了未知的错误！请重新进行输入")
-        });
+            this.$http.get("http://localhost:8080/product/material/name").then(function(response){
+                self.goodNames=response.data.data;
+            }).catch(function(error){
+                alert("出现了未知的错误！请重新进行输入")
+            });
 
-        this.$http.get("http://localhost:8080/product/material/name").then(function(response){
-            self.goodNames=response.data.data;
-        }).catch(function(error){
-            alert("出现了未知的错误！请重新进行输入")
-        });
+            this.$http.get("http://localhost:8080/deliveryman/allName").then(function(response){
+                self.deliveryMen=response.data.data;
+            }).catch(function(error){
+                alert("出现了未知的错误！请重新进行输入")
+            });
+        }
 
-        this.$http.get("http://localhost:8080/deliveryman/allName").then(function(response){
-            self.deliveryMen=response.data.data;
-        }).catch(function(error){
-            alert("出现了未知的错误！请重新进行输入")
-        });
     },
     computed:{
         getTotal:function() {

@@ -193,12 +193,17 @@ var vm = new Vue({
                     pay_method:this.IncomeOrder.payMethod.trim(),
                     comment:this.IncomeOrder.comment.trim(),
                     date:newDate
+                },{
+                    headers:{
+                        username:encodeURI(this.username)
+                    }
                 }).then(function (response) {
                     if(response.body.errorCode ==0){
                         alert("添加成功！");
                         document.getElementById("save").disabled=true;
-                    }else{
-                        alert("成功但是responsedata错误！");
+                    }else if(response.data.errorCode == 80000001){
+                        alert("请先登录！");
+                        window.location.href = "../index.html"
 
                     }
                 }).catch(function (error) {
@@ -217,14 +222,19 @@ var vm = new Vue({
 
     mounted(){
         this.username = this.getCookieValue("username");
+        if(this.username == ""){
+            alert("请先登录！");
+            window.location.href = "../index.html"
+        }else{
+            this.$http.get('http://localhost:8080/paymentMethod/allName').then(function(response){
+                this.payMethods=response.data.data;
+                console.log(response.data.data);
+                console.log(this.payMethods);
+            }).catch(function(error){
+                alert("出现了未知的错误！请重新进行输入")
+            })
+        }
 
-        this.$http.get('http://localhost:8080/paymentMethod/allName').then(function(response){
-            this.payMethods=response.data.data;
-            console.log(response.data.data);
-            console.log(this.payMethods);
-        }).catch(function(error){
-            alert("出现了未知的错误！请重新进行输入")
-        })
     }
 });
 

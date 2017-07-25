@@ -284,22 +284,28 @@ var vm = new Vue({
 
     mounted(){
         this.username = this.getCookieValue("username");
-        //没有cookie的时候需要直接跳转到index.html
-        const self = this;
-        this.$http.get("http://localhost:8080/client/allName").then(function(response){
+
+        if(this.username == ''){
+            alert("请先登录！")
+            window.location.href = '../index.html';
+        }else{
+            const self = this;
+            this.$http.get("http://localhost:8080/client/allName").then(function(response){
                 self.payers=response.data.data;
             }).catch(function(error){
-            alert("出现了未知的错误！请重新进行输入")
-        });
+                alert("出现了未知的错误！请重新进行输入")
+            });
 
-        this.$http.get('http://localhost:8080/paymentMethod/allName').then(function(response){
+            this.$http.get('http://localhost:8080/paymentMethod/allName').then(function(response){
                 self.payMethods=response.data.data;
                 console.log(response.data.data);
                 console.log(self.payMethods);
             }).catch(function(error){
-            alert("出现了未知的错误！请重新进行输入")
-        })
+                alert("出现了未知的错误！请重新进行输入")
+            })
 
+        }
+        //没有cookie的时候需要直接跳转到index.html
 
     }
 });

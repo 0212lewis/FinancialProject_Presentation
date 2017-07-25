@@ -170,17 +170,15 @@ var vm = new Vue({
                         money: self.invoiceOrder.money,
                         comment: self.invoiceOrder.comment.trim(),
                         date: newDate
-                    }).then(function (response) {
+                    },{headers:{
+                        username:encodeURI(this.username)
+                    }}).then(function (response) {
                         if (response.body.errorCode == 0) {
                             document.getElementById("save").disabled = true;
-                            // console.log(response.data);
-                            // console.log(response.body);
                             alert("添加成功！");
 
-                        } else {
-                            // console.log(response.data);
-                            // console.log(response.body);
-                            alert("成功但是responsedata错误！");
+                        } else if(response.data.errorCode ==80000001){// console.log(response.data);
+                            alert("请先登录！");
                         }
                     }).catch(function (error) {
                         alert("添加失败！");
@@ -193,16 +191,21 @@ var vm = new Vue({
     },
     mounted(){
         this.username = this.getCookieValue("username");
+        if(this.username = ""){
+            alert("请先登录！");
+            window.location.href = "../index.html"
+        }else{
+            const self = this;
+            this.$http.get('http://localhost:8080/client/allName')
+                .then(function(response){
+                    if(response.body.errorCode == 0) {
+                        self.invoicers = response.data.data;
+                    }
+                }).catch(function(error){
+                alert("出现了未知的错误！请重新进行输入")
+            });
+        }
 
-        const self = this;
-        this.$http.get('http://localhost:8080/client/allName')
-            .then(function(response){
-                if(response.body.errorCode == 0) {
-                    self.invoicers = response.data.data;
-                }
-            }).catch(function(error){
-            alert("出现了未知的错误！请重新进行输入")
-        });
     }
 });
 
