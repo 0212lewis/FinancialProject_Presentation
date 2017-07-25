@@ -31,7 +31,7 @@ var vm=new Vue({
                     }else if(this.items.authority == 2){
                         window.location.href = "Login/Store/MainUi2.html";
                     }
-                }else if(response.data.errorCode === 30000001){
+                }else if(response.data.errorCode === 90000001){
                     alert("输入的帐号密码不匹配！");
                 }
             }).catch(function (error) {
