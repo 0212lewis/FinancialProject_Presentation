@@ -70,6 +70,7 @@ function hide5()  //去除隐藏层和弹出层
     document.getElementById("login5").style.display="none";
 }
 
+
 var vm = new Vue({
     el:'#container',
     data:{
@@ -96,7 +97,7 @@ var vm = new Vue({
 
     },
     methods:{
-
+        //设置cookie
         setCookie:function (cname,cvalue,exdays) {
             var d = new Date();
             d.setTime(d.getTime() + (exdays*20*60*60*1000));
@@ -104,6 +105,7 @@ var vm = new Vue({
             document.cookie = cname + "=" + cvalue + "; " + expires;
         },
 
+        //得到当前的cookie
         getCookieValue:function (cname) {
             var name = cname + "=";
             var ca = document.cookie.split(';');
@@ -115,10 +117,12 @@ var vm = new Vue({
             return "";
         },
 
+        //删除cookie
         deleteCookie:function (cname) {
             this.setCookie("username","",-1);
             window.location.href="../index.html"
         },
+        //登出
         logout:function () {
             this.deleteCookie("username");
         },
@@ -232,7 +236,7 @@ var vm = new Vue({
                 hide4();
             })
         },
-
+        //添加进款单
         addIncomeOrder:function () {
                 hide5()
                 var list = document.getElementById("datepicker").value.split("/");
@@ -250,20 +254,23 @@ var vm = new Vue({
                     alert("请输入运费！");
                     return;
                 }else if((this.IncomeOrder.hour.toString().length==2)&&(this.IncomeOrder.minute.toString().length==2)&&(this.IncomeOrder.second.toString().length==2)){
-                    this.$http.post("http://localhost:8080/order/sales_income",{
+                    this.$http.post("http://localhost:8080/order/sales_income",
+                        {
                         clientId:'',
                         clientName:this.IncomeOrder.payer.trim(),
                         money:this.IncomeOrder.money.trim(),
                         pay_method:this.IncomeOrder.payMethod.trim(),
                         comment:this.IncomeOrder.comment.trim(),
                         date:newDate
-                    }).then(function (response) {
+                    },
+                        {headers:{
+                            username:encodeURI(this.username)
+                        }}).then(function (response) {
                         if(response.body.errorCode ==0){
                             alert("添加成功！");
                             document.getElementById("save").disabled=true;
-                        }else{
-                            alert("成功但是responsedata错误！");
-
+                        }else if(response.body.errorCode==80000001) {
+                            alert("请重新登录!");
                         }
                     }).catch(function (error) {
                         console.log(error.data);
@@ -275,29 +282,60 @@ var vm = new Vue({
 
 
 
+            },
+
+        //自动获取当前时间
+        getCurrentTime:function () {
+            var date = new Date();
+            var hour = date.getHours();
+            var minute = date.getMinutes();
+            var second = date.getSeconds();
+
+            if(hour.toString().length<2){
+                this.IncomeOrder.hour = '0'+hour;
+            }else{
+                this.IncomeOrder.hour = hour;
+            }
+            if(minute.toString().length<2){
+                this.IncomeOrder.minute = '0'+minute;
+            }else{
+                this.IncomeOrder.minute = minute;
             }
 
+            if(second.toString().length<2){
+                this.IncomeOrder.second = '0'+second;
+            }else{
+                this.IncomeOrder.second = second;
+            }
+
+        }
     },
 
     mounted(){
+        
         this.username = this.getCookieValue("username");
 
-        const self = this;
-        this.$http.get("http://localhost:8080/client/allName").then(function(response){
+        if(this.username == ''){
+            alert("请先登录！")
+            window.location.href = '../index.html';
+        }else{
+            const self = this;
+            this.$http.get("http://localhost:8080/client/allName").then(function(response){
                 self.payers=response.data.data;
             }).catch(function(error){
+                alert("出现了未知的错误！请重新进行输入")
+            });
 
-            alert("出现了未知的错误！请重新进行输入")
-        });
-
-        this.$http.get('http://localhost:8080/paymentMethod/allName').then(function(response){
+            this.$http.get('http://localhost:8080/paymentMethod/allName').then(function(response){
                 self.payMethods=response.data.data;
                 console.log(response.data.data);
                 console.log(self.payMethods);
             }).catch(function(error){
-            alert("出现了未知的错误！请重新进行输入")
-        })
+                alert("出现了未知的错误！请重新进行输入")
+            })
 
+        }
+        //没有cookie的时候需要直接跳转到index.html
 
     }
 });

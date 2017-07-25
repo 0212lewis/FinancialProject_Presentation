@@ -288,7 +288,11 @@ desired effect
                                 </p>
                             </li>
                             <!-- Menu Body -->
-
+                            <li class="user-footer">
+                                <div class="pull-right">
+                                    <a @click.prevent="logout" class="btn btn-default btn-flat">退出</a>
+                                </div>
+                            </li>
                         </ul>
                     </li>
 
@@ -370,6 +374,19 @@ desired effect
                     <ul class="treeview-menu">
                         <li><a href="../Manage/Businessman.html"><i class="fa fa-circle-o"> 业务员</i></a></li>
                         <li><a href="../Manage/Employee.html"><i class="fa fa-circle-o"> 权限管理</i></a></li>
+                    </ul>
+                </li>
+
+
+
+                <li class="treeview" >
+                    <a href="#"><i class="fa fa-th-large"></i> <span>系统管理</span>
+                        <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+                    </a>
+                    <ul class="treeview-menu">
+                        <li><a href="../Log.html"><i class="fa fa-circle-o"> 操作日志</i></a></li>
                     </ul>
                 </li>
             </ul>
@@ -461,7 +478,7 @@ desired effect
                         </div>
                         <div class="form-group">
                             <label class="col-md-3 control-label">付款时间</label>
-                            <div class="col-md-6">
+                            <div class="col-md-7">
                                 <div class="col-md-3">
                                     <input type="text" class="form-control" id="hour" placeholder="时" v-model="payMoneyOrder.hour">
                                 </div>
@@ -475,6 +492,9 @@ desired effect
                                 <label class="col-md-1 control-label"> : </label>
                                 <div class="col-md-3">
                                     <input type="text" class="form-control col-md-1" id="second" placeholder="秒" v-model="payMoneyOrder.second">
+                                </div>
+                                <div class="col-md-1">
+                                    <button type="button" class="btn btn-sm btn-primary" @click.prevent = "getCurrentTime">当前时间</button>
                                 </div>
                             </div>
                         </div>
@@ -699,7 +719,7 @@ desired effect
 <!-- ./wrapper -->
 <script src="../../vue/vue.js"></script>
 <script src="../../vue-resource/vue-resource.js"></script>
-<script src="../../dist/js/pages/Outcome.js"></script>
+<script src="../../dist/js/pages/Nodes/Outcome.js"></script>
 <!-- jQuery 2.2.3 -->
 <script src="../../plugins/jQuery/jquery-2.2.3.min.js"></script>
 <!-- Bootstrap 3.3.6 -->

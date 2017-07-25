@@ -127,16 +127,24 @@ var tool=new Vue(
             var getVal = thisUrl.split('?')[1];
             var id = getVal.split('=')[1];
             this.clientId = id;
-
+            console.log(this.clientId);
             this.$http.get('http://localhost:8080/ticketAndFund',{
                 params:{
-                    clientID:this.clientId
+                    clientId:this.clientId
                 }
             }).then(function(response){
+                if(response.data.errorCode == 0){
+                    console.log(this.clientId);
+
                     this.items=response.data;
+                    console.log(response.data.data);
+                    console.log(this.items);
+
                     setTimeout(function () {
                         $('#example1').DataTable();
                     },0);
+                }
+
                 }).catch(function(error){
                 alert("出现了未知的错误！请重新进行输入")
             })

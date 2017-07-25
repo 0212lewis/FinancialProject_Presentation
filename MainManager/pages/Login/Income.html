@@ -11,20 +11,20 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <!-- Bootstrap 3.3.6 -->
-    <link rel="stylesheet" href="../../../bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../../bootstrap/css/bootstrap.min.css">
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
     <!-- Ionicons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
     <!-- Theme style -->
-    <link rel="stylesheet" href="../../../dist/css/AdminLTE.min.css">
+    <link rel="stylesheet" href="../../dist/css/AdminLTE.min.css">
     <!-- bootstrap datepicker -->
-    <link rel="stylesheet" href="../../../plugins/datepicker/datepicker3.css">
+    <link rel="stylesheet" href="../../plugins/datepicker/datepicker3.css">
     <!-- AdminLTE Skins. We have chosen the skin-blue for this starter
           page. However, you can choose any other skin. Make sure you
           apply the skin class to the body tag so the changes take effect.
     -->
-    <link rel="stylesheet" href="../../../dist/css/skins/skin-blue.min.css">
+    <link rel="stylesheet" href="../../dist/css/skins/skin-blue.min.css">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -253,7 +253,7 @@ desired effect
     <header class="main-header">
 
         <!-- Logo -->
-        <a href="../../Login/Finance/MainUi1.html" class="logo">
+        <a href="MainUi1.html" class="logo">
             <!-- mini logo for sidebar mini 50x50 pixels -->
             <span class="logo-mini">office</span>
             <!-- logo for regular state and mobile devices -->
@@ -281,14 +281,14 @@ desired effect
                         <!-- Menu Toggle Button -->
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                             <!-- The user image in the navbar-->
-                            <img src="../../../dist/img/avatar5.png" class="user-image" alt="User Image">
+                            <img src="../../dist/img/avatar5.png" class="user-image" alt="User Image">
                             <!-- hidden-xs hides the username on small devices so only the image appears. -->
                             <span class="hidden-xs" v-text="username"></span>
                         </a>
                         <ul class="dropdown-menu">
                             <!-- The user image in the menu -->
                             <li class="user-header">
-                                <img src="../../../dist/img/avatar5.png" class="img-circle" alt="User Image">
+                                <img src="../../dist/img/avatar5.png" class="img-circle" alt="User Image">
 
                                 <p>
                                     华峰纸管胶厂--经理
@@ -317,7 +317,7 @@ desired effect
             <!-- Sidebar user panel (optional) -->
             <div class="user-panel">
                 <div class="pull-left image">
-                    <img src="../../../dist/img/avatar5.png" class="img-circle" alt="User Image">
+                    <img src="../../dist/img/avatar5.png" class="img-circle" alt="User Image">
                 </div>
                 <div class="pull-left info">
                     <p v-text="username"></p>
@@ -396,7 +396,7 @@ desired effect
             <section class="content-header">
 
                 <ol class="breadcrumb">
-                    <li><a href="../../Login/Finance/MainUi1.html" style="color: #000000"><i class="fa fa-dashboard" style="color: #000000"></i>Home</a></li>
+                    <li><a href="MainUi1.html" style="color: #000000"><i class="fa fa-dashboard" style="color: #000000"></i>Home</a></li>
                     <li class="active" style="color:#000000">进款单</li>
                 </ol>
             </section>
@@ -469,7 +469,7 @@ desired effect
                             </div>
                             <div class="form-group">
                                 <label class="col-md-3 control-label">进款时间</label>
-                                <div class="col-md-6">
+                                <div class="col-md-7">
                                     <div class="col-md-3">
                                         <input type="text" class="form-control" id="hour" placeholder="时" v-model="IncomeOrder.hour">
                                     </div>
@@ -484,6 +484,9 @@ desired effect
                                     <div class="col-md-3">
                                         <input type="text" class="form-control col-md-1" id="second" placeholder="秒" v-model="IncomeOrder.second">
 
+                                    </div>
+                                    <div class="col-md-1">
+                                        <button type="button" class="btn btn-sm btn-primary" @click.prevent = "getCurrentTime">当前时间</button>
                                     </div>
                                 </div>
                             </div>
@@ -707,38 +710,38 @@ desired effect
     -->
 </div>
 <!-- ./wrapper -->
-    <script src="../../../vue/vue.js"></script>
-    <script src="../../../vue-resource/vue-resource.js"></script>
-    <script src="../../../dist/js/pages/Income.js"></script>
+    <script src="../../vue/vue.js"></script>
+    <script src="../../vue-resource/vue-resource.js"></script>
+    <script src="../../dist/js/pages/Nodes/Income.js"></script>
     <!-- jQuery 2.2.3 -->
-    <script src="../../../plugins/jQuery/jquery-2.2.3.min.js"></script>
+    <script src="../../plugins/jQuery/jquery-2.2.3.min.js"></script>
     <!-- Bootstrap 3.3.6 -->
-    <script src="../../../bootstrap/js/bootstrap.min.js"></script>
+    <script src="../../bootstrap/js/bootstrap.min.js"></script>
     <!-- Select2 -->
-    <script src="../../../plugins/select2/select2.full.min.js"></script>
+    <script src="../../plugins/select2/select2.full.min.js"></script>
     <!-- InputMask -->
-    <script src="../../../plugins/input-mask/jquery.inputmask.js"></script>
-    <script src="../../../plugins/input-mask/jquery.inputmask.date.extensions.js"></script>
-    <script src="../../../plugins/input-mask/jquery.inputmask.extensions.js"></script>
+    <script src="../../plugins/input-mask/jquery.inputmask.js"></script>
+    <script src="../../plugins/input-mask/jquery.inputmask.date.extensions.js"></script>
+    <script src="../../plugins/input-mask/jquery.inputmask.extensions.js"></script>
     <!-- date-range-picker -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.11.2/moment.min.js"></script>
-    <script src="../../../plugins/daterangepicker/daterangepicker.js"></script>
+    <script src="../../plugins/daterangepicker/daterangepicker.js"></script>
     <!-- bootstrap datepicker -->
-    <script src="../../../plugins/datepicker/bootstrap-datepicker.js"></script>
+    <script src="../../plugins/datepicker/bootstrap-datepicker.js"></script>
     <!-- bootstrap color picker -->
-    <script src="../../../plugins/colorpicker/bootstrap-colorpicker.min.js"></script>
+    <script src="../../plugins/colorpicker/bootstrap-colorpicker.min.js"></script>
     <!-- bootstrap time picker -->
-    <script src="../../../plugins/timepicker/bootstrap-timepicker.min.js"></script>
+    <script src="../../plugins/timepicker/bootstrap-timepicker.min.js"></script>
     <!-- SlimScroll 1.3.0 -->
-    <script src="../../../plugins/slimScroll/jquery.slimscroll.min.js"></script>
+    <script src="../../plugins/slimScroll/jquery.slimscroll.min.js"></script>
     <!-- iCheck 1.0.1 -->
-    <script src="../../../plugins/iCheck/icheck.min.js"></script>
+    <script src="../../plugins/iCheck/icheck.min.js"></script>
     <!-- FastClick -->
-    <script src="../../../plugins/fastclick/fastclick.js"></script>
+    <script src="../../plugins/fastclick/fastclick.js"></script>
     <!-- AdminLTE App -->
-    <script src="../../../dist/js/app.min.js"></script>
+    <script src="../../dist/js/app.min.js"></script>
     <!-- AdminLTE for demo purposes -->
-    <script src="../../../dist/js/demo.js"></script>
+    <script src="../../dist/js/demo.js"></script>
     <!-- Page script -->
     <script>
         //Date picker

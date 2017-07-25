@@ -103,6 +103,7 @@ var vm = new Vue({
     },
     methods:{
 
+        //设置cookies
         setCookie:function (cname,cvalue,exdays) {
             var d = new Date();
             d.setTime(d.getTime() + (exdays*20*60*60*1000));
@@ -110,6 +111,7 @@ var vm = new Vue({
             document.cookie = cname + "=" + cvalue + "; " + expires;
         },
 
+        //得到cookies
         getCookieValue:function (cname) {
             var name = cname + "=";
             var ca = document.cookie.split(';');
@@ -121,15 +123,19 @@ var vm = new Vue({
             return "";
         },
 
+        //删除cookies
         deleteCookie:function (cname) {
             this.setCookie("username","",-1);
             window.location.href="../index.html"
         },
+
+        //登出
         logout:function () {
             this.deleteCookie("username");
         },
 
 
+        //添加供应商
         addProviders:function () {
             var name=document.getElementById("newinput1").value;
             for(var i=0;i<this.providers.length;i++){
@@ -168,6 +174,7 @@ var vm = new Vue({
             });
         },
 
+        //删除供应商
         deleteProviders:function(){
             var mySelect=document.getElementById("goodsprovider");
             var index=mySelect.selectedIndex;
@@ -191,6 +198,7 @@ var vm = new Vue({
             })
         },
 
+        //得到货品类型
         getType:function () {
             this.goodTypes=[];
             var mySelect=document.getElementById("goodName");
@@ -216,6 +224,7 @@ var vm = new Vue({
             return year + "-" + month + "-" + day;
         },
 
+        //添加运货人
         addDeliveryMan:function () {
             var name=document.getElementById("newinput3").value;
             for(var i=0;i<this.deliveryMen.length;i++){
@@ -238,6 +247,7 @@ var vm = new Vue({
             })
         },
 
+        //删除运货人
         deleteDeliveryMan:function(){
             var mySelect=document.getElementById("DeliveryMan");
             var index=mySelect.selectedIndex;
@@ -263,6 +273,7 @@ var vm = new Vue({
             })
         },
 
+        //添加货品
         addGood:function () {
             var name=document.getElementById("newinput5").value;
             var type=document.getElementById("newProductType").value;
@@ -305,6 +316,7 @@ var vm = new Vue({
             self.InGoodsOrder.total = unitPrice * ammount;
         },
 
+        //录入进货单
         addInGoodsOrder:function () {
             var selectedDate=document.getElementById("datepicker").value;
             var newDate = this.convertDate(selectedDate);
@@ -347,21 +359,22 @@ var vm = new Vue({
                 providerID: '',
                 providerName: this.InGoodsOrder.provider
 
-            }).then(function (response) {
+            },
+                {headers:{
+                    username:encodeURI(this.username)
+                }}).then(function (response) {
                 if(response.body.errorCode ==0){
-                    console.log(response.data);
-                    console.log(response.body);
                     alert("添加成功！");
-                }else{
-                    console.log(response.data);
-                    console.log(response.body);
-                    alert("成功但是responsedata错误！");
+                    document.getElementById("save").disabled=true;
+                }else if(response.data.errorCode == 80000001){
+                    alert("请先登录！");
                 }
             }).catch(function (error) {
                 alert("添加失败！");
             })
         },
 
+        //得到货品id
         getProductID:function () {
             var name=document.getElementById("goodName").value;
             var type=document.getElementById("goodType").value;
@@ -387,24 +400,29 @@ var vm = new Vue({
     mounted(){
         const self = this;
         this.username = this.getCookieValue("username");
+        if(this.username == ''){
+            alert("请先登录！");
+            window.location.href = "../index.html"
+        }else{
+            this.$http.get("http://localhost:8080/provider/allName").then(function(response){
+                self.providers=response.data.data;
+            }).catch(function(error){
+                alert("出现了未知的错误！请重新进行输入")
+            });
 
-        this.$http.get("http://localhost:8080/provider/allName").then(function(response){
-            self.providers=response.data.data;
-        }).catch(function(error){
-            alert("出现了未知的错误！请重新进行输入")
-        });
+            this.$http.get("http://localhost:8080/product/material/name").then(function(response){
+                self.goodNames=response.data.data;
+            }).catch(function(error){
+                alert("出现了未知的错误！请重新进行输入")
+            });
 
-        this.$http.get("http://localhost:8080/product/material/name").then(function(response){
-            self.goodNames=response.data.data;
-        }).catch(function(error){
-            alert("出现了未知的错误！请重新进行输入")
-        });
+            this.$http.get("http://localhost:8080/deliveryman/allName").then(function(response){
+                self.deliveryMen=response.data.data;
+            }).catch(function(error){
+                alert("出现了未知的错误！请重新进行输入")
+            });
+        }
 
-        this.$http.get("http://localhost:8080/deliveryman/allName").then(function(response){
-            self.deliveryMen=response.data.data;
-        }).catch(function(error){
-            alert("出现了未知的错误！请重新进行输入")
-        });
     },
     computed:{
         getTotal:function() {

@@ -98,7 +98,7 @@ var vm = new Vue({
 
     },
     methods:{
-
+        //设置cookies
         setCookie:function (cname,cvalue,exdays) {
             var d = new Date();
             d.setTime(d.getTime() + (exdays*20*60*60*1000));
@@ -106,6 +106,7 @@ var vm = new Vue({
             document.cookie = cname + "=" + cvalue + "; " + expires;
         },
 
+        //得到cookies
         getCookieValue:function (cname) {
             var name = cname + "=";
             var ca = document.cookie.split(';');
@@ -116,16 +117,42 @@ var vm = new Vue({
             }
             return "";
         },
-
+        //删除cookies
         deleteCookie:function (cname) {
             this.setCookie("username","",-1);
             window.location.href="../index.html"
         },
+
+        //登出
         logout:function () {
             this.deleteCookie("username");
         },
 
+        //自动获取当前时间
+        getCurrentTime:function () {
+            var date = new Date();
+            var hour = date.getHours();
+            var minute = date.getMinutes();
+            var second = date.getSeconds();
 
+            if(hour.toString().length<2){
+                this.IncomeOrder.hour = '0'+hour;
+            }else{
+                this.IncomeOrder.hour = hour;
+            }
+            if(minute.toString().length<2){
+                this.IncomeOrder.minute = '0'+minute;
+            }else{
+                this.IncomeOrder.minute = minute;
+            }
+
+            if(second.toString().length<2){
+                this.IncomeOrder.second = '0'+second;
+            }else{
+                this.IncomeOrder.second = second;
+            }
+
+        },
 
         addPayMethod:function(){
             var name=document.getElementById("newinput3").value;
@@ -193,12 +220,17 @@ var vm = new Vue({
                     pay_method:this.IncomeOrder.payMethod.trim(),
                     comment:this.IncomeOrder.comment.trim(),
                     date:newDate
+                },{
+                    headers:{
+                        username:encodeURI(this.username)
+                    }
                 }).then(function (response) {
                     if(response.body.errorCode ==0){
                         alert("添加成功！");
                         document.getElementById("save").disabled=true;
-                    }else{
-                        alert("成功但是responsedata错误！");
+                    }else if(response.data.errorCode == 80000001){
+                        alert("请先登录！");
+                        window.location.href = "../index.html"
 
                     }
                 }).catch(function (error) {
@@ -217,14 +249,19 @@ var vm = new Vue({
 
     mounted(){
         this.username = this.getCookieValue("username");
+        if(this.username == ""){
+            alert("请先登录！");
+            window.location.href = "../index.html"
+        }else{
+            this.$http.get('http://localhost:8080/paymentMethod/allName').then(function(response){
+                this.payMethods=response.data.data;
+                console.log(response.data.data);
+                console.log(this.payMethods);
+            }).catch(function(error){
+                alert("出现了未知的错误！请重新进行输入")
+            })
+        }
 
-        this.$http.get('http://localhost:8080/paymentMethod/allName').then(function(response){
-            this.payMethods=response.data.data;
-            console.log(response.data.data);
-            console.log(this.payMethods);
-        }).catch(function(error){
-            alert("出现了未知的错误！请重新进行输入")
-        })
     }
 });
 
