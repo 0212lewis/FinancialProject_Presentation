@@ -89,10 +89,11 @@ var vm = new Vue({
 
     },
     methods:{
+        //登出
         logout:function () {
             this.deleteCookie("username");
         },
-
+        //设置cookies
         setCookie:function (cname,cvalue,exdays) {
             var d = new Date();
             d.setTime(d.getTime() + (exdays*20*60*60*1000));
@@ -100,6 +101,7 @@ var vm = new Vue({
             document.cookie = cname + "=" + cvalue + "; " + expires;
         },
 
+        //得到cookies
         getCookieValue:function (cname) {
             var name = cname + "=";
             var ca = document.cookie.split(';');
@@ -110,7 +112,33 @@ var vm = new Vue({
             }
             return "";
         },
+        //自动获取当前时间
+        getCurrentTime:function () {
+            var date = new Date();
+            var hour = date.getHours();
+            var minute = date.getMinutes();
+            var second = date.getSeconds();
 
+            if(hour.toString().length<2){
+                this.payMoneyOrder.hour = '0'+hour;
+            }else{
+                this.payMoneyOrder.hour = hour;
+            }
+            if(minute.toString().length<2){
+                this.payMoneyOrder.minute = '0'+minute;
+            }else{
+                this.payMoneyOrder.minute = minute;
+            }
+
+            if(second.toString().length<2){
+                this.payMoneyOrder.second = '0'+second;
+            }else{
+                this.payMoneyOrder.second = second;
+            }
+
+        },
+
+        //删除cookies
         deleteCookie:function (cname) {
             this.setCookie("username","",-1);
             window.location.href="../index.html"

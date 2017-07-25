@@ -367,7 +367,7 @@ desired effect
                         </div>
                         <div class="form-group">
                             <label class="col-md-3 control-label">开票时间</label>
-                            <div class="col-md-6">
+                            <div class="col-md-7">
                                 <div class="col-md-3">
                                     <input type="text" class="form-control" id="hour" placeholder="时" v-model="invoiceOrder.hour">
                                 </div>
@@ -382,6 +382,9 @@ desired effect
                                 <div class="col-md-3">
                                     <input type="text" class="form-control col-md-1" id="second" placeholder="秒" v-model="invoiceOrder.second">
 
+                                </div>
+                                <div class="col-md-1">
+                                    <button type="button" class="btn btn-sm btn-primary" @click.prevent = "getCurrentTime">当前时间</button>
                                 </div>
                             </div>
                         </div>
@@ -607,7 +610,7 @@ desired effect
 <!-- ./wrapper -->
 <script src="../../vue/vue.js"></script>
 <script src="../../vue-resource/vue-resource.js"></script>
-<script src="../../dist/js/pages/Invoice.js"></script>
+<script src="../../dist/js/pages/Nodes/Invoice.js"></script>
 <!-- jQuery 2.2.3 -->
 <script src="../../plugins/jQuery/jquery-2.2.3.min.js"></script>
 <!-- Bootstrap 3.3.6 -->

@@ -351,7 +351,7 @@ desired effect
         <section class="content-header">
 
             <ol class="breadcrumb">
-                <li><a href="../../Login/Finance/MainUi1.html" style="color:#000000"><i class="fa fa-dashboard" style="color:#000000"></i>Home</a></li>
+                <li><a href="MainUi1.html" style="color:#000000"><i class="fa fa-dashboard" style="color:#000000"></i>Home</a></li>
                 <li class="active" style="color:#000000">付款单</li>
             </ol>
         </section>
@@ -428,7 +428,7 @@ desired effect
                         </div>
                         <div class="form-group">
                             <label class="col-md-3 control-label">付款时间</label>
-                            <div class="col-md-6">
+                            <div class="col-md-7">
                                 <div class="col-md-3">
                                     <input type="text" class="form-control" id="hour" placeholder="时" v-model="payMoneyOrder.hour">
                                 </div>
@@ -442,6 +442,9 @@ desired effect
                                 <label class="col-md-1 control-label"> : </label>
                                 <div class="col-md-3">
                                     <input type="text" class="form-control col-md-1" id="second" placeholder="秒" v-model="payMoneyOrder.second">
+                                </div>
+                                <div class="col-md-1">
+                                    <button type="button" class="btn btn-sm btn-primary" @click.prevent = "getCurrentTime">当前时间</button>
                                 </div>
                             </div>
                         </div>
@@ -666,7 +669,7 @@ desired effect
 <!-- ./wrapper -->
 <script src="../../vue/vue.js"></script>
 <script src="../../vue-resource/vue-resource.js"></script>
-<script src="../../dist/js/pages/Outcome.js"></script>
+<script src="../../dist/js/pages/Nodes/Outcome.js"></script>
 <!-- jQuery 2.2.3 -->
 <script src="../../plugins/jQuery/jquery-2.2.3.min.js"></script>
 <!-- Bootstrap 3.3.6 -->

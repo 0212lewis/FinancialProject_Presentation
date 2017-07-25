@@ -93,7 +93,33 @@ var vm = new Vue({
             this.deleteCookie("username");
         },
 
+        //自动获取当前时间
+        getCurrentTime:function () {
+            var date = new Date();
+            var hour = date.getHours();
+            var minute = date.getMinutes();
+            var second = date.getSeconds();
 
+            if(hour.toString().length<2){
+                this.invoiceOrder.hour = '0'+hour;
+            }else{
+                this.invoiceOrder.hour = hour;
+            }
+            if(minute.toString().length<2){
+                this.invoiceOrder.minute = '0'+minute;
+            }else{
+                this.invoiceOrder.minute = minute;
+            }
+
+            if(second.toString().length<2){
+                this.invoiceOrder.second = '0'+second;
+            }else{
+                this.invoiceOrder.second = second;
+            }
+
+        },
+
+        //添加客户
         addUnit:function(){
             var name=document.getElementById("newinput1").value;
             for(var i=0;i<this.invoicers.length;i++){
@@ -119,7 +145,7 @@ var vm = new Vue({
                 alert("出现了未知的错误！请重新进行输入")
             })
         },
-
+        //删除客户
         deleteUnit:function(){
             var mySelect=document.getElementById("payunit");
             var index=mySelect.selectedIndex;
@@ -144,7 +170,7 @@ var vm = new Vue({
                 hide2();
             })
         },
-
+        //录入开票单
         addTicketOrder:function () {
             hide5();
             var list = document.getElementById("datepicker").value.split("/");

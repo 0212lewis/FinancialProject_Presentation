@@ -70,6 +70,7 @@ function hide5()  //去除隐藏层和弹出层
     document.getElementById("login5").style.display="none";
 }
 
+
 var vm = new Vue({
     el:'#container',
     data:{
@@ -96,7 +97,7 @@ var vm = new Vue({
 
     },
     methods:{
-
+        //设置cookie
         setCookie:function (cname,cvalue,exdays) {
             var d = new Date();
             d.setTime(d.getTime() + (exdays*20*60*60*1000));
@@ -104,6 +105,7 @@ var vm = new Vue({
             document.cookie = cname + "=" + cvalue + "; " + expires;
         },
 
+        //得到当前的cookie
         getCookieValue:function (cname) {
             var name = cname + "=";
             var ca = document.cookie.split(';');
@@ -115,10 +117,12 @@ var vm = new Vue({
             return "";
         },
 
+        //删除cookie
         deleteCookie:function (cname) {
             this.setCookie("username","",-1);
             window.location.href="../index.html"
         },
+        //登出
         logout:function () {
             this.deleteCookie("username");
         },
@@ -232,7 +236,7 @@ var vm = new Vue({
                 hide4();
             })
         },
-
+        //添加进款单
         addIncomeOrder:function () {
                 hide5()
                 var list = document.getElementById("datepicker").value.split("/");
@@ -278,11 +282,37 @@ var vm = new Vue({
 
 
 
+            },
+
+        //自动获取当前时间
+        getCurrentTime:function () {
+            var date = new Date();
+            var hour = date.getHours();
+            var minute = date.getMinutes();
+            var second = date.getSeconds();
+
+            if(hour.toString().length<2){
+                this.IncomeOrder.hour = '0'+hour;
+            }else{
+                this.IncomeOrder.hour = hour;
+            }
+            if(minute.toString().length<2){
+                this.IncomeOrder.minute = '0'+minute;
+            }else{
+                this.IncomeOrder.minute = minute;
             }
 
+            if(second.toString().length<2){
+                this.IncomeOrder.second = '0'+second;
+            }else{
+                this.IncomeOrder.second = second;
+            }
+
+        }
     },
 
     mounted(){
+        
         this.username = this.getCookieValue("username");
 
         if(this.username == ''){

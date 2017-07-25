@@ -103,6 +103,7 @@ var vm = new Vue({
     },
     methods:{
 
+        //设置cookies
         setCookie:function (cname,cvalue,exdays) {
             var d = new Date();
             d.setTime(d.getTime() + (exdays*20*60*60*1000));
@@ -110,6 +111,7 @@ var vm = new Vue({
             document.cookie = cname + "=" + cvalue + "; " + expires;
         },
 
+        //得到cookies
         getCookieValue:function (cname) {
             var name = cname + "=";
             var ca = document.cookie.split(';');
@@ -121,15 +123,19 @@ var vm = new Vue({
             return "";
         },
 
+        //删除cookies
         deleteCookie:function (cname) {
             this.setCookie("username","",-1);
             window.location.href="../index.html"
         },
+
+        //登出
         logout:function () {
             this.deleteCookie("username");
         },
 
 
+        //添加供应商
         addProviders:function () {
             var name=document.getElementById("newinput1").value;
             for(var i=0;i<this.providers.length;i++){
@@ -168,6 +174,7 @@ var vm = new Vue({
             });
         },
 
+        //删除供应商
         deleteProviders:function(){
             var mySelect=document.getElementById("goodsprovider");
             var index=mySelect.selectedIndex;
@@ -191,6 +198,7 @@ var vm = new Vue({
             })
         },
 
+        //得到货品类型
         getType:function () {
             this.goodTypes=[];
             var mySelect=document.getElementById("goodName");
@@ -216,6 +224,7 @@ var vm = new Vue({
             return year + "-" + month + "-" + day;
         },
 
+        //添加运货人
         addDeliveryMan:function () {
             var name=document.getElementById("newinput3").value;
             for(var i=0;i<this.deliveryMen.length;i++){
@@ -238,6 +247,7 @@ var vm = new Vue({
             })
         },
 
+        //删除运货人
         deleteDeliveryMan:function(){
             var mySelect=document.getElementById("DeliveryMan");
             var index=mySelect.selectedIndex;
@@ -263,6 +273,7 @@ var vm = new Vue({
             })
         },
 
+        //添加货品
         addGood:function () {
             var name=document.getElementById("newinput5").value;
             var type=document.getElementById("newProductType").value;
@@ -305,6 +316,7 @@ var vm = new Vue({
             self.InGoodsOrder.total = unitPrice * ammount;
         },
 
+        //录入进货单
         addInGoodsOrder:function () {
             var selectedDate=document.getElementById("datepicker").value;
             var newDate = this.convertDate(selectedDate);
@@ -362,6 +374,7 @@ var vm = new Vue({
             })
         },
 
+        //得到货品id
         getProductID:function () {
             var name=document.getElementById("goodName").value;
             var type=document.getElementById("goodType").value;
