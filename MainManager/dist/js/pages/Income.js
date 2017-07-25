@@ -250,20 +250,23 @@ var vm = new Vue({
                     alert("请输入运费！");
                     return;
                 }else if((this.IncomeOrder.hour.toString().length==2)&&(this.IncomeOrder.minute.toString().length==2)&&(this.IncomeOrder.second.toString().length==2)){
-                    this.$http.post("http://localhost:8080/order/sales_income",{
+                    this.$http.post("http://localhost:8080/order/sales_income",
+                        {
                         clientId:'',
                         clientName:this.IncomeOrder.payer.trim(),
                         money:this.IncomeOrder.money.trim(),
                         pay_method:this.IncomeOrder.payMethod.trim(),
                         comment:this.IncomeOrder.comment.trim(),
                         date:newDate
-                    }).then(function (response) {
+                    },
+                        {headers:{
+                            username:encodeURI(this.username)
+                        }}).then(function (response) {
                         if(response.body.errorCode ==0){
                             alert("添加成功！");
                             document.getElementById("save").disabled=true;
-                        }else{
-                            alert("成功但是responsedata错误！");
-
+                        }else if(response.body.errorCode==80000001) {
+                            alert("请重新登录!");
                         }
                     }).catch(function (error) {
                         console.log(error.data);
@@ -281,12 +284,11 @@ var vm = new Vue({
 
     mounted(){
         this.username = this.getCookieValue("username");
-
+        //没有cookie的时候需要直接跳转到index.html
         const self = this;
         this.$http.get("http://localhost:8080/client/allName").then(function(response){
                 self.payers=response.data.data;
             }).catch(function(error){
-
             alert("出现了未知的错误！请重新进行输入")
         });
 

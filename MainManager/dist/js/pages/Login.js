@@ -21,6 +21,7 @@ var vm=new Vue({
             }).then(function (response) {
                 if(response.data.errorCode === 0 ) {
                 self.items = response.data.data;
+                    var username = response.data.data.username;
                     this.setCookie('username',self.items.username,1);
 
                     if(this.items.authority == 0){
@@ -31,7 +32,7 @@ var vm=new Vue({
                     }else if(this.items.authority == 2){
                         window.location.href = "Login/Store/MainUi2.html";
                     }
-                }else if(response.data.errorCode === 30000001){
+                }else if(response.data.errorCode === 10000001){
                     alert("输入的帐号密码不匹配！");
                 }
             }).catch(function (error) {
@@ -41,7 +42,7 @@ var vm=new Vue({
 
         setCookie:function (cname,cvalue,exdays) {
             var d = new Date();
-            d.setTime(d.getTime() + (exdays*20*60*60*1000));
+            d.setTime(d.getTime() + (exdays*24*60*60*1000));
             var expires = "expires="+d.toUTCString();
             document.cookie = cname + "=" + cvalue + "; " + expires;
         }
