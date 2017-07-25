@@ -110,6 +110,51 @@ function hide8()  //去除隐藏层和弹出层
     document.getElementById("login8").style.display = "none";
 }
 
+
+function goToPrintOutGoods() {
+    var storage = window.localStorage;
+    storage.setItem("clientName",document.getElementById("receiver").value)
+    storage.setItem("deliveryMan",document.getElementById("DeliveryMan").value)
+    storage.setItem("comment",document.getElementById("input2").value)
+
+    storage.setItem("goodname1",document.getElementById("goodName1").value)
+    storage.setItem("goodtype1",document.getElementById("goodModel1").value)
+    storage.setItem("goodunitprice1",document.getElementById("unitPriceInput1").value)
+    storage.setItem("goodammount1",document.getElementById("numInput1").value)
+    storage.setItem("goodtotal1",parseFloat(document.getElementById("unitPriceInput1").value)*parseFloat(document.getElementById("numInput1").value));
+
+    storage.setItem("goodname2",document.getElementById("goodName2").value)
+    storage.setItem("goodtype2",document.getElementById("goodModel2").value)
+    storage.setItem("goodunitprice2",document.getElementById("moneyInput2").value)
+    storage.setItem("goodammount2",document.getElementById("numInput2").value)
+    storage.setItem("goodtotal2",parseFloat(document.getElementById("moneyInput2").value)*parseFloat(document.getElementById("numInput2").value));
+
+    storage.setItem("goodname3",document.getElementById("goodName3").value)
+    storage.setItem("goodtype3",document.getElementById("goodModel3").value)
+    storage.setItem("goodunitprice3",document.getElementById("moneyInput3").value)
+    storage.setItem("goodammount3",document.getElementById("numInput3").value)
+    storage.setItem("goodtotal3",parseFloat(document.getElementById("moneyInput3").value)*parseFloat(document.getElementById("numInput3").value));
+
+    storage.setItem("goodname4",document.getElementById("goodName4").value)
+    storage.setItem("goodtype4",document.getElementById("goodModel4").value)
+    storage.setItem("goodunitprice4",document.getElementById("moneyInput4").value)
+    storage.setItem("goodammount4",document.getElementById("numInput4").value)
+    storage.setItem("goodtotal4",parseFloat(document.getElementById("moneyInput4").value)*parseFloat(document.getElementById("numInput4").value));
+
+    storage.setItem("goodname5",document.getElementById("goodName5").value)
+    storage.setItem("goodtype5",document.getElementById("goodModel5").value)
+    storage.setItem("goodunitprice5",document.getElementById("moneyInput5").value)
+    storage.setItem("goodammount5",document.getElementById("numInput5").value)
+    storage.setItem("goodtotal5",parseFloat(document.getElementById("moneyInput5").value)*parseFloat(document.getElementById("numInput5").value));
+
+    storage.setItem("ticketmaker",document.getElementById("createOrderMan").value)
+    storage.setItem("businessman",document.getElementById("businessMan").value)
+    storage.setItem("date",document.getElementById("datepicker").value)
+    window.location.href="../PrintPages/PrintOutGoods.html";
+
+}
+
+
 var vm = new Vue({
     el:'#container',
     data:{
@@ -173,6 +218,7 @@ var vm = new Vue({
         businessMen:[
 
         ],
+
 
         id1:"",
         id2:"",

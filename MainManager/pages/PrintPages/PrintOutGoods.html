@@ -111,6 +111,18 @@ scratch. This page gets rid of all links and provides the needed markup only.
             z-Index:2;}
         #login8 { position:absolute;width:400px;height:180px;top:200px;left:35%;background-color:#fff;display:none;cursor:pointer;z-Index:3;}
 
+        input[type="text1"]
+        {
+            /*border: 0;*/
+            /*border-bottom: 1px solid black;*/
+            /*outline: 0;*/
+            border: 0;
+            outline: 0;
+            background: transparent;
+            border-bottom: 1px solid black;
+        }
+
+
     </style>
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -140,9 +152,9 @@ desired effect
 |---------------------------------------------------------|
 -->
 
-<body class="hold-transition skin-blue sidebar-mini">
+<body class="hold-transition skin-blue sidebar-mini" onbeforeunload="leave()">
 
-    <!-- Main Header -->
+<!-- Main Header -->
     <header class="main-header">
 
         <!-- Logo -->
@@ -304,11 +316,11 @@ desired effect
 
             <form class="form-horizontal">
             <br>
-                    <div>  <!--class="form-group"-->
-                        <label  class="col-md-2 control-label">收货单位：</label>
-                        <label class="col-md-3 control-label">泰州市大韩仪表有限公司</label>
-                        <label  class="col-md-4 control-label">送货日期：</label>
-                        <label  class="col-md-2 control-label">2017年7月22日</label>
+                    <div class="row">  <!--class="form-group"-->
+                        <p class="col-md-2 control-label">收货单位：</p>
+                        <label id="cname" class="col-md-2 control-label"></label>
+                        <p  class="col-md-4 control-label">送货日期：</p>
+                        <label id="date" class="col-md-2 control-label"></label>
                     </div>
                     <!-- /.box-header -->
                     <div class="box-body">
@@ -331,48 +343,44 @@ desired effect
                             <tbody>
                                 <tr>
                                     <td align="center">1</td>
-                                    <td align="center">纸管胶</td>
-                                    <td >E-3</td>
-                                    <td>6</td>
-                                    <td>1380</td>
-                                    <td>8280</td>
-                                    <td>这里是备注</td>
+                                    <td align="center" id="goodname1"></td>
+                                    <td id="goodtype1"></td>
+                                    <td id="goodammount1"></td>
+                                    <td id="singleprice1"></td>
+                                    <td id="totalprice1"></td>
+                                    <td id="comment" rowspan="5"></td>
                                 </tr>
                                 <tr>
                                     <td align="center">2</td>
-                                    <td align="center">纸管胶</td>
-                                    <td >E-3</td>
-                                    <td>6</td>
-                                    <td>1380</td>
-                                    <td>8280</td>
-                                    <td></td>
+                                    <td align="center" id="goodname2"></td>
+                                    <td id="goodtype2"></td>
+                                    <td id="goodammount2"></td>
+                                    <td id="singleprice2"></td>
+                                    <td id="totalprice2"></td>
                                 </tr>
                                 <tr>
                                     <td align="center">3</td>
-                                    <td align="center">纸管胶</td>
-                                    <td >E-3</td>
-                                    <td>6</td>
-                                    <td>1380</td>
-                                    <td>8280</td>
-                                    <td></td>
+                                    <td align="center" id="goodname3"></td>
+                                    <td id="goodtype3"></td>
+                                    <td id="goodammount3"></td>
+                                    <td id="singleprice3"></td>
+                                    <td id="totalprice3"></td>
                                 </tr>
                                 <tr>
                                     <td align="center">4</td>
-                                    <td align="center">纸管胶</td>
-                                    <td >E-3</td>
-                                    <td>6</td>
-                                    <td>1380</td>
-                                    <td>8280</td>
-                                    <td></td>
+                                    <td align="center" id="goodname4"></td>
+                                    <td id="goodtype4"></td>
+                                    <td id="goodammount4"></td>
+                                    <td id="singleprice4"></td>
+                                    <td id="totalprice4"></td>
                                 </tr>
                                 <tr>
                                     <td align="center">5</td>
-                                    <td align="center">纸管胶</td>
-                                    <td >E-3</td>
-                                    <td>6</td>
-                                    <td>1380</td>
-                                    <td>8280</td>
-                                    <td></td>
+                                    <td align="center" id="goodname5"></td>
+                                    <td id="goodtype5"></td>
+                                    <td id="goodammount5"></td>
+                                    <td id="singleprice5"></td>
+                                    <td id="totalprice5"></td>
                                 </tr>
                             </tbody>
                         </table>
@@ -385,19 +393,34 @@ desired effect
                         <tbody>
                             <tr>
                                 <td valign="center" align="center" rowspan="2">空桶回收情况</td>
-                                <td>规格</td>
-                                <td>1 &nbsp;&nbsp;&nbsp;2 &nbsp;&nbsp;&nbsp; 3</td>
+                                <td><label align="center">规格</label></td>
+                                <td>
+                                    <label class="col-md-3 control-label"><input name="Fruit" type="checkbox" value="" />1000L桶 </label>
+                                    <label class="col-md-3 control-label"><input name="Fruit" type="checkbox" value="" />50L桶 </label>
+                                    <label class="col-md-3 control-label"><input name="Fruit" type="checkbox" value="" />其他包装 </label>
+                                </td>
                             </tr>
                             <tr>
-                                <td>数量(只)</td>
-                                <td>前余&nbsp;&nbsp;今到&nbsp;&nbsp;今收回&nbsp;&nbsp;余&nbsp;&nbsp;</td>
+                                <td><label align="center">数量(只)</label></td>
+                                <td>
+                                    <!--<label class="col-md-3 control-label"></label>-->
+                                    <div class="row">
+                                        &nbsp;&nbsp; &nbsp;&nbsp;前余：&nbsp;&nbsp;<input class="" type="text" value="" />
+                                        &nbsp;&nbsp;今到：<input class="" type="text" value="" />
+                                    </div>
+                                    <br>
+                                    <div class="row">
+                                        &nbsp; &nbsp;今收回：<input class="" type="text" value="" />
+                                        &nbsp;&nbsp;&nbsp;&nbsp;余：&nbsp;&nbsp;<input class="" type="text" value="" />
+                                    </div>
+                                </td>
                             </tr>
                         </tbody>
                         <tfoot>
                             <tr>
-                                <th align="center">制单人:<label class=""></label></th>
-                                <th align="center">业务员：吴13688886666</th>
-                                <th align="center">收货人：李辉</th>
+                                <th align="center">制单人:&nbsp;&nbsp;&nbsp;&nbsp;<label id="ticketmaker" class=""></label></th>
+                                <th align="center">业务员:&nbsp;&nbsp;&nbsp;&nbsp;<label id="businessman" class=""></label></th>
+                                <th align="center">收货人：<input  type="text1" value="" /></th>
                             </tr>
                         </tfoot>
                     </table>
@@ -626,7 +649,7 @@ desired effect
          immediately after the control sidebar -->
     <div class="control-sidebar-bg"></div>
 </div>
-
+<script src="../../dist/js/pages/PrintOutGoods.js"></script>
 <script src="../../vue/vue.js"></script>
 <script src="../../vue-resource/vue-resource.js"></script>
 <!-- jQuery 2.2.3 -->

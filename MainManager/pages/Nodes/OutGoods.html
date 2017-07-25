@@ -507,7 +507,9 @@ desired effect
             <div class="box box-warning" id="outgoods"  style="width: 70%;margin-left: 15%">
                 <div class="box-header with-border">
                     <h3 class="box-title">录入送货单</h3>
-                    <button type="submit" class="btn btn-warning pull-right noprint" class="noprint" rel="external nofollow" target="_self" onclick="window.print()">打印</button>
+                    <!--<button type="submit" class="btn btn-warning pull-right noprint" class="noprint" rel="external nofollow" target="_self" onclick="window.print()">打印</button>-->
+                    <button type="submit" class="btn btn-warning pull-right" onclick="goToPrintOutGoods()">打印</button>
+                    <!--<a href="../PrintPages/PrintOutGoods.html"><button type="submit" class="btn btn-warning pull-right">打印</button></a>-->
                 </div>
                 <!-- /.box-header -->
                 <!-- form start -->
@@ -647,7 +649,6 @@ desired effect
                         <hr>
                         <div class="form-group">
                             <label  class="col-md-3 control-label">业务员</label>
-
                             <div class="col-md-6">
                                 <select id="businessMan" class="form-control" v-model="deliveryOrder.businessMan">
                                     <option v-for="businessMan in businessMen" v-text="businessMan.name">
@@ -701,7 +702,7 @@ desired effect
                     </div>
 
                     <div class="box-footer">
-                        <button type="submit" class="btn btn-default noprint">重置</button>
+                        <button type="reset" class="btn btn-default noprint">重置</button>
                         <button type="submit" class="btn btn-info pull-right noprint" @click.prevent="addDeliveryOrder">录入数据</button>
                     </div>
                     <!-- /.box-footer -->
