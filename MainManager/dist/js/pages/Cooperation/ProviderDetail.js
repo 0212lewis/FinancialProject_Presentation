@@ -60,6 +60,11 @@ var vm  = new Vue({
                 account:this.items.account,
                 mailAddress:this.items.mail_address,
                 linkman:this.items.linkman
+            },{
+                headers:{
+                    username:encodeURI(this.username)
+                }
+
             }).then(function (response) {
                 if(reponse.data.errorCode == 0){
                     hide1();

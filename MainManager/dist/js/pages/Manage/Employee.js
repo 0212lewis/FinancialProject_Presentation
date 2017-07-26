@@ -70,11 +70,18 @@ var vm  = new Vue({
         deleteFinanceConfirm:function () {
             hide1();
             this.$http.delete("http://localhost:8080/account/Finance",{
-                body : this.deleteName
+                body:{
+                    name:this.deleteName
+                }
+
+            },{
+                headers:{
+                    username:encodeURI(this.username)
+                }
             }).then(function (response) {
                 if(response.body.errorCode == 0){
                     console.log(response.data.data);
-                    console.log(this.deleteName)
+                    console.log(this.deleteName);
                     alert("删除成功！");
                     window.location.reload();
                 }
@@ -91,7 +98,13 @@ var vm  = new Vue({
         deleteStoreConfirm:function () {
             hide2();
             this.$http.delete("http://localhost:8080/account/store",{
-                body : this.deleteName
+                  body:{
+                      name:this.deleteName
+                  }
+            },{
+                headers:{
+                    username:encodeURI(this.username)
+                }
             }).then(function (response) {
                 if(response.body.errorCode == 0){
                     console.log(response.data.data);
@@ -111,32 +124,35 @@ var vm  = new Vue({
     },
     mounted(){
         this.username = this.getCookieValue("username");
+        if(this.username == ""){
+            alert("请先登录！");
+            window.location.href = "../index.html"
+        }else{
+            this.$http.get("http://localhost:8080/account/finance").then(function (response) {
+                if(response.data.errorCode == 0){
+                    this.items1 = response.data.data;
+                    setTimeout(function () {
+                        $('#example1').DataTable();
+                    },0);
+                    console.log(response.data.data);
+                    console.log(this.items1);
+                }
+            });
+
+            this.$http.get("http://localhost:8080/account/store").then(function (response) {
+                if(response.data.errorCode == 0){
+                    this.items2 = response.data.data;
+                    setTimeout(function () {
+                        $('#example2').DataTable();
+                    },0);
+                    console.log(response.data.data);
+                    console.log(this.items2);
+                }
+            })
+        }
 
 
-        this.$http.get("http://localhost:8080/account/finance").then(function (response) {
-            if(response.data.errorCode == 0){
-                this.items1 = response.data.data;
-                setTimeout(function () {
-                    $('#example1').DataTable();
-                },0);
-                console.log(response.data.data);
-                console.log(this.items1);
-            }
-        }).catch(function (error) {
-            alert("发生了未知的错误！");
-        });
 
-        this.$http.get("http://localhost:8080/account/store").then(function (response) {
-            if(response.data.errorCode == 0){
-                this.items2 = response.data.data;
-                setTimeout(function () {
-                    $('#example2').DataTable();
-                },0);
-                console.log(response.data.data);
-                console.log(this.items2);
-            }
-        }).catch(function (error) {
-            alert("发生了未知的错误！");
-        })
-    }
+
+}
 });

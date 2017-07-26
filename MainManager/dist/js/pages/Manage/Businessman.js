@@ -57,7 +57,13 @@ var vm = new Vue({
         deleteConfirm:function () {
             hide1();
             this.$http.delete("http://localhost:8080/businessman",{
-                body : this.deleteName
+                body : {
+                    name:this.deleteName
+                }
+            },{
+                headers:{
+                    username:encodeURI(this.username)
+                }
             }).then(function (response) {
                 if(response.body.errorCode == 0){
                     console.log(response.data.data);
@@ -75,16 +81,20 @@ var vm = new Vue({
             this.deleteName = name
         }
     },
-    beforeCreate(){
+    mounted(){
         this.username = this.getCookieValue("username");
 
-        this.$http.get("http://localhost:8080/businessman").then(function (response) {
-            this.items = response.data.data;
-            setTimeout(function () {
-                $('#example1').DataTable();
-            },0);
-        }).catch(function (error) {
-            alert("出现了未知的错误！");
-        })
+        if(this.username == ""){
+            alert("请先登录！");
+            window.location.href = "../index.html"
+        }else{
+            this.$http.get("http://localhost:8080/businessman").then(function (response) {
+                this.items = response.data.data;
+                setTimeout(function () {
+                    $('#example1').DataTable();
+                },0);
+            })
+        }
+
     }
 });

@@ -82,7 +82,12 @@ var vm = new Vue({
                     phoneNumber:this.items.phoneNumber,
                     authority:2
 
-                }).then(function (response) {
+                },
+                    {
+                        headers:{
+                            username:encodeURI(this.username)
+                        }
+                    }).then(function (response) {
                     if(response.data.errorCode == 0){
                         hide1();
                         alert("添加成功！");

@@ -75,7 +75,13 @@ var vm = new Vue({
                     address:this.items.address,
                     phone_number:this.items.phoneNumber,
 
-                }).then(function (response) {
+                },
+                    {
+                        headers:{
+                            username:encodeURI(this.username)
+                        }
+
+                    }).then(function (response) {
                     if(response.data.errorCode == 0){
                         hide1();
                         alert("添加成功！");
@@ -91,7 +97,13 @@ var vm = new Vue({
         }
     },
     mounted(){
+
         this.username = this.getCookieValue("username");
+        if(this.username == ""){
+            alert("请先登录！");
+            window.location.href = "../index.html"
+        }
+
 
     }
 });

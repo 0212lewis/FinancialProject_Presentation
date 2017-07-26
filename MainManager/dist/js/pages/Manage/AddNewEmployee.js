@@ -65,6 +65,7 @@ var vm = new Vue({
 
 
         saveAdd:function () {
+            alert("here");
 
             if(!isChinese(this.items.username.toString())){
                 alert("请输入中文字符！");
@@ -75,8 +76,12 @@ var vm = new Vue({
                         password:this.items.password,
                         phoneNumber:this.items.phoneNumber,
                         authority:1
-
-                }).then(function (response) {
+                },
+                    {
+                        headers:{
+                            username:encodeURI(this.username)
+                        }
+                    }).then(function (response) {
                     if(response.data.errorCode == 0){
                         hide1();
                         alert("添加成功！");
@@ -92,7 +97,11 @@ var vm = new Vue({
         }
     },
     mounted(){
-        this.username = this.getCookieValue("username");
 
+        this.username = this.getCookieValue("username");
+        if(this.username ==""){
+            alert("请先登录！");
+            window.location.href = "../index.html"
+        }
     }
 });
