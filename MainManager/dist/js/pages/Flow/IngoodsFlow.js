@@ -81,6 +81,10 @@ var tool=new Vue(
 {
 	el:'#app',
 	data:{
+	    years:[
+
+        ],
+	    year:'',
 	    username:'',
 		items:[
 
@@ -113,20 +117,57 @@ var tool=new Vue(
 
         logout:function () {
             this.deleteCookie("username");
+        },
+        changeYear:function () {
+            var select = document.getElementById("select");
+            var value = select.value;
+            this.year = parseInt(value);
+            console.log(this.year);
+            this.$http.get('http://localhost:8080/flow/in_product/'+this.year)
+                .then(function(response){
+                    if(response.data.errorCode == 0){
+                        this.items=response.data.data;
+                        console.log(response.data.data);
+                        var dt = $('#example1').DataTable();
+                        dt.destroy();
+                        setTimeout(function () {
+                            $('#example1').DataTable();
+                        },0);
+                    }
+
+                }).catch(function(error){
+                alert("出现了未知的错误！请重新进行输入")
+            })
+
         }
     },
 	mounted(){
         this.username = this.getCookieValue("username");
+        if(this.username == ""){
+            alert("请先登录！");
+            window.location.href = "../index.html";
+        }else{
+            this.$http.get("http://localhost:8080/flow/year").then(function (response) {
+                if(response.data.errorCode == 0){
+                    this.years = response.data.data;
+                    this.year = parseInt(response.data.data[0]);
+                    console.log(this.year);
 
-        const self = this;
-		this.$http.get('http://localhost:8080/flow/in_product/'+'2017')
-		.then(function(response){
-			self.items=response.data.data;
-            setTimeout(function () {
-                $('#example1').DataTable();
-            },0);
-		}).catch(function(error){
-			alert("出现了未知的错误！请重新进行输入")
-		})
+                    this.$http.get('http://localhost:8080/flow/in_product/'+this.year)
+                        .then(function(response){
+                            this.items=response.data.data;
+                            setTimeout(function () {
+                                $('#example1').DataTable();
+                            },0);
+                        }).catch(function(error){
+                        alert("出现了未知的错误！请重新进行输入")
+                    })
+                }
+            }).catch(function (error) {
+                alert("发生了未知的错误！")
+            });
+        }
+
+
 	}
 });

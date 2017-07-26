@@ -145,6 +145,7 @@ desired effect
                     </a>
                     <ul class="treeview-menu">
                         <li><a href="../../pages/Nodes/Income.html"><i class="fa fa-circle-o"> 进款单</i></a> </li>
+                        <li><a href="../../pages/Nodes/NonSaleIncome.html"><i class="fa fa-circle-o"> 销售外进款单</i></a></li>
                         <li><a href="../../pages/Nodes/Outcome.html"><i class="fa fa-circle-o"> 付款单</i></a> </li>
                         <li ><a href="../../pages/Nodes/Invoice.html"><i class="fa fa-circle-o"> 开票单</i></a> </li>
                         <li><a href="../../pages/Nodes/InGoods.html"><i class="fa fa-circle-o"> 进货单</i></a> </li>
@@ -228,7 +229,23 @@ desired effect
           <!-- /.box -->
            <div class="box">
             <div class="box-header">
-              <h3 class="box-title">年度开票流水表</h3>
+              <h3 class="col-md-3 box-title">年度开票流水表</h3>
+
+                <div class="col-md-9 pull-right" >
+                    <div class="col-md-2">
+                        <label class="control-label" style="font-size: large">年份</label>
+                    </div>
+                    <div class="col-md-3">
+                        <select class="form-control small" id="select">
+                            <option v-for="year in years" v-text="year">
+                            </option>
+                        </select>
+                    </div>
+                    <div class="col-md-3">
+                        <button type="button" class="btn btn-sm btn-primary" @click = "changeYear">查询</button>
+                    </div>
+
+                </div>
             </div>
             <!-- /.box-header -->
             <div class="box-body">

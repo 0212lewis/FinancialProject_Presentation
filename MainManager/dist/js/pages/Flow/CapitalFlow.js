@@ -82,7 +82,9 @@ var tool=new Vue(
 	el:'#app',
 	data:{
 	    username:'',
-
+		years:[
+        ],
+		year:0,
 		items:[
 
 		]
@@ -90,18 +92,32 @@ var tool=new Vue(
 	mounted(){
 
         this.username = this.getCookieValue("username");
+        if(this.username == ""){
+            alert("请先登录!");
+            window.location.href = "../index.html"
+        }else{
+            this.$http.get("http://localhost:8080/flow/year").then(function (response) {
+                if(response.data.errorCode == 0){
+                    this.years = response.data.data;
+                    this.year = parseInt(response.data.data[0]);
+                    console.log(this.year);
+                    this.$http.get('http://localhost:8080/flow/money/'+this.year)
+                        .then(function(response){
+                                this.items=response.body;
+                                console.log(this.items);
+                                setTimeout(function () {
+                                    $('#example1').DataTable();
+                                },0);
+                        }).catch(function(error){
+                        alert("出现了未知的错误！请重新进行输入")
+                    })
 
-        const self = this;
-		this.$http.get('http://localhost:8080/flow/money/'+'2017')
-		.then(function(response){
-			console.log(this.username);
-			self.items=response.body;
-            setTimeout(function () {
-                $('#example1').DataTable();
-            },0);
-		}).catch(function(error){
-			alert("出现了未知的错误！请重新进行输入")
-		})
+                }
+            }).catch(function (error) {
+                alert("发生了未知的错误！")
+            });
+
+        }
 	},
     methods:{
 
@@ -130,6 +146,26 @@ var tool=new Vue(
 
         logout:function () {
             this.deleteCookie("username");
+        },
+        
+        changeYear:function () {
+            var select = document.getElementById("select");
+            var value = select.value;
+            this.year = parseInt(value);
+            console.log(this.year);
+            this.$http.get('http://localhost:8080/flow/money/'+this.year)
+                .then(function(response){
+                        this.items=response.body;
+                        var dt = $('#example1').DataTable();
+                        dt.destroy();
+                        setTimeout(function () {
+                            $('#example1').DataTable();
+                        },0);
+
+                }).catch(function(error){
+                alert("出现了未知的错误！请重新进行输入")
+            })
+
         }
     }
 });

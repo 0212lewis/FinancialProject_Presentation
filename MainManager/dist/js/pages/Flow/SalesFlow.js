@@ -81,6 +81,10 @@ var tool=new Vue(
 {
 	el:'#app1',
 	data:{
+	    years:[
+
+        ],
+	    year:'',
 	    username:'',
 		totalMoney:0,
 		totalNum:0,
@@ -92,37 +96,31 @@ var tool=new Vue(
 		table:'',
 	},
 	mounted(){
-	    this.username = this.getCookieValue("username");
-		const self = this;
-		this.$http.get('http://localhost:8080/flow/sales/'+'2017')
-		.then(function(response){
-			self.items=response.data.data;
-            setTimeout(function () {
-                $('#example1').DataTable();
-            },0);
-        }).catch(function(error){
-			alert("出现了未知的错误！请重新进行输入")
-		});
-		// this.totalMoney = this.getTotalMoney;
-		// this.totalNum = this.getTotalNum();
-		// this.totalDeliveryMoney = this.getTotalDeliveryMoney;
-		// this.average = this.getAverage;
-		// console.log(this.getTotalMoney);
+        this.username = this.getCookieValue("username");
+        if(this.username == ""){
+            alert("请先登录！");
+            window.location.href = "../index.html";
+        }else{
+            this.$http.get("http://localhost:8080/flow/year").then(function (response) {
+                if(response.data.errorCode == 0){
+                    this.years = response.data.data;
+                    this.year = parseInt(response.data.data[0]);
+                    console.log(this.year);
 
-        // window.onload=function(){
-        //         window.setTimeout(function () {
-        //             var table = document.getElementById("example1");
-        //             alert(table.rows.length);
-        //             var sum = 0;
-        //             for(var i=1;i<table.rows.length-3;i++)
-        //             {
-        //                 sum = parseFloat(parseFloat(table.rows[i].cells[5].innerHTML)+parseFloat(sum));
-        //             }
-        //             this.totalNum=sum;
-        //             return sum;
-        //         },3000);
-        //     }
-
+                    this.$http.get('http://localhost:8080/flow/sales/'+this.year)
+                        .then(function(response){
+                            this.items=response.data.data;
+                            setTimeout(function () {
+                                $('#example1').DataTable();
+                            },0);
+                        }).catch(function(error){
+                        alert("出现了未知的错误！请重新进行输入")
+                    })
+                }
+            }).catch(function (error) {
+                alert("发生了未知的错误！")
+            });
+        }
 
 	},
 	methods:{
@@ -182,6 +180,25 @@ var tool=new Vue(
 		getAverage:function () {
 			var result = parseFloat((this.getTotalMoney-this.getTotalDeliveryMoney)/this.getTotalNum);
 			return result;
+        },
+        changeYear:function () {
+            var select = document.getElementById("select");
+            var value = select.value;
+            this.year = parseInt(value);
+            console.log(this.year);
+            this.$http.get('http://localhost:8080/flow/sales/'+this.year)
+                .then(function(response){
+                    this.items=response.data.data;
+                    var dt = $('#example1').DataTable();
+                    dt.destroy();
+                    setTimeout(function () {
+                        $('#example1').DataTable();
+                    },0);
+
+                }).catch(function(error){
+                alert("出现了未知的错误！请重新进行输入")
+            })
+
         }
 	}
 });
