@@ -128,7 +128,7 @@ var vm = new Vue({
         },
 
 
-        //添加新的供应商
+        //添加新的客户
         addClient:function () {
             var name=document.getElementById("newinput1").value;
             for(var i=0;i<this.payers.length;i++){
@@ -166,23 +166,29 @@ var vm = new Vue({
                 alert("出现了未知的错误！请重新进行输入")
             });
         },
-        //删除供应商
+        //删除客户
         deleteClient:function(){
-            var mySelect=document.getElementById("Client");
+            var mySelect = document.getElementById("Client");
             var index=mySelect.selectedIndex;
-            var name=mySelect.options[index].value;
+            var name=document.getElementById("Client").value;
             if(name==""){
-                alert('请选择要删除的内容');
+                alert('请选择要删除的客户');
                 hide2();
                 return;
             }
             this.$http.delete("http://localhost:8080/client",{
-                body:name
+                body:encodeURI(name)
+            },{
+                headers:{
+                    username:encodeURI(this.username)
+                }
             })
                 .then(function(response){
-                    mySelect.options.remove(index);//下拉框中删除该元素
-                    hide2();
-                    alert("删除供货方成功!")
+                    if(response.data.errorCode == 0){
+                        mySelect.options.remove(index);//下拉框中删除该元素
+                        hide2();
+                        alert("删除客户成功!")
+                    }
                 }).catch(function(error){
                 console.log(error.data);
                 alert("出现了未知的错误！请重新进行输入")
@@ -215,7 +221,7 @@ var vm = new Vue({
         deletePayMethod:function(){
             var mySelect=document.getElementById("PayMethod");
             var index=mySelect.selectedIndex;
-            var name=mySelect.options[index].value;
+            var name=document.getElementById("PayMethod").value;
             if(name==""){
                 alert('请选择要删除的内容');
                 hide4();

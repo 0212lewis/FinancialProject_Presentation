@@ -123,6 +123,10 @@ var tool=new Vue(
 
             this.username = this.getCookieValue("username");
 
+            if(this.username == ""){
+                alert("请先登录！");
+                window.location.href = "../index.html"
+            }
             var thisUrl = document.URL;
             var getVal = thisUrl.split('?')[1];
             var id = getVal.split('=')[1];

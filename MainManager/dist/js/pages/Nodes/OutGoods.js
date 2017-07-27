@@ -418,7 +418,6 @@ var vm = new Vue({
                     document.getElementById("save").disabled=true;
 
                 }else if(response.data.errorCode == 80000001){
-
                     alert("请先登录!");
                     window.location.href = "../index.html"
                 }
@@ -449,6 +448,11 @@ var vm = new Vue({
 
             this.$http.get("http://localhost:8080/product/id",{
                 params: {name: name,type:type}
+            },{
+                headers:{
+                    username:encodeURI(this.username)
+                }
+
             }).then(function(response){
                 if(number==1){
                     this.id1=response.data.data[0];
@@ -508,6 +512,10 @@ var vm = new Vue({
                 name: document.getElementById("newinput1").value,
                 phoneNumber: document.getElementById("receiverPhone").value,
                 taxId: document.getElementById("receiverTaxID").value
+            },{
+                headers:{
+                    username:encodeURI(this.username)
+                }
             }).then(function(response){
                     document.getElementById("newinput1").value="";
                     hide1();
@@ -522,19 +530,28 @@ var vm = new Vue({
         deleteReceiver:function(){
             var mySelect=document.getElementById("receiver");
             var index=mySelect.selectedIndex;
-            var name=mySelect.options[index].value;
+            var name=document.getElementById("receiver").value;
             if(name==""){
                 alert('请选择要删除的内容');
                 hide2();
                 return;
             }
             this.$http.delete("http://localhost:8080/client",{
-                body:name
+                body:encodeURI(name)
+            },{
+                headers:{
+                    username:encodeURI(this.username)
+                }
             })
                 .then(function(response){
-                    mySelect.options.remove(index);//下拉框中删除该元素
                     hide2();
-                    alert("删除收货方成功!");
+                    if(response.data.errorCode == 0){
+                        mySelect.options.remove(index);//下拉框中删除该元素
+                        alert("删除客户成功!");
+                    }else{
+                        alert("发生了未知的错误！")
+                    }
+
                 }).catch(function(error){
                     // console.log(error.data);
                     alert("出现了未知的错误！请重新进行输入");
@@ -558,12 +575,16 @@ var vm = new Vue({
                 address:address,
                 name:name,
                 phone_number:phoneNumber
+            },{
+                headers:{
+                    username:encodeURI(this.username)
+                }
             }).then(function(response){
                 document.getElementById("newBusinessName").value="";
                 document.getElementById("newBusinessAddress").value="";
                 document.getElementById("newBusinessPhone").value="";
                 hide7();
-                this.businessMen.push({name});
+                this.businessMen.push(name);
                 alert("添加业务员成功!")
             }).catch(function(error){
                 alert("出现了未知的错误！请重新进行输入")
@@ -573,7 +594,7 @@ var vm = new Vue({
         deleteBussiness:function () {
             var mySelect=document.getElementById("businessMan");
             var index=mySelect.selectedIndex;
-            var name=mySelect.options[index].value;
+            var name=document.getElementById("businessMan").value;
             if(name==""){
                 alert('请选择要删除的内容');
                 hide8();
@@ -582,6 +603,10 @@ var vm = new Vue({
             this.$http.delete("http://localhost:8080/businessman",{
                 body:{
                     name:name
+                }
+            },{
+                headers:{
+                    username:encodeURI(this.username)
                 }
             })
                 .then(function(response){
@@ -618,6 +643,10 @@ var vm = new Vue({
             this.$http.post("http://localhost:8080/product/product",{
                 name:name,
                 type:type
+            },{
+                headers:{
+                    username:encodeURI(this.username)
+                }
             }).then(function(response){
                 document.getElementById("newinput3").value="";
                 document.getElementById("productType").value="";
@@ -634,7 +663,6 @@ var vm = new Vue({
         },
 
         pushIntoSelect:function (name,type) {
-            alert("push")
             var index=1;
             for(index=1;index<=5;index++) {
                 var selectName=document.getElementById("goodName"+index).value;
@@ -753,7 +781,7 @@ var vm = new Vue({
         deleteDeliveryMan:function(){
             var mySelect=document.getElementById("DeliveryMan");
             var index=mySelect.selectedIndex;
-            var name=mySelect.options[index].value;
+            var name=document.getElementById("DeliveryMan").value;
             if(name==""){
                 alert('请选择要删除的内容');
                 hide6();

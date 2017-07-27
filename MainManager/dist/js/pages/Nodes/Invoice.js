@@ -124,41 +124,60 @@ var vm = new Vue({
             var name=document.getElementById("newinput1").value;
             for(var i=0;i<this.invoicers.length;i++){
                 if(this.invoicers[i].name==name){
-                    alert('该付款单位已经存在');
+                    alert('该客户已经存在');
                     document.getElementById("newinput1").value="";
                     hide1();
                     return;
                 }
             }
-            this.invoicers.push({name});
-            this.$http.get("http://106.14.224.189/server/contents/AddContent.php",{
-                params:{
-                    contentName:"ticket_order_ticketUnit",
-                    value:name
+            this.invoicers.push(name);
+            this.$http.post("http://localhost:8080/client", {
+                account: document.getElementById("newClientAccount").value,
+                address: document.getElementById("newClientAddress").value,
+                bank: document.getElementById("newClientBank").value,
+                id: document.getElementById("newClientID").value,
+                linkman: document.getElementById("newClientLinkMan").value,
+                mailAddress: document.getElementById("newClientMailAddress").value,
+                name: document.getElementById("newinput1").value,
+                phoneNumber: document.getElementById("newClientPhone").value,
+                taxId: document.getElementById("newClientTaxID").value
+            },{
+                headers:{
+                    username:encodeURI(this.username)
                 }
-            })
-                .then(function(response){
-                    document.getElementById("newinput1").value="";
-                    hide1();
-                    alert("添加付款单位成功!")
-                }).catch(function(error){
+            }).then(function (response) {
+                document.getElementById("newinput1").value = "";
+                document.getElementById("newClientAccount").value = "";
+                document.getElementById("newClientAddress").value = "";
+                document.getElementById("newClientBank").value = "";
+                document.getElementById("newClientID").value = "";
+                document.getElementById("newClientLinkMan").value = "";
+                document.getElementById("newClientMailAddress").value = "";
+                document.getElementById("newClientPhone").value = "";
+                document.getElementById("newClientTaxID").value = "";
+                hide1();
+                alert("添加客户成功!")
+            }).catch(function (error) {
                 alert("出现了未知的错误！请重新进行输入")
-            })
+            });
         },
         //删除客户
         deleteUnit:function(){
-            var mySelect=document.getElementById("payunit");
+            var mySelect = document.getElementById("payunit");
             var index=mySelect.selectedIndex;
-            var name=mySelect.options[index].value;
+            var name=document.getElementById("payunit").value;
             if(name==""){
                 alert('请选择要删除的内容');
                 hide2();
                 return;
             }
-            this.$http.get("http://106.14.224.189/server/contents/deleteContent.php",{
-                params:{
-                    contentName:"ticket_order_ticketUnit",
-                    value:name
+            this.$http.delete("http://localhost:8080/client",{
+              body:{
+                  name:name
+              }
+            },{
+                headers:{
+                    username:encodeURI(this.username)
                 }
             }).then(function(response){
                     mySelect.options.remove(index);//下拉框中删除该元素
@@ -216,8 +235,9 @@ var vm = new Vue({
         }
     },
     mounted(){
+
         this.username = this.getCookieValue("username");
-        if(this.username = ""){
+        if(this.username == ""){
             alert("请先登录！");
             window.location.href = "../index.html"
         }else{

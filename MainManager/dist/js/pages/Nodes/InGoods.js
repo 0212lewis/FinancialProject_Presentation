@@ -157,6 +157,10 @@ var vm = new Vue({
                 name: document.getElementById("newinput1").value,
                 phone_number: document.getElementById("newProviderPhone").value,
                 tax_id: document.getElementById("newProviderTaxID").value
+            },{
+                headers:{
+                    username:encodeURI(this.username)
+                }
             }).then(function (response) {
                 document.getElementById("newinput1").value = "";
                 document.getElementById("newProviderAccount").value = "";
@@ -176,16 +180,22 @@ var vm = new Vue({
 
         //删除供应商
         deleteProviders:function(){
-            var mySelect=document.getElementById("goodsprovider");
+            var mySelect = document.getElementById("Client");
             var index=mySelect.selectedIndex;
-            var name=mySelect.options[index].value;
+            var name=document.getElementById("goodsprovider").value;
             if(name==""){
                 alert('请选择要删除的内容');
                 hide2();
                 return;
             }
             this.$http.delete("http://localhost:8080/provider",{
-                body:name
+                body:{
+                    name:name
+                }
+            },{
+                headers:{
+                    username:encodeURI(this.username)
+                }
             })
                 .then(function(response){
                     mySelect.options.remove(index);//下拉框中删除该元素
@@ -251,7 +261,7 @@ var vm = new Vue({
         deleteDeliveryMan:function(){
             var mySelect=document.getElementById("DeliveryMan");
             var index=mySelect.selectedIndex;
-            var name=mySelect.options[index].value;
+            var name=document.getElementById("DeliveryMan").value;
             if(name==""){
                 alert('请选择要删除的内容');
                 hide4();
@@ -295,6 +305,10 @@ var vm = new Vue({
             this.$http.post("http://localhost:8080/product/material",{
                 name:name,
                 type:type
+            },{
+                headers:{
+                    username:encodeURI(this.username)
+                }
             }).then(function(response){
                 document.getElementById("newinput5").value="";
                 document.getElementById("newProductType").value="";
@@ -383,6 +397,10 @@ var vm = new Vue({
                 params:{
                     name:this.InGoodsOrder.goodName,
                     type:this.InGoodsOrder.type
+                }
+            },{
+                headers:{
+                    username:encodeURI(this.username)
                 }
             }).then(function(response){
                 this.InGoodsOrder.pid = response.data.data[0];

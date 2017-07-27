@@ -166,6 +166,10 @@ var vm = new Vue({
                 name: document.getElementById("newinput1").value,
                 phone_number: document.getElementById("newProviderPhone").value,
                 tax_id: document.getElementById("newProviderTaxID").value
+            },{
+                headers:{
+                    username:encodeURI(this.username)
+                }
             }).then(function (response) {
                 document.getElementById("newinput1").value = "";
                 document.getElementById("newProviderAccount").value = "";
@@ -186,14 +190,20 @@ var vm = new Vue({
         deleteProviders:function(){
             var mySelect=document.getElementById("goodsprovider");
             var index=mySelect.selectedIndex;
-            var name=mySelect.options[index].value;
+            var name=document.getElementById("goodsprovider").value;
             if(name==""){
                 alert('请选择要删除的内容');
                 hide2();
                 return;
             }
             this.$http.delete("http://localhost:8080/provider",{
-                body:name
+                body:{
+                    name:name
+                }
+            },{
+                headers:{
+                    username:encodeURI(this.username)
+                }
             })
                 .then(function(response){
                     mySelect.options.remove(index);//下拉框中删除该元素
@@ -231,7 +241,7 @@ var vm = new Vue({
         deletePayMethod:function(){
             var mySelect=document.getElementById("paymentMethod");
             var index=mySelect.selectedIndex;
-            var name=mySelect.options[index].value;
+            var name=document.getElementById("paymentMethod").value;
             if(name==""){
                 alert('请选择要删除的内容');
                 hide4();

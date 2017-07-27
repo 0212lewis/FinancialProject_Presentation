@@ -69,7 +69,8 @@ var vm  = new Vue({
             }).then(function (response) {
                 if(response.data.errorCode == 0){
                     hide1();
-                    alert("修改成功！")
+                    alert("修改成功！");
+                    window.location.href = "Client.html"
                 }
             }).catch(function (error) {
                 hide1();

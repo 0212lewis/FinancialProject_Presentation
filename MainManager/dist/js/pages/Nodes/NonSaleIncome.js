@@ -89,7 +89,7 @@ var vm = new Vue({
             payer:'',
             money:'',
             payMethod:'',
-            comment:'',
+            comment:'销售外收入',
             date:'',
             hour:'',
             minute:'',
@@ -164,8 +164,10 @@ var vm = new Vue({
                     return;
                 }
             }
-            this.payMethods.push({name});
-            this.$http.post("http://localhost:8080/paymentMethod")
+            this.payMethods.push(name);
+            this.$http.post("http://localhost:8080/paymentMethod",{
+                name:name
+            })
                 .then(function(response){
                     document.getElementById("newinput3").value="";
                     hide3();
@@ -178,13 +180,17 @@ var vm = new Vue({
         deletePayMethod:function(){
             var mySelect=document.getElementById("PayMethod");
             var index=mySelect.selectedIndex;
-            var name=mySelect.options[index].value;
+            var name=document.getElementById("PayMethod").value;
             if(name==""){
                 alert('请选择要删除的内容');
                 hide4();
                 return;
             }
-            this.$http.deletePaymentMethod("http://localhost:8080/paymentMethod").then(function(response){
+            this.$http.delete("http://localhost:8080/paymentMethod",{
+                body:{
+                    name:name
+                }
+            }).then(function(response){
                 mySelect.options.remove(index);//下拉框中删除该元素
                 hide4();
 

@@ -31,9 +31,9 @@ var vm=new Vue({
                             window.location.href = "Login/MainUi.html";
 
                         }else if(this.items.authority == 1){
-                            window.location.href = "Login/Finance/MainUi1.html";
+                            window.location.href = "Login/MainUi1.html";
                         }else if(this.items.authority == 2){
-                            window.location.href = "Login/Store/MainUi2.html";
+                            window.location.href = "Login/MainUi2.html";
                         }
                     }else if(response.data.errorCode === 90000001){
                         alert("您输入的账号不存在！");
