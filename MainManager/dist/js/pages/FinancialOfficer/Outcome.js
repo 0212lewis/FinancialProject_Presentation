@@ -1,4 +1,7 @@
 /**
+ * Created by dell- on 2017/7/27.
+ */
+/**
  * Created by pc on 2017/4/25.
  */
 function show1()  //显示隐藏层和弹出层
@@ -73,9 +76,9 @@ var vm = new Vue({
 
         ],
 
-       methods:[
+        methods:[
 
-       ],
+        ],
         payMoneyOrder:{
             receive:"",
             method:"",
@@ -199,7 +202,7 @@ var vm = new Vue({
             }
             this.$http.delete("http://localhost:8080/provider",{
                 body:name,
-            headers:{
+                headers:{
                     username:encodeURI(this.username)
                 }
             })
@@ -226,7 +229,7 @@ var vm = new Vue({
             }
             this.methods.push(name);
             this.$http.post("http://localhost:8080/paymentMethod",{
-                    name:name
+                name:name
             }).then(function(response){
                 document.getElementById("newinput3").value="";
                 hide3();
@@ -284,7 +287,7 @@ var vm = new Vue({
                         comment:this.payMoneyOrder.comment.trim(),
                         date:newDate
 
-                },
+                    },
                     {
                         headers:{
                             username:encodeURI(this.username)
@@ -309,8 +312,8 @@ var vm = new Vue({
     mounted(){
         this.username = this.getCookieValue("username");
 
-        this.authority=this.getCookieValue("authority");
-        if(this.authority!=0){
+        this.authority = this.getCookieValue("authority");
+        if(this.authority!=1) {
             alert("抱歉，您无权浏览当前页面，如有疑问，请与管理员联系")
             return;
         }

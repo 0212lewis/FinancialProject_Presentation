@@ -1,4 +1,7 @@
 /**
+ * Created by dell- on 2017/7/27.
+ */
+/**
  * Created by cyz on 2017/4/25.
  */
 function show1()  //显示隐藏层和弹出层
@@ -70,13 +73,12 @@ function hide5()  //去除隐藏层和弹出层
 var vm = new Vue({
     el:'#container',
     data:{
-
         username:'',
         authority:'',
         providers:[
         ],
         goodNames:[
-            
+
         ],
         deliveryMen:[
         ],
@@ -200,9 +202,9 @@ var vm = new Vue({
                     hide2();
                     alert("删除供货方成功!")
                 }).catch(function(error){
-                    console.log(error.data);
-                    alert("出现了未知的错误！请重新进行输入")
-                    hide2();
+                console.log(error.data);
+                alert("出现了未知的错误！请重新进行输入")
+                hide2();
             })
         },
 
@@ -244,13 +246,13 @@ var vm = new Vue({
                 }
             }
             this.$http.post("http://localhost:8080/deliveryman",{
-               name:name
+                name:name
             }).then(function(response){
-                    document.getElementById("newinput3").value="";
-                    hide3();
-                    this.deliveryMen.push({name});
+                document.getElementById("newinput3").value="";
+                hide3();
+                this.deliveryMen.push({name});
                 alert("添加运货人成功!")
-                }).catch(function(error){
+            }).catch(function(error){
                 alert("出现了未知的错误！请重新进行输入")
             })
         },
@@ -275,7 +277,7 @@ var vm = new Vue({
                     hide4();
                     alert("删除运货人成功!")
                 }).catch(function(error){
-                    console.log(error.data);
+                console.log(error.data);
                 alert("出现了未知的错误！请重新进行输入")
                 hide4();
             })
@@ -356,22 +358,22 @@ var vm = new Vue({
 
             const self=this;
             this.$http.post("http://localhost:8080/order/income_product",{
-                comment: this.InGoodsOrder.comment.trim(),
-                date: newDate,
-                deliveryMan: this.InGoodsOrder.deliveryMan.trim(),
-                deliveryMoney: this.InGoodsOrder.deliveryMoney.trim(),
-                orderID: '',
-                product: {
-                    orderId: '',
-                    pid: this.InGoodsOrder.pid,
-                    quantity: this.InGoodsOrder.amount,
-                    totalMoney:this.totalMoney,
-                    unitPrice: this.InGoodsOrder.singlePrice
-            },
-                providerID: '',
-                providerName: this.InGoodsOrder.provider
+                    comment: this.InGoodsOrder.comment.trim(),
+                    date: newDate,
+                    deliveryMan: this.InGoodsOrder.deliveryMan.trim(),
+                    deliveryMoney: this.InGoodsOrder.deliveryMoney.trim(),
+                    orderID: '',
+                    product: {
+                        orderId: '',
+                        pid: this.InGoodsOrder.pid,
+                        quantity: this.InGoodsOrder.amount,
+                        totalMoney:this.totalMoney,
+                        unitPrice: this.InGoodsOrder.singlePrice
+                    },
+                    providerID: '',
+                    providerName: this.InGoodsOrder.provider
 
-            },
+                },
                 {headers:{
                     username:encodeURI(this.username)
                 }}).then(function (response) {
@@ -416,9 +418,8 @@ var vm = new Vue({
     mounted(){
         const self = this;
         this.username = this.getCookieValue("username");
-
         this.authority=this.getCookieValue("authority");
-        if(this.authority!=0){
+        if(this.authority!=2){
             alert("抱歉，您无权浏览当前页面，如有疑问，请与管理员联系")
             return;
         }

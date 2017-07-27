@@ -1,5 +1,11 @@
 /**
- * Created by pc on 2017/4/25.
+ * Created by dell- on 2017/7/27.
+ */
+/**
+ * Created by cyz on 2017/4/25.
+ */
+/**
+ * Created by cyz on 2017/4/25.
  */
 function show1()  //显示隐藏层和弹出层
 {
@@ -52,9 +58,11 @@ function hide4()  //去除隐藏层和弹出层
     document.getElementById("hidebg4").style.display="none";
     document.getElementById("login4").style.display="none";
 }
+
+
 function show5()  //显示隐藏层和弹出层
 {
-    var hideobj=document.getElementById("hidebg5");
+    var hideobj5=document.getElementById("hidebg5");
     hidebg5.style.display="block";  //显示隐藏层
     hidebg5.style.height=document.body.clientHeight+"px";  //设置隐藏层的高度为当前页面高度
     document.getElementById("login5").style.display="block";  //显示弹出层
@@ -64,37 +72,36 @@ function hide5()  //去除隐藏层和弹出层
     document.getElementById("hidebg5").style.display="none";
     document.getElementById("login5").style.display="none";
 }
+
+
 var vm = new Vue({
     el:'#container',
     data:{
         username:'',
         authority:'',
-        receives:[
+        newpayer:'',
+        payers:[
 
         ],
 
-       methods:[
+        payMethods:[
 
-       ],
-        payMoneyOrder:{
-            receive:"",
-            method:"",
-            payMoneyDate:"",
-            comment:"",
-            money:"",
+        ],
+
+        IncomeOrder:{
+            payer:'',
+            money:'',
+            payMethod:'',
+            comment:'',
             date:'',
             hour:'',
             minute:'',
             second:''
-        },
+        }
 
     },
     methods:{
-        //登出
-        logout:function () {
-            this.deleteCookie("username");
-        },
-        //设置cookies
+        //设置cookie
         setCookie:function (cname,cvalue,exdays) {
             var d = new Date();
             d.setTime(d.getTime() + (exdays*20*60*60*1000));
@@ -102,7 +109,7 @@ var vm = new Vue({
             document.cookie = cname + "=" + cvalue + "; " + expires;
         },
 
-        //得到cookies
+        //得到当前的cookie
         getCookieValue:function (cname) {
             var name = cname + "=";
             var ca = document.cookie.split(';');
@@ -113,100 +120,78 @@ var vm = new Vue({
             }
             return "";
         },
-        //自动获取当前时间
-        getCurrentTime:function () {
-            var date = new Date();
-            var hour = date.getHours();
-            var minute = date.getMinutes();
-            var second = date.getSeconds();
 
-            if(hour.toString().length<2){
-                this.payMoneyOrder.hour = '0'+hour;
-            }else{
-                this.payMoneyOrder.hour = hour;
-            }
-            if(minute.toString().length<2){
-                this.payMoneyOrder.minute = '0'+minute;
-            }else{
-                this.payMoneyOrder.minute = minute;
-            }
-
-            if(second.toString().length<2){
-                this.payMoneyOrder.second = '0'+second;
-            }else{
-                this.payMoneyOrder.second = second;
-            }
-
-        },
-
-        //删除cookies
+        //删除cookie
         deleteCookie:function (cname) {
             this.setCookie("username","",-1);
             window.location.href="../index.html"
         },
+        //登出
+        logout:function () {
+            this.deleteCookie("username");
+        },
 
-        //添加新的供应商
-        addProviders:function () {
+
+        //添加新的客户
+        addClient:function () {
             var name=document.getElementById("newinput1").value;
-            for(var i=0;i<this.receives.length;i++){
-                if(this.receives[i]==name){
-                    alert('该供货方已经存在');
+            for(var i=0;i<this.payers.length;i++){
+                if(this.payers[i]==name){
+                    alert('该客户已经存在');
                     document.getElementById("newinput1").value="";
                     hide1();
                     return;
                 }
             }
-            this.receives.push(name);
-            this.$http.post("http://localhost:8080/provider", {
-                account: document.getElementById("newProviderAccount").value,
-                address: document.getElementById("newProviderAddress").value,
-                bank: document.getElementById("newProviderBank").value,
-                id: document.getElementById("newProviderID").value,
-                linkman: document.getElementById("newProviderLinkMan").value,
-                mail_address: document.getElementById("newProviderMailAddress").value,
+            this.payers.push(name);
+            this.$http.post("http://localhost:8080/client", {
+                account: document.getElementById("newClientAccount").value,
+                address: document.getElementById("newClientAddress").value,
+                bank: document.getElementById("newClientBank").value,
+                id: document.getElementById("newClientID").value,
+                linkman: document.getElementById("newClientLinkMan").value,
+                mailAddress: document.getElementById("newClientMailAddress").value,
                 name: document.getElementById("newinput1").value,
-                phone_number: document.getElementById("newProviderPhone").value,
-                tax_id: document.getElementById("newProviderTaxID").value
-            },{
-                headers:{
-                    username:encodeURI(this.username)
-                }
+                phoneNumber: document.getElementById("newClientPhone").value,
+                taxId: document.getElementById("newClientTaxID").value
             }).then(function (response) {
                 document.getElementById("newinput1").value = "";
-                document.getElementById("newProviderAccount").value = "";
-                document.getElementById("newProviderAddress").value = "";
-                document.getElementById("newProviderBank").value = "";
-                document.getElementById("newProviderID").value = "";
-                document.getElementById("newProviderLinkMan").value = "";
-                document.getElementById("newProviderMailAddress").value = "";
-                document.getElementById("newProviderPhone").value = "";
-                document.getElementById("newProviderTaxID").value = "";
+                document.getElementById("newClientAccount").value = "";
+                document.getElementById("newClientAddress").value = "";
+                document.getElementById("newClientBank").value = "";
+                document.getElementById("newClientID").value = "";
+                document.getElementById("newClientLinkMan").value = "";
+                document.getElementById("newClientMailAddress").value = "";
+                document.getElementById("newClientPhone").value = "";
+                document.getElementById("newClientTaxID").value = "";
                 hide1();
-                alert("添加供货方成功!")
+                alert("添加客户成功!")
             }).catch(function (error) {
                 alert("出现了未知的错误！请重新进行输入")
             });
         },
-        //删除供应商
-        deleteProviders:function(){
-            var mySelect=document.getElementById("goodsprovider");
+        //删除客户
+        deleteClient:function(){
+            var mySelect = document.getElementById("Client");
             var index=mySelect.selectedIndex;
-            var name=document.getElementById("goodsprovider").value;
+            var name=document.getElementById("Client").value;
             if(name==""){
-                alert('请选择要删除的内容');
+                alert('请选择要删除的客户');
                 hide2();
                 return;
             }
-            this.$http.delete("http://localhost:8080/provider",{
+            this.$http.delete("http://localhost:8080/client",{
                 body:name,
-            headers:{
+                headers:{
                     username:encodeURI(this.username)
                 }
             })
                 .then(function(response){
-                    mySelect.options.remove(index);//下拉框中删除该元素
-                    hide2();
-                    alert("删除供货方成功!")
+                    if(response.data.errorCode == 0){
+                        mySelect.options.remove(index);//下拉框中删除该元素
+                        hide2();
+                        alert("删除客户成功!")
+                    }
                 }).catch(function(error){
                 console.log(error.data);
                 alert("出现了未知的错误！请重新进行输入")
@@ -216,17 +201,17 @@ var vm = new Vue({
         //添加新的付款方式
         addPayMethod:function(){
             var name=document.getElementById("newinput3").value;
-            for(var i=0;i<this.methods.length;i++){
-                if(this.methods[i]==name){
+            for(var i=0;i<this.payMethods.length;i++){
+                if(this.payMethods[i]==name){
                     alert('该方式已经存在');
                     document.getElementById("newinput3").value="";
                     hide3();
                     return;
                 }
             }
-            this.methods.push(name);
+            this.payMethods.push(name);
             this.$http.post("http://localhost:8080/paymentMethod",{
-                    name:name
+                name:name
             }).then(function(response){
                 document.getElementById("newinput3").value="";
                 hide3();
@@ -237,9 +222,9 @@ var vm = new Vue({
         },
         //删除付款方式
         deletePayMethod:function(){
-            var mySelect=document.getElementById("paymentMethod");
+            var mySelect=document.getElementById("PayMethod");
             var index=mySelect.selectedIndex;
-            var name=document.getElementById("paymentMethod").value;
+            var name=document.getElementById("PayMethod").value;
             if(name==""){
                 alert('请选择要删除的内容');
                 hide4();
@@ -249,93 +234,122 @@ var vm = new Vue({
                 body:{
                     name:name
                 }
-            })
-                .then(function(response){
-                    mySelect.options.remove(index);//下拉框中删除该元素
-                    hide4();
-                    alert("删除方式成功!")
-                }).catch(function(error){
+            }).then(function(response){
+                mySelect.options.remove(index);//下拉框中删除该元素
+                hide4();
+                alert("删除方式成功!")
+            }).catch(function(error){
                 console.log(error.data);
                 alert("出现了未知的错误！请重新进行输入")
                 hide4();
             })
         },
-        //录入付款单
-        addOutcomeOrder:function () {
-            hide5();
-            if(this.payMoneyOrder.receive==null||this.payMoneyOrder.receive.length==0){
-                alert("请选择对方名称！");
+        //添加进款单
+        addIncomeOrder:function () {
+            hide5()
+            var list = document.getElementById("datepicker").value.split("/");
+            var month = list[0];
+            var day = list[1];
+            var year = list[2]
+            var newDate = year+'-'+month+'-'+day+" "+this.IncomeOrder.hour+":"+this.IncomeOrder.minute+":"+this.IncomeOrder.second;
+
+
+            if(this.IncomeOrder.payer==null || this.IncomeOrder.payer.length==0){
+                alert("请输入收货单位！");
                 return;
-            }else if(this.payMoneyOrder.money==null||this.payMoneyOrder.money.length==0){
+            }
+            if(this.IncomeOrder.money== null|| this.IncomeOrder.money.length==0){
                 alert("请输入运费！");
                 return;
-            }else if((this.payMoneyOrder.hour.toString().length==2)&&(this.payMoneyOrder.minute.toString().length==2)&&(this.payMoneyOrder.second.toString().length==2)){
-                const self=this;
-                var list = document.getElementById("datepicker").value.split("/");
-                var month = list[0];
-                var day = list[1];
-                var year = list[2]
-                var newDate = year+'-'+month+'-'+day+" "+this.payMoneyOrder.hour+":"+this.payMoneyOrder.minute+":"+this.payMoneyOrder.second;
-                this.$http.post("http://localhost:8080/order/pay_money",{
-                        providerID:'',
-                        providerName:this.payMoneyOrder.receive.trim(),
-                        pay_method:this.payMoneyOrder.method.trim(),
-                        money:this.payMoneyOrder.money,
-                        comment:this.payMoneyOrder.comment.trim(),
-                        date:newDate
-
-                },
+            }else if((this.IncomeOrder.hour.toString().length==2)&&(this.IncomeOrder.minute.toString().length==2)&&(this.IncomeOrder.second.toString().length==2)){
+                this.$http.post("http://localhost:8080/order/sales_income",
                     {
-                        headers:{
-                            username:encodeURI(this.username)
-                        }
-                    }).then(function (response) {
+                        clientId:'',
+                        clientName:this.IncomeOrder.payer.trim(),
+                        money:this.IncomeOrder.money.trim(),
+                        pay_method:this.IncomeOrder.payMethod.trim(),
+                        comment:this.IncomeOrder.comment.trim(),
+                        date:newDate
+                    },
+                    {headers:{
+                        username:encodeURI(this.username)
+                    }}).then(function (response) {
                     if(response.body.errorCode ==0){
                         alert("添加成功！");
                         document.getElementById("save").disabled=true;
-                    }else if(response.data.errorCode == 80000001){
-                        alert("请先登录！");
+                    }else if(response.body.errorCode==80000001) {
+                        alert("请重新登录!");
                     }
                 }).catch(function (error) {
+                    console.log(error.data);
                     alert("添加失败！");
-
                 })
-
             }else{
                 alert("请规范输入时间格式！");
             }
+
+
+
+        },
+
+        //自动获取当前时间
+        getCurrentTime:function () {
+            var date = new Date();
+            var hour = date.getHours();
+            var minute = date.getMinutes();
+            var second = date.getSeconds();
+
+            if(hour.toString().length<2){
+                this.IncomeOrder.hour = '0'+hour;
+            }else{
+                this.IncomeOrder.hour = hour;
+            }
+            if(minute.toString().length<2){
+                this.IncomeOrder.minute = '0'+minute;
+            }else{
+                this.IncomeOrder.minute = minute;
+            }
+
+            if(second.toString().length<2){
+                this.IncomeOrder.second = '0'+second;
+            }else{
+                this.IncomeOrder.second = second;
+            }
+
         }
     },
-    mounted(){
-        this.username = this.getCookieValue("username");
 
-        this.authority=this.getCookieValue("authority");
-        if(this.authority!=0){
+    mounted(){
+
+        this.username = this.getCookieValue("username");
+        this.authority = this.getCookieValue("authority");
+
+        if(this.authority!=1) {
             alert("抱歉，您无权浏览当前页面，如有疑问，请与管理员联系")
             return;
         }
-
-        if(this.username == ""){
-            alert("请先登录！");
-            window.location.href = "../index.html"
+        if(this.username == ''){
+            alert("请先登录！")
+            window.location.href = '../index.html';
         }else{
             const self = this;
-            this.$http.get('http://localhost:8080/provider/allName')
-                .then(function(response){
-                    self.receives=response.data.data;
-                }).catch(function(error){
-                alert("出现了未知的错误！请重新进行输入");
+            this.$http.get("http://localhost:8080/client/allName").then(function(response){
+                self.payers=response.data.data;
+            }).catch(function(error){
+                alert("出现了未知的错误！请重新进行输入")
             });
 
-            this.$http.get('http://localhost:8080/paymentMethod/allName')
-                .then(function(response){
-                    self.methods=response.data.data;
-                }).catch(function(error){
-                alert("出现了未知的错误！请重新进行输入");
+            this.$http.get('http://localhost:8080/paymentMethod/allName').then(function(response){
+                self.payMethods=response.data.data;
+                console.log(response.data.data);
+                console.log(self.payMethods);
+            }).catch(function(error){
+                alert("出现了未知的错误！请重新进行输入")
             })
+
         }
+        //没有cookie的时候需要直接跳转到index.html
 
     }
-
-
 });
+

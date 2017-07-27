@@ -1,4 +1,7 @@
 /**
+ * Created by dell- on 2017/7/27.
+ */
+/**
  * Created by pc on 2017/4/25.
  */
 
@@ -6,82 +9,82 @@ String.prototype.trim=function() {
     return this.replace(/(^\s*)|(\s*$)/g,'');
 }
 
- function show1()  //显示隐藏层和弹出层
- {
- var hideobj=document.getElementById("hidebg1");
- hidebg1.style.display="block";  //显示隐藏层
- hidebg1.style.height=document.body.clientHeight+"px";  //设置隐藏层的高度为当前页面高度
- document.getElementById("login1").style.display="block";  //显示弹出层
- }
- function hide1()  //去除隐藏层和弹出层
- {
- document.getElementById("hidebg1").style.display="none";
- document.getElementById("login1").style.display="none";
- }
+function show1()  //显示隐藏层和弹出层
+{
+    var hideobj=document.getElementById("hidebg1");
+    hidebg1.style.display="block";  //显示隐藏层
+    hidebg1.style.height=document.body.clientHeight+"px";  //设置隐藏层的高度为当前页面高度
+    document.getElementById("login1").style.display="block";  //显示弹出层
+}
+function hide1()  //去除隐藏层和弹出层
+{
+    document.getElementById("hidebg1").style.display="none";
+    document.getElementById("login1").style.display="none";
+}
 
- function show2()  //显示隐藏层和弹出层
- {
- var hideobj=document.getElementById("hidebg2");
- hidebg2.style.display="block";  //显示隐藏层
- hidebg2.style.height=document.body.clientHeight+"px";  //设置隐藏层的高度为当前页面高度
- document.getElementById("login2").style.display="block";  //显示弹出层
- }
- function hide2()  //去除隐藏层和弹出层
- {
- document.getElementById("hidebg2").style.display="none";
- document.getElementById("login2").style.display="none";
- }
+function show2()  //显示隐藏层和弹出层
+{
+    var hideobj=document.getElementById("hidebg2");
+    hidebg2.style.display="block";  //显示隐藏层
+    hidebg2.style.height=document.body.clientHeight+"px";  //设置隐藏层的高度为当前页面高度
+    document.getElementById("login2").style.display="block";  //显示弹出层
+}
+function hide2()  //去除隐藏层和弹出层
+{
+    document.getElementById("hidebg2").style.display="none";
+    document.getElementById("login2").style.display="none";
+}
 
- function show3()  //显示隐藏层和弹出层
- {
- var hideobj=document.getElementById("hidebg3");
- hidebg3.style.display="block";  //显示隐藏层
- hidebg3.style.height=document.body.clientHeight+"px";  //设置隐藏层的高度为当前页面高度
- document.getElementById("login3").style.display="block";  //显示弹出层
- }
- function hide3()  //去除隐藏层和弹出层
- {
- document.getElementById("hidebg3").style.display="none";
- document.getElementById("login3").style.display="none";
- }
+function show3()  //显示隐藏层和弹出层
+{
+    var hideobj=document.getElementById("hidebg3");
+    hidebg3.style.display="block";  //显示隐藏层
+    hidebg3.style.height=document.body.clientHeight+"px";  //设置隐藏层的高度为当前页面高度
+    document.getElementById("login3").style.display="block";  //显示弹出层
+}
+function hide3()  //去除隐藏层和弹出层
+{
+    document.getElementById("hidebg3").style.display="none";
+    document.getElementById("login3").style.display="none";
+}
 
- function show4()  //显示隐藏层和弹出层
- {
- var hideobj=document.getElementById("hidebg4");
- hidebg4.style.display="block";  //显示隐藏层
- hidebg4.style.height=document.body.clientHeight+"px";  //设置隐藏层的高度为当前页面高度
- document.getElementById("login4").style.display="block";  //显示弹出层
- }
- function hide4()  //去除隐藏层和弹出层
- {
- document.getElementById("hidebg4").style.display="none";
- document.getElementById("login4").style.display="none";
- }
- function show5()  //显示隐藏层和弹出层
- {
- var hideobj=document.getElementById("hidebg5");
- hidebg5.style.display="block";  //显示隐藏层
- hidebg5.style.height=document.body.clientHeight+"px";  //设置隐藏层的高度为当前页面高度
- document.getElementById("login5").style.display="block";  //显示弹出层
- }
- function hide5()  //去除隐藏层和弹出层
- {
- document.getElementById("hidebg5").style.display = "none";
- document.getElementById("login5").style.display = "none";
- }
+function show4()  //显示隐藏层和弹出层
+{
+    var hideobj=document.getElementById("hidebg4");
+    hidebg4.style.display="block";  //显示隐藏层
+    hidebg4.style.height=document.body.clientHeight+"px";  //设置隐藏层的高度为当前页面高度
+    document.getElementById("login4").style.display="block";  //显示弹出层
+}
+function hide4()  //去除隐藏层和弹出层
+{
+    document.getElementById("hidebg4").style.display="none";
+    document.getElementById("login4").style.display="none";
+}
+function show5()  //显示隐藏层和弹出层
+{
+    var hideobj=document.getElementById("hidebg5");
+    hidebg5.style.display="block";  //显示隐藏层
+    hidebg5.style.height=document.body.clientHeight+"px";  //设置隐藏层的高度为当前页面高度
+    document.getElementById("login5").style.display="block";  //显示弹出层
+}
+function hide5()  //去除隐藏层和弹出层
+{
+    document.getElementById("hidebg5").style.display = "none";
+    document.getElementById("login5").style.display = "none";
+}
 
- function show6()  //显示隐藏层和弹出层
- {
- var hideobj=document.getElementById("hidebg6");
- hidebg6.style.display="block";  //显示隐藏层
- hidebg6.style.height=document.body.clientHeight+"px";  //设置隐藏层的高度为当前页面高度
- document.getElementById("login6").style.display="block";  //显示弹出层
- }
- function hide6()  //去除隐藏层和弹出层
- {
- document.getElementById("hidebg6").style.display = "none";
- document.getElementById("login6").style.display = "none";
- }
+function show6()  //显示隐藏层和弹出层
+{
+    var hideobj=document.getElementById("hidebg6");
+    hidebg6.style.display="block";  //显示隐藏层
+    hidebg6.style.height=document.body.clientHeight+"px";  //设置隐藏层的高度为当前页面高度
+    document.getElementById("login6").style.display="block";  //显示弹出层
+}
+function hide6()  //去除隐藏层和弹出层
+{
+    document.getElementById("hidebg6").style.display = "none";
+    document.getElementById("login6").style.display = "none";
+}
 
 function show7()  //显示隐藏层和弹出层
 {
@@ -167,9 +170,9 @@ var vm = new Vue({
 
         ],
 
-       goodModels1:[
+        goodModels1:[
 
-       ],
+        ],
 
         goodModels2:[
 
@@ -280,7 +283,7 @@ var vm = new Vue({
             tax:''
         }
 
-        },
+    },
 
     methods:{
 
@@ -358,55 +361,55 @@ var vm = new Vue({
             }
 
             this.$http.post("http://localhost:8080/order/delivery_product",{
-                    clientId:'',
-                    clientName:this.deliveryOrder.receive.trim(),
-                    deliveryMan:this.deliveryOrder.deliveryMan.trim(),
-                    comment:this.deliveryOrder.comment.trim(),
-                    deliveryMoney:this.deliveryOrder.deliveryMoney,
-                    hasTax:hasTax,
-                    // totalWeight:parseFloat(this.deliveryOrder.totalWeight),
-                    // totalMoney:parseFloat(this.deliveryOrder.totalMoney),
-                    businessman:this.deliveryOrder.businessMan.trim(),
-                    ticketMaker:this.deliveryOrder.createOrderMan.trim(),
-                    date:newDate,
-                    products:[
-                        {
-                            orderId:'',
-                            quantity:this.deliveryOrder.good1.num,
-                            totalMoney:this.deliveryOrder.good1.total,
-                            unitPrice:this.deliveryOrder.good1.money,
-                            pid:this.id1,
-                        },
-                        {
-                            orderId:'',
-                            quantity:this.deliveryOrder.good2.num,
-                            totalMoney:this.deliveryOrder.good2.total,
-                            unitPrice:this.deliveryOrder.good2.money,
-                            pid:this.id2,
-                        },
-                        {
-                            orderId:'',
-                            quantity:this.deliveryOrder.good3.num,
-                            totalMoney:this.deliveryOrder.good3.total,
-                            unitPrice:this.deliveryOrder.good3.money,
-                            pid:this.id3,
-                        },
-                        {
-                            orderId:'',
-                            quantity:this.deliveryOrder.good4.num,
-                            totalMoney:this.deliveryOrder.good4.total,
-                            unitPrice:this.deliveryOrder.good4.money,
-                            pid:this.id4,
-                        },
-                        {
-                            orderId:'',
-                            quantity:this.deliveryOrder.good5.num,
-                            totalMoney:this.deliveryOrder.good5.total,
-                            unitPrice:this.deliveryOrder.good5.money,
-                            pid:this.id5,
-                        },
+                clientId:'',
+                clientName:this.deliveryOrder.receive.trim(),
+                deliveryMan:this.deliveryOrder.deliveryMan.trim(),
+                comment:this.deliveryOrder.comment.trim(),
+                deliveryMoney:this.deliveryOrder.deliveryMoney,
+                hasTax:hasTax,
+                // totalWeight:parseFloat(this.deliveryOrder.totalWeight),
+                // totalMoney:parseFloat(this.deliveryOrder.totalMoney),
+                businessman:this.deliveryOrder.businessMan.trim(),
+                ticketMaker:this.deliveryOrder.createOrderMan.trim(),
+                date:newDate,
+                products:[
+                    {
+                        orderId:'',
+                        quantity:this.deliveryOrder.good1.num,
+                        totalMoney:this.deliveryOrder.good1.total,
+                        unitPrice:this.deliveryOrder.good1.money,
+                        pid:this.id1,
+                    },
+                    {
+                        orderId:'',
+                        quantity:this.deliveryOrder.good2.num,
+                        totalMoney:this.deliveryOrder.good2.total,
+                        unitPrice:this.deliveryOrder.good2.money,
+                        pid:this.id2,
+                    },
+                    {
+                        orderId:'',
+                        quantity:this.deliveryOrder.good3.num,
+                        totalMoney:this.deliveryOrder.good3.total,
+                        unitPrice:this.deliveryOrder.good3.money,
+                        pid:this.id3,
+                    },
+                    {
+                        orderId:'',
+                        quantity:this.deliveryOrder.good4.num,
+                        totalMoney:this.deliveryOrder.good4.total,
+                        unitPrice:this.deliveryOrder.good4.money,
+                        pid:this.id4,
+                    },
+                    {
+                        orderId:'',
+                        quantity:this.deliveryOrder.good5.num,
+                        totalMoney:this.deliveryOrder.good5.total,
+                        unitPrice:this.deliveryOrder.good5.money,
+                        pid:this.id5,
+                    },
 
-                    ],
+                ],
 
             },{
                 headers:{
@@ -518,11 +521,11 @@ var vm = new Vue({
                     username:encodeURI(this.username)
                 }
             }).then(function(response){
-                    document.getElementById("newinput1").value="";
-                    hide1();
-                    this.receives.push(name);
-                    alert("添加收货方成功!")
-                }).catch(function(error){
+                document.getElementById("newinput1").value="";
+                hide1();
+                this.receives.push(name);
+                alert("添加收货方成功!")
+            }).catch(function(error){
                 alert("出现了未知的错误！请重新进行输入");
                 hide1();
             })
@@ -553,9 +556,9 @@ var vm = new Vue({
                     }
 
                 }).catch(function(error){
-                    // console.log(error.data);
-                    alert("出现了未知的错误！请重新进行输入");
-                    hide2();
+                // console.log(error.data);
+                alert("出现了未知的错误！请重新进行输入");
+                hide2();
             })
         },
 
@@ -653,7 +656,7 @@ var vm = new Vue({
                 }
                 this.pushIntoSelect(name,type);
                 alert("添加货品成功!");
-                }).catch(function(error){
+            }).catch(function(error){
                 alert("出现了未知的错误！请重新进行输入");
                 hide3();
             })
@@ -679,7 +682,7 @@ var vm = new Vue({
                 this.goodModels5.push(type)
             }
         },
-        
+
         getType:function (content) {
             // alert(content)
             // this.goodModels1=[];
@@ -701,7 +704,7 @@ var vm = new Vue({
                 }else if(number==5){
                     this.goodModels5=(response.data.data)
                 }
-                }).catch(function (error) {
+            }).catch(function (error) {
                 // console.log(error.data);
                 alert("出现了未知的错误！请重新进行输入")
             });
@@ -743,11 +746,11 @@ var vm = new Vue({
                 name:productName,
                 type:name
             }).then(function(response){
-                    document.getElementById("newinput4").value="";
-                    hide4();
-                    this.goodModels.push(name);
-                    alert("添加类型成功!");
-                }).catch(function(error){
+                document.getElementById("newinput4").value="";
+                hide4();
+                this.goodModels.push(name);
+                alert("添加类型成功!");
+            }).catch(function(error){
                 alert("出现了未知的错误！请重新进行输入");
                 hide4();
             })
@@ -789,10 +792,10 @@ var vm = new Vue({
                     name:name
                 }
             }).then(function(response){
-                    mySelect.options.remove(index);//下拉框中删除该元素
-                    hide6();
-                    alert("删除运货人成功!")
-                }).catch(function(error){
+                mySelect.options.remove(index);//下拉框中删除该元素
+                hide6();
+                alert("删除运货人成功!")
+            }).catch(function(error){
                 // console.log(error.data);
                 alert("出现了未知的错误！请重新进行输入")
                 hide6();
@@ -804,47 +807,49 @@ var vm = new Vue({
 
         this.username = this.getCookieValue("username");
         this.authority=this.getCookieValue("authority");
-        if(this.authority!=0){
+        if(this.authority!=2){
             alert("抱歉，您无权浏览当前页面，如有疑问，请与管理员联系")
             return;
         }
+        if(this.username == ""){
+            alert("请先登录！");
+            window.location.href = "../index.html"
+        }else{
+            const self = this;
 
-    if(this.username == ""){
-        alert("请先登录！");
-        window.location.href = "../index.html"
-    }else{
-        const self = this;
+            this.$http.get("http://localhost:8080/client/allName").then(function(response){
+                self.receives=response.data.data;
+            }).catch(function(error){
+                alert("出现了未知的错误！请重新进行输入")
+            });
 
-        this.$http.get("http://localhost:8080/client/allName").then(function(response){
-            self.receives=response.data.data;
-        }).catch(function(error){
-            alert("出现了未知的错误！请重新进行输入")
-        });
+            this.$http.get("http://localhost:8080/product/product/name").then(function(response){
+                self.goodNames=response.data.data;
+            }).catch(function(error){
+                alert("出现了未知的错误！请重新进行输入")
+            });
 
-        this.$http.get("http://localhost:8080/product/product/name").then(function(response){
-            self.goodNames=response.data.data;
-        }).catch(function(error){
-            alert("出现了未知的错误！请重新进行输入")
-        });
+            this.$http.get("http://localhost:8080/product/product").then(function(response){
+                self.allGoods=response.data.data;
+            }).catch(function(error){
+                alert("出现了未知的错误！请重新进行输入")
+            });
 
-        this.$http.get("http://localhost:8080/product/product").then(function(response){
-            self.allGoods=response.data.data;
-        }).catch(function(error){
-            alert("出现了未知的错误！请重新进行输入")
-        });
+            this.$http.get("http://localhost:8080/deliveryman/allName").then(function(response){
+                self.deliveryMen=response.data.data;
+            }).catch(function(error){
+                alert("出现了未知的错误！请重新进行输入")
+            });
 
-        this.$http.get("http://localhost:8080/deliveryman/allName").then(function(response){
-            self.deliveryMen=response.data.data;
-        }).catch(function(error){
-            alert("出现了未知的错误！请重新进行输入")
-        });
+            this.$http.get("http://localhost:8080/businessman").then(function(response){
+                self.businessMen=response.data.data;
+            }).catch(function(error){
+                alert("出现了未知的错误！请重新进行输入")
+            });
+        }
 
-        this.$http.get("http://localhost:8080/businessman").then(function(response){
-            self.businessMen=response.data.data;
-        }).catch(function(error){
-            alert("出现了未知的错误！请重新进行输入")
-        });
-    }},
+
+    },
     computed:{
         getTotal1:function() {
             var result=parseFloat(this.deliveryOrder.good1.num)*parseFloat(this.deliveryOrder.good1.money);

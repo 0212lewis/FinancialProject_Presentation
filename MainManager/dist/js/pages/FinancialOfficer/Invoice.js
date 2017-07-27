@@ -1,4 +1,7 @@
 /**
+ * Created by dell- on 2017/7/27.
+ */
+/**
  * Created by pc on 2017/4/25.
  */
 /**
@@ -173,17 +176,17 @@ var vm = new Vue({
                 return;
             }
             this.$http.delete("http://localhost:8080/client",{
-              body:name,
+                body:name,
 
                 headers:{
                     username:encodeURI(this.username)
                 }
             }).then(function(response){
-                    mySelect.options.remove(index);//下拉框中删除该元素
-                    hide2();
-                    alert("删除付款单位成功!")
-                }).catch(function(error){
-                    // console.log(error.data);
+                mySelect.options.remove(index);//下拉框中删除该元素
+                hide2();
+                alert("删除付款单位成功!")
+            }).catch(function(error){
+                // console.log(error.data);
                 alert("出现了未知的错误！请重新进行输入")
                 hide2();
             })
@@ -206,28 +209,28 @@ var vm = new Vue({
             }else if(this.invoiceOrder.money==null){
                 alert("请输入开票金额！");
             }else if((this.invoiceOrder.hour.toString().length==2)&&(this.invoiceOrder.minute.toString().length==2)&&(this.invoiceOrder.second.toString().length==2)) {
-                    const self = this;
-                    this.$http.post("http://localhost:8080/order/open_ticket", {
-                        clientID: '',
-                        clientName: self.invoiceOrder.unit.trim(),
-                        orderID: self.invoiceOrder.orderId.trim(),
-                        money: self.invoiceOrder.money,
-                        comment: self.invoiceOrder.comment.trim(),
-                        date: newDate
-                    },{headers:{
-                        username:encodeURI(this.username)
-                    }}).then(function (response) {
-                        if (response.body.errorCode == 0) {
-                            document.getElementById("save").disabled = true;
-                            alert("添加成功！");
+                const self = this;
+                this.$http.post("http://localhost:8080/order/open_ticket", {
+                    clientID: '',
+                    clientName: self.invoiceOrder.unit.trim(),
+                    orderID: self.invoiceOrder.orderId.trim(),
+                    money: self.invoiceOrder.money,
+                    comment: self.invoiceOrder.comment.trim(),
+                    date: newDate
+                },{headers:{
+                    username:encodeURI(this.username)
+                }}).then(function (response) {
+                    if (response.body.errorCode == 0) {
+                        document.getElementById("save").disabled = true;
+                        alert("添加成功！");
 
-                        } else if(response.data.errorCode ==80000001){// console.log(response.data);
-                            alert("请先登录！");
-                        }
-                    }).catch(function (error) {
-                        alert("添加失败！");
-                    })
-                }else{
+                    } else if(response.data.errorCode ==80000001){// console.log(response.data);
+                        alert("请先登录！");
+                    }
+                }).catch(function (error) {
+                    alert("添加失败！");
+                })
+            }else{
                 alert("请规范输入时间格式！");
             }
 
@@ -236,11 +239,12 @@ var vm = new Vue({
     mounted(){
 
         this.username = this.getCookieValue("username");
-        this.authority=this.getCookieValue("authority");
-        if(this.authority!=0){
+        this.authority = this.getCookieValue("authority");
+        if(this.authority!=1) {
             alert("抱歉，您无权浏览当前页面，如有疑问，请与管理员联系")
             return;
         }
+
         if(this.username == ""){
             alert("请先登录！");
             window.location.href = "../index.html"

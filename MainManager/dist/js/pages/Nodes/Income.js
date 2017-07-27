@@ -75,6 +75,7 @@ var vm = new Vue({
     el:'#container',
     data:{
         username:'',
+        authority:'',
         newpayer:'',
         payers:[
 
@@ -318,6 +319,12 @@ var vm = new Vue({
     mounted(){
         
         this.username = this.getCookieValue("username");
+
+        this.authority=this.getCookieValue("authority");
+        if(this.authority!=0){
+            alert("抱歉，您无权浏览当前页面，如有疑问，请与管理员联系")
+            return;
+        }
 
         if(this.username == ''){
             alert("请先登录！")

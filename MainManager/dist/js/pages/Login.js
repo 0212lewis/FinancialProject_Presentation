@@ -25,7 +25,9 @@ var vm=new Vue({
                     if(response.data.errorCode === 0 ) {
                         self.items = response.data.data;
                         var username = response.data.data.username;
+                        var authority = response.data.data.authority;
                         this.setCookie('username',self.items.username,1);
+                        this.setCookie('authority', self.items.authority, 1);
 
                         if(this.items.authority == 0){
                             window.location.href = "Login/MainUi.html";

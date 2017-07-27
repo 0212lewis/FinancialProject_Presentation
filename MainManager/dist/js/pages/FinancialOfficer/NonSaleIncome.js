@@ -1,4 +1,7 @@
 /**
+ * Created by dell- on 2017/7/27.
+ */
+/**
  * Created by pc on 2017/7/12.
  */
 /**
@@ -256,11 +259,11 @@ var vm = new Vue({
 
     mounted(){
         this.username = this.getCookieValue("username");
-        this.authority=this.getCookieValue("authority");
-        if(this.authority!=0){
+        if(this.authority!=1) {
             alert("抱歉，您无权浏览当前页面，如有疑问，请与管理员联系")
             return;
         }
+
         if(this.username == ""){
             alert("请先登录！");
             window.location.href = "../index.html"
