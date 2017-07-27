@@ -56,10 +56,7 @@ var vm = new Vue({
         deleteConfirm:function () {
             hide1();
             this.$http.delete("http://localhost:8080/provider",{
-                body : {
-                    name:this.deleteName
-                }
-            },{
+                body : this.deleteName,
                 headers:{
                     username:encodeURI(this.username)
                 }

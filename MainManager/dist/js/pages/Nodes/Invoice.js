@@ -172,10 +172,8 @@ var vm = new Vue({
                 return;
             }
             this.$http.delete("http://localhost:8080/client",{
-              body:{
-                  name:name
-              }
-            },{
+              body:name,
+
                 headers:{
                     username:encodeURI(this.username)
                 }

@@ -177,9 +177,8 @@ var vm = new Vue({
                 return;
             }
             this.$http.delete("http://localhost:8080/client",{
-                body:encodeURI(name)
-            },{
-                headers:{
+                body:name,
+                    headers:{
                     username:encodeURI(this.username)
                 }
             })
@@ -231,8 +230,7 @@ var vm = new Vue({
                 body:{
                     name:name
                 }
-            })
-                .then(function(response){
+            }).then(function(response){
                     mySelect.options.remove(index);//下拉框中删除该元素
                     hide4();
                     alert("删除方式成功!")

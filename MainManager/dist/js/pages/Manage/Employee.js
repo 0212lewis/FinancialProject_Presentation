@@ -70,11 +70,7 @@ var vm  = new Vue({
         deleteFinanceConfirm:function () {
             hide1();
             this.$http.delete("http://localhost:8080/account/Finance",{
-                body:{
-                    name:this.deleteName
-                }
-
-            },{
+                body:this.deleteName,
                 headers:{
                     username:encodeURI(this.username)
                 }
@@ -98,10 +94,7 @@ var vm  = new Vue({
         deleteStoreConfirm:function () {
             hide2();
             this.$http.delete("http://localhost:8080/account/store",{
-                  body:{
-                      name:this.deleteName
-                  }
-            },{
+                  body:this.deleteName,
                 headers:{
                     username:encodeURI(this.username)
                 }
