@@ -92,9 +92,9 @@ var vm = new Vue({
         }else{
             this.$http.get("http://localhost:8080/provider/allProvider").then(function (response) {
                 this.items = response.data.data;
-                setTimeout(function () {
-                    $('#example1').DataTable();
-                },0);
+                // setTimeout(function () {
+                //     $('#example1').DataTable();
+                // },0);
             }).catch(function (error) {
                 alert("出现了未知的错误！");
             })
