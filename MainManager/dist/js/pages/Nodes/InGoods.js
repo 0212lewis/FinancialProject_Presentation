@@ -416,15 +416,15 @@ var vm = new Vue({
     mounted(){
         const self = this;
         this.username = this.getCookieValue("username");
-
         this.authority=this.getCookieValue("authority");
-        if(this.authority!=0){
-            alert("抱歉，您无权浏览当前页面，如有疑问，请与管理员联系")
-            return;
-        }
+
         if(this.username == ''){
             alert("请先登录！");
-            window.location.href = "../index.html"
+            window.location.href = "../index.html";
+        }else if(this.authority!=0){
+            alert("抱歉，您无权浏览当前页面，如有疑问，请与管理员联系");
+            window.location.href = "../index.html";
+            return;
         }else{
             this.$http.get("http://localhost:8080/provider/allName").then(function(response){
                 self.providers=response.data.data;
@@ -444,6 +444,8 @@ var vm = new Vue({
                 alert("出现了未知的错误！请重新进行输入")
             });
         }
+
+
 
     },
     computed:{

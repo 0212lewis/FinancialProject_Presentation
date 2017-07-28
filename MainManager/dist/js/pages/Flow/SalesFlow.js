@@ -96,17 +96,22 @@ var tool=new Vue(
 		table:'',
 	},
 	mounted(){
+        var date=new Date;
+        var year=parseInt(date.getFullYear());
+
+        for(var i=0;i<10;i++){
+            this.years.push(year-i);
+        }
+        this.year = year;
+
         this.username = this.getCookieValue("username");
         if(this.username == ""){
             alert("请先登录！");
             window.location.href = "../index.html";
+        }else if(this.getCookieValue("authority")!=0){
+            alert("抱歉，您无权浏览当前页面，如有疑问，请与管理员联系");
+            window.location.href = "../index.html"
         }else{
-            this.$http.get("http://localhost:8080/flow/year").then(function (response) {
-                if(response.data.errorCode == 0){
-                    this.years = response.data.data;
-                    this.year = parseInt(response.data.data[0]);
-                    console.log(this.year);
-
                     this.$http.get('http://localhost:8080/flow/sales/'+this.year)
                         .then(function(response){
                             this.items=response.data.data;
@@ -117,11 +122,6 @@ var tool=new Vue(
                         alert("出现了未知的错误！请重新进行输入")
                     })
                 }
-            }).catch(function (error) {
-                alert("发生了未知的错误！")
-            });
-        }
-
 	},
 	methods:{
 

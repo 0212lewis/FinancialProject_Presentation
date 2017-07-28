@@ -232,7 +232,7 @@ desired effect
             <div class="box-header">
               <h3 class="col-md-3 box-title">年度销售统计表</h3>
 
-                <div class="col-md-9 pull-right" >
+                <div class="col-md-8" >
                     <div class="col-md-2">
                         <label class="control-label" style="font-size: large">年份</label>
                     </div>
@@ -247,6 +247,7 @@ desired effect
                     </div>
 
                 </div>
+                <button type="button" class="btn btn-sm btn-warning pull-right" @click.prevent = "closePeriod" id="closePeriod">结转跨期</button>
             </div>
             <!-- /.box-header -->
             <div class="box-body" style="overflow:auto">

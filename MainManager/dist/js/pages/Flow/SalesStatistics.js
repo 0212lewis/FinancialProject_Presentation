@@ -148,37 +148,52 @@ var tool=new Vue(
                 }).catch(function(error){
                 alert("出现了未知的错误！请重新进行输入")
             })
-
+        },
+        closePeriod:function () {
+            this.$http.get("http://localhost:8080/closePeriod").then(function (response) {
+                if(response.data.errorCode == 0){
+                    alert("本期已成功结转！");
+                    window.location.href = "DetailStatistics.html"
+                }
+            }).catch(function (error) {
+                alert("发生了未知的错误！")
+            })
         }
     },
 	mounted(){
+        var date=new Date;
+        var year=parseInt(date.getFullYear());
+        var month = date.getMonth();
+        var day = date.getDay();
+
+        if((month!="12")&&(day!="31")){
+            document.getElementById("closePeriod").disabled = true;
+        }
+
+        for(var i=0;i<10;i++){
+            this.years.push(year-i);
+        }
+        this.year = year;
+
         this.username = this.getCookieValue("username");
         if(this.username == ""){
             alert("请先登录！");
             window.location.href = "../index.html";
-        }else{
-            this.$http.get("http://localhost:8080/flow/year").then(function (response) {
-                if(response.data.errorCode == 0){
-                    this.years = response.data.data;
-                    this.year = parseInt(response.data.data[0]);
-                    console.log(this.year);
+        }else if(this.getCookieValue("authority")!=0){
+            alert("抱歉，您无权浏览当前页面，如有疑问，请与管理员联系");
+            window.location.href = "../index.html"
+        }else {
+            this.$http.get('http://localhost:8080/flow/sales_analysis/' + this.year)
+                .then(function (response) {
 
-                    this.$http.get('http://localhost:8080/flow/sales_analysis/'+this.year)
-                        .then(function(response){
+                    this.items = response.data.data;
 
-                            this.items=response.data.data;
-
-                            setTimeout(function () {
-                                $('#example1').DataTable();
-                            },0);
-                        }).catch(function(error){
-                        alert("出现了未知的错误！请重新进行输入")
-                    })
-                }
-            }).catch(function (error) {
-                alert("发生了未知的错误！")
-            });
+                    setTimeout(function () {
+                        $('#example1').DataTable();
+                    }, 0);
+                }).catch(function (error) {
+                alert("出现了未知的错误！请重新进行输入")
+            })
         }
-
 	}
 });

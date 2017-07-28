@@ -7,7 +7,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>财管|业务员</title>
+    <title>财管|客户</title>
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <!-- Bootstrap 3.3.6 -->
@@ -33,19 +33,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
 
-
-    <style>
-        delete { margin:0px;padding:0px;text-align: center;}
-        #hidebg1 { position:absolute;left:0px;top:0px;
-            background-color:#000;
-            width:100%;  /*宽度设置为100%，这样才能使隐藏背景层覆盖原页面*/
-            filter:alpha(opacity=60);  /*设置透明度为60%*/
-            opacity:0.6;  /*非IE浏览器下设置透明度为60%*/
-            display:none; /* http://www.jb51.net */
-            z-Index:2;}
-        #login1 { position:absolute;width:400px;height:180px;top:200px;left:35%;background-color:#fff;display:none;cursor:pointer;z-Index:3;}
-
-    </style>
 </head>
 <!--
 BODY TAG OPTIONS:
@@ -70,23 +57,6 @@ desired effect
 
 <body class="hold-transition skin-blue sidebar-mini">
 <div class="wrapper" id="container">
-    <div id="delete">
-        <div id="hidebg1"></div>
-        <form class="form-horizontal">
-            <div id="login1" class="box-body">
-                <hr>
-                <div class="form-group">
-                    <label class="col-md-8 control-label">是否确定删除该业务员？</label>
-                </div>
-                <div class="btn-group">
-
-                    <button type="button" class="btn btn btn-primary" style="left: 80px;" @click.prevent="deleteConfirm()">确定</button>
-                    <button type="button" class="btn btn btn-danger" style="left: 230px;" onclick="hide1()">取消</button>
-                </div>
-                <hr>
-            </div>
-        </form>
-    </div>
     <!-- Main Header -->
     <header class="main-header">
 
@@ -129,11 +99,15 @@ desired effect
                                 <img src="../../dist/img/avatar5.png" class="img-circle" alt="User Image">
 
                                 <p>
-                                    华峰纸管胶厂--经理
+                                    华峰纸管胶厂
                                 </p>
                             </li>
                             <!-- Menu Body -->
-
+                            <li class="user-footer">
+                                <div class="pull-right">
+                                    <a @click.prevent="logout" class="btn btn-default btn-flat">退出</a>
+                                </div>
+                            </li>
                         </ul>
                     </li>
 
@@ -172,12 +146,13 @@ desired effect
           </span>
                     </a>
                     <ul class="treeview-menu">
-                        <li><a href="../Nodes/Income.html"><i class="fa fa-circle-o"> 进款单</i></a> </li>
+                        <li><a href="../../pages/Nodes/Income.html"><i class="fa fa-circle-o"> 进款单</i></a> </li>
                         <li><a href="../../pages/Nodes/NonSaleIncome.html"><i class="fa fa-circle-o"> 销售外进款单</i></a></li>
-                        <li><a href="../Nodes/Outcome.html"><i class="fa fa-circle-o"> 付款单</i></a> </li>
-                        <li><a href="../Nodes/Invoice.html"><i class="fa fa-circle-o"> 开票单</i></a> </li>
-                        <li><a href="../Nodes/InGoods.html"><i class="fa fa-circle-o"> 进货单</i></a> </li>
-                        <li><a href="../Nodes/OutGoods.html"><i class="fa fa-circle-o"> 送货单</i></a> </li>
+
+                        <li><a href="../../pages/Nodes/Outcome.html"><i class="fa fa-circle-o"> 付款单</i></a> </li>
+                        <li><a href="../../pages/Nodes/Invoice.html"><i class="fa fa-circle-o"> 开票单</i></a> </li>
+                        <li><a href="../../pages/Nodes/InGoods.html"><i class="fa fa-circle-o"> 进货单</i></a> </li>
+                        <li><a href="../../pages/Nodes/OutGoods.html"><i class="fa fa-circle-o"> 送货单</i></a> </li>
                     </ul>
                 </li>
                 <li class="treeview">
@@ -187,34 +162,33 @@ desired effect
             </span>
                     </a>
                     <ul class="treeview-menu">
-                        <li><a href="../Flow/SalesFlow.html"><i class="fa fa-circle-o"> 销售流水</i></a></li>
-                        <li><a href="../Flow/InvoiceFlow.html"><i class="fa fa-circle-o"> 开票流水</i></a></li>
-                        <li><a href="../Flow/CapitalFlow.html"><i class="fa fa-circle-o"> 资金流水</i></a></li>
-                        <li><a href="../Flow/InGoodsFlow.html"><i class="fa fa-circle-o"> 进货流水</i></a></li>
-                        <li><a href="../Flow/SalesStatistics.html"><i class="fa fa-circle-o"> 销售统计表</i></a></li>
+                        <li><a href="../../pages/Flow/SalesFlow.html"><i class="fa fa-circle-o"> 销售流水</i></a></li>
+                        <li><a href="../../pages/Flow/InvoiceFlow.html"><i class="fa fa-circle-o"> 开票流水</i></a></li>
+                        <li><a href="../../pages/Flow/CapitalFlow.html"><i class="fa fa-circle-o"> 资金流水</i></a></li>
+                        <li><a href="../../pages/Flow/InGoodsFlow.html"><i class="fa fa-circle-o"> 进货流水</i></a></li>
+                        <li><a href="../../pages/Flow/SalesStatistics.html"><i class="fa fa-circle-o"> 销售统计表</i></a></li>
                     </ul>
                 </li>
-                <li class="treeview" >
+                <li class="treeview active" >
                     <a href="#"><i class="fa fa-user"></i> <span>合作伙伴</span>
                         <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>
             </span>
                     </a>
                     <ul class="treeview-menu">
-                        <li><a href="../Cooperation/Client.html"><i class="fa fa-circle-o"> 客户</i></a></li>
-                        <li><a href="../Cooperation/Provider.html"><i class="fa fa-circle-o"> 供应商</i></a></li>
-
+                        <li class="active"><a href="Client.html"><i class="fa fa-circle-o"> 客户</i></a></li>
+                        <li><a href="Provider.html"><i class="fa fa-circle-o"> 供应商</i></a></li>
                     </ul>
                 </li>
 
-                <li class="treeview active" >
+                <li class="treeview" >
                     <a href="#"><i class="fa fa-user"></i> <span>员工管理</span>
                         <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>
             </span>
                     </a>
                     <ul class="treeview-menu">
-                        <li class="active"><a href="../Manage/Businessman.html"><i class="fa fa-circle-o"> 业务员</i></a></li>
+                        <li><a href="../Manage/Businessman.html"><i class="fa fa-circle-o"> 业务员</i></a></li>
                         <li><a href="../Manage/Employee.html"><i class="fa fa-circle-o"> 权限管理</i></a></li>
                     </ul>
                 </li>
@@ -239,13 +213,13 @@ desired effect
     <div class="content-wrapper">
         <!-- Content Header (Page header) -->
         <section class="content-header">
-
             <ol class="breadcrumb">
-                <li><a href="../Login/MainUi.html" style="color: #FFFFFF"><i class="fa fa-dashboard" style="color: #FFFFFF"></i>Home</a></li>
-                <li class="active" style="color:#FFFFFF">业务员</li>
+                <li><a href="../Login/MainUi.html" style="color: #000000"><i class="fa fa-dashboard" style="color: #000000"></i>Home</a></li>
+                <li class="active" style="color:#000000">客户交易记录</li>
             </ol>
         </section>
 
+        <br>
         <!-- Main content -->
         <section class="content">
             <div class="row">
@@ -253,46 +227,64 @@ desired effect
                     <!-- /.box -->
                     <div class="box">
                         <div class="box-header">
-                            <h3 class="box-title">业务员信息</h3>
-                            <button type="button" class="pull-right btn btn-primary" onclick="javascript:window.location.href='AddNewBusinessman.html'">添加</button>
+                            <h3 class="box-title">客户交易记录</h3>
                         </div>
                         <!-- /.box-header -->
                         <div id="app" class="box-body">
                             <table id="example1" class="table table-bordered table-striped">
                                 <thead>
                                 <tr>
-                                    <th>名称</th>
-                                    <th>联系方式</th>
-                                    <th>地址</th>
-                                    <th>删除</th>
-                                    <th>业绩</th>
+                                    <th>订单号</th>
+                                    <th>日期</th>
+                                    <th>客户名称</th>
+                                    <th>货物名</th>
+                                    <th>货物型号</th>
+                                    <th>数量</th>
+                                    <th>单价</th>
+                                    <th>总价</th>
+                                    <th>运货人</th>
+                                    <th>运费</th>
+                                    <th>业务员</th>
+                                    <th>备注</th>
                                 </tr>
                                 </thead>
                                 <tbody>
                                 <tr v-for="item in items">
-                                    <td v-text="item.name"></td>
-                                    <td v-text="item.phone_number"></td>
-                                    <td v-text="item.address"></td>
-                                    <td>
-                                        <a @click="deleteBusinessman(item.name)">删除</a>
-                                    </td>
-                                    <td>
-                                        <a :href="'BussinessmanRecord.html?id='+item.name">查看</a>
-                                    </td>
+                                    <td v-text="item.orderId"></td>
+                                    <td v-text="item.date"></td>
+                                    <td v-text="item.clientName"></td>
+                                    <td v-text="item.pname"></td>
+                                    <td v-text="item.ptype"></td>
+                                    <td v-text="item.num"></td>
+                                    <td v-text="item.unitPrice"></td>
+                                    <td v-text="item.total"></td>
+                                    <td v-text="item.deliveryMan"></td>
+                                    <td v-text="item.deliveryMoney"></td>
+                                    <td v-text="item.businessman"></td>
+                                    <td v-text="item.comment"></td>
                                 </tr>
                                 </tbody>
                                 <tfoot>
                                 <tr>
-                                    <th>名称</th>
-                                    <th>联系方式</th>
-                                    <th>地址</th>
-                                    <th>删除</th>
-                                    <th>业绩</th>
+                                    <th>订单号</th>
+                                    <th>日期</th>
+                                    <th>客户名称</th>
+                                    <th>货物名</th>
+                                    <th>货物型号</th>
+                                    <th>数量</th>
+                                    <th>单价</th>
+                                    <th>总价</th>
+                                    <th>运货人</th>
+                                    <th>运费</th>
+                                    <th>业务员</th>
+                                    <th>备注</th>
                                 </tr>
                                 </tfoot>
                             </table>
                         </div>
+
                         <!-- /.box-body -->
+
                     </div>
                     <!-- /.box -->
                 </div>
@@ -508,7 +500,7 @@ desired effect
 <!-- ./wrapper -->
 <script src="../../vue/vue.js"></script>
 <script src="../../vue-resource/vue-resource.js"></script>
-<script src="../../dist/js/pages/Manage/Businessman.js"></script>
+<script src="../../dist/js/pages/Cooperation/ClientRecord.js"></script>
 <!-- jQuery 2.2.3 -->
 <script src="../../plugins/jQuery/jquery-2.2.3.min.js"></script>
 <!-- Bootstrap 3.3.6 -->

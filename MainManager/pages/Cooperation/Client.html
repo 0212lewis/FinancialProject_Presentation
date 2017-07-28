@@ -207,7 +207,7 @@ desired effect
             </span>
                     </a>
                     <ul class="treeview-menu">
-                        <li class="active"><a href="#"><i class="fa fa-circle-o"> 客户</i></a></li>
+                        <li class="active"><a href="Client.html"><i class="fa fa-circle-o"> 客户</i></a></li>
                         <li><a href="Provider.html"><i class="fa fa-circle-o"> 供应商</i></a></li>
                     </ul>
                 </li>
@@ -276,6 +276,7 @@ desired effect
                                     <th>联系人</th>
                                     <th>修改</th>
                                     <th>删除</th>
+                                    <th>交易记录</th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -294,6 +295,9 @@ desired effect
                                     <td>
                                         <a @click="deleteSingleClient(item.name)">删除</a>
                                     </td>
+                                    <td>
+                                        <a :href="'ClientRecord.html?id='+item.id">交易记录</a>
+                                    </td>
                                 </tr>
                                 </tbody>
                                 <tfoot>
@@ -308,6 +312,7 @@ desired effect
                                     <th>联系人</th>
                                     <th>修改</th>
                                     <th>删除</th>
+                                    <th>交易记录</th>
                                 </tr>
                                 </tfoot>
                             </table>

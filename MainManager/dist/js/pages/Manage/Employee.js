@@ -120,6 +120,9 @@ var vm  = new Vue({
         if(this.username == ""){
             alert("请先登录！");
             window.location.href = "../index.html"
+        }else if(this.getCookieValue("authority")!=0){
+            alert("抱歉，您无权浏览当前页面，如有疑问，请与管理员联系");
+            window.location.href = "../index.html"
         }else{
             this.$http.get("http://localhost:8080/account/finance").then(function (response) {
                 if(response.data.errorCode == 0){

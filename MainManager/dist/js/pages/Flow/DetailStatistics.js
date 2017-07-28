@@ -122,35 +122,40 @@ var tool=new Vue(
         mounted(){
 
             this.username = this.getCookieValue("username");
-
-            if(this.username == ""){
-                alert("请先登录！");
-                window.location.href = "../index.html"
-            }
             var thisUrl = document.URL;
             var getVal = thisUrl.split('?')[1];
             var id = getVal.split('=')[1];
             this.clientId = id;
             console.log(this.clientId);
-            this.$http.get('http://localhost:8080/ticketAndFund',{
-                params:{
-                    clientId:this.clientId
-                }
-            }).then(function(response){
-                if(response.data.errorCode == 0){
-                    console.log(this.clientId);
+            if(this.username == ""){
+                alert("请先登录！");
+                window.location.href = "../index.html"
+            }else if(this.getCookieValue("authority")!=0){
+                alert("抱歉，您无权浏览当前页面，如有疑问，请与管理员联系");
+                window.location.href = "../index.html"
+            }
+         else{
+                this.$http.get('http://localhost:8080/ticketAndFund',{
+                    params:{
+                        clientId:this.clientId
+                    }
+                }).then(function(response){
+                    if(response.data.errorCode == 0){
+                        console.log(this.clientId);
 
-                    this.items=response.data;
-                    console.log(response.data.data);
-                    console.log(this.items);
+                        this.items=response.data;
+                        console.log(response.data.data);
+                        console.log(this.items);
 
-                    setTimeout(function () {
-                        $('#example1').DataTable();
-                    },0);
-                }
+                        setTimeout(function () {
+                            $('#example1').DataTable();
+                        },0);
+                    }
 
                 }).catch(function(error){
-                alert("出现了未知的错误！请重新进行输入")
-            })
+                    alert("出现了未知的错误！请重新进行输入")
+                })
+            }
+
         }
     });

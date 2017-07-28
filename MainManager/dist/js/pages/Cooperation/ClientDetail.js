@@ -85,19 +85,27 @@ var vm  = new Vue({
         var id = getVal.split('=')[1];
         this.id = id;
         this.username = this.getCookieValue("username");
+        if(this.username == ''){
+            alert("请先登录！");
+            window.location.href = "../index.html"
+        }else if(this.getCookieValue("authority")!=0){
+            alert("抱歉，您无权浏览当前页面，如有疑问，请与管理员联系");
+            window.location.href = "../index.html"
+        }else{
+            this.$http.get("http://localhost:8080/client/singleClient",{
+                params:{
+                    clientId:this.id
+                }
+            }).then(function (response) {
+                if(response.body.errorCode == 0){
+                    console.log(this.items)
+                    console.log(response.data.data);
+                    this.items = response.data.data[0];
+                }
+            }).catch(function (error) {
+                alert("出现了未知的错误!");
+            })
+        }
 
-        this.$http.get("http://localhost:8080/client/singleClient",{
-            params:{
-                clientId:this.id
-            }
-        }).then(function (response) {
-            if(response.body.errorCode == 0){
-                console.log(this.items)
-                console.log(response.data.data);
-                this.items = response.data.data[0];
-            }
-        }).catch(function (error) {
-            alert("出现了未知的错误!");
-        })
     }
 });

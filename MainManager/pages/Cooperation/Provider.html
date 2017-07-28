@@ -275,6 +275,7 @@ desired effect
                                     <th>联系人</th>
                                     <th>修改</th>
                                     <th>删除</th>
+                                    <th>交易记录</th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -293,6 +294,9 @@ desired effect
                                     <td>
                                         <a @click="deleteSingleProvider(item.name)">删除</a>
                                     </td>
+                                    <td>
+                                        <a :href="'ProviderRecord.html?id='+item.id">交易记录</a>
+                                    </td>
                                 </tr>
                                 </tbody>
                                 <tfoot>
@@ -307,6 +311,7 @@ desired effect
                                     <th>联系人</th>
                                     <th>修改</th>
                                     <th>删除</th>
+                                    <th>交易记录</th>
 
                                 </tr>
                                 </tfoot>
