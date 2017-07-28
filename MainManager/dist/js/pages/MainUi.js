@@ -38,8 +38,8 @@ var vm = new Vue({
     },
     mounted(){
        this.username = this.getCookieValue("username");
-
-        if(this.username = ""){
+       console.log(this.username);
+        if(this.username == ""){
             alert("请先登录！");
             window.location.href = "../index.html"
         }else if(this.getCookieValue("authority")!=0){

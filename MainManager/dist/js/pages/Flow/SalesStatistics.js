@@ -74,7 +74,7 @@ var tableToExcel = (function() {
         var ctx = {worksheet: name || 'Worksheet', table: table.innerHTML}
         window.location.href = uri + base64(format(template, ctx))
     }
-})()
+})();
 
 
 var tool=new Vue(
@@ -161,6 +161,7 @@ var tool=new Vue(
         }
     },
 	mounted(){
+
         var date=new Date;
         var year=parseInt(date.getFullYear());
         var month = date.getMonth();
