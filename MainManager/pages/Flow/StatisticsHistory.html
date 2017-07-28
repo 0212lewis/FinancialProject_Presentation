@@ -7,7 +7,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>财管|发票和账款</title>
+    <title>财管|往年记录</title>
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <!-- Bootstrap 3.3.6 -->
@@ -32,6 +32,20 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
+
+    <style>
+        delete { margin:0px;padding:0px;text-align: center;}
+        #hidebg1 { position:absolute;left:0px;top:0px;
+            background-color:#000;
+            width:100%;  /*宽度设置为100%，这样才能使隐藏背景层覆盖原页面*/
+            filter:alpha(opacity=60);  /*设置透明度为60%*/
+            opacity:0.6;  /*非IE浏览器下设置透明度为60%*/
+            display:none; /* http://www.jb51.net */
+            z-Index:2;}
+        #login1 { position:absolute;width:400px;height:180px;top:200px;left:35%;background-color:#fff;display:none;cursor:pointer;z-Index:3;}
+
+    </style>
+
 </head>
 <!--
 BODY TAG OPTIONS:
@@ -55,8 +69,25 @@ desired effect
 -->
 
 <body class="hold-transition skin-blue sidebar-mini">
-<div class="wrapper" id="app">
+<div class="wrapper" id="container">
 
+    <div id="delete">
+        <div id="hidebg1"></div>
+        <form class="form-horizontal">
+            <div id="login1" class="box-body">
+                <hr>
+                <div class="form-group">
+                    <label class="col-md-8 control-label">是否确定删除该客户？</label>
+                </div>
+                <div class="btn-group">
+
+                    <button type="button" class="btn btn btn-primary" style="left: 80px;" @click.prevent="deleteConfirm()">确定</button>
+                    <button type="button" class="btn btn btn-danger" style="left: 230px;" onclick="hide1()">取消</button>
+                </div>
+                <hr>
+            </div>
+        </form>
+    </div>
     <!-- Main Header -->
     <header class="main-header">
 
@@ -99,15 +130,15 @@ desired effect
                                 <img src="../../dist/img/avatar5.png" class="img-circle" alt="User Image">
 
                                 <p>
-                                    华峰纸管胶厂--经理
+                                    华峰纸管胶厂
                                 </p>
                             </li>
+                            <!-- Menu Body -->
                             <li class="user-footer">
                                 <div class="pull-right">
                                     <a @click.prevent="logout" class="btn btn-default btn-flat">退出</a>
                                 </div>
                             </li>
-
                         </ul>
                     </li>
 
@@ -148,8 +179,9 @@ desired effect
                     <ul class="treeview-menu">
                         <li><a href="../../pages/Nodes/Income.html"><i class="fa fa-circle-o"> 进款单</i></a> </li>
                         <li><a href="../../pages/Nodes/NonSaleIncome.html"><i class="fa fa-circle-o"> 销售外进款单</i></a></li>
+
                         <li><a href="../../pages/Nodes/Outcome.html"><i class="fa fa-circle-o"> 付款单</i></a> </li>
-                        <li ><a href="../../pages/Nodes/Invoice.html"><i class="fa fa-circle-o"> 开票单</i></a> </li>
+                        <li><a href="../../pages/Nodes/Invoice.html"><i class="fa fa-circle-o"> 开票单</i></a> </li>
                         <li><a href="../../pages/Nodes/InGoods.html"><i class="fa fa-circle-o"> 进货单</i></a> </li>
                         <li><a href="../../pages/Nodes/OutGoods.html"><i class="fa fa-circle-o"> 送货单</i></a> </li>
                     </ul>
@@ -168,7 +200,6 @@ desired effect
                         <li class="active"><a href="../../pages/Flow/SalesStatistics.html"><i class="fa fa-circle-o"> 销售统计表</i></a></li>
                     </ul>
                 </li>
-
                 <li class="treeview" >
                     <a href="#"><i class="fa fa-user"></i> <span>合作伙伴</span>
                         <span class="pull-right-container">
@@ -176,7 +207,7 @@ desired effect
             </span>
                     </a>
                     <ul class="treeview-menu">
-                        <li><a href="../Cooperation/Client.html"><i class="fa fa-circle-o"> 客户</i></a></li>
+                        <li class="active"><a href="../Cooperation/Client.html"><i class="fa fa-circle-o"> 客户</i></a></li>
                         <li><a href="../Cooperation/Provider.html"><i class="fa fa-circle-o"> 供应商</i></a></li>
                     </ul>
                 </li>
@@ -213,17 +244,13 @@ desired effect
     <div class="content-wrapper">
         <!-- Content Header (Page header) -->
         <section class="content-header">
-            <h1>
-                高邮市华峰纸管胶加工厂
-                <small>销售统计表</small>
-            </h1>
             <ol class="breadcrumb">
-                <li><a href="../Login/MainUi.html"><i class="fa fa-dashboard"></i> Home</a></li>
-                <li><a href="#">发票和账款</a></li>
-
+                <li><a href="../Login/MainUi.html" style="color: #000000"><i class="fa fa-dashboard" style="color: #000000"></i>Home</a></li>
+                <li class="active" style="color:#000000">往年记录</li>
             </ol>
         </section>
 
+        <br>
         <!-- Main content -->
         <section class="content">
             <div class="row">
@@ -231,19 +258,19 @@ desired effect
                     <!-- /.box -->
                     <div class="box">
                         <div class="box-header">
-                            <h3 class="box-title">发票和账款详情</h3>
+                            <h3 class="box-title">往年记录</h3>
                         </div>
                         <!-- /.box-header -->
-                        <div class="box-body" style="overflow:auto">
-                            <table id="example1" class="table table-bordered table-condensed table-striped" width="1000">
+                        <div id="app" class="box-body">
+                            <table id="example1" class="table table-bordered table-striped">
                                 <thead>
                                 <tr>
                                     <th rowspan="2" width="200">客户名称</th>
+                                    <th rowspan="2">日期</th>
                                     <th colspan="3">应开发票</th>
                                     <th colspan="4">应收账款</th>
                                 </tr>
                                 <tr>
-
                                     <th>期初余额</th>
                                     <th>本期已开</th>
                                     <th>目前应开</th>
@@ -251,28 +278,29 @@ desired effect
                                     <th>本期发生</th>
                                     <th>本期回笼</th>
                                     <th>目前应收</th>
-                                    <th>往年记录</th>
                                 </tr>
+
                                 </thead>
                                 <tbody>
                                 <tr v-for="item in items">
-                                    <td v-text="item.clientName"></td>
-                                    <td v-text="item.ticketBalance"></td>
-                                    <td v-text="item.ticketPeriodOpen"></td>
-                                    <td v-text="item.ticketShouldOpen"></td>
-                                    <td v-text="item.fundBalance"></td>
-                                    <td v-text="item.fundPeriodCreated"></td>
-                                    <td v-text="item.fundPeriodGet"></td>
-                                    <td v-text="item.fundShouldGet"></td>
-                                    <td>
-                                        <a :href = "'StatisticsHistory.html?id='+item.clientName">查询</a>
-                                    </td>
+                                    <td v-text="item.clientId"></td>
+                                    <td v-text="item.date"></td>
+                                    <td v-text="item.ticket_balance"></td>
+                                    <td v-text="item.ticket_period_open"></td>
+                                    <td v-text="item.ticket_should_open"></td>
+                                    <td v-text="item.fund_balance"></td>
+                                    <td v-text="item.fund_period_created"></td>
+                                    <td v-text="item.fund_period_get"></td>
+                                    <td v-text="item.fund_should_get"></td>
                                 </tr>
                                 </tbody>
-
                             </table>
                         </div>
 
+                        <!-- /.box-body -->
+                        <!--<div class="box-footer">-->
+                        <!--<button type="button" class="btn btn-info pull-right" onclick="method5('example1')">导出表格</button>-->
+                        <!--</div>-->
                     </div>
                     <!-- /.box -->
                 </div>
@@ -283,21 +311,215 @@ desired effect
         <!-- /.content -->
     </div>
     <!-- /.content-wrapper -->
+
+    <!-- Main Footer -->
     <footer class="main-footer">
+        <!-- To the right -->
         <div class="pull-right hidden-xs">
-            <b>Version</b> 2.3.8
+            Anything you want
         </div>
+        <!-- Default to the left -->
         <strong>Copyright &copy; 2017 <a href="#">Company</a>.</strong> All rights reserved.
     </footer>
+
+    <!--   <!-- Control Sidebar -->
+    <aside class="control-sidebar control-sidebar-dark">
+        <!-- Create the tabs -->
+        <ul class="nav nav-tabs nav-justified control-sidebar-tabs">
+            <li><a href="#control-sidebar-home-tab" data-toggle="tab"><i class="fa fa-home"></i></a></li>
+            <li><a href="#control-sidebar-settings-tab" data-toggle="tab"><i class="fa fa-gears"></i></a></li>
+        </ul>
+        <!-- Tab panes -->
+        <div class="tab-content">
+            <!-- Home tab content -->
+            <div class="tab-pane" id="control-sidebar-home-tab">
+                <h3 class="control-sidebar-heading">Recent Activity</h3>
+                <ul class="control-sidebar-menu">
+                    <li>
+                        <a href="javascript:void(0)">
+                            <i class="menu-icon fa fa-birthday-cake bg-red"></i>
+
+                            <div class="menu-info">
+                                <h4 class="control-sidebar-subheading">Langdon's Birthday</h4>
+
+                                <p>Will be 23 on April 24th</p>
+                            </div>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="javascript:void(0)">
+                            <i class="menu-icon fa fa-user bg-yellow"></i>
+
+                            <div class="menu-info">
+                                <h4 class="control-sidebar-subheading">Frodo Updated His Profile</h4>
+
+                                <p>New phone +1(800)555-1234</p>
+                            </div>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="javascript:void(0)">
+                            <i class="menu-icon fa fa-envelope-o bg-light-blue"></i>
+
+                            <div class="menu-info">
+                                <h4 class="control-sidebar-subheading">Nora Joined Mailing List</h4>
+
+                                <p>nora@example.com</p>
+                            </div>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="javascript:void(0)">
+                            <i class="menu-icon fa fa-file-code-o bg-green"></i>
+
+                            <div class="menu-info">
+                                <h4 class="control-sidebar-subheading">Cron Job 254 Executed</h4>
+
+                                <p>Execution time 5 seconds</p>
+                            </div>
+                        </a>
+                    </li>
+                </ul>
+                <!-- /.control-sidebar-menu -->
+
+                <h3 class="control-sidebar-heading">Tasks Progress</h3>
+                <ul class="control-sidebar-menu">
+                    <li>
+                        <a href="javascript:void(0)">
+                            <h4 class="control-sidebar-subheading">
+                                Custom Template Design
+                                <span class="label label-danger pull-right">70%</span>
+                            </h4>
+
+                            <div class="progress progress-xxs">
+                                <div class="progress-bar progress-bar-danger" style="width: 70%"></div>
+                            </div>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="javascript:void(0)">
+                            <h4 class="control-sidebar-subheading">
+                                Update Resume
+                                <span class="label label-success pull-right">95%</span>
+                            </h4>
+
+                            <div class="progress progress-xxs">
+                                <div class="progress-bar progress-bar-success" style="width: 95%"></div>
+                            </div>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="javascript:void(0)">
+                            <h4 class="control-sidebar-subheading">
+                                Laravel Integration
+                                <span class="label label-warning pull-right">50%</span>
+                            </h4>
+
+                            <div class="progress progress-xxs">
+                                <div class="progress-bar progress-bar-warning" style="width: 50%"></div>
+                            </div>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="javascript:void(0)">
+                            <h4 class="control-sidebar-subheading">
+                                Back End Framework
+                                <span class="label label-primary pull-right">68%</span>
+                            </h4>
+
+                            <div class="progress progress-xxs">
+                                <div class="progress-bar progress-bar-primary" style="width: 68%"></div>
+                            </div>
+                        </a>
+                    </li>
+                </ul>
+                <!-- /.control-sidebar-menu -->
+
+            </div>
+            <!-- /.tab-pane -->
+            <!-- Stats tab content -->
+            <div class="tab-pane" id="control-sidebar-stats-tab">Stats Tab Content</div>
+            <!-- /.tab-pane -->
+            <!-- Settings tab content -->
+            <div class="tab-pane" id="control-sidebar-settings-tab">
+                <form method="post">
+                    <h3 class="control-sidebar-heading">General Settings</h3>
+
+                    <div class="form-group">
+                        <label class="control-sidebar-subheading">
+                            Report panel usage
+                            <input type="checkbox" class="pull-right" checked>
+                        </label>
+
+                        <p>
+                            Some information about this general settings option
+                        </p>
+                    </div>
+                    <!-- /.form-group -->
+
+                    <div class="form-group">
+                        <label class="control-sidebar-subheading">
+                            Allow mail redirect
+                            <input type="checkbox" class="pull-right" checked>
+                        </label>
+
+                        <p>
+                            Other sets of options are available
+                        </p>
+                    </div>
+                    <!-- /.form-group -->
+
+                    <div class="form-group">
+                        <label class="control-sidebar-subheading">
+                            Expose author name in posts
+                            <input type="checkbox" class="pull-right" checked>
+                        </label>
+
+                        <p>
+                            Allow the user to show his name in blog posts
+                        </p>
+                    </div>
+                    <!-- /.form-group -->
+
+                    <h3 class="control-sidebar-heading">Chat Settings</h3>
+
+                    <div class="form-group">
+                        <label class="control-sidebar-subheading">
+                            Show me as online
+                            <input type="checkbox" class="pull-right" checked>
+                        </label>
+                    </div>
+                    <!-- /.form-group -->
+
+                    <div class="form-group">
+                        <label class="control-sidebar-subheading">
+                            Turn off notifications
+                            <input type="checkbox" class="pull-right">
+                        </label>
+                    </div>
+                    <!-- /.form-group -->
+
+                    <div class="form-group">
+                        <label class="control-sidebar-subheading">
+                            Delete chat history
+                            <a href="javascript:void(0)" class="text-red pull-right"><i class="fa fa-trash-o"></i></a>
+                        </label>
+                    </div>
+                    <!-- /.form-group -->
+                </form>
+            </div>
+            <!-- /.tab-pane -->
+        </div>
+    </aside>
+    -->
 </div>
 <!-- ./wrapper -->
-
-<!-- Vue -->
 <script src="../../vue/vue.js"></script>
-<script type="text/javascript" src="../../vue-resource/vue-resource.js"></script>
-<!-- JS -->
-<script src="../../dist/js/pages/Flow/DetailStatistics.js"></script>
-
+<script src="../../vue-resource/vue-resource.js"></script>
+<script src="../../dist/js/pages/Flow/StatisticsHistory.js"></script>
+<!-- jQuery 2.2.3 -->
+<!--<script src="../../plugins/jQuery/jquery-2.2.3.min.js"></script>-->
+<!-- Bootstrap 3.3.6 -->
 <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script type="text/javascript" src="https://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script>
 <script type="text/javascript" src="https://cdn.datatables.net/buttons/1.3.1/js/dataTables.buttons.min.js"></script>
@@ -309,21 +531,27 @@ desired effect
 <link rel="stylesheet" href="https://cdn.datatables.net/1.10.15/css/jquery.dataTables.min.css">
 <link rel="stylesheet" href="https://cdn.datatables.net/buttons/1.3.1/css/buttons.dataTables.min.css">
 
-<!-- jQuery 2.2.3 -->
-<!-- Bootstrap 3.3.6 -->
 <script src="../../bootstrap/js/bootstrap.min.js"></script>
-<!-- DataTables -->
+<!-- Select2 -->
+<script src="../../plugins/select2/select2.full.min.js"></script>
 
+<!-- DataTables -->
+<!--<script src="../../plugins/datatables/jquery.dataTables.min.js"></script>-->
+<!--<script src="../../plugins/datatables/dataTables.bootstrap.min.js"></script>-->
+<!-- bootstrap color picker -->
+<script src="../../plugins/colorpicker/bootstrap-colorpicker.min.js"></script>
+
+<!-- SlimScroll 1.3.0 -->
 <script src="../../plugins/slimScroll/jquery.slimscroll.min.js"></script>
+<!-- iCheck 1.0.1 -->
+<script src="../../plugins/iCheck/icheck.min.js"></script>
 <!-- FastClick -->
 <script src="../../plugins/fastclick/fastclick.js"></script>
 <!-- AdminLTE App -->
 <script src="../../dist/js/app.min.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="../../dist/js/demo.js"></script>
-<!-- page script -->
-
-
+<!-- Page script -->
 <script>
     window.onload=function() {
         $(document).ready(function () {
@@ -337,6 +565,5 @@ desired effect
         });
     }
 </script>
-
 </body>
 </html>

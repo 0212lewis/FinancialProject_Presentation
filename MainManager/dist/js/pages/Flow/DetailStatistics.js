@@ -65,10 +65,7 @@ var tool=new Vue(
                 }).then(function(response){
                     if(response.data.errorCode == 0){
                         console.log(this.clientId);
-
                         this.items=response.data;
-                        console.log(response.data.data);
-                        console.log(this.items);
                     }
 
                 }).catch(function(error){
