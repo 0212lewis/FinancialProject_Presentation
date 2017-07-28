@@ -112,9 +112,9 @@ var tool=new Vue(
                         .then(function(response){
                                 this.items=response.body;
                                 console.log(this.items);
-                                setTimeout(function () {
-                                    $('#example1').DataTable();
-                                },0);
+                                // setTimeout(function () {
+                                //     $('#example1').DataTable();
+                                // },0);
                         }).catch(function(error){
                         alert("出现了未知的错误！请重新进行输入")
                     })
