@@ -40,6 +40,15 @@ var tool=new Vue(
                     this.$http.get('http://localhost:8080/flow/sales/'+this.year)
                         .then(function(response){
                             this.items=response.data.data;
+                            setTimeout(function () {
+                                $('#example1').DataTable({
+                                    dom: 'Bfrtip',
+                                    buttons: [
+                                        'copyHtml5',
+                                        'excelHtml5',
+                                    ]
+                                });
+                            }, 0);
                         }).catch(function(error){
                         alert("出现了未知的错误！请重新进行输入")
                     })
@@ -109,8 +118,8 @@ var tool=new Vue(
             this.year = parseInt(value);
             console.log(this.year);
             this.$http.get('http://localhost:8080/flow/sales/'+this.year)
-                .then(function(response){
-                    this.items=response.data.data;
+                .then(function(response) {
+                    this.items = response.data.data;
                 }).catch(function(error){
                 alert("出现了未知的错误！请重新进行输入")
             })

@@ -31,6 +31,16 @@ scratch. This page gets rid of all links and provides the needed markup only.
     </style>
 
     <style>
+        saveRemind { margin:0px;padding:0px;text-align: center;}
+        #hidebg9 { position:absolute;left:0px;top:0px;
+            background-color:#000;
+            width:100%;  /*宽度设置为100%，这样才能使隐藏背景层覆盖原页面*/
+            filter:alpha(opacity=60);  /*设置透明度为60%*/
+            opacity:0.6;  /*非IE浏览器下设置透明度为60%*/
+            display:none; /* http://www.jb51.net */
+            z-Index:2;}
+        #login9 { position:absolute;width:450px;height:180px;top:60%;left:35%;background-color:#fff;display:none;cursor:pointer;z-Index:3;}
+
         addblock1 { margin:0px;padding:0px;text-align: center;}
         #hidebg1 { position:absolute;left:0px;top:0px;
             background-color:#000;
@@ -143,6 +153,23 @@ desired effect
 <body class="hold-transition skin-blue sidebar-mini">
 
 <div class="wrapper" id="container">
+    <div id="saveRemind">
+        <div id="hidebg9"></div>
+        <form class="form-horizontal">
+            <div id="login9" class="box-body">
+                <hr>
+                <div class="form-group">
+                    <label class="col-md-8 control-label">确定要录入数据吗？</label>
+                </div>
+                <div class="btn-group">
+
+                    <button type="button" class="btn btn btn-primary" style="left: 80px;" @click.prevent="addDeliveryOrder">确定</button>
+                    <button type="button" class="btn btn btn-danger" style="left: 230px;" onclick="hide9()">取消</button>
+                </div>
+                <hr>
+            </div>
+        </form>
+    </div>
 <div id="addblock1">
     <div id="hidebg1"></div>
     <form class="form-horizontal">
@@ -719,7 +746,7 @@ desired effect
 
                     <div class="box-footer noprint">
                         <button type="submit" class="btn btn-default noprint">重置</button>
-                        <button type="button" class="btn btn-info pull-right noprint" @click.prevent="addDeliveryOrder" id="save">录入数据</button>
+                        <button type="button" class="btn btn-info pull-right noprint" onclick="show9()" id="save">录入数据</button>
                     </div>
                     <!-- /.box-footer -->
                 </form>

@@ -66,6 +66,15 @@ var tool=new Vue(
                     if(response.data.errorCode == 0){
                         console.log(this.clientId);
                         this.items=response.data;
+                        setTimeout(function () {
+                            $('#example1').DataTable({
+                                dom: 'Bfrtip',
+                                buttons: [
+                                    'copyHtml5',
+                                    'excelHtml5',
+                                ]
+                            });
+                        }, 0);
                     }
 
                 }).catch(function(error){

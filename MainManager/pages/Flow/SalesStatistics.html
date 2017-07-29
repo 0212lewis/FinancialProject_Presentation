@@ -26,6 +26,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
     -->
     <link rel="stylesheet" href="../../dist/css/skins/skin-blue.min.css">
 
+    <!--<link rel="stylesheet" href="../../dist/css/demo.css">-->
+
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -249,7 +251,7 @@ desired effect
                 </div>
                 <button type="button" class="btn btn-sm btn-warning pull-right" @click.prevent = "closePeriod" id="closePeriod">结转跨期</button>
             </div>
-            <!-- /.box-header -->
+
             <div class="box-body" style="overflow:auto">
               <table id="example1" class="table table-bordered table-condensed table-striped" width="2900">
                 <thead>
@@ -381,7 +383,7 @@ desired effect
 
               </table>
             </div>
-            <!-- /.box-body -->
+
           </div>
           <!-- /.box -->
         </div>
@@ -438,16 +440,14 @@ desired effect
 <script>
     window.onload=function() {
         $(document).ready(function () {
-            $('#example1').DataTable({
-                dom: 'Bfrtip',
-                buttons: [
-                    'copyHtml5',
-                    'excelHtml5',
-                ]
-            });
+
         });
     }
 </script>
-
+<!--<script>-->
+    <!--document.addEventListener('DOMContentLoaded', function () {-->
+        <!--document.querySelector('main').className += 'loaded';-->
+    <!--});-->
+<!--</script>-->
 </body>
 </html>

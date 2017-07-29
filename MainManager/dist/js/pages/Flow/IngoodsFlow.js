@@ -87,9 +87,15 @@ var tool=new Vue(
                     this.$http.get('http://localhost:8080/flow/in_product/'+this.year)
                         .then(function(response){
                             this.items=response.data.data;
-                            // setTimeout(function () {
-                            //     $('#example1').DataTable();
-                            // },0);
+                            setTimeout(function () {
+                                $('#example1').DataTable({
+                                    dom: 'Bfrtip',
+                                    buttons: [
+                                        'copyHtml5',
+                                        'excelHtml5',
+                                    ]
+                                });
+                            }, 0);
                         }).catch(function(error){
                         alert("出现了未知的错误！请重新进行输入")
                     })

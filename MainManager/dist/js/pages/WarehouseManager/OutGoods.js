@@ -112,7 +112,19 @@ function hide8()  //去除隐藏层和弹出层
     document.getElementById("hidebg8").style.display = "none";
     document.getElementById("login8").style.display = "none";
 }
+function show9()  //显示隐藏层和弹出层
+{
+    var hideobj=document.getElementById("hidebg9");
+    hidebg9.style.display="block";  //显示隐藏层
+    hidebg9.style.height=document.body.clientHeight+"px";  //设置隐藏层的高度为当前页面高度
+    document.getElementById("login9").style.display="block";  //显示弹出层
+}
 
+function hide9()  //去除隐藏层和弹出层
+{
+    document.getElementById("hidebg9").style.display = "none";
+    document.getElementById("login9").style.display = "none";
+}
 
 function goToPrintOutGoods() {
     var storage = window.localStorage;
@@ -314,6 +326,7 @@ var vm = new Vue({
         },
 
         addDeliveryOrder:function () {
+            hide9();
             if(this.username == ""){
                 alert("请先登录！");
                 window.location.href = "../index.html"
@@ -452,11 +465,6 @@ var vm = new Vue({
 
             this.$http.get("http://localhost:8080/product/id",{
                 params: {name: name,type:type}
-            },{
-                headers:{
-                    username:encodeURI(this.username)
-                }
-
             }).then(function(response){
                 if(number==1){
                     this.id1=response.data.data[0];
