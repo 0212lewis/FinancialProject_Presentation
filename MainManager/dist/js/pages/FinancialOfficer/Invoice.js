@@ -237,7 +237,17 @@ var vm = new Vue({
         }
     },
     mounted(){
+        var date = new Date();
+        var month = date.getMonth()+1;
+        var day = date.getDate();
 
+        if(month.toString().length<2){
+            month = '0'+month;
+        }
+        if(day.toString().length<2){
+            day = '0'+day;
+        }
+        document.getElementById("datepicker").value = month + '/' + day + '/' + date.getFullYear();
         this.username = this.getCookieValue("username");
         this.authority = this.getCookieValue("authority");
         if(this.username == ""){

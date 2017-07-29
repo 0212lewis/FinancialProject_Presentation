@@ -67,7 +67,18 @@ function hide5()  //去除隐藏层和弹出层
     document.getElementById("hidebg5").style.display = "none";
     document.getElementById("login5").style.display = "none";
 }
-
+function show6()  //显示隐藏层和弹出层
+{
+    var hideobj=document.getElementById("hidebg6");
+    hidebg6.style.display="block";  //显示隐藏层
+    hidebg6.style.height=document.body.clientHeight+"px";  //设置隐藏层的高度为当前页面高度
+    document.getElementById("login6").style.display="block";  //显示弹出层
+}
+function hide6()  //去除隐藏层和弹出层
+{
+    document.getElementById("hidebg6").style.display = "none";
+    document.getElementById("login6").style.display = "none";
+}
 
 
 var vm = new Vue({
@@ -332,6 +343,7 @@ var vm = new Vue({
 
         //录入进货单
         addInGoodsOrder:function () {
+            hide6();
             var selectedDate=document.getElementById("datepicker").value;
             var newDate = this.convertDate(selectedDate);
 
@@ -416,6 +428,18 @@ var vm = new Vue({
 
     },
     mounted(){
+        var date = new Date();
+        var month = date.getMonth()+1;
+        var day = date.getDate();
+
+        if(month.toString().length<2){
+            month = '0'+month;
+        }
+        if(day.toString().length<2){
+            day = '0'+day;
+        }
+        document.getElementById("datepicker").value = month + '/' + day + '/' + date.getFullYear();
+
         const self = this;
         this.username = this.getCookieValue("username");
         this.authority=this.getCookieValue("authority");
