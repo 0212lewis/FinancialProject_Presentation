@@ -589,13 +589,14 @@ var vm = new Vue({
             },{
                 headers:{
                     username:encodeURI(this.username)
-                }
+
+        }
             }).then(function(response){
                 document.getElementById("newBusinessName").value="";
                 document.getElementById("newBusinessAddress").value="";
                 document.getElementById("newBusinessPhone").value="";
                 hide7();
-                this.businessMen.push(name);
+                this.businessMen.push({name});
                 alert("添加业务员成功!")
             }).catch(function(error){
                 alert("出现了未知的错误！请重新进行输入")
@@ -823,8 +824,10 @@ var vm = new Vue({
             day = '0'+day;
         }
         document.getElementById("datepicker").value = month + '/' + day + '/' + date.getFullYear();
+
         this.username = this.getCookieValue("username");
         this.authority=this.getCookieValue("authority");
+        document.getElementById("createOrderMan").value = this.username;
 
         if(this.username == ""){
             alert("请先登录！");

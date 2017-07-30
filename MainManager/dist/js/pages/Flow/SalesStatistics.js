@@ -76,7 +76,7 @@ var tool=new Vue(
             })
         },
         closePeriod:function () {
-            this.$http.get("http://localhost:8080/closePeriod").then(function (response) {
+            this.$http.put("http://localhost:8080/closePeriod").then(function (response) {
                 if(response.data.errorCode == 0){
                     alert("本期已成功结转！");
                     window.location.href = "DetailStatistics.html"
@@ -92,10 +92,10 @@ var tool=new Vue(
         var year=parseInt(date.getFullYear());
         var month = date.getMonth();
         var day = date.getDay();
-
-        if((month!="12")&&(day!="31")){
-            document.getElementById("closePeriod").disabled = true;
-        }
+        //
+        // if((month!="12")&&(day!="31")){
+        //     document.getElementById("closePeriod").disabled = true;
+        // }
 
         for(var i=0;i<10;i++){
             this.years.push(year-i);
