@@ -2,6 +2,18 @@
  * Created by pc on 2017/4/25.
  */
 
+function show1()  //显示隐藏层和弹出层
+{
+    var hideobj=document.getElementById("hidebg1");
+    hidebg1.style.display="block";  //显示隐藏层
+    hidebg1.style.height=document.body.clientHeight+"px";  //设置隐藏层的高度为当前页面高度
+    document.getElementById("login1").style.display="block";  //显示弹出层
+}
+function hide1()  //去除隐藏层和弹出层
+{
+    document.getElementById("hidebg1").style.display="none";
+    document.getElementById("login1").style.display="none";
+}
 
 var tool=new Vue(
 {
@@ -13,7 +25,10 @@ var tool=new Vue(
 		clientId:'',
 		items:[
 
-		]
+		],
+        items1:[
+
+        ]
 	},
 	methods:{
 	  viewDetail:function (clientName) {
@@ -123,8 +138,24 @@ var tool=new Vue(
                             ]
                         });
                     }, 0);
+
                 }).catch(function (error) {
                 alert("出现了未知的错误！请重新进行输入")
+            });
+
+            this.$http.get("http://localhost:8080/ticketAndFunds/all").then(function (response) {
+                this.items1 = response.data.data;
+                setTimeout(function () {
+                    $('#example2').DataTable({
+                        dom: 'Bfrtip',
+                        buttons: [
+                            'copyHtml5',
+                            'excelHtml5',
+                        ]
+                    });
+                }, 0);
+            }).catch(function (error) {
+                alert('发生了未知的错误！');
             })
         }
 	}
