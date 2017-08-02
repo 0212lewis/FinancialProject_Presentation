@@ -56,6 +56,53 @@ var goodtotal5 = storage.getItem("goodtotal5");
 var ticketmaker = storage.getItem("ticketmaker");
 var businessman = storage.getItem("businessman");
 
+if(goodammount1==0) {
+    goodammount1='';
+}
+if(goodammount2==0) {
+    goodammount2='';
+}
+if(goodammount3==0) {
+    goodammount3='';
+}
+if(goodammount4==0) {
+    goodammount4='';
+}
+if(goodammount5==0) {
+    goodammount5='';
+}
+if(goodunitprice1==0) {
+    goodunitprice1 = '';
+}
+if(goodunitprice2==0) {
+    goodunitprice2 = '';
+}
+if(goodunitprice3==0) {
+    goodunitprice3 = '';
+}
+if(goodunitprice4==0) {
+    goodunitprice4 = '';
+}
+if(goodunitprice5==0) {
+    goodunitprice5 = '';
+}
+if(goodtotal1==0) {
+    goodtotal1 = '';
+}
+if(goodtotal2==0) {
+    goodtotal2 = '';
+}
+if(goodtotal3==0) {
+    goodtotal3 = '';
+}
+if(goodtotal4==0) {
+    goodtotal4 = '';
+}
+if(goodtotal5==0) {
+    goodtotal5 = '';
+}
+
+
 document.getElementById("goodname1").innerHTML = goodname1;
 document.getElementById("goodtype1").innerHTML = goodtype1;
 document.getElementById("goodammount1").innerHTML = goodammount1;

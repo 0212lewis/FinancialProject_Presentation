@@ -358,7 +358,7 @@ var vm = new Vue({
                 return;
             }
 
-            if(this.deliveryOrder.createOrderMan==""||this.deliveryOrder.createOrderMan.length==0){
+            if(document.getElementById("createOrderMan").value==""||document.getElementById("createOrderMan").value.length==0){
                 alert("请输入制单人");
                 return;
             }
@@ -380,7 +380,7 @@ var vm = new Vue({
                     // totalWeight:parseFloat(this.deliveryOrder.totalWeight),
                     // totalMoney:parseFloat(this.deliveryOrder.totalMoney),
                     businessman:this.deliveryOrder.businessMan.trim(),
-                    ticketMaker:this.deliveryOrder.createOrderMan.trim(),
+                    ticketMaker:document.getElementById("createOrderMan").value,
                     date:newDate,
                     products:[
                         {
