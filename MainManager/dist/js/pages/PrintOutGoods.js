@@ -102,7 +102,6 @@ if(goodtotal5==0) {
     goodtotal5 = '';
 }
 
-
 document.getElementById("goodname1").innerHTML = goodname1;
 document.getElementById("goodtype1").innerHTML = goodtype1;
 document.getElementById("goodammount1").innerHTML = goodammount1;
@@ -138,3 +137,31 @@ document.getElementById("date").innerHTML=date;
 document.getElementById("comment").innerHTML = comment;
 document.getElementById("ticketmaker").innerHTML = ticketmaker;
 document.getElementById("businessman").innerHTML = businessman;
+
+var vm = new Vue({
+    el:'#container',
+    data:{
+
+    },
+    mounted(){
+        if(cname=="") {
+            alert("请选择收货单位");
+            window.location.href="../Nodes/OutGoods.html"
+            // return;
+        }
+        this.$http.get("http://localhost:8080/order/orderid", {
+            params: {
+                clientName: cname,
+            },
+            headers:{
+                username:encodeURI(this.username)
+            }
+        }).then(function (response) {
+            document.getElementById("orderid").innerHTML = response.data.data;
+        }).catch(function (error) {
+            alert("未能获取订单编号，请与系统管理员联系");
+            window.history.back()
+        });
+
+    },
+});

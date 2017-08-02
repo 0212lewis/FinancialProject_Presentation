@@ -61,7 +61,7 @@ desired effect
 
 <body class="hold-transition skin-blue sidebar-mini" onbeforeunload="leave()">
 
-<div class="wrapper">
+<div class="wrapper" id="container">
     <!-- Main Header -->
     <header class="main-header">
 
@@ -228,7 +228,7 @@ desired effect
         <div class="box box-warning col-md-10" id="outgoods" >
             <div class="box-header with-border" align="center">
                 <h2>高邮市华峰纸管胶加工厂</h2>  <!--class="box-title"-->
-                <h4>送货单&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; No.TZDH17-3</h4>
+                <h4>送货单:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span id="orderid"></span> </h4>
                 <button type="submit" class="btn btn-warning pull-right noprint" class="noprint" rel="external nofollow" target="_self" onclick="window.print()">打印</button>
 
             </div>
@@ -238,10 +238,9 @@ desired effect
             <form class="form-horizontal">
                 <br>
                 <div class="row">  <!--class="form-group"-->
-                    <p class="col-md-2 control-label">收货单位：</p>
-                    <label id="cname" class="col-md-2 control-label"></label>
-                    <p  class="col-md-4 control-label">送货日期：</p>
-                    <label id="date" class="col-md-2 control-label"></label>
+                    <label class="col-md-5">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;收货单位：<span id="cname" class=""></span></label>
+                    <label class="col-md-1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                    <label  class="col-md-6">送货日期：<span id="date" class=""></span></label>
                 </div>
                 <!-- /.box-header -->
                 <div class="box-body">
@@ -558,9 +557,10 @@ desired effect
 </div>
 
 
-<script src="../../dist/js/pages/PrintOutGoods.js"></script>
 <script src="../../vue/vue.js"></script>
 <script src="../../vue-resource/vue-resource.js"></script>
+<script src="../../dist/js/pages/PrintOutGoods.js"></script>
+
 <!-- jQuery 2.2.3 -->
 <script src="../../plugins/jQuery/jquery-2.2.3.min.js"></script>
 <!-- Bootstrap 3.3.6 -->
