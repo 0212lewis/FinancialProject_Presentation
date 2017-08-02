@@ -14,7 +14,32 @@ function hide1()  //去除隐藏层和弹出层
     document.getElementById("hidebg1").style.display="none";
     document.getElementById("login1").style.display="none";
 }
+function show2()  //显示隐藏层和弹出层
+{
 
+
+    var hideobj=document.getElementById("hidebg2");
+    hidebg2.style.display="block";  //显示隐藏层
+    hidebg2.style.height=document.body.clientHeight+"px";  //设置隐藏层的高度为当前页面高度
+    document.getElementById("login2").style.display="block";  //显示弹出层
+}
+function hide2()  //去除隐藏层和弹出层
+{
+    document.getElementById("hidebg2").style.display="none";
+    document.getElementById("login2").style.display="none";
+}
+function show3()  //显示隐藏层和弹出层
+{
+    var hideobj=document.getElementById("hidebg3");
+    hidebg3.style.display="block";  //显示隐藏层
+    hidebg3.style.height=document.body.clientHeight+"px";  //设置隐藏层的高度为当前页面高度
+    document.getElementById("login3").style.display="block";  //显示弹出层
+}
+function hide3()  //去除隐藏层和弹出层
+{
+    document.getElementById("hidebg3").style.display="none";
+    document.getElementById("login3").style.display="none";
+}
 var tool=new Vue(
 {
 	el:'#app',
@@ -28,7 +53,9 @@ var tool=new Vue(
 		],
         items1:[
 
-        ]
+        ],
+        ticketBalance:'',
+        fundBalance:''
 	},
 	methods:{
 	  viewDetail:function (clientName) {
@@ -99,6 +126,46 @@ var tool=new Vue(
             }).catch(function (error) {
                 alert("发生了未知的错误！")
             })
+        },
+
+
+        modifyTicket:function () {
+	      hide2();
+            this.$http.put("http://localhost:8080/ticket_balance/"+this.clientId,
+                this.ticketBalance
+            ).then(function (response) {
+                if(response.data.errorCode == 0){
+                    alert("修改成功！");
+                    window.location.reload();
+                }
+            }).catch(function (error) {
+                alert("发生了未知的错误！");
+            });
+        },
+        modifyFund:function () {
+	      hide3();
+            this.$http.put("http://localhost:8080/fund_balance/"+this.clientId,
+                this.fundBalance
+            ).then(function (response) {
+                if(response.data.errorCode == 0){
+                    alert("修改成功！");
+                    window.location.reload();
+                }
+            }).catch(function (error) {
+                alert("发生了未知的错误！");
+            });
+        },
+        modifyTicketShow:function (clientId,ticketBalance) {
+	      show2();
+            this.clientId = clientId;
+            this.ticketBalance = ticketBalance;
+            console.log(this.clientId);
+            console.log(this.ticketBalance);
+        },
+        modifyFundShow:function (clientId,fundBalance) {
+	      show3();
+            this.clientId = clientId;
+            this.fundBalance = fundBalance;
         }
     },
 	mounted(){
