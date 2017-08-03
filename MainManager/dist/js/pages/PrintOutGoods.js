@@ -2,7 +2,7 @@
  * Created by dell- on 2017/7/23.
  */
 function leave(){
-    window.localStorage.clear();
+    // window.localStorage.clear();
 }
 
 function dateConvert(content) {
@@ -166,11 +166,23 @@ var vm = new Vue({
     },
     computed:{
         calSumNum:function() {
-            var result=parseInt(goodammount1)+parseInt(goodammount2)+parseInt(goodammount3)+parseInt(goodammount4)+parseInt(goodammount5);
+            var data = [goodammount1, goodammount2, goodammount3, goodammount4, goodammount5];
+            var result = 0;
+            for(i=0;i<data.length;i++) {
+                if(data[i]!='') {
+                    result+=parseFloat(data[i])
+                }
+            }
             return result;
         },
         calSumPrice:function () {
-            var result = parseInt(goodtotal1) + parseInt(goodtotal2) + parseInt(goodtotal3) + parseInt(goodtotal4) + parseInt(goodtotal5);
+            var data = [goodtotal1, goodtotal2, goodtotal3, goodtotal4, goodtotal5];
+            var result = 0;
+            for(i=0;i<data.length;i++) {
+                if(data[i]!='') {
+                    result+=parseFloat(data[i])
+                }
+            }
             return result;
         }
     }
