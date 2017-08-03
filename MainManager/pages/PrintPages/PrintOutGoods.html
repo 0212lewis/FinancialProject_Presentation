@@ -252,12 +252,12 @@ desired effect
                     <table id="example2" class="table table-bordered table-hover">
                         <thead align="center">
                         <tr>
-                            <th colspan="2">货名</th>
-                            <th>型号</th>
-                            <th>数量(吨)</th>
-                            <th>单价(元/吨)</th>
-                            <th>金额(元)</th>
-                            <th rowspan="5">备注</th>
+                            <th colspan="2" align="center">货名</th>
+                            <th align="center">型号</th>
+                            <th align="center">数量(吨)</th>
+                            <th align="center">单价(元/吨)</th>
+                            <th align="center">金额(元)</th>
+                            <th rowspan="6" align="center">备注</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -301,6 +301,14 @@ desired effect
                             <td id="goodammount5"></td>
                             <td id="singleprice5"></td>
                             <td id="totalprice5"></td>
+                        </tr>
+                        <tr>
+                            <td align="center">总计</td>
+                            <td></td>
+                            <td></td>
+                            <td id="sumNum" v-text="calSumNum"></td>
+                            <td></td>
+                            <td id="sumPrice" v-text="calSumPrice"></td>
                         </tr>
                         </tbody>
                     </table>

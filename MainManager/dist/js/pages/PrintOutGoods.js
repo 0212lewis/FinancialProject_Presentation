@@ -164,4 +164,14 @@ var vm = new Vue({
         });
 
     },
+    computed:{
+        calSumNum:function() {
+            var result=parseInt(goodammount1)+parseInt(goodammount2)+parseInt(goodammount3)+parseInt(goodammount4)+parseInt(goodammount5);
+            return result;
+        },
+        calSumPrice:function () {
+            var result = parseInt(goodtotal1) + parseInt(goodtotal2) + parseInt(goodtotal3) + parseInt(goodtotal4) + parseInt(goodtotal5);
+            return result;
+        }
+    }
 });
