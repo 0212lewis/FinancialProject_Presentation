@@ -2,7 +2,7 @@
  * Created by dell- on 2017/7/23.
  */
 function leave(){
-    // window.localStorage.clear();
+    window.localStorage.clear();
 }
 
 function dateConvert(content) {
