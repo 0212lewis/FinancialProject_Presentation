@@ -1,7 +1,4 @@
 /**
- * Created by dell- on 2017/7/27.
- */
-/**
  * Created by pc on 2017/4/25.
  */
 
@@ -112,6 +109,7 @@ function hide8()  //去除隐藏层和弹出层
     document.getElementById("hidebg8").style.display = "none";
     document.getElementById("login8").style.display = "none";
 }
+
 function show9()  //显示隐藏层和弹出层
 {
     var hideobj=document.getElementById("hidebg9");
@@ -125,7 +123,6 @@ function hide9()  //去除隐藏层和弹出层
     document.getElementById("hidebg9").style.display = "none";
     document.getElementById("login9").style.display = "none";
 }
-
 function goToPrintOutGoods() {
     var storage = window.localStorage;
     storage.setItem("clientName",document.getElementById("receiver").value)
@@ -361,7 +358,7 @@ var vm = new Vue({
                 return;
             }
 
-            if(this.deliveryOrder.createOrderMan==""||this.deliveryOrder.createOrderMan.length==0){
+            if(document.getElementById("createOrderMan").value==""||document.getElementById("createOrderMan").value.length==0){
                 alert("请输入制单人");
                 return;
             }
@@ -383,7 +380,7 @@ var vm = new Vue({
                 // totalWeight:parseFloat(this.deliveryOrder.totalWeight),
                 // totalMoney:parseFloat(this.deliveryOrder.totalMoney),
                 businessman:this.deliveryOrder.businessMan.trim(),
-                ticketMaker:this.deliveryOrder.createOrderMan.trim(),
+                ticketMaker:document.getElementById("createOrderMan").value,
                 date:newDate,
                 products:[
                     {
@@ -463,9 +460,18 @@ var vm = new Vue({
                 type=document.getElementById("goodModel5").value;
             }
 
-            this.$http.get("http://localhost:8080/product/id",{
-                params: {name: name,type:type}
+            this.$http.get("http://localhost:8080/product/id", {
+                params: {
+                    name: name, type: type
+                }
+                // },{
+                //     headers:{
+                //         username:this.username
+                //     }
+                //
+                // }
             }).then(function(response){
+                console.log(response.data.data);
                 if(number==1){
                     this.id1=response.data.data[0];
                 }else if(number==2){
@@ -589,8 +595,7 @@ var vm = new Vue({
             },{
                 headers:{
                     username:encodeURI(this.username)
-
-        }
+                }
             }).then(function(response){
                 document.getElementById("newBusinessName").value="";
                 document.getElementById("newBusinessAddress").value="";
@@ -813,6 +818,7 @@ var vm = new Vue({
     },
 
     mounted(){
+
         var date = new Date();
         var month = date.getMonth()+1;
         var day = date.getDate();
@@ -824,7 +830,6 @@ var vm = new Vue({
             day = '0'+day;
         }
         document.getElementById("datepicker").value = month + '/' + day + '/' + date.getFullYear();
-
         this.username = this.getCookieValue("username");
         this.authority=this.getCookieValue("authority");
         document.getElementById("createOrderMan").value = this.username;
@@ -834,7 +839,7 @@ var vm = new Vue({
             window.location.href = "../index.html"
         }else if(this.authority!=2){
             alert("抱歉，您无权浏览当前页面，如有疑问，请与管理员联系");
-            window.location.href = "../index.html";
+            window.location.href = "../index.html"
             return;
         }else{
             const self = this;
@@ -868,10 +873,7 @@ var vm = new Vue({
             }).catch(function(error){
                 alert("出现了未知的错误！请重新进行输入")
             });
-        }
-
-
-    },
+        }},
     computed:{
         getTotal1:function() {
             var result=parseFloat(this.deliveryOrder.good1.num)*parseFloat(this.deliveryOrder.good1.money);
