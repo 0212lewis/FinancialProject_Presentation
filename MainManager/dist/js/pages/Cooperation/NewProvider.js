@@ -71,11 +71,11 @@ var vm  = new Vue({
         },
 
         saveAdd:function () {
-
             if(isChinese(this.items.providerId.toString())){
                 alert("请勿输入中文字符！");
                 hide1();
             }else {
+
                 this.$http.post("http://localhost:8080/provider", {
                     id: this.items.providerId,
                     name: this.items.providerName,
