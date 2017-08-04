@@ -167,7 +167,7 @@ function goToPrintOutGoods() {
     storage.setItem("ticketmaker",document.getElementById("createOrderMan").value)
     storage.setItem("businessman",document.getElementById("businessMan").value)
     storage.setItem("date",document.getElementById("datepicker").value)
-    window.location.href="../PrintPages/PrintOutGoods.html";
+    window.location.href="../PrintPages/PrintOutGoods_Warehouse.html";
 
 }
 
