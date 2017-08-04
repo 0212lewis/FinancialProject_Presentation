@@ -233,6 +233,7 @@ var vm = new Vue({
         ],
 
 
+
         id1:"",
         id2:"",
         id3:"",
@@ -622,8 +623,7 @@ var vm = new Vue({
                 headers:{
                     username:encodeURI(this.username)
                 }
-            })
-                .then(function(response){
+            }).then(function(response){
                     mySelect.options.remove(index);//下拉框中删除该元素
                     hide8();
                     alert("删除业务员成功!")

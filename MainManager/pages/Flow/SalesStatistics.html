@@ -65,6 +65,26 @@ scratch. This page gets rid of all links and provides the needed markup only.
             z-Index:2;}
         #login3 { position:absolute;width:400px;height:180px;top:50%;left:35%;background-color:#fff;display:none;cursor:pointer;z-Index:3;}
 
+        ModifyTicketInput { margin:0px;padding:0px;text-align: center;}
+        #hidebg4 { position:absolute;left:0px;top:0px;
+            background-color:#000;
+            width:100%;  /*宽度设置为100%，这样才能使隐藏背景层覆盖原页面*/
+            filter:alpha(opacity=60);  /*设置透明度为60%*/
+            opacity:0.6;  /*非IE浏览器下设置透明度为60%*/
+            display:none; /* http://www.jb51.net */
+            z-Index:2;}
+        #login4 { position:absolute;width:400px;height:180px;top:50%;left:35%;background-color:#fff;display:none;cursor:pointer;z-Index:3;}
+
+        ModifyFundInput { margin:0px;padding:0px;text-align: center;}
+        #hidebg5 { position:absolute;left:0px;top:0px;
+            background-color:#000;
+            width:100%;  /*宽度设置为100%，这样才能使隐藏背景层覆盖原页面*/
+            filter:alpha(opacity=60);  /*设置透明度为60%*/
+            opacity:0.6;  /*非IE浏览器下设置透明度为60%*/
+            display:none; /* http://www.jb51.net */
+            z-Index:2;}
+        #login5 { position:absolute;width:400px;height:180px;top:50%;left:35%;background-color:#fff;display:none;cursor:pointer;z-Index:3;}
+
     </style>
 </head>
 <!--
@@ -108,6 +128,27 @@ desired effect
         </form>
     </div>
 
+
+    <div id="ModifyTicketInput">
+        <div id="hidebg4"></div>
+        <form class="form-horizontal">
+            <div id="login4" class="box-body">
+                <hr>
+                <div class="form-group">
+                    <label class="col-md-4 control-label">期初余额：</label>
+                    <div class="col-md-8">
+                        <input type="text" class="form-control" id="ticketBalance" placeholder="请输入想要修改的数据：">
+                    </div>
+                </div>
+                <div class="btn-group">
+
+                    <button type="button" class="btn btn btn-primary" style="left: 80px;" @click="modifyTicketGetTicketBalance">确定</button>
+                    <button type="button" class="btn btn btn-danger" style="left: 230px;" onclick="hide4()">取消</button>
+                </div>
+                <hr>
+            </div>
+        </form>
+    </div>
     <div id="ModifyTicket">
         <div id="hidebg2"></div>
         <form class="form-horizontal">
@@ -125,7 +166,26 @@ desired effect
             </div>
         </form>
     </div>
+    <div id="ModifyFundInput">
+        <div id="hidebg5"></div>
+        <form class="form-horizontal">
+            <div id="login5" class="box-body">
+                <hr>
+                <div class="form-group">
+                    <label class="col-md-4 control-label">期初余额：</label>
+                    <div class="col-md-8">
+                        <input type="text" class="form-control" id="fundBalance" placeholder="请输入想要修改的数据：">
+                    </div>
+                </div>
+                <div class="btn-group">
 
+                    <button type="button" class="btn btn btn-primary" style="left: 80px;" @click="modifyFundGetFundBalance">确定</button>
+                    <button type="button" class="btn btn btn-danger" style="left: 230px;" onclick="hide5()">取消</button>
+                </div>
+                <hr>
+            </div>
+        </form>
+    </div>
     <div id="modifyFund">
         <div id="hidebg3"></div>
         <form class="form-horizontal">
@@ -531,13 +591,13 @@ desired effect
                           <td v-text="item.clientId"></td>
                           <td>
                               <input class="col-md-5" v-model="item.ticketBalance">
-                              <button class="btn btn-xs btn-primary pull-right col-md-5" @click.prevent="modifyTicketShow(item.clientId,item.ticketBalance)">修改</button>
+                              <button class="btn btn-xs btn-primary pull-right col-md-5" @click.prevent="modifyTicketGetClient(item.clientId)">修改</button>
                           </td>
                           <td v-text="item.ticketPeriodOpen"></td>
                           <td v-text="item.ticketShouldOpen"></td>
                           <td>
                               <input class="col-md-5" v-model="item.fundBalance">
-                              <button class="btn btn-xs btn-primary pull-right col-md-5" @click.prevent="modifyFundShow(item.clientId,item.fundBalance)">修改</button>
+                              <button class="btn btn-xs btn-primary pull-right col-md-5" @click.prevent="modifyFundGetClient(item.clientId)">修改</button>
                           </td>
                           <td v-text="item.fundPeriodCreated"></td>
                           <td v-text="item.fundPeriodGet"></td>

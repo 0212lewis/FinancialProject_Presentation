@@ -40,6 +40,38 @@ function hide3()  //去除隐藏层和弹出层
     document.getElementById("hidebg3").style.display="none";
     document.getElementById("login3").style.display="none";
 }
+
+function show4()  //显示隐藏层和弹出层
+{
+    var hideobj=document.getElementById("hidebg4");
+    hidebg4.style.display="block";  //显示隐藏层
+    hidebg4.style.height=document.body.clientHeight+"px";  //设置隐藏层的高度为当前页面高度
+    document.getElementById("login4").style.display="block";  //显示弹出层
+}
+function hide4()  //去除隐藏层和弹出层
+{
+    document.getElementById("hidebg4").style.display="none";
+    document.getElementById("login4").style.display="none";
+}
+function show5()  //显示隐藏层和弹出层
+{
+    var hideobj=document.getElementById("hidebg5");
+    hidebg5.style.display="block";  //显示隐藏层
+    hidebg5.style.height=document.body.clientHeight+"px";  //设置隐藏层的高度为当前页面高度
+    document.getElementById("login5").style.display="block";  //显示弹出层
+}
+function hide5()  //去除隐藏层和弹出层
+{
+    document.getElementById("hidebg5").style.display="none";
+    document.getElementById("login5").style.display="none";
+}
+function isNum(str){
+    if(""==str){
+        return false;
+    }
+    var reg = /\D/;
+    return str.match(reg)==null;
+}
 var tool=new Vue(
 {
 	el:'#app',
@@ -130,6 +162,7 @@ var tool=new Vue(
 
 
         modifyTicket:function () {
+
 	      hide2();
             this.$http.put("http://localhost:8080/ticket_balance/"+this.clientId,
                 this.ticketBalance
@@ -155,29 +188,48 @@ var tool=new Vue(
                 alert("发生了未知的错误！");
             });
         },
-        modifyTicketShow:function (clientId,ticketBalance) {
-	      show2();
+        modifyTicketGetClient:function (clientId) {
             this.clientId = clientId;
-            this.ticketBalance = ticketBalance;
             console.log(this.clientId);
-            console.log(this.ticketBalance);
+	      show4();
         },
-        modifyFundShow:function (clientId,fundBalance) {
-	      show3();
+        modifyTicketGetTicketBalance:function () {
+
+            this.ticketBalance = document.getElementById("ticketBalance").value;
+            if(!isNum(this.ticketBalance)){
+                alert("请输入数字！");
+            }else{
+                hide4();
+                show2();
+            }
+        },
+        modifyFundGetClient:function (clientId) {
             this.clientId = clientId;
-            this.fundBalance = fundBalance;
-        }
+	      show5();
+        },
+        modifyFundGetFundBalance:function () {
+
+            this.fundBalance = document.getElementById("fundBalance").value;
+            if(isNum(this.fundBalance)){
+                alert("请输入数字！");
+            }else{
+                hide5();
+                show3();
+            }
+
+
+        },
     },
 	mounted(){
 
         var date=new Date;
         var year=parseInt(date.getFullYear());
-        var month = date.getMonth();
-        var day = date.getDay();
-        //
-        // if((month!="12")&&(day!="31")){
-        //     document.getElementById("closePeriod").disabled = true;
-        // }
+        var month = date.getMonth()+1;
+        var day = date.getDate();
+
+        if((month!="12")&&(day!="31")){
+            document.getElementById("closePeriod").disabled = true;
+        }
 
         for(var i=0;i<10;i++){
             this.years.push(year-i);
