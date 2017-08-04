@@ -126,7 +126,34 @@ function hide9()  //去除隐藏层和弹出层
 function goToPrintOutGoods() {
     if(document.getElementById("save").disabled == false){
         alert("请先录入再执行打印操作！");
+        return;
     }
+
+    if(document.getElementById("goodName1").value=="" && document.getElementById("goodName2").value==""
+        && document.getElementById("goodName3").value=="" && document.getElementById("goodName4").value==""
+        && document.getElementById("goodName5").value==""){
+        alert("请输入货品信息");
+        return;
+    }
+
+    if(document.getElementById("DeliveryMan").value==""||document.getElementById("DeliveryMan").value==null){
+        alert("请选择运货人");
+        return;
+    }
+    if(document.getElementById("businessMan").value==""||document.getElementById("businessMan").value==null){
+        alert("请选择业务员");
+        return;
+    }
+    if(document.getElementById("input").value==""||document.getElementById("input").value.length==0){
+        alert("请输入运费");
+        return;
+    }
+
+    if(document.getElementById("createOrderMan").value==""||document.getElementById("createOrderMan").value.length==0){
+        alert("请输入制单人");
+        return;
+    }
+
     var storage = window.localStorage;
     storage.setItem("clientName",document.getElementById("receiver").value)
     storage.setItem("deliveryMan",document.getElementById("DeliveryMan").value)
@@ -433,6 +460,34 @@ var vm = new Vue({
                 if(response.body.errorCode == 0){
                     alert("送货单添加成功！");
                     document.getElementById("save").disabled=true;
+                    document.getElementById("receiver").disabled = true;
+                    document.getElementById("goodName1").disabled = true;
+                    document.getElementById("goodName2").disabled = true;
+                    document.getElementById("goodName3").disabled = true;
+                    document.getElementById("goodName4").disabled = true;
+                    document.getElementById("goodName5").disabled = true;
+                    document.getElementById("goodModel1").disabled = true;
+                    document.getElementById("goodModel2").disabled = true;
+                    document.getElementById("goodModel3").disabled = true;
+                    document.getElementById("goodModel4").disabled = true;
+                    document.getElementById("goodModel5").disabled = true;
+                    document.getElementById("numInput1").disabled = true;
+                    document.getElementById("unitPriceInput1").disabled = true;
+                    document.getElementById("numInput2").disabled = true;
+                    document.getElementById("moneyInput2").disabled = true;
+                    document.getElementById("numInput3").disabled = true;
+                    document.getElementById("moneyInput3").disabled = true;
+                    document.getElementById("numInput4").disabled = true;
+                    document.getElementById("moneyInput4").disabled = true;
+                    document.getElementById("numInput5").disabled = true;
+                    document.getElementById("moneyInput5").disabled = true;
+                    document.getElementById("createOrderMan").disabled = true;
+                    document.getElementById("businessMan").disabled = true;
+                    document.getElementById("input").disabled = true;
+                    document.getElementById("input2").disabled = true;
+                    document.getElementById("datepicker").disabled = true;
+                    document.getElementById("taxSelect").disabled = true;
+                    document.getElementById("DeliveryMan").disabled = true;
 
                 }else if(response.data.errorCode == 80000001){
                     alert("请先登录!");
