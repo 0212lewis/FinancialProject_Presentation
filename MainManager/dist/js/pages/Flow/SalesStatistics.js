@@ -210,7 +210,7 @@ var tool=new Vue(
         modifyFundGetFundBalance:function () {
 
             this.fundBalance = document.getElementById("fundBalance").value;
-            if(isNum(this.fundBalance)){
+            if(!isNum(this.fundBalance)){
                 alert("请输入数字！");
             }else{
                 hide5();

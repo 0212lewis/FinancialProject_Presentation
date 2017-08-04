@@ -124,6 +124,9 @@ function hide9()  //去除隐藏层和弹出层
     document.getElementById("login9").style.display = "none";
 }
 function goToPrintOutGoods() {
+    if(document.getElementById("save").disabled == false){
+        alert("请先录入再执行打印操作！");
+    }
     var storage = window.localStorage;
     storage.setItem("clientName",document.getElementById("receiver").value)
     storage.setItem("deliveryMan",document.getElementById("DeliveryMan").value)
