@@ -149,7 +149,7 @@ var vm = new Vue({
             window.location.href="../Nodes/OutGoods.html"
             // return;
         }
-        this.$http.get("http://localhost:8080/order/orderid", {
+        this.$http.get("http://106.14.224.189:8080/order/orderid", {
             params: {
                 clientName: cname,
             },

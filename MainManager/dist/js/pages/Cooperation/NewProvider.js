@@ -76,7 +76,7 @@ var vm  = new Vue({
                 hide1();
             }else {
 
-                this.$http.post("http://localhost:8080/provider", {
+                this.$http.post("http://106.14.224.189:8080/provider", {
                     id: this.items.providerId,
                     name: this.items.providerName,
                     tax_id: this.items.taxId,
