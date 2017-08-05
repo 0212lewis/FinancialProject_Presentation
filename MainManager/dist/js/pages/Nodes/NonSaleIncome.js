@@ -166,7 +166,7 @@ var vm = new Vue({
                 }
             }
             this.payMethods.push(name);
-            this.$http.post("http://localhost:8080/paymentMethod",{
+            this.$http.post("http://106.14.224.189:8080/paymentMethod",{
                 name:name
             })
                 .then(function(response){
@@ -187,7 +187,7 @@ var vm = new Vue({
                 hide4();
                 return;
             }
-            this.$http.delete("http://localhost:8080/paymentMethod",{
+            this.$http.delete("http://106.14.224.189:8080/paymentMethod",{
                 body:{
                     name:name
                 }
@@ -221,7 +221,7 @@ var vm = new Vue({
                 alert("请输入金额！");
                 return;
             }else if((this.IncomeOrder.hour.toString().length==2)&&(this.IncomeOrder.minute.toString().length==2)&&(this.IncomeOrder.second.toString().length==2)){
-                this.$http.post("http://localhost:8080/order/no_sales_income",{
+                this.$http.post("http://106.14.224.189:8080/order/no_sales_income",{
                     otherName:this.IncomeOrder.payer.trim(),
                     money:this.IncomeOrder.money.trim(),
                     pay_method:this.IncomeOrder.payMethod.trim(),
@@ -286,7 +286,7 @@ var vm = new Vue({
             window.location.href = "../index.html";
             return;
         }else{
-            this.$http.get('http://localhost:8080/paymentMethod/allName').then(function(response){
+            this.$http.get('http://106.14.224.189:8080/paymentMethod/allName').then(function(response){
                 this.payMethods=response.data.data;
                 console.log(response.data.data);
                 console.log(this.payMethods);

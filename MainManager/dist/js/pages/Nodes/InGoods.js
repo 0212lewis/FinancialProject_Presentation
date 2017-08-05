@@ -159,7 +159,7 @@ var vm = new Vue({
                 }
             }
             this.providers.push(name);
-            this.$http.post("http://localhost:8080/provider", {
+            this.$http.post("http://106.14.224.189:8080/provider", {
                 account: document.getElementById("newProviderAccount").value,
                 address: document.getElementById("newProviderAddress").value,
                 bank: document.getElementById("newProviderBank").value,
@@ -200,7 +200,7 @@ var vm = new Vue({
                 hide2();
                 return;
             }
-            this.$http.delete("http://localhost:8080/provider",{
+            this.$http.delete("http://106.14.224.189:8080/provider",{
                 body:name,
                 headers:{
                     username:encodeURI(this.username)
@@ -223,7 +223,7 @@ var vm = new Vue({
             var mySelect=document.getElementById("goodName");
             var index=mySelect.selectedIndex;
             var name=mySelect.options[index].value;
-            this.$http.get("http://localhost:8080/product/type",{
+            this.$http.get("http://106.14.224.189:8080/product/type",{
                 params:{name:name}
             })
                 .then(function(response){
@@ -254,7 +254,7 @@ var vm = new Vue({
                     return;
                 }
             }
-            this.$http.post("http://localhost:8080/deliveryman",{
+            this.$http.post("http://106.14.224.189:8080/deliveryman",{
                name:name
             }).then(function(response){
                     document.getElementById("newinput3").value="";
@@ -276,7 +276,7 @@ var vm = new Vue({
                 hide4();
                 return;
             }
-            this.$http.delete("http://localhost:8080/deliveryman",{
+            this.$http.delete("http://106.14.224.189:8080/deliveryman",{
                 body:{
                     name:name
                 }
@@ -311,7 +311,7 @@ var vm = new Vue({
                     }
                 }
             }
-            this.$http.post("http://localhost:8080/product/material",{
+            this.$http.post("http://106.14.224.189:8080/product/material",{
                 name:name,
                 type:type
             },{
@@ -367,7 +367,7 @@ var vm = new Vue({
             }
 
             const self=this;
-            this.$http.post("http://localhost:8080/order/income_product",{
+            this.$http.post("http://106.14.224.189:8080/order/income_product",{
                 comment: this.InGoodsOrder.comment.trim(),
                 date: newDate,
                 deliveryMan: this.InGoodsOrder.deliveryMan.trim(),
@@ -412,7 +412,7 @@ var vm = new Vue({
             var name=document.getElementById("goodName").value;
             var type=document.getElementById("goodType").value;
 
-            this.$http.get("http://localhost:8080/product/id",{
+            this.$http.get("http://106.14.224.189:8080/product/id",{
                 params:{
                     name:this.InGoodsOrder.goodName,
                     type:this.InGoodsOrder.type
@@ -458,19 +458,19 @@ var vm = new Vue({
             window.location.href = "../index.html";
             return;
         }else{
-            this.$http.get("http://localhost:8080/provider/allName").then(function(response){
+            this.$http.get("http://106.14.224.189:8080/provider/allName").then(function(response){
                 self.providers=response.data.data;
             }).catch(function(error){
                 alert("获取信息失败，请刷新重试！")
             });
 
-            this.$http.get("http://localhost:8080/product/material/name").then(function(response){
+            this.$http.get("http://106.14.224.189:8080/product/material/name").then(function(response){
                 self.goodNames=response.data.data;
             }).catch(function(error){
                 alert("获取信息失败，请刷新重试！")
             });
 
-            this.$http.get("http://localhost:8080/deliveryman/allName").then(function(response){
+            this.$http.get("http://106.14.224.189:8080/deliveryman/allName").then(function(response){
                 self.deliveryMen=response.data.data;
             }).catch(function(error){
                 alert("获取信息失败，请刷新重试！")

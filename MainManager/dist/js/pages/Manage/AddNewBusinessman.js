@@ -70,7 +70,7 @@ var vm = new Vue({
                 alert("请输入中文字符！");
                 hide1();
             }else{
-                this.$http.post("http://localhost:8080/businessman",{
+                this.$http.post("http://106.14.224.189:8080/businessman",{
                     name:this.items.username,
                     address:this.items.address,
                     phone_number:this.items.phoneNumber,

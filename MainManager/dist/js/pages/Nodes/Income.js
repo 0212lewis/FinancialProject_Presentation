@@ -141,7 +141,7 @@ var vm = new Vue({
                 }
             }
             this.payers.push(name);
-            this.$http.post("http://localhost:8080/client", {
+            this.$http.post("http://106.14.224.189:8080/client", {
                 account: document.getElementById("newClientAccount").value,
                 address: document.getElementById("newClientAddress").value,
                 bank: document.getElementById("newClientBank").value,
@@ -177,7 +177,7 @@ var vm = new Vue({
                 hide2();
                 return;
             }
-            this.$http.delete("http://localhost:8080/client",{
+            this.$http.delete("http://106.14.224.189:8080/client",{
                 body:name,
                     headers:{
                     username:encodeURI(this.username)
@@ -207,7 +207,7 @@ var vm = new Vue({
                 }
             }
             this.payMethods.push(name);
-            this.$http.post("http://localhost:8080/paymentMethod",{
+            this.$http.post("http://106.14.224.189:8080/paymentMethod",{
                 name:name
             }).then(function(response){
                 document.getElementById("newinput3").value="";
@@ -227,7 +227,7 @@ var vm = new Vue({
                 hide4();
                 return;
             }
-            this.$http.delete("http://localhost:8080/paymentMethod",{
+            this.$http.delete("http://106.14.224.189:8080/paymentMethod",{
                 body:{
                     name:name
                 }
@@ -259,7 +259,7 @@ var vm = new Vue({
                     alert("请输入运费！");
                     return;
                 }else if((this.IncomeOrder.hour.toString().length==2)&&(this.IncomeOrder.minute.toString().length==2)&&(this.IncomeOrder.second.toString().length==2)){
-                    this.$http.post("http://localhost:8080/order/sales_income",
+                    this.$http.post("http://106.14.224.189:8080/order/sales_income",
                         {
                         clientId:'',
                         clientName:this.IncomeOrder.payer.trim(),
@@ -351,13 +351,13 @@ var vm = new Vue({
             return;
         }else{
             const self = this;
-            this.$http.get("http://localhost:8080/client/allName").then(function(response){
+            this.$http.get("http://106.14.224.189:8080/client/allName").then(function(response){
                 self.payers=response.data.data;
             }).catch(function(error){
                 alert("获取信息失败，请刷新重试！")
             });
 
-            this.$http.get('http://localhost:8080/paymentMethod/allName').then(function(response){
+            this.$http.get('http://106.14.224.189:8080/paymentMethod/allName').then(function(response){
                 self.payMethods=response.data.data;
                 console.log(response.data.data);
                 console.log(self.payMethods);

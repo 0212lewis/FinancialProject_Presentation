@@ -16,7 +16,7 @@ var vm=new Vue({
                 alert("您已登录！")
             }else{
                 const self = this;
-                this.$http.post("http://localhost:8080/account/login",{
+                this.$http.post("http://106.14.224.189:8080/account/login",{
                     username:this.items.username,
                     password:this.items.password,
                     authority:'',

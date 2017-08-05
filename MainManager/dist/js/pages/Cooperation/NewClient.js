@@ -74,7 +74,7 @@ var vm  = new Vue({
                 alert("请勿输入中文字符！");
                 hide1();
             }else{
-                this.$http.post("http://localhost:8080/client",{
+                this.$http.post("http://106.14.224.189:8080/client",{
                     id:this.items.clientId,
                     name:this.items.clientName,
                     taxId:this.items.taxId,

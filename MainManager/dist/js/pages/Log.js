@@ -98,7 +98,7 @@ var tool=new Vue(
                 window.location.href = "../index.html"
             }else{
                 const self = this;
-                this.$http.get('http://localhost:8080/logs/'+this.year)
+                this.$http.get('http://106.14.224.189:8080/logs/'+this.year)
                     .then(function(response){
                         self.items=response.data.data;
                         setTimeout(function () {

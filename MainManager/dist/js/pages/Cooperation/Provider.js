@@ -55,7 +55,7 @@ var vm = new Vue({
 
         deleteConfirm:function () {
             hide1();
-            this.$http.delete("http://localhost:8080/provider",{
+            this.$http.delete("http://106.14.224.189:8080/provider",{
                 body : this.deleteName,
                 headers:{
                     username:encodeURI(this.username)
@@ -90,7 +90,7 @@ var vm = new Vue({
             alert("抱歉，您无权浏览当前页面，如有疑问，请与管理员联系");
             window.location.href = "../index.html"
         }else{
-            this.$http.get("http://localhost:8080/provider/allProvider").then(function (response) {
+            this.$http.get("http://106.14.224.189:8080/provider/allProvider").then(function (response) {
                 this.items = response.data.data;
                 setTimeout(function () {
                     $('#example1').DataTable({
