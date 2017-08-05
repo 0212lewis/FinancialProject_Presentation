@@ -133,6 +133,8 @@ var vm  = new Vue({
                     console.log(response.data.data);
                     console.log(this.items1);
                 }
+            }).catch(function (error) {
+                alert("获取信息失败，请刷新重试!");
             });
 
             this.$http.get("http://localhost:8080/account/store").then(function (response) {
@@ -144,6 +146,8 @@ var vm  = new Vue({
                     console.log(response.data.data);
                     console.log(this.items2);
                 }
+            }).catch(function (error) {
+                alert("获取信息失败，请刷新重试!");
             })
         }
 

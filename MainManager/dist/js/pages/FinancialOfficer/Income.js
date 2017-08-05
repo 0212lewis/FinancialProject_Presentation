@@ -351,7 +351,7 @@ var vm = new Vue({
             this.$http.get("http://localhost:8080/client/allName").then(function(response){
                 self.payers=response.data.data;
             }).catch(function(error){
-                alert("出现了未知的错误！请重新进行输入")
+                alert("获取信息失败，请刷新重试！")
             });
 
             this.$http.get('http://localhost:8080/paymentMethod/allName').then(function(response){
@@ -359,7 +359,7 @@ var vm = new Vue({
                 console.log(response.data.data);
                 console.log(self.payMethods);
             }).catch(function(error){
-                alert("出现了未知的错误！请重新进行输入")
+                alert("获取信息失败，请刷新重试！")
             })
 
         }

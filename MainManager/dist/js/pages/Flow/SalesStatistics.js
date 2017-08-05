@@ -259,7 +259,7 @@ var tool=new Vue(
                     }, 0);
 
                 }).catch(function (error) {
-                alert("出现了未知的错误！请重新进行输入")
+                alert("获取信息失败，请刷新重试！")
             });
 
             this.$http.get("http://localhost:8080/ticketAndFunds/all").then(function (response) {
@@ -274,7 +274,7 @@ var tool=new Vue(
                     });
                 }, 0);
             }).catch(function (error) {
-                alert('发生了未知的错误！');
+                alert('获取信息失败，请刷新重试！');
             })
         }
 	}

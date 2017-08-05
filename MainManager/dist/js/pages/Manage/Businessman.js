@@ -93,6 +93,8 @@ var vm = new Vue({
                 setTimeout(function () {
                     $('#example1').DataTable();
                 },0);
+            }).catch(function (error) {
+                alert("获取信息失败，请刷新重试");
             })
         }
 

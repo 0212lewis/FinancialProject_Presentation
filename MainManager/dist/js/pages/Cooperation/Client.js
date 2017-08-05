@@ -171,7 +171,7 @@ if(this.username == ""){
             });
         }, 0);
     }).catch(function (error) {
-        alert("出现了未知的错误！");
+        alert("获取信息失败，请刷新重试！");
     })
 }
 

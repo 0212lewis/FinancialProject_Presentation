@@ -906,31 +906,31 @@ var vm = new Vue({
             this.$http.get("http://localhost:8080/client/allName").then(function(response){
                 self.receives=response.data.data;
             }).catch(function(error){
-                alert("出现了未知的错误！请重新进行输入")
+                alert("获取信息失败，请刷新重试！")
             });
 
             this.$http.get("http://localhost:8080/product/product/name").then(function(response){
                 self.goodNames=response.data.data;
             }).catch(function(error){
-                alert("出现了未知的错误！请重新进行输入")
+                alert("获取信息失败，请刷新重试！")
             });
 
             this.$http.get("http://localhost:8080/product/product").then(function(response){
                 self.allGoods=response.data.data;
             }).catch(function(error){
-                alert("出现了未知的错误！请重新进行输入")
+                alert("获取信息失败，请刷新重试！")
             });
 
             this.$http.get("http://localhost:8080/deliveryman/allName").then(function(response){
                 self.deliveryMen=response.data.data;
             }).catch(function(error){
-                alert("出现了未知的错误！请重新进行输入")
+                alert("获取信息失败，请刷新重试！")
             });
 
             this.$http.get("http://localhost:8080/businessman").then(function(response){
                 self.businessMen=response.data.data;
             }).catch(function(error){
-                alert("出现了未知的错误！请重新进行输入")
+                alert("获取信息失败，请刷新重试！")
             });
         }},
     computed:{

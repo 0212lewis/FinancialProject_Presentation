@@ -291,7 +291,7 @@ var vm = new Vue({
                 console.log(response.data.data);
                 console.log(this.payMethods);
             }).catch(function(error){
-                alert("出现了未知的错误！请重新进行输入")
+                alert("获取信息失败，请刷新重试！")
             })
         }
 

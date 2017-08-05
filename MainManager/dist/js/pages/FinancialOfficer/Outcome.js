@@ -346,14 +346,14 @@ var vm = new Vue({
                 .then(function(response){
                     self.receives=response.data.data;
                 }).catch(function(error){
-                alert("出现了未知的错误！请重新进行输入");
+                alert("获取信息失败，请刷新重试！");
             });
 
             this.$http.get('http://localhost:8080/paymentMethod/allName')
                 .then(function(response){
                     self.methods=response.data.data;
                 }).catch(function(error){
-                alert("出现了未知的错误！请重新进行输入");
+                alert("获取信息失败，请刷新重试！");
             })
         }
 
