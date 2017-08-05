@@ -273,6 +273,14 @@ var vm = new Vue({
                         }}).then(function (response) {
                         if(response.body.errorCode ==0){
                             alert("添加成功！");
+                            document.getElementById("client").disabled = true;
+                            document.getElementById("money").disabled = true;
+                            document.getElementById("payMethod").disabled = true;
+                            document.getElementById("comment").disabled = true;
+                            document.getElementById("datepicker").disabled = true;
+                            document.getElementById("hour").disabled = true;
+                            document.getElementById("minute").disabled = true;
+                            document.getElementById("second").disabled = true;
                             document.getElementById("save").disabled=true;
                         }else if(response.body.errorCode==80000001) {
                             alert("请重新登录!");

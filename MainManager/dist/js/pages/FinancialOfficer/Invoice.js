@@ -223,7 +223,14 @@ var vm = new Vue({
                     if (response.body.errorCode == 0) {
                         document.getElementById("save").disabled = true;
                         alert("添加成功！");
-
+                        document.getElementById("client").disabled = true;
+                        document.getElementById("orderId").disabled = true;
+                        document.getElementById("money").disabled = true;
+                        document.getElementById("comment").disabled = true;
+                        document.getElementById("datepicker").disabled = true;
+                        document.getElementById("hour").disabled = true;
+                        document.getElementById("minute").disabled = true;
+                        document.getElementById("second").disabled = true;
                     } else if(response.data.errorCode ==80000001){// console.log(response.data);
                         alert("请先登录！");
                     }

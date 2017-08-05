@@ -392,6 +392,15 @@ var vm = new Vue({
                 if(response.body.errorCode ==0){
                     alert("添加成功！");
                     document.getElementById("save").disabled=true;
+                    document.getElementById("deliveryMan").disabled = true;
+                    document.getElementById("provider").disabled = true;
+                    document.getElementById("goodName").disabled = true;
+                    document.getElementById("goodType").disabled = true;
+                    document.getElementById("amount").disabled = true;
+                    document.getElementById("singlePrice").disabled = true;
+                    document.getElementById("datepicker").disabled = true;
+                    document.getElementById("deliveryMoney").disabled = true;
+                    document.getElementById("comment").disabled = true;
                 }else if(response.data.errorCode == 80000001){
                     alert("请先登录！");
                 }

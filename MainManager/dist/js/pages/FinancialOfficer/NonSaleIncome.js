@@ -1,15 +1,4 @@
-/**
- * Created by dell- on 2017/7/27.
- */
-/**
- * Created by pc on 2017/7/12.
- */
-/**
- * Created by cyz on 2017/4/25.
- */
-/**
- * Created by cyz on 2017/4/25.
- */
+
 function show1()  //显示隐藏层和弹出层
 {
     var hideobj=document.getElementById("hidebg1");
@@ -237,6 +226,14 @@ var vm = new Vue({
                 }).then(function (response) {
                     if(response.body.errorCode ==0){
                         alert("添加成功！");
+                        document.getElementById("client").disabled = true;
+                        document.getElementById("money").disabled = true;
+                        document.getElementById("payMethod").disabled = true;
+                        document.getElementById("comment").disabled = true;
+                        document.getElementById("datepicker").disabled = true;
+                        document.getElementById("hour").disabled = true;
+                        document.getElementById("minute").disabled = true;
+                        document.getElementById("second").disabled = true;
                         document.getElementById("save").disabled=true;
                     }else if(response.data.errorCode == 80000001){
                         alert("请先登录！");

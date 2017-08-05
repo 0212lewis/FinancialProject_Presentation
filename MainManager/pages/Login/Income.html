@@ -417,7 +417,7 @@ desired effect
                                 <label  class="col-md-3 control-label">客户名称</label>
 
                                 <div class="col-md-6">
-                                    <select id="Client" class="form-control" v-model="IncomeOrder.payer">
+                                    <select id="client" class="form-control" v-model="IncomeOrder.payer">
                                         <option v-for="payer in payers" v-text="payer"></option>
                                     </select>
                                 </div>
@@ -428,10 +428,10 @@ desired effect
                             </div>
                             <hr>
                             <div class="form-group">
-                                <label for="input3" class="col-md-3 control-label">付款金额</label>
+                                <label for="money" class="col-md-3 control-label">付款金额</label>
 
                                 <div class="col-md-6">
-                                    <input type="text" class="form-control" id="input3" placeholder="请输入金额数：" v-model="IncomeOrder.money">
+                                    <input type="text" class="form-control" id="money" placeholder="请输入金额数：" v-model="IncomeOrder.money">
                                 </div>
                             </div>
                             <hr>
@@ -439,7 +439,7 @@ desired effect
                                 <label  class="col-md-3 control-label">进款方式</label>
 
                                 <div class="col-md-6">
-                                    <select id="PayMethod" class="form-control" v-model="IncomeOrder.payMethod">
+                                    <select id="payMethod" class="form-control" v-model="IncomeOrder.payMethod">
                                         <option v-for="paymethod in payMethods" v-text="paymethod"></option>
                                     </select>
                                 </div>
@@ -450,10 +450,10 @@ desired effect
                             </div>
                             <hr>
                             <div class="form-group">
-                                <label for="input3" class="col-md-3 control-label">备注</label>
+                                <label for="comment" class="col-md-3 control-label">备注</label>
 
                                 <div class="col-md-6">
-                                    <input type="text" class="form-control" id="input4" placeholder="请输入备注：" v-model="IncomeOrder.comment">
+                                    <input type="text" class="form-control" id="comment" placeholder="请输入备注：" v-model="IncomeOrder.comment">
                                 </div>
                             </div>
                             <hr>
