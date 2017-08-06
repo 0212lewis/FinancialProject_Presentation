@@ -328,6 +328,14 @@ var vm = new Vue({
 
     methods:{
 
+        print:function () {
+            if(document.getElementById("save").disabled == false){
+                alert("请先录入再执行打印操作！");
+                return;
+            }
+            window.print();
+        },
+
         setCookie:function (cname,cvalue,exdays) {
             var d = new Date();
             d.setTime(d.getTime() + (exdays*20*60*60*1000));

@@ -81,7 +81,7 @@ function hide6()  //去除隐藏层和弹出层
 var vm = new Vue({
     el:'#container',
     data:{
-
+        canPrint:false,
         username:'',
         authority:'',
         providers:[
@@ -115,6 +115,13 @@ var vm = new Vue({
     },
     methods:{
 
+        print:function () {
+            if(document.getElementById("save").disabled == false){
+                alert("请先录入再执行打印操作！");
+                return;
+            }
+            window.print();
+        },
         //设置cookies
         setCookie:function (cname,cvalue,exdays) {
             var d = new Date();
