@@ -199,9 +199,9 @@ var vm = new Vue({
 
         //删除供应商
         deleteProviders:function(){
-            var mySelect = document.getElementById("Client");
+            var mySelect = document.getElementById("provider");
             var index=mySelect.selectedIndex;
-            var name=document.getElementById("goodsprovider").value;
+            var name=document.getElementById("provider").value;
             if(name==""){
                 alert('请选择要删除的内容');
                 hide2();
@@ -275,9 +275,9 @@ var vm = new Vue({
 
         //删除运货人
         deleteDeliveryMan:function(){
-            var mySelect=document.getElementById("DeliveryMan");
+            var mySelect=document.getElementById("deliveryMan");
             var index=mySelect.selectedIndex;
-            var name=document.getElementById("DeliveryMan").value;
+            var name=document.getElementById("deliveryMan").value;
             if(name==""){
                 alert('请选择要删除的内容');
                 hide4();

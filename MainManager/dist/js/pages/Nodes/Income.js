@@ -178,9 +178,9 @@ var vm = new Vue({
         },
         //删除客户
         deleteClient:function(){
-            var mySelect = document.getElementById("Client");
+            var mySelect = document.getElementById("client");
             var index=mySelect.selectedIndex;
-            var name=document.getElementById("Client").value;
+            var name=document.getElementById("client").value;
             if(name==""){
                 alert('请选择要删除的客户');
                 hide2();
@@ -228,9 +228,9 @@ var vm = new Vue({
         },
         //删除付款方式
         deletePayMethod:function(){
-            var mySelect=document.getElementById("PayMethod");
+            var mySelect=document.getElementById("payMethod");
             var index=mySelect.selectedIndex;
-            var name=document.getElementById("PayMethod").value;
+            var name=document.getElementById("payMethod").value;
             if(name==""){
                 alert('请选择要删除的内容');
                 hide4();

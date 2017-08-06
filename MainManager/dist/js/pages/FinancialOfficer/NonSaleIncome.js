@@ -180,9 +180,9 @@ var vm = new Vue({
         },
 
         deletePayMethod:function(){
-            var mySelect=document.getElementById("PayMethod");
+            var mySelect=document.getElementById("payMethod");
             var index=mySelect.selectedIndex;
-            var name=document.getElementById("PayMethod").value;
+            var name=document.getElementById("payMethod").value;
             if(name==""){
                 alert('请选择要删除的内容');
                 hide4();

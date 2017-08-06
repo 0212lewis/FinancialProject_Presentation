@@ -198,9 +198,9 @@ var vm = new Vue({
         },
         //删除供应商
         deleteProviders:function(){
-            var mySelect=document.getElementById("goodsprovider");
+            var mySelect=document.getElementById("provider");
             var index=mySelect.selectedIndex;
-            var name=document.getElementById("goodsprovider").value;
+            var name=document.getElementById("provider").value;
             if(name==""){
                 alert('请选择要删除的内容');
                 hide2();
@@ -246,9 +246,9 @@ var vm = new Vue({
         },
         //删除付款方式
         deletePayMethod:function(){
-            var mySelect=document.getElementById("paymentMethod");
+            var mySelect=document.getElementById("payMethod");
             var index=mySelect.selectedIndex;
-            var name=document.getElementById("paymentMethod").value;
+            var name=document.getElementById("payMethod").value;
             if(name==""){
                 alert('请选择要删除的内容');
                 hide4();

@@ -176,9 +176,9 @@ var vm = new Vue({
         },
         //删除客户
         deleteUnit:function(){
-            var mySelect = document.getElementById("payunit");
+            var mySelect = document.getElementById("client");
             var index=mySelect.selectedIndex;
-            var name=document.getElementById("payunit").value;
+            var name=document.getElementById("client").value;
             if(name==""){
                 alert('请选择要删除的内容');
                 hide2();
