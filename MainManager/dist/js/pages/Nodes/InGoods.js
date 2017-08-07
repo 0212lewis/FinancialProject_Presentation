@@ -77,6 +77,13 @@ function hide6()  //去除隐藏层和弹出层
     document.getElementById("login6").style.display = "none";
 }
 
+function accMul(arg1,arg2)
+{
+    var m=0,s1=arg1.toString(),s2=arg2.toString();
+    try{m+=s1.split(".")[1].length}catch(e){}
+    try{m+=s2.split(".")[1].length}catch(e){}
+    return Number(s1.replace(".",""))*Number(s2.replace(".",""))/Math.pow(10,m)
+}
 
 var vm = new Vue({
     el:'#container',
@@ -493,8 +500,8 @@ var vm = new Vue({
                 this.totalMoney="0";
                 return 0;
             }
-            this.totalMoney=parseFloat(this.InGoodsOrder.amount)*parseFloat(this.InGoodsOrder.singlePrice);
-            return parseFloat(this.InGoodsOrder.amount)*parseFloat(this.InGoodsOrder.singlePrice);
+            this.totalMoney=accMul(parseFloat(this.InGoodsOrder.amount),parseFloat(this.InGoodsOrder.singlePrice));
+            return accMul(parseFloat(this.InGoodsOrder.amount),parseFloat(this.InGoodsOrder.singlePrice));
         }
     }
 });
