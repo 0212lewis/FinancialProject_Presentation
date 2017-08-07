@@ -165,8 +165,11 @@ var tool=new Vue(
 
 	      hide2();
             this.$http.put("http://106.14.224.189:8080/ticket_balance/"+this.clientId,
-                this.ticketBalance
-            ).then(function (response) {
+                this.ticketBalance,{
+                    headers:{
+                        username:encodeURI(this.username)
+                    }
+                }).then(function (response) {
                 if(response.data.errorCode == 0){
                     alert("修改成功！");
                     window.location.reload();
@@ -178,8 +181,11 @@ var tool=new Vue(
         modifyFund:function () {
 	      hide3();
             this.$http.put("http://106.14.224.189:8080/fund_balance/"+this.clientId,
-                this.fundBalance
-            ).then(function (response) {
+                this.fundBalance,{
+                headers:{
+                    username:encodeURI(this.username)
+                }
+                }).then(function (response) {
                 if(response.data.errorCode == 0){
                     alert("修改成功！");
                     window.location.reload();

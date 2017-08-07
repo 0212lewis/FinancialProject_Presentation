@@ -943,28 +943,28 @@ var vm = new Vue({
         }},
     computed:{
         getTotal1:function() {
-            var result=parseFloat(this.deliveryOrder.good1.num)*parseFloat(this.deliveryOrder.good1.money);
-            this.deliveryOrder.good1.total =result;
+            var result=accMul(parseFloat(this.deliveryOrder.good1.num),parseFloat(this.deliveryOrder.good1.money));
+            this.deliveryOrder.good1.total =result.toFixed(1);
             return result;
         },
         getTotal2:function() {
-            var result=parseFloat(this.deliveryOrder.good2.num)*parseFloat(this.deliveryOrder.good2.money);
-            this.deliveryOrder.good2.total =result;
+            var result=accMul(parseFloat(this.deliveryOrder.good2.num),parseFloat(this.deliveryOrder.good2.money));
+            this.deliveryOrder.good2.total =result.toFixed(1);
             return result;
         },
         getTotal3:function() {
-            var result=parseFloat(this.deliveryOrder.good3.num)*parseFloat(this.deliveryOrder.good3.money);
-            this.deliveryOrder.good3.total =result;
+            var result=accMul(parseFloat(this.deliveryOrder.good3.num),parseFloat(this.deliveryOrder.good3.money));
+            this.deliveryOrder.good3.total =result.toFixed(1);
             return result;
         },
         getTotal4:function() {
-            var result=parseFloat(this.deliveryOrder.good4.num)*parseFloat(this.deliveryOrder.good4.money);
-            this.deliveryOrder.good4.total =result;
+            var result=accMul(parseFloat(this.deliveryOrder.good4.num),parseFloat(this.deliveryOrder.good4.money));
+            this.deliveryOrder.good4.total =result.toFixed(1);
             return result;
         },
         getTotal5:function() {
-            var result=parseFloat(this.deliveryOrder.good5.num)*parseFloat(this.deliveryOrder.good5.money);
-            this.deliveryOrder.good5.total =result;
+            var result=accMul(parseFloat(this.deliveryOrder.good5.num),parseFloat(this.deliveryOrder.good5.money));
+            this.deliveryOrder.good5.total =result.toFixed(1);
             return result;
         },
         getTotal:function () {
