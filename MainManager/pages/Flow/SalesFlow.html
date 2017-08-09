@@ -258,8 +258,10 @@ desired effect
                   <th width="150">订单号</th>
                   <th>日期</th>
                   <th width="200">客户名称</th>
-                  <th>货物详情</th>
+                  <th>货物名</th>
+                    <th>型号</th>
                     <th>数量</th>
+                    <th>单价</th>
                   <th>金额</th>
                   <th>送货人</th>
                   <th>运费</th>
@@ -272,15 +274,18 @@ desired effect
                     <td>{{item.orderId}}</td>
                     <td>{{item.date}}</td>
                     <td>{{item.clientName}}</td>
-                    <td>
-                        <a :href = "'SalesFlowDetail.html?id='+item.orderId">货物详情</a>
-                    </td>
-                    <td v-text="item.totalQuantity"></td>
-                    <td>{{item.totalMoney}}</td>
-                    <td>{{item.deliveryMan}}</td>
-                    <td>{{item.deliveryMoney}}</td>
-                    <td>{{item.businessman}}</td>
-                    <td>{{item.comment}}</td>
+                    <!--<td>-->
+                        <!--<a :href = "'SalesFlowDetail.html?id='+item.orderId">货物详情</a>-->
+                    <!--</td>-->
+                    <td v-text="item.pname"></td>
+                    <td v-text="item.ptype"></td>
+                    <td v-text="item.quantity"></td>
+                    <td v-text="item.unitPrice"></td>
+                    <td v-text="item.money"></td>
+                    <td v-text="item.deliveryMan"></td>
+                    <td v-text="item.deliveryMoney"></td>
+                    <td v-text="item.businessman"></td>
+                    <td v-text="item.comment"></td>
                 </tr>
                 </tbody>
                 <tfoot>
@@ -289,7 +294,9 @@ desired effect
                     <th></th>
                     <th></th>
                     <th></th>
+                    <th></th>
                     <th id="totalNum">计算中</th>
+                    <th></th>
                     <th id="totalMoney">计算中</th>
                     <th></th>
                     <th id="totalDeliveryMoney">计算中</th>
@@ -300,8 +307,10 @@ desired effect
                     <th></th>
                     <th></th>
                     <th></th>
-                    <th></th>>
+                    <th></th>
+                    <th></th>
                     <th>总数量</th>
+                    <th></th>
                     <th>总金额(元)</th>
                     <th></th>
                     <th>总运费(元)</th>
@@ -383,9 +392,9 @@ desired effect
 
             for(var i=1;i<table.rows.length-2;i++)
             {
-                sumNum = parseFloat(parseFloat(table.rows[i].cells[4].innerHTML)+parseFloat(sumNum));
-                sumDeliveryMoney = parseFloat(parseFloat(table.rows[i].cells[7].innerHTML)+parseFloat(sumDeliveryMoney));
-                sumMoney = parseFloat(parseFloat(table.rows[i].cells[5].innerHTML)+parseFloat(sumMoney));
+                sumNum = parseFloat(parseFloat(table.rows[i].cells[5].innerHTML)+parseFloat(sumNum));
+                sumDeliveryMoney = parseFloat(parseFloat(table.rows[i].cells[9].innerHTML)+parseFloat(sumDeliveryMoney));
+                sumMoney = parseFloat(parseFloat(table.rows[i].cells[7].innerHTML)+parseFloat(sumMoney));
             }
 
             var result = parseFloat((sumMoney-sumDeliveryMoney)/sumNum).toFixed(2);
@@ -396,9 +405,9 @@ desired effect
         },1000);
     }
 
-//    $('example1').on('click','.test',function(){
-//            alert("haahah")
-//    });
+    //    $('example1').on('click','.test',function(){
+    //            alert("haahah")
+    //    });
 </script>
 <script>
     $(document).ready(function(){
@@ -415,9 +424,9 @@ desired effect
 
                     for(var i=1;i<table.rows.length-2;i++)
                     {
-                        sumNum = parseFloat(parseFloat(table.rows[i].cells[4].innerHTML)+parseFloat(sumNum));
-                        sumDeliveryMoney = parseFloat(parseFloat(table.rows[i].cells[7].innerHTML)+parseFloat(sumDeliveryMoney));
-                        sumMoney = parseFloat(parseFloat(table.rows[i].cells[5].innerHTML)+parseFloat(sumMoney));
+                        sumNum = parseFloat(parseFloat(table.rows[i].cells[5].innerHTML)+parseFloat(sumNum));
+                        sumDeliveryMoney = parseFloat(parseFloat(table.rows[i].cells[9].innerHTML)+parseFloat(sumDeliveryMoney));
+                        sumMoney = parseFloat(parseFloat(table.rows[i].cells[7].innerHTML)+parseFloat(sumMoney));
                     }
 
                     var result = parseFloat((sumMoney-sumDeliveryMoney)/sumNum).toFixed(2);
