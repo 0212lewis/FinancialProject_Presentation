@@ -128,81 +128,6 @@ desired effect
         </form>
     </div>
 
-
-    <div id="ModifyTicketInput">
-        <div id="hidebg4"></div>
-        <form class="form-horizontal">
-            <div id="login4" class="box-body">
-                <hr>
-                <div class="form-group">
-                    <label class="col-md-4 control-label">期初余额：</label>
-                    <div class="col-md-8">
-                        <input type="text" class="form-control" id="ticketBalance" placeholder="请输入想要修改的数据：">
-                    </div>
-                </div>
-                <div class="btn-group">
-
-                    <button type="button" class="btn btn btn-primary" style="left: 80px;" @click="modifyTicketGetTicketBalance">确定</button>
-                    <button type="button" class="btn btn btn-danger" style="left: 230px;" onclick="hide4()">取消</button>
-                </div>
-                <hr>
-            </div>
-        </form>
-    </div>
-    <div id="ModifyTicket">
-        <div id="hidebg2"></div>
-        <form class="form-horizontal">
-            <div id="login2" class="box-body">
-                <hr>
-                <div class="form-group">
-                    <label class="col-md-8 control-label"> 是否确认修改该数据？</label>
-                </div>
-                <div class="btn-group">
-
-                    <button type="button" class="btn btn btn-primary" style="left: 80px;" @click.prevent="modifyTicket">确定</button>
-                    <button type="button" class="btn btn btn-danger" style="left: 230px;" onclick="hide2()">取消</button>
-                </div>
-                <hr>
-            </div>
-        </form>
-    </div>
-    <div id="ModifyFundInput">
-        <div id="hidebg5"></div>
-        <form class="form-horizontal">
-            <div id="login5" class="box-body">
-                <hr>
-                <div class="form-group">
-                    <label class="col-md-4 control-label">期初余额：</label>
-                    <div class="col-md-8">
-                        <input type="text" class="form-control" id="fundBalance" placeholder="请输入想要修改的数据：">
-                    </div>
-                </div>
-                <div class="btn-group">
-
-                    <button type="button" class="btn btn btn-primary" style="left: 80px;" @click="modifyFundGetFundBalance">确定</button>
-                    <button type="button" class="btn btn btn-danger" style="left: 230px;" onclick="hide5()">取消</button>
-                </div>
-                <hr>
-            </div>
-        </form>
-    </div>
-    <div id="modifyFund">
-        <div id="hidebg3"></div>
-        <form class="form-horizontal">
-            <div id="login3" class="box-body">
-                <hr>
-                <div class="form-group">
-                    <label class="col-md-8 control-label"> 是否确认修改该数据？</label>
-                </div>
-                <div class="btn-group">
-
-                    <button type="button" class="btn btn btn-primary" style="left: 80px;" @click.prevent="modifyFund">确定</button>
-                    <button type="button" class="btn btn btn-danger" style="left: 230px;" onclick="hide3()">取消</button>
-                </div>
-                <hr>
-            </div>
-        </form>
-    </div>
     <!-- Main Header -->
     <header class="main-header">
 
@@ -308,6 +233,8 @@ desired effect
                         <li><a href="../../pages/Flow/CapitalFlow.html"><i class="fa fa-circle-o"> 资金流水</i></a></li>
                         <li><a href="../../pages/Flow/InGoodsFlow.html"><i class="fa fa-circle-o"> 进货流水</i></a></li>
                         <li class="active"><a href="../../pages/Flow/SalesStatistics.html"><i class="fa fa-circle-o"> 销售统计表</i></a></li>
+                        <li><a href="../../pages/Flow/BalanceManage.html"><i class="fa fa-circle-o"> 应收款管理</i></a></li>
+
                     </ul>
                 </li>
 
@@ -397,7 +324,7 @@ desired effect
               <table id="example1" class="table table-bordered table-condensed table-striped" width="2900">
                 <thead>
                 <tr>
-                  <th rowspan="3" width="80">公司名称</th>
+                  <th rowspan="3" width="200">公司名称</th>
                   <th colspan="8">Q1</th>
                   <th colspan="8">Q2</th>
                   <th colspan="8">Q3</th>
@@ -523,97 +450,46 @@ desired effect
 
                   <tfoot>
                     <td>统计</td>
-                    <td id="num1">计算中</td>
+                    <td id="num1"></td>
                     <td id="sales1">计算中</td>
-                    <td id="num2">计算中</td>
+                    <td id="num2"></td>
                     <td id="sales2">计算中</td>
-                    <td id="num3">计算中</td>
+                    <td id="num3"></td>
                     <td id="sales3">计算中</td>
-                    <td id="num_1">计算中</td>
-                    <td id="sales_1">计算中</td>
-                    <td id="num4">计算中</td>
+                    <td id="num_1"></td>
+                    <td id="sales_1" style="font-weight: 900">计算中</td>
+                    <td id="num4"></td>
                     <td id="sales4">计算中</td>
-                    <td id="num5">计算中</td>
+                    <td id="num5"></td>
                     <td id="sales5">计算中</td>
-                    <td id="num6">计算中</td>
+                    <td id="num6"></td>
                     <td id="sales6">计算中</td>
-                    <td id="num_2">计算中</td>
-                    <td id="sales_2">计算中</td>
-                    <td id="num7">计算中</td>
+                    <td id="num_2"></td>
+                    <td id="sales_2" style="font-weight: 900">计算中</td>
+                    <td id="num7"></td>
                     <td id="sales7">计算中</td>
-                    <td id="num8">计算中</td>
+                    <td id="num8"></td>
                     <td id="sales8">计算中</td>
-                    <td id="num9">计算中</td>
+                    <td id="num9"></td>
                     <td id="sales9">计算中</td>
-                    <td id="num_3">计算中</td>
-                    <td id="sales_3">计算中</td>
-                    <td id="num10">计算中</td>
+                    <td id="num_3"></td>
+                    <td id="sales_3" style="font-weight: 900">计算中</td>
+                    <td id="num10"></td>
                     <td id="sales10">计算中</td>
-                    <td id="num11">计算中</td>
+                    <td id="num11"></td>
                     <td id="sales11">计算中</td>
-                    <td id="num12">计算中</td>
+                    <td id="num12"></td>
                     <td id="sales12">计算中</td>
-                    <td id="num_4">计算中</td>
-                    <td id="sales_4">计算中</td>
-                    <td id="numYear">计算中</td>
-                    <td id="salesYear">计算中</td>
+                    <td id="num_4"></td>
+                    <td id="sales_4" style="font-weight: 900">计算中</td>
+                    <td id="numYear"></td>
+                    <td id="salesYear" style="font-weight: 900">计算中</td>
                     <td id="contribution">计算中</td>
                   </tfoot>
 
               </table>
             </div>
-              <br>
-              <br>
-              <div class="box-body" style="overflow:auto">
-                  <table id="example2" class="table table-bordered table-condensed table-striped" width="1000">
-                      <thead>
-                      <tr>
-                          <th rowspan="2" width="50">客户名称</th>
-                          <th rowspan="2" width="50">客户简码</th>
-                          <th colspan="3">应开发票</th>
-                          <th colspan="4">应收账款</th>
-                      </tr>
-                      <tr>
 
-                          <th>期初余额</th>
-                          <th>修改</th>
-                          <th>本期已开</th>
-                          <th>目前应开</th>
-                          <th>期初余额</th>
-                          <th>修改</th>
-                          <th>本期发生</th>
-                          <th>本期回笼</th>
-                          <th>目前应收</th>
-                          <th>往年记录</th>
-                      </tr>
-                      </thead>
-                      <tbody>
-                      <tr v-for="item in items1">
-                          <td v-text="item.clientName"></td>
-                          <td v-text="item.clientId"></td>
-                          <td v-text="item.ticketBalance">
-                          </td>
-                          <td>
-                              <button class="btn btn-xs btn-primary" @click.prevent="modifyTicketGetClient(item.clientId)">修改</button>
-                          </td>
-                          <td v-text="item.ticketPeriodOpen"></td>
-                          <td v-text="item.ticketShouldOpen"></td>
-                          <td v-text="item.fundBalance">
-                          </td>
-                          <td>
-                              <button class="btn btn-xs btn-primary" @click.prevent="modifyFundGetClient(item.clientId)">修改</button>
-                          </td>
-                          <td v-text="item.fundPeriodCreated"></td>
-                          <td v-text="item.fundPeriodGet"></td>
-                          <td v-text="item.fundShouldGet"></td>
-                          <td>
-                              <a :href = "'StatisticsHistory.html?id='+item.clientName">查询</a>
-                          </td>
-                      </tr>
-                      </tbody>
-
-                  </table>
-              </div>
           </div>
           <!-- /.box -->
         </div>
@@ -753,47 +629,47 @@ desired effect
                 contribution = parseFloat(parseFloat(table.rows[i].cells[35].innerHTML)+parseFloat(contribution));
             }
 
-            document.getElementById("num1").innerText=num1;
+//            document.getElementById("num1").innerText=num1;
             document.getElementById("sales1").innerText=sales1;
-            document.getElementById("num2").innerText=num2;
+//            document.getElementById("num2").innerText=num2;
             document.getElementById("sales2").innerText=sales2;
-            document.getElementById("num3").innerText=num3;
+//            document.getElementById("num3").innerText=num3;
             document.getElementById("sales3").innerText=sales3;
 
-            document.getElementById("num_1").innerText=num_1;
+//            document.getElementById("num_1").innerText=num_1;
             document.getElementById("sales_1").innerText=sales_1;
 
-            document.getElementById("num4").innerText=num4;
+//            document.getElementById("num4").innerText=num4;
             document.getElementById("sales4").innerText=sales4;
-            document.getElementById("num5").innerText=num5;
+//            document.getElementById("num5").innerText=num5;
             document.getElementById("sales5").innerText=sales5;
-            document.getElementById("num6").innerText=num6;
+//            document.getElementById("num6").innerText=num6;
             document.getElementById("sales6").innerText=sales6;
 
-            document.getElementById("num_2").innerText=num_2;
+//            document.getElementById("num_2").innerText=num_2;
             document.getElementById("sales_2").innerText=sales_2;
 
-            document.getElementById("num7").innerText=num7;
+//            document.getElementById("num7").innerText=num7;
             document.getElementById("sales7").innerText=sales7;
-            document.getElementById("num8").innerText=num8;
+//            document.getElementById("num8").innerText=num8;
             document.getElementById("sales8").innerText=sales8;
-            document.getElementById("num9").innerText=num9;
+//            document.getElementById("num9").innerText=num9;
             document.getElementById("sales9").innerText=sales9;
 
-            document.getElementById("num_3").innerText=num_3;
+//            document.getElementById("num_3").innerText=num_3;
             document.getElementById("sales_3").innerText=sales_3;
 
-            document.getElementById("num10").innerText=num10;
+//            document.getElementById("num10").innerText=num10;
             document.getElementById("sales10").innerText=sales10;
-            document.getElementById("num11").innerText=num11;
+//            document.getElementById("num11").innerText=num11;
             document.getElementById("sales11").innerText=sales11;
-            document.getElementById("num12").innerText=num12;
+//            document.getElementById("num12").innerText=num12;
             document.getElementById("sales12").innerText=sales12;
 
-            document.getElementById("num_4").innerText=num_4;
+//            document.getElementById("num_4").innerText=num_4;
             document.getElementById("sales_4").innerText=sales_4;
 
-            document.getElementById("numYear").innerText=numYear;
+//            document.getElementById("numYear").innerText=numYear;
             document.getElementById("salesYear").innerText=salesYear;
             document.getElementById("contribution").innerText = contribution;
 
@@ -894,47 +770,47 @@ desired effect
                         contribution = parseFloat(parseFloat(table.rows[i].cells[35].innerHTML)+parseFloat(contribution));
                     }
 
-                    document.getElementById("num1").innerText=num1;
+//                    document.getElementById("num1").innerText=num1;
                     document.getElementById("sales1").innerText=sales1;
-                    document.getElementById("num2").innerText=num2;
+//                    document.getElementById("num2").innerText=num2;
                     document.getElementById("sales2").innerText=sales2;
-                    document.getElementById("num3").innerText=num3;
+//                    document.getElementById("num3").innerText=num3;
                     document.getElementById("sales3").innerText=sales3;
 
-                    document.getElementById("num_1").innerText=num_1;
+//                    document.getElementById("num_1").innerText=num_1;
                     document.getElementById("sales_1").innerText=sales_1;
 
-                    document.getElementById("num4").innerText=num4;
+//                    document.getElementById("num4").innerText=num4;
                     document.getElementById("sales4").innerText=sales4;
-                    document.getElementById("num5").innerText=num5;
+//                    document.getElementById("num5").innerText=num5;
                     document.getElementById("sales5").innerText=sales5;
-                    document.getElementById("num6").innerText=num6;
+//                    document.getElementById("num6").innerText=num6;
                     document.getElementById("sales6").innerText=sales6;
 
-                    document.getElementById("num_2").innerText=num_2;
+//                    document.getElementById("num_2").innerText=num_2;
                     document.getElementById("sales_2").innerText=sales_2;
 
-                    document.getElementById("num7").innerText=num7;
+//                    document.getElementById("num7").innerText=num7;
                     document.getElementById("sales7").innerText=sales7;
-                    document.getElementById("num8").innerText=num8;
+//                    document.getElementById("num8").innerText=num8;
                     document.getElementById("sales8").innerText=sales8;
-                    document.getElementById("num9").innerText=num9;
+//                    document.getElementById("num9").innerText=num9;
                     document.getElementById("sales9").innerText=sales9;
 
-                    document.getElementById("num_3").innerText=num_3;
+//                    document.getElementById("num_3").innerText=num_3;
                     document.getElementById("sales_3").innerText=sales_3;
 
-                    document.getElementById("num10").innerText=num10;
+//                    document.getElementById("num10").innerText=num10;
                     document.getElementById("sales10").innerText=sales10;
-                    document.getElementById("num11").innerText=num11;
+//                    document.getElementById("num11").innerText=num11;
                     document.getElementById("sales11").innerText=sales11;
-                    document.getElementById("num12").innerText=num12;
+//                    document.getElementById("num12").innerText=num12;
                     document.getElementById("sales12").innerText=sales12;
 
-                    document.getElementById("num_4").innerText=num_4;
+//                    document.getElementById("num_4").innerText=num_4;
                     document.getElementById("sales_4").innerText=sales_4;
 
-                    document.getElementById("numYear").innerText=numYear;
+//                    document.getElementById("numYear").innerText=numYear;
                     document.getElementById("salesYear").innerText=salesYear;
                     document.getElementById("contribution").innerText = contribution;
                 }
