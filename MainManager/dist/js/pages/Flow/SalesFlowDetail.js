@@ -32,7 +32,7 @@ var tool=new Vue(
                 alert("抱歉，您无权浏览当前页面，如有疑问，请与管理员联系");
                 window.location.href = "../index.html"
             }else{
-                this.$http.get('http://106.14.224.189:8080/order/products',{
+                this.$http.get('http://106.15.199.21:8080/order/products',{
                     params:{
                         orderId:this.orderId
                     }

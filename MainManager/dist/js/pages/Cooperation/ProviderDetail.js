@@ -50,7 +50,7 @@ var vm  = new Vue({
             this.deleteCookie("username");
         },
         saveModify:function () {
-            this.$http.put("http://106.14.224.189:8080/provider",{
+            this.$http.put("http://106.15.199.21:8080/provider",{
                 id:this.items.id,
                 name:this.items.name,
                 taxId:this.items.tax_id,
@@ -90,7 +90,7 @@ var vm  = new Vue({
             alert("抱歉，您无权浏览当前页面，如有疑问，请与管理员联系");
             window.location.href = "../index.html"
         }else{
-            this.$http.get("http://106.14.224.189:8080/provider/singleProvider",{
+            this.$http.get("http://106.15.199.21:8080/provider/singleProvider",{
                 params:{
                     providerId:this.id
                 }

@@ -32,7 +32,7 @@ var tool=new Vue(
             alert("抱歉，您无权浏览当前页面，如有疑问，请与管理员联系");
             window.location.href = "../index.html"
         }else{
-                    this.$http.get('http://106.14.224.189:8080/flow/money/'+this.year)
+                    this.$http.get('http://106.15.199.21:8080/flow/money/'+this.year)
                         .then(function(response){
                                 this.items=response.body;
                                 console.log(this.items);
@@ -90,7 +90,7 @@ var tool=new Vue(
             var value = select.value;
             this.year = parseInt(value);
             console.log(this.year);
-            this.$http.get('http://106.14.224.189:8080/flow/money/'+this.year)
+            this.$http.get('http://106.15.199.21:8080/flow/money/'+this.year)
                 .then(function(response){
                         this.items=response.body;
                 }).catch(function(error){

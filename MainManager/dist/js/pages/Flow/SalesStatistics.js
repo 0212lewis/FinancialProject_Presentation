@@ -91,7 +91,7 @@ var tool=new Vue(
 	},
 	methods:{
 	  viewDetail:function (clientName) {
-	      this.$http.get("http://106.14.224.189:8080/client/clientID",{
+	      this.$http.get("http://106.15.199.21:8080/client/clientID",{
 	          params:{
 	              name:clientName
               }
@@ -135,7 +135,7 @@ var tool=new Vue(
             var value = select.value;
             this.year = parseInt(value);
             console.log(this.year);
-            this.$http.get('http://106.14.224.189:8080/flow/sales_analysis/'+this.year)
+            this.$http.get('http://106.15.199.21:8080/flow/sales_analysis/'+this.year)
                 .then(function(response){
 
                         this.items=response.data.data;
@@ -150,7 +150,7 @@ var tool=new Vue(
             })
         },
         closePeriod:function () {
-            this.$http.put("http://106.14.224.189:8080/closePeriod").then(function (response) {
+            this.$http.put("http://106.15.199.21:8080/closePeriod").then(function (response) {
                 if(response.data.errorCode == 0){
                     alert("本期已成功结转！");
                     window.location.href = "DetailStatistics.html"
@@ -164,7 +164,7 @@ var tool=new Vue(
         modifyTicket:function () {
 
 	      hide2();
-            this.$http.put("http://106.14.224.189:8080/ticket_balance/"+this.clientId,
+            this.$http.put("http://106.15.199.21:8080/ticket_balance/"+this.clientId,
                 this.ticketBalance,{
                     headers:{
                         username:encodeURI(this.username)
@@ -180,7 +180,7 @@ var tool=new Vue(
         },
         modifyFund:function () {
 	      hide3();
-            this.$http.put("http://106.14.224.189:8080/fund_balance/"+this.clientId,
+            this.$http.put("http://106.15.199.21:8080/fund_balance/"+this.clientId,
                 this.fundBalance,{
                 headers:{
                     username:encodeURI(this.username)
@@ -250,7 +250,7 @@ var tool=new Vue(
             alert("抱歉，您无权浏览当前页面，如有疑问，请与管理员联系");
             window.location.href = "../index.html"
         }else {
-            this.$http.get('http://106.14.224.189:8080/flow/sales_analysis/' + this.year)
+            this.$http.get('http://106.15.199.21:8080/flow/sales_analysis/' + this.year)
                 .then(function (response) {
 
                     this.items = response.data.data;
@@ -268,7 +268,7 @@ var tool=new Vue(
                 alert("获取信息失败，请刷新重试！")
             });
 
-            this.$http.get("http://106.14.224.189:8080/ticketAndFunds/all").then(function (response) {
+            this.$http.get("http://106.15.199.21:8080/ticketAndFunds/all").then(function (response) {
                 this.items1 = response.data.data;
                 setTimeout(function () {
                     $('#example2').DataTable({

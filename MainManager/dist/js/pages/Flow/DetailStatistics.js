@@ -58,7 +58,7 @@ var tool=new Vue(
                 window.location.href = "../index.html"
             }
          else{
-                this.$http.get('http://106.14.224.189:8080/ticketAndFund',{
+                this.$http.get('http://106.15.199.21:8080/ticketAndFund',{
                     params:{
                         clientId:this.clientId
                     }

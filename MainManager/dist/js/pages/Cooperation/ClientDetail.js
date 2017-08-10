@@ -52,7 +52,7 @@ var vm  = new Vue({
         },
 
         saveModify:function () {
-            this.$http.put("http://106.14.224.189:8080/client",{
+            this.$http.put("http://106.15.199.21:8080/client",{
                 id:this.items.id,
                 name:this.items.name,
                 taxId:this.items.taxId,
@@ -92,7 +92,7 @@ var vm  = new Vue({
             alert("抱歉，您无权浏览当前页面，如有疑问，请与管理员联系");
             window.location.href = "../index.html"
         }else{
-            this.$http.get("http://106.14.224.189:8080/client/singleClient",{
+            this.$http.get("http://106.15.199.21:8080/client/singleClient",{
                 params:{
                     clientId:this.id
                 }

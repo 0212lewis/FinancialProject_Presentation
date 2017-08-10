@@ -169,7 +169,7 @@ var vm = new Vue({
                 }
             }
             this.receives.push(name);
-            this.$http.post("http://106.14.224.189:8080/provider", {
+            this.$http.post("http://106.15.199.21:8080/provider", {
                 account: document.getElementById("newProviderAccount").value,
                 address: document.getElementById("newProviderAddress").value,
                 bank: document.getElementById("newProviderBank").value,
@@ -209,7 +209,7 @@ var vm = new Vue({
                 hide2();
                 return;
             }
-            this.$http.delete("http://106.14.224.189:8080/provider",{
+            this.$http.delete("http://106.15.199.21:8080/provider",{
                 body:name,
                 headers:{
                     username:encodeURI(this.username)
@@ -237,7 +237,7 @@ var vm = new Vue({
                 }
             }
             this.methods.push(name);
-            this.$http.post("http://106.14.224.189:8080/paymentMethod",{
+            this.$http.post("http://106.15.199.21:8080/paymentMethod",{
                 name:name
             }).then(function(response){
                 document.getElementById("newinput3").value="";
@@ -257,7 +257,7 @@ var vm = new Vue({
                 hide4();
                 return;
             }
-            this.$http.delete("http://106.14.224.189:8080/paymentMethod",{
+            this.$http.delete("http://106.15.199.21:8080/paymentMethod",{
                 body:{
                     name:name
                 }
@@ -288,7 +288,7 @@ var vm = new Vue({
                 var day = list[1];
                 var year = list[2]
                 var newDate = year+'-'+month+'-'+day+" "+this.payMoneyOrder.hour+":"+this.payMoneyOrder.minute+":"+this.payMoneyOrder.second;
-                this.$http.post("http://106.14.224.189:8080/order/pay_money",{
+                this.$http.post("http://106.15.199.21:8080/order/pay_money",{
                         providerID:'',
                         providerName:this.payMoneyOrder.receive.trim(),
                         pay_method:this.payMoneyOrder.method.trim(),
@@ -351,14 +351,14 @@ var vm = new Vue({
             return;
         }else{
             const self = this;
-            this.$http.get('http://106.14.224.189:8080/provider/allName')
+            this.$http.get('http://106.15.199.21:8080/provider/allName')
                 .then(function(response){
                     self.receives=response.data.data;
                 }).catch(function(error){
                 alert("获取信息失败，请刷新重试！");
             });
 
-            this.$http.get('http://106.14.224.189:8080/paymentMethod/allName')
+            this.$http.get('http://106.15.199.21:8080/paymentMethod/allName')
                 .then(function(response){
                     self.methods=response.data.data;
                 }).catch(function(error){

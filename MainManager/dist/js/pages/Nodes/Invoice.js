@@ -140,7 +140,7 @@ var vm = new Vue({
                 }
             }
             this.invoicers.push(name);
-            this.$http.post("http://106.14.224.189:8080/client", {
+            this.$http.post("http://106.15.199.21:8080/client", {
                 account: document.getElementById("newClientAccount").value,
                 address: document.getElementById("newClientAddress").value,
                 bank: document.getElementById("newClientBank").value,
@@ -180,7 +180,7 @@ var vm = new Vue({
                 hide2();
                 return;
             }
-            this.$http.delete("http://106.14.224.189:8080/client",{
+            this.$http.delete("http://106.15.199.21:8080/client",{
               body:name,
 
                 headers:{
@@ -215,7 +215,7 @@ var vm = new Vue({
                 alert("请输入开票金额！");
             }else if((this.invoiceOrder.hour.toString().length==2)&&(this.invoiceOrder.minute.toString().length==2)&&(this.invoiceOrder.second.toString().length==2)) {
                     const self = this;
-                    this.$http.post("http://106.14.224.189:8080/order/open_ticket", {
+                    this.$http.post("http://106.15.199.21:8080/order/open_ticket", {
                         clientID: '',
                         clientName: self.invoiceOrder.unit.trim(),
                         orderID: self.invoiceOrder.orderId.trim(),
@@ -273,7 +273,7 @@ var vm = new Vue({
             return;
         } else{
             const self = this;
-            this.$http.get('http://106.14.224.189:8080/client/allName')
+            this.$http.get('http://106.15.199.21:8080/client/allName')
                 .then(function(response){
                     if(response.body.errorCode == 0) {
                         self.invoicers = response.data.data;

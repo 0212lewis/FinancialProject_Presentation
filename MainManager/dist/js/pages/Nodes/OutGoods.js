@@ -408,7 +408,7 @@ var vm = new Vue({
                 hasTax = true;
             }
 
-            this.$http.post("http://106.14.224.189:8080/order/delivery_product",{
+            this.$http.post("http://106.15.199.21:8080/order/delivery_product",{
                     clientId:'',
                     clientName:this.deliveryOrder.receive.trim(),
                     deliveryMan:this.deliveryOrder.deliveryMan.trim(),
@@ -526,7 +526,7 @@ var vm = new Vue({
                 type=document.getElementById("goodModel5").value;
             }
 
-            this.$http.get("http://106.14.224.189:8080/product/id", {
+            this.$http.get("http://106.15.199.21:8080/product/id", {
                 params: {
                     name: name, type: type
                 }
@@ -586,7 +586,7 @@ var vm = new Vue({
                 }
             }
             const self = this;
-            this.$http.post("http://106.14.224.189:8080/client",{
+            this.$http.post("http://106.15.199.21:8080/client",{
                 account: document.getElementById("receiverAccount").value,
                 address: document.getElementById("receiverAddress").value,
                 bank: document.getElementById("receiverBank").value,
@@ -620,7 +620,7 @@ var vm = new Vue({
                 hide2();
                 return;
             }
-            this.$http.delete("http://106.14.224.189:8080/client",{
+            this.$http.delete("http://106.15.199.21:8080/client",{
                 body:name,
                 headers:{
                     username:encodeURI(this.username)
@@ -654,7 +654,7 @@ var vm = new Vue({
                     return;
                 }
             }
-            this.$http.post("http://106.14.224.189:8080/businessman",{
+            this.$http.post("http://106.15.199.21:8080/businessman",{
                 address:address,
                 name:name,
                 phone_number:phoneNumber
@@ -683,7 +683,7 @@ var vm = new Vue({
                 hide8();
                 return;
             }
-            this.$http.delete("http://106.14.224.189:8080/businessman",{
+            this.$http.delete("http://106.15.199.21:8080/businessman",{
                 body:name,
                 headers:{
                     username:encodeURI(this.username)
@@ -720,7 +720,7 @@ var vm = new Vue({
                 }
             }
             // const self = this;
-            this.$http.post("http://106.14.224.189:8080/product/product",{
+            this.$http.post("http://106.15.199.21:8080/product/product",{
                 name:name,
                 type:type
             },{
@@ -770,7 +770,7 @@ var vm = new Vue({
             var index=mySelect.selectedIndex;
             var name=mySelect.options[index].value;
             var number=content.substring(8);
-            this.$http.get("http://106.14.224.189:8080/product/type", {
+            this.$http.get("http://106.15.199.21:8080/product/type", {
                 params: {name: name}
             }).then(function (response) {
                 if(number==1) {
@@ -793,7 +793,7 @@ var vm = new Vue({
         getType2:function () {
 
             var name=document.getElementById('newinput3').value;
-            this.$http.get("http://106.14.224.189:8080/product/type", {
+            this.$http.get("http://106.15.199.21:8080/product/type", {
                 params: {name: name}
             }).then(function (response) {
                 this.myTypes=response.data.data;
@@ -822,7 +822,7 @@ var vm = new Vue({
                 }
             }
             const self = this;
-            this.$http.post("http://106.14.224.189:8080/product/product",{
+            this.$http.post("http://106.15.199.21:8080/product/product",{
                 name:productName,
                 type:name
             }).then(function(response){
@@ -846,7 +846,7 @@ var vm = new Vue({
                     return;
                 }
             }
-            this.$http.post("http://106.14.224.189:8080/deliveryman",{
+            this.$http.post("http://106.15.199.21:8080/deliveryman",{
                 name:name
             }).then(function(response){
                 document.getElementById("newinput5").value="";
@@ -867,7 +867,7 @@ var vm = new Vue({
                 hide6();
                 return;
             }
-            this.$http.delete("http://106.14.224.189:8080/deliveryman",{
+            this.$http.delete("http://106.15.199.21:8080/deliveryman",{
                 body:{
                     name:name
                 }
@@ -910,31 +910,31 @@ var vm = new Vue({
         }else{
         const self = this;
 
-        this.$http.get("http://106.14.224.189:8080/client/allName").then(function(response){
+        this.$http.get("http://106.15.199.21:8080/client/allName").then(function(response){
             self.receives=response.data.data;
         }).catch(function(error){
             alert("获取信息失败，请刷新重试！")
         });
 
-        this.$http.get("http://106.14.224.189:8080/product/product/name").then(function(response){
+        this.$http.get("http://106.15.199.21:8080/product/product/name").then(function(response){
             self.goodNames=response.data.data;
         }).catch(function(error){
             alert("获取信息失败，请刷新重试！")
         });
 
-        this.$http.get("http://106.14.224.189:8080/product/product").then(function(response){
+        this.$http.get("http://106.15.199.21:8080/product/product").then(function(response){
             self.allGoods=response.data.data;
         }).catch(function(error){
             alert("获取信息失败，请刷新重试！")
         });
 
-        this.$http.get("http://106.14.224.189:8080/deliveryman/allName").then(function(response){
+        this.$http.get("http://106.15.199.21:8080/deliveryman/allName").then(function(response){
             self.deliveryMen=response.data.data;
         }).catch(function(error){
             alert("获取信息失败，请刷新重试！")
         });
 
-        this.$http.get("http://106.14.224.189:8080/businessman").then(function(response){
+        this.$http.get("http://106.15.199.21:8080/businessman").then(function(response){
             self.businessMen=response.data.data;
         }).catch(function(error){
             alert("获取信息失败，请刷新重试！")

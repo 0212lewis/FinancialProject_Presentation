@@ -71,7 +71,7 @@ var vm = new Vue({
                 alert("请输入中文字符！");
                 hide1();
             }else{
-                this.$http.post("http://106.14.224.189:8080/account",{
+                this.$http.post("http://106.15.199.21:8080/account",{
                         username:this.items.username,
                         password:this.items.password,
                         phoneNumber:this.items.phoneNumber,
