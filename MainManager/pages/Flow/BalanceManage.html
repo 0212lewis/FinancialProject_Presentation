@@ -357,7 +357,7 @@ desired effect
                                     <th rowspan="2" width="200">客户名称</th>
                                     <th rowspan="2" width="50">客户简码</th>
                                     <th colspan="3">应开发票</th>
-                                    <th colspan="4">应收账款</th>
+                                    <th colspan="6">应收账款</th>
                                 </tr>
                                 <tr>
 
@@ -397,6 +397,23 @@ desired effect
                                     </td>
                                 </tr>
                                 </tbody>
+                                <tfoot>
+                                <tr>
+                                    <td>统计</td>
+                                    <td></td>
+                                    <td id="qichuyue1">计算中</td>
+                                    <td></td>
+                                    <td id="benqiyikai">计算中</td>
+                                    <td id="muqianyingkai">计算中</td>
+                                    <td id="qichuyue2">计算中</td>
+                                    <td></td>
+                                    <td id="benqifasheng">计算中</td>
+                                    <td id="benqihuilong">计算中</td>
+                                    <td id="muqianyingshou">计算中</td>
+                                    <td></td>
+                                </tr>
+
+                                </tfoot>
 
                             </table>
                         </div>
@@ -454,6 +471,86 @@ desired effect
 <!-- AdminLTE for demo purposes -->
 <script src="../../dist/js/demo.js"></script>
 <!-- page script -->
+
+<script type="text/javascript">
+    window.onload=function(){
+        window.setTimeout(function () {
+            var table = document.getElementById("example2");
+            var qichuyue1 = 0;
+            var benqiyikai = 0;
+            var muqianyingkai= 0;
+            var qichuyue2 = 0;
+            var benqifasheng = 0;
+            var benqihuilong = 0;
+            var muqianyingshou = 0;
+
+            for(var i=2;i<table.rows.length-1;i++)
+            {
+                qichuyue1 = parseFloat(parseFloat(table.rows[i].cells[2].innerHTML)+parseFloat(qichuyue1));
+                benqiyikai = parseFloat(parseFloat(table.rows[i].cells[4].innerHTML)+parseFloat(benqiyikai));
+                muqianyingkai = parseFloat(parseFloat(table.rows[i].cells[5].innerHTML)+parseFloat(muqianyingkai));
+                qichuyue2 = parseFloat(parseFloat(table.rows[i].cells[6].innerHTML)+parseFloat(qichuyue2));
+                benqifasheng = parseFloat(parseFloat(table.rows[i].cells[8].innerHTML)+parseFloat(benqifasheng));
+                benqihuilong = parseFloat(parseFloat(table.rows[i].cells[9].innerHTML)+parseFloat(benqihuilong));
+                muqianyingshou = parseFloat(parseFloat(table.rows[i].cells[10].innerHTML)+parseFloat(muqianyingshou));
+
+            }
+
+            document.getElementById("qichuyue1").innerText=qichuyue1;
+            document.getElementById("benqiyikai").innerText=benqiyikai;
+            document.getElementById("muqianyingkai").innerText=muqianyingkai;
+            document.getElementById("qichuyue2").innerText=qichuyue2;
+            document.getElementById("benqifasheng").innerText=benqifasheng;
+            document.getElementById("benqihuilong").innerText=benqihuilong;
+            document.getElementById("muqianyingshou").innerText=muqianyingshou;
+        },1000);
+    }
+
+    //    $('example1').on('click','.test',function(){
+    //            alert("haahah")
+    //    });
+</script>
+<script>
+    $(document).ready(function(){
+        (function(){
+            var len = $("#example2").text.length;
+            setInterval(function(){
+                var length = $("#example2").text().length;
+                if(length != len){
+                    len = length;
+                    var table = document.getElementById("example2");
+                    var qichuyue1 = 0;
+                    var benqiyikai = 0;
+                    var muqianyingkai= 0;
+                    var qichuyue2 = 0;
+                    var benqifasheng = 0;
+                    var benqihuilong = 0;
+                    var muqianyingshou = 0;
+
+                    for(var i=2;i<table.rows.length-1;i++)
+                    {
+                        qichuyue1 = parseFloat(parseFloat(table.rows[i].cells[2].innerHTML)+parseFloat(qichuyue1));
+                        benqiyikai = parseFloat(parseFloat(table.rows[i].cells[4].innerHTML)+parseFloat(benqiyikai));
+                        muqianyingkai = parseFloat(parseFloat(table.rows[i].cells[5].innerHTML)+parseFloat(muqianyingkai));
+                        qichuyue2 = parseFloat(parseFloat(table.rows[i].cells[6].innerHTML)+parseFloat(qichuyue2));
+                        benqifasheng = parseFloat(parseFloat(table.rows[i].cells[8].innerHTML)+parseFloat(benqifasheng));
+                        benqihuilong = parseFloat(parseFloat(table.rows[i].cells[9].innerHTML)+parseFloat(benqihuilong));
+                        muqianyingshou = parseFloat(parseFloat(table.rows[i].cells[10].innerHTML)+parseFloat(muqianyingshou));
+                    }
+
+                    document.getElementById("qichuyue1").innerText=qichuyue1;
+                    document.getElementById("benqiyikai").innerText=benqiyikai;
+                    document.getElementById("muqianyingkai").innerText=muqianyingkai;
+                    document.getElementById("qichuyue2").innerText=qichuyue2;
+                    document.getElementById("benqifasheng").innerText=benqifasheng;
+                    document.getElementById("benqihuilong").innerText=benqihuilong;
+                    document.getElementById("muqianyingshou").innerText=muqianyingshou;
+                }
+            }, 800)
+        })();
+
+    });
+</script>
 
 </body>
 </html>
