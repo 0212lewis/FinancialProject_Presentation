@@ -13,6 +13,10 @@ function dateConvert(content) {
     return year + "-" + month + "-" + day;
 }
 
+function printPage() {
+    window.print();
+}
+
 var storage=window.localStorage;
 var cname=storage.getItem("clientName");
 var deliveryman = storage.getItem("deliveryMan");

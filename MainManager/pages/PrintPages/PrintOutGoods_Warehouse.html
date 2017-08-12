@@ -30,6 +30,24 @@ scratch. This page gets rid of all links and provides the needed markup only.
         .noprint{visibility:hidden}
     </style>
 
+    <style media="print">
+        @page {
+            size: auto;  /* auto is the initial value */
+            margin: 0mm; /* this affects the margin in the printer settings */
+        }
+    </style>
+
+    <style>
+        .td{width:50px;}
+    </style>
+
+    <style>
+        .tdheight{height: 5px}
+    </style>
+
+    <style>
+        .myinput{width:68px;height: 22px}
+    </style>
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -198,28 +216,28 @@ desired effect
                     <!--</table>-->
                     <!--<table class="table table-bordered">-->
                     <table id="example2" class="table table-bordered table-hover">
-                        <thead align="center">
+                        <thead align="center" style="height:5px;">
                         <tr>
                             <th colspan="2" align="center">货名</th>
                             <th align="center">型号</th>
                             <th align="center">数量(吨)</th>
                             <th align="center">单价(元/吨)</th>
                             <th align="center">金额(元)</th>
-                            <th rowspan="6" align="center">备注</th>
+                            <th rowspan="8" align="center">备注</th>
                         </tr>
                         </thead>
                         <tbody>
                         <tr>
-                            <td align="center">1</td>
-                            <td align="center" id="goodname1"></td>
-                            <td id="goodtype1"></td>
-                            <td id="goodammount1"></td>
-                            <td id="singleprice1"></td>
-                            <td id="totalprice1"></td>
-                            <td id="comment" rowspan="5"></td>
+                            <td class="td tdheight" align="center" style="height:5px;">1</td>
+                            <td align="center" id="goodname1" style="height:5px;"></td>
+                            <td id="goodtype1" style="height:5px;"></td>
+                            <td id="goodammount1" style="height:5px;"></td>
+                            <td id="singleprice1" style="height:5px;"></td>
+                            <td id="totalprice1" style="height:5px;"></td>
+                            <td id="comment" rowspan="5" style="height:5px;"></td>
                         </tr>
                         <tr>
-                            <td align="center">2</td>
+                            <td class="td tdheight" align="center" style="height:5px;">2</td>
                             <td align="center" id="goodname2"></td>
                             <td id="goodtype2"></td>
                             <td id="goodammount2"></td>
@@ -227,7 +245,7 @@ desired effect
                             <td id="totalprice2"></td>
                         </tr>
                         <tr>
-                            <td align="center">3</td>
+                            <td class="td tdheight" align="center" style="height:5px;">3</td>
                             <td align="center" id="goodname3"></td>
                             <td id="goodtype3"></td>
                             <td id="goodammount3"></td>
@@ -235,7 +253,7 @@ desired effect
                             <td id="totalprice3"></td>
                         </tr>
                         <tr>
-                            <td align="center">4</td>
+                            <td class="td tdheight" align="center" style="height:5px;">4</td>
                             <td align="center" id="goodname4"></td>
                             <td id="goodtype4"></td>
                             <td id="goodammount4"></td>
@@ -243,52 +261,54 @@ desired effect
                             <td id="totalprice4"></td>
                         </tr>
                         <tr>
-                            <td align="center">5</td>
+                            <td class="td tdheight" align="center" style="height:5px;">5</td>
                             <td align="center" id="goodname5"></td>
                             <td id="goodtype5"></td>
                             <td id="goodammount5"></td>
                             <td id="singleprice5"></td>
                             <td id="totalprice5"></td>
                         </tr>
+                        </tbody>
+                        <tfoot>
                         <tr>
-                            <td align="center">总计</td>
+                            <td align="center" class="tdheight" style="height:5px;">总计</td>
                             <td></td>
                             <td></td>
                             <td id="sumNum" v-text="calSumNum"></td>
                             <td></td>
                             <td id="sumPrice" v-text="calSumPrice"></td>
+                            <td></td>
                         </tr>
-                        </tbody>
+                        </tfoot>
                     </table>
 
                 </div>
-
-                <br><br>
                 <div>
                     <table id="example1" class="table table-bordered table-hover">
                         <tbody>
                         <tr>
-                            <td valign="center" align="center" rowspan="2">空桶回收情况</td>
-                            <td><label align="center">规格</label></td>
+                            <td valign="center" align="center" rowspan="2" class="tdheight">空桶回收情况</td>
+                            <td align="center" class="tdheight" class="tdheight"><label align="center" class="tdheight">规格</label></td>
                             <td>
-                                <label class="col-md-3 control-label"><input name="Fruit" type="checkbox" value="" />1000L桶 </label>
-                                <label class="col-md-3 control-label"><input name="Fruit" type="checkbox" value="" />50L桶 </label>
-                                <label class="col-md-3 control-label"><input name="Fruit" type="checkbox" value="" />其他包装 </label>
+                                <span class="col-md-3 control-label tdheight"><input name="Fruit" type="checkbox" value="" />1000L桶 </span>
+                                <span class="col-md-3 control-label tdheight"><input name="Fruit" type="checkbox" value="" />50L桶 </span>
+                                <span class="col-md-3 control-label tdheight"><input name="Fruit" type="checkbox" value="" />其他包装 </span>
                             </td>
                         </tr>
                         <tr>
-                            <td><label align="center">数量(只)</label></td>
+                            <td align="center" class="tdheight"><label align="center" class="tdheight">数量(只)</label></td>
                             <td>
                                 <!--<label class="col-md-3 control-label"></label>-->
                                 <div class="row">
-                                    &nbsp;&nbsp; &nbsp;&nbsp;前余：&nbsp;&nbsp;<input class="" type="text" value="" />
-                                    &nbsp;&nbsp;今到：<input class="" type="text" value="" />
+                                    &nbsp;&nbsp; &nbsp;&nbsp;前余：&nbsp;&nbsp;<input class="myinput" type="text" value="" />
+                                    &nbsp;&nbsp;今到：<input class="myinput" type="text" value="" />
+                                    &nbsp; &nbsp;今收回：<input class="myinput" type="text" value="" />
+                                    &nbsp;&nbsp;&nbsp;&nbsp;余：&nbsp;&nbsp;<input class="myinput" type="text" value="" />
                                 </div>
-                                <br>
-                                <div class="row">
-                                    &nbsp; &nbsp;今收回：<input class="" type="text" value="" />
-                                    &nbsp;&nbsp;&nbsp;&nbsp;余：&nbsp;&nbsp;<input class="" type="text" value="" />
-                                </div>
+                                <!--<div class="row">-->
+                                <!--&nbsp; &nbsp;今收回：<input class="myinput" type="text" value="" />-->
+                                <!--&nbsp;&nbsp;&nbsp;&nbsp;余：&nbsp;&nbsp;<input class="myinput" type="text" value="" />-->
+                                <!--</div>-->
                             </td>
                         </tr>
                         </tbody>
@@ -300,6 +320,7 @@ desired effect
                         </tr>
                         </tfoot>
                     </table>
+
 
                 </div>
 
