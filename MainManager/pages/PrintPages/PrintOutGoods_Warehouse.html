@@ -33,7 +33,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <style media="print">
         @page {
             size: auto;  /* auto is the initial value */
-            margin: 0mm; /* this affects the margin in the printer settings */
+            margin-top: 0mm; /* this affects the margin in the printer settings */
+            margin-bottom: 0mm;
+            margin-left: 10px;
+            margin-right: 10px;
         }
     </style>
 
@@ -48,6 +51,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <style>
         .myinput{width:68px;height: 22px}
     </style>
+
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -114,7 +118,7 @@ desired effect
                             <!-- The user image in the navbar-->
                             <img src="../../dist/img/avatar5.png" class="user-image" alt="User Image">
                             <!-- hidden-xs hides the username on small devices so only the image appears. -->
-                            <span class="hidden-xs">吴德峰</span>
+                            <span class="hidden-xs" v-text="username"></span>
                         </a>
                         <ul class="dropdown-menu">
                             <!-- The user image in the menu -->
@@ -122,7 +126,6 @@ desired effect
                                 <img src="../../dist/img/avatar5.png" class="img-circle" alt="User Image">
 
                                 <p>
-                                    华峰纸管胶厂--经理
 
                                 </p>
                             </li>
@@ -147,7 +150,7 @@ desired effect
                     <img src="../../dist/img/avatar5.png" class="img-circle" alt="User Image">
                 </div>
                 <div class="pull-left info">
-                    <p>吴德峰</p>
+                    <p v-text="username"></p>
                     <!-- Status -->
                     <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
                 </div>
@@ -163,14 +166,68 @@ desired effect
                     <a href="#"><i class="fa fa-files-o"></i> <span>票单管理</span>
                         <span class="pull-right-container">
             <i class="fa fa-angle-left pull-right"></i>
-         </span>
+          </span>
                     </a>
                     <ul class="treeview-menu">
-                        <li><a href="../Login/InGoods.html"><i class="fa fa-circle-o"> 进货单</i></a> </li>
-                        <li class="active"><a href="../Login/OutGoods.html"><i class="fa fa-circle-o"> 送货单</i></a> </li>
+                        <li><a href="../../pages/Nodes/Income.html"><i class="fa fa-circle-o"> 进款单</i></a> </li>
+                        <li><a href="../../pages/Nodes/NonSaleIncome.html"><i class="fa fa-circle-o"> 销售外进款单</i></a> </li>
+                        <li><a href="../../pages/Nodes/Outcome.html"><i class="fa fa-circle-o"> 付款单</i></a> </li>
+                        <li><a href="../../pages/Nodes/Invoice.html"><i class="fa fa-circle-o"> 开票单</i></a> </li>
+                        <li><a href="../../pages/Nodes/InGoods.html"><i class="fa fa-circle-o"> 进货单</i></a> </li>
+                        <li class="active"><a href="../../pages/Nodes/OutGoods.html"><i class="fa fa-circle-o"> 送货单</i></a> </li>
+                    </ul>
+                </li>
+                <li class="treeview">
+                    <a href="#"><i class="fa fa-th"></i> <span>流水账管理</span>
+                        <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+                    </a>
+                    <ul class="treeview-menu">
+                        <li><a href="../../pages/Flow/SalesFlow.html"><i class="fa fa-circle-o"> 销售流水</i></a></li>
+                        <li><a href="../../pages/Flow/InvoiceFlow.html"><i class="fa fa-circle-o"> 开票流水</i></a></li>
+                        <li><a href="../../pages/Flow/CapitalFlow.html"><i class="fa fa-circle-o"> 资金流水</i></a></li>
+                        <li><a href="../../pages/Flow/InGoodsFlow.html"><i class="fa fa-circle-o"> 进货流水</i></a></li>
+                        <li><a href="../../pages/Flow/SalesStatistics.html"><i class="fa fa-circle-o"> 销售统计表</i></a></li>
+                        <li><a href="../../pages/Flow/BalanceManage.html"><i class="fa fa-circle-o">应收款管理</i></a></li>
+
+                    </ul>
+                </li>
+                <li class="treeview">
+                    <a href="#"><i class="fa fa-user"></i> <span>合作伙伴</span>
+                        <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+                    </a>
+                    <ul class="treeview-menu">
+                        <li><a href="#"><i class="fa fa-circle-o"> 客户</i></a></li>
+                        <li><a href="#"><i class="fa fa-circle-o"> 供应商</i></a></li>
                     </ul>
                 </li>
 
+
+                <li class="treeview" >
+                    <a href="#"><i class="fa fa-user"></i> <span>员工管理</span>
+                        <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+                    </a>
+                    <ul class="treeview-menu">
+                        <li><a href="../Manage/Businessman.html"><i class="fa fa-circle-o"> 业务员</i></a></li>
+                        <li><a href="../Manage/Employee.html"><i class="fa fa-circle-o"> 权限管理</i></a></li>
+                    </ul>
+                </li>
+
+                <li class="treeview" >
+                    <a href="#"><i class="fa fa-th-large"></i> <span>系统管理</span>
+                        <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+                    </a>
+                    <ul class="treeview-menu">
+                        <li><a href="../Log.html"><i class="fa fa-circle-o"> 操作日志</i></a></li>
+                    </ul>
+                </li>
             </ul>
             <!-- /.sidebar-menu -->
         </section>
@@ -191,12 +248,12 @@ desired effect
 
         <!-- Main content -->
 
-        <div class="box box-warning col-md-10" id="outgoods" >
+        <div class="box box-warning col-md-10" id="outgoods" style="width: 85%;left: 8%">
             <div class="box-header with-border" align="center">
                 <h2>高邮市华峰纸管胶加工厂</h2>  <!--class="box-title"-->
-                <h4>送货单:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span id="orderid"></span> </h4>
-                <button type="submit" class="btn btn-warning pull-right noprint" class="noprint" rel="external nofollow" target="_self" onclick="window.print()">打印</button>
-
+                <h4>送货单:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span id="orderid"></span>
+                    <button type="submit" class="btn btn-warning pull-right noprint" class="noprint" rel="external nofollow" target="_self" onclick="window.print()">打印</button>
+                </h4>
             </div>
             <!-- /.box-header -->
             <!-- form start -->
@@ -320,7 +377,6 @@ desired effect
                         </tr>
                         </tfoot>
                     </table>
-
 
                 </div>
 
