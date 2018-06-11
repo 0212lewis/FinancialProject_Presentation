@@ -581,7 +581,7 @@ desired effect
                         <div class="box-body">
                             <table id="example2" class="table table-bordered table-hover">
                                 <thead>
-                                <tr>
+                                <tr class="active">
                                     <th style="text-align: center" class="col-md-4">货名<button class="btn-xs btn-primary pull-right noprint" type="button" onclick="show3()" >添加货品</button></th>
                                     <th style="text-align: center" class="col-md-3">型号
                                         <!--<button class="btn-xs btn-primary pull-right" type="button" onclick="show4()">添加型号</button> -->
@@ -677,7 +677,7 @@ desired effect
                         </div>
                         <hr>
                         <div class="form-group">
-                            <label  class="col-md-3 control-label">运货人</label>
+                            <label  class="col-md-3 control-label">运&nbsp;&nbsp;货&nbsp;&nbsp;人</label>
 
                             <div class="col-md-6">
                                 <select id="DeliveryMan" class="form-control" v-model="deliveryOrder.deliveryMan">
@@ -692,7 +692,7 @@ desired effect
                         </div>
                         <hr>
                         <div class="form-group">
-                            <label  class="col-md-3 control-label">业务员</label>
+                            <label  class="col-md-3 control-label">业&nbsp;&nbsp;务&nbsp;&nbsp;员</label>
 
                             <div class="col-md-6">
                                 <select id="businessMan" class="form-control" v-model="deliveryOrder.businessMan">
@@ -707,14 +707,16 @@ desired effect
                         </div>
                         <hr>
                         <div class="form-group">
-                            <label for="input" class="col-md-2 control-label">运费</label>
-                            <div class="col-md-3">
+                            <label for="input" class="col-md-3 control-label">运&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;费</label>
+                            <div class="col-md-6">
                                 <input type="text" class="form-control" id="input" placeholder="输入运费：" v-model="deliveryOrder.deliveryMoney">
                             </div>
-
-                            <label for="input2" class="col-md-2 control-label">备注</label>
-                            <div class="col-md-3">
-                                <input type="text" class="form-control" id="input2" placeholder="需要备注的信息：" v-model="deliveryOrder.comment">
+                        </div>
+                        <div class="form-group">
+                            <label for="input2" class="col-md-3 control-label">备&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;注</label>
+                            <div class="col-md-6">
+                                <textarea class="form-control" id="input2" placeholder="需要备注的信息：" v-model="deliveryOrder.comment" rows="6"></textarea>
+                                <!--<input type="text" class="form-control" id="input2" placeholder="需要备注的信息：" v-model="deliveryOrder.comment">-->
                             </div>
                         </div>
                         <hr>

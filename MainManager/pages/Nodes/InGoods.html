@@ -478,7 +478,7 @@ desired effect
                         <div class="box-body">
                             <table id="example2" class="table table-bordered table-hover">
                                 <thead>
-                                <tr>
+                                <tr class="active">
                                     <th style="text-align: center" class="col-md-4">货名<button class="btn-xs btn-primary pull-right noprint" type="button" onclick="show5()">添加货品</button></th>
                                     <th style="text-align: center" class="col-md-2">型号</th>
                                     <th style="text-align: center" class="col-md-2">数量</th>
@@ -510,7 +510,7 @@ desired effect
                         </div>
                         <hr>
                         <div class="form-group">
-                            <label  class="col-md-3 control-label">运货人</label>
+                            <label  class="col-md-3 control-label">运&nbsp;&nbsp;&nbsp;&nbsp;货&nbsp;&nbsp;&nbsp;&nbsp;人</label>
 
                             <div class="col-md-6">
                                 <select id="deliveryMan" class="form-control" v-model="InGoodsOrder.deliveryMan">
@@ -525,14 +525,14 @@ desired effect
                         </div>
                         <hr>
                         <div class="form-group">
-                            <label for="deliveryMoney" class="col-md-3 control-label">运费</label>
+                            <label for="deliveryMoney" class="col-md-3 control-label">运&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;费</label>
                             <div class="col-md-6">
                                 <input type="text" class="form-control" id="deliveryMoney" placeholder="输入运费：" v-model="InGoodsOrder.deliveryMoney">
                             </div>
                         </div>
                         <hr>
                         <div class="form-group">
-                            <label for="comment" class="col-md-3 control-label"> 备注</label>
+                            <label for="comment" class="col-md-3 control-label">备&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;注</label>
                             <div class="col-md-6">
                                 <input type="text" class="form-control" id="comment" placeholder="需要备注的信息：" v-model="InGoodsOrder.comment">
                             </div>
@@ -540,7 +540,7 @@ desired effect
                         <hr>
 
                         <div class="form-group">
-                            <label for="datepicker" class="col-md-3 control-label">进货日期</label>
+                            <label for="datepicker" class="col-md-3 control-label">进&nbsp;&nbsp;货&nbsp;&nbsp;日&nbsp;&nbsp;期</label>
                             <div class="input-group date col-md-6">
                                 <div class="input-group-addon">
                                     <i class="fa fa-calendar"></i>

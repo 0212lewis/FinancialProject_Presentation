@@ -225,9 +225,17 @@ desired effect
     <!-- Main content -->
     <section class="content" style="top: 50%">
       <div class="text-center col-md-12" style="top: 50%">
-        <label class="label" style="font-size: x-large">华峰纸管胶厂财务管理系统</label>
+        <label class="label" style="font-size: x-large;">华峰纸管胶厂财务管理系统</label>
       </div>
       <!-- Your Page Content Here -->
+
+      <br><br><br><br><br><br><br><br><br>
+
+      <div class="text-center col-md-12" style="top: 50%">
+        <label class="label" style="font-size: x-large;">欢迎您！{{username}}</label>
+        <br><br><br>
+        <label class="label" id="mytime" style="font-size: x-large;"></label>
+      </div>
 
     </section>
     <!-- /.content -->
@@ -263,5 +271,20 @@ desired effect
      Both of these plugins are recommended to enhance the
      user experience. Slimscroll is required when using the
      fixed layout. -->
+
+<script type="text/javascript">
+    function showTime(){
+        nowtime=new Date();
+        year=nowtime.getFullYear();
+        month=nowtime.getMonth()+1;
+        date=nowtime.getDate();
+        document.getElementById("mytime").innerText="现在是："+year+"年"+month+"月"+date+"日  "+nowtime.toLocaleTimeString();
+    }
+
+    setInterval("showTime()",1000);
+
+</script>
+
+
 </body>
 </html>
